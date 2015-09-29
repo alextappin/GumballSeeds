@@ -1,6 +1,9 @@
-####Contributors
+#Gumball Seeds
+#####A game created in HTML5, Javascript and CSS for Alex Tappin's Senior Project 
+
+##Contributors
 I am the only **developer** on this project. My uncle [Ovi Nedelcu](http://www.ovinedelcu.com/) is the **artist** and owner of the project.
-####University
+##University
 The University I am attending is [Oregon Institute of Technology.](http://www.oit.edu/) This is my senior project for my degree in [Software Engineering.](http://www.oit.edu/academics/degrees/software-engineering-technology)
 #Change Log
 ##v0.0.0
