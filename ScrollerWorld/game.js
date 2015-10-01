@@ -8,18 +8,14 @@ var stage = new PIXI.Container(0x66FF99);
 var farTexture = PIXI.Texture.fromImage("images/bg-far.png");
 var midTexture = PIXI.Texture.fromImage("images/bg-mid.png");
 
-var far = new PIXI.TilingSprite(farTexture, 512, 256);
-var mid = new PIXI.TilingSprite(midTexture, 512, 256);
+var far = TileSpriteHelper().newTiling(farTexture, 512, 256);
+var mid = TileSpriteHelper().newTiling(midTexture, 512, 256);
 
-far.position.x=0;
-far.position.y=0;
-far.tilePosition.x = 0;
-far.tilePosition.y = 0;
+TileSpriteHelper().setPosition(far, 0, 0);
+TileSpriteHelper().setTilePosition(far, 0, 0);
 
-mid.position.x=0;
-mid.position.y=128;
-mid.tilePosition.x = 0;
-mid.tilePosition.y = 0;
+TileSpriteHelper().setPosition(mid, 0, 128);
+TileSpriteHelper().setTilePosition(mid, 0, 0);
 
 stage.addChild(far);
 stage.addChild(mid);
