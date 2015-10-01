@@ -4,7 +4,7 @@
 function TextureHelper() {
     return {
         newTexture : function newTexture(imagePath) {
-            return PIXI.Texture.fromImage(imagePath);
+            return PIXI.Texture.fromImage('../resources/'+imagePath);
         }
     }
 }
