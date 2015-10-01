@@ -5,8 +5,8 @@ var renderer = PIXI.autoDetectRenderer(512, 384,{backgroundColor : 0x66FF99});
 document.body.appendChild(renderer.view);
 
 var stage = new PIXI.Container(0x66FF99);
-var farTexture = PIXI.Texture.fromImage("images/bg-far.png");
-var midTexture = PIXI.Texture.fromImage("images/bg-mid.png");
+var farTexture = TextureHelper().newTexture('images/bg-far.png');
+var midTexture = TextureHelper().newTexture("images/bg-mid.png");
 
 var far = TileSpriteHelper().newTiling(farTexture, 512, 256);
 var mid = TileSpriteHelper().newTiling(midTexture, 512, 256);
