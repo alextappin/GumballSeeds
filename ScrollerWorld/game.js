@@ -4,7 +4,7 @@
 var renderer = PIXI.autoDetectRenderer(512, 384,{backgroundColor : 0x66FF99});
 document.body.appendChild(renderer.view);
 
-var stage = new PIXI.Container(0x66FF99);
+var stage = ContainerHelper().newContainer(0x999888);
 var farTexture = TextureHelper().newTexture('images/bg-far.png');
 var midTexture = TextureHelper().newTexture("images/bg-mid.png");
 
@@ -17,8 +17,7 @@ TileSpriteHelper().setTilePosition(far, 0, 0);
 TileSpriteHelper().setPosition(mid, 0, 128);
 TileSpriteHelper().setTilePosition(mid, 0, 0);
 
-stage.addChild(far);
-stage.addChild(mid);
+stage = ContainerHelper().addChildren(stage, far, mid);
 
 requestAnimationFrame(update);
 
