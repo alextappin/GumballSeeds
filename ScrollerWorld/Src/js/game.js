@@ -5,13 +5,10 @@ var renderer = PIXI.autoDetectRenderer(512, 384,{backgroundColor : 0x66FF99}),
     map = MapClass();
 document.body.appendChild(renderer.view);
 
-requestAnimationFrame(update);
+GameFlow().start();
 
-function update() {
-    map.far.tilePosition.x -= 0.128;
-    map.mid.tilePosition.x -= 0.64;
-
+function updateRender() {
+    map.updateFrame();
     renderer.render(map.stage);
-
-    requestAnimationFrame(update);
+    requestAnimationFrame(updateRender);
 }

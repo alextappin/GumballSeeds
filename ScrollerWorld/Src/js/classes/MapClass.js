@@ -18,6 +18,10 @@ function MapClass() {
         farTexture : farTexture,
         midTexture : midTexture,
         far : far,
-        mid : mid
+        mid : mid,
+        updateFrame : function updateFrame() {
+            far.tilePosition.x -= 0.128;
+            mid.tilePosition.x -= 0.64;
+        }
     }
 }
