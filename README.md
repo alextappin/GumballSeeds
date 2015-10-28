@@ -11,6 +11,9 @@ The University I am attending is [Oregon Institute of Technology.](http://www.oi
    * **y** : *Minor Release* Includes *features* with or without bug fixes
    * **z** : *Build Number* Includes *hotfixes* and other *bug fixes*
 
+##v0.1.0
+* Basic map is completed.
+* Background, middleground and foreground is in place.
 ##v0.0.0
 * Created Git Repo
 * Researched technologies for developing applications using Html5, Javascript, CSS for cross-platform apps
