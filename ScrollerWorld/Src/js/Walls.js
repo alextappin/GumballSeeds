@@ -44,6 +44,7 @@ Walls.prototype.removeOldSlices = function(prevViewportSliceX) {
             this.returnWallSprite(slice.type, slice.sprite);
             this.removeChild(slice.sprite);
             slice.sprite = null;
+            console.log("removing");
         }
     }
 };
@@ -53,9 +54,12 @@ Walls.prototype.addSlice = function(sliceType, y) {
     this.slices.push(slice);
 };
 
+Walls.prototype.addSliceBorrow = function(sliceType, y) {
+    var slice = new WallSlice(sliceType, y);
+};
+
 Walls.prototype.checkViewportXBounds = function(viewportX) {
-    var maxViewportX = (this.slices.length - Walls.VIEWPORT_NUM_SLICES) *
-        WallSlice.WIDTH;
+    var maxViewportX = (this.slices.length - Walls.VIEWPORT_NUM_SLICES) * WallSlice.WIDTH;
     if (viewportX < 0)
     {
         viewportX = 0;

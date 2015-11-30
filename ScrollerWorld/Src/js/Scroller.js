@@ -29,5 +29,6 @@ Scroller.prototype.getViewportX = function() {
 
 Scroller.prototype.moveViewportXBy = function(units) {
     var newViewportX = this.viewportX + units;
+    this.mapBuilder.buildRandomSequence();
     this.setViewportX(newViewportX);
 };
