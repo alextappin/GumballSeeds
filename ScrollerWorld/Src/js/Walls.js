@@ -8,6 +8,7 @@ function Walls() {
     this.createLookupTables();
 
     this.slices = [];
+    this.numOfSlices = 0;
 
     this.viewportX = 0;
     this.viewportSliceX = 0;
@@ -50,6 +51,7 @@ Walls.prototype.removeOldSlices = function(prevViewportSliceX) {
 
 Walls.prototype.addSlice = function(sliceType, y) {
     var slice = new WallSlice(sliceType, y);
+    this.numOfSlices++;
     this.slices.push(slice);
 };
 
@@ -58,7 +60,7 @@ Walls.prototype.addSliceBorrow = function(sliceType, y) {
 };
 
 Walls.prototype.checkViewportXBounds = function(viewportX) {
-    var maxViewportX = (this.slices.length - Walls.VIEWPORT_NUM_SLICES) * WallSlice.WIDTH;
+    var maxViewportX = (this.numOfSlices - Walls.VIEWPORT_NUM_SLICES) * WallSlice.WIDTH;
     if (viewportX < 0)
     {
         viewportX = 0;
