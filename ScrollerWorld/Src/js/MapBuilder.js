@@ -128,7 +128,9 @@ MapBuilder.prototype.buildRandomSequence = function() {
     //console.log(this.walls.slices.length);
     /*if (this.walls.slices.length < 1000) {*/
         //console.log("WE IN ", this.walls.slices);
-    //this.sequenceOne();
+    /*console.log(this.walls.viewportSliceX);
+    console.log(this.walls.slices.length);*//*
+    this.sequenceOne();*/
 /*        var rand = Math.floor((Math.random() * 4));
         switch (rand) {
             case 0:

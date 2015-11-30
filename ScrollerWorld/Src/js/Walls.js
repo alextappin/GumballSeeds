@@ -44,7 +44,6 @@ Walls.prototype.removeOldSlices = function(prevViewportSliceX) {
             this.returnWallSprite(slice.type, slice.sprite);
             this.removeChild(slice.sprite);
             slice.sprite = null;
-            console.log("removing");
         }
     }
 };
