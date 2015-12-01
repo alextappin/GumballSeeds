@@ -13,6 +13,8 @@ function Walls() {
 
     this.viewportX = 0;
     this.viewportSliceX = 0;
+
+    this.score = 0;
 }
 
 Walls.constructor = Walls;
@@ -22,6 +24,7 @@ Walls.VIEWPORT_WIDTH = 512;
 Walls.VIEWPORT_NUM_SLICES = Math.ceil(Walls.VIEWPORT_WIDTH/WallSlice.WIDTH) + 1;
 
 Walls.prototype.setViewportX = function(viewportX) {
+    this.score += .05;
     this.viewportX = this.checkViewportXBounds(viewportX);
 
     var prevViewportSliceX = this.viewportSliceX;
@@ -95,6 +98,12 @@ Walls.prototype.addNewSlices = function() {
             slice.sprite.position.y = slice.y;
 
             this.addChild(slice.sprite);
+
+            //TODO MOVE THIS INTO CLASS AND MAKE A TEXT ON SCREEN CLASS
+            this.removeChild(this.text);
+            this.text = new PIXI.Text(Math.floor(this.score), {font:"25px Arial", fill:"#228869"});
+            this.text.position.x = 20;
+            this.addChild(this.text);
         }
         else if (slice.sprite != null)
         {
