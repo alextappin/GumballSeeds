@@ -13,6 +13,7 @@ function Scroller(stage) {
 
     this.character = new Character();
     stage.addChild(this.character);
+
     this.mapBuilder = new MapBuilder(this.front);
 
     this.viewportX = 0;
