@@ -12,7 +12,7 @@ function Main() {
 }
 
 Main.MIN_SCROLL_SPEED = 4;
-Main.MAX_SCROLL_SPEED = 10;
+Main.MAX_SCROLL_SPEED = 6;
 Main.SCROLL_ACCELERATION = 0.005;
 
 Main.prototype.update = function() {

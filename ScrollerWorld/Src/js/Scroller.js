@@ -21,6 +21,10 @@ Scroller.prototype.setViewportX = function(viewportX) {
     this.far.setViewportX(viewportX);
     this.mid.setViewportX(viewportX);
     this.front.setViewportX(viewportX);
+
+    if (this.front.slicesAreLow()) {
+        this.mapBuilder.addAndBuildRandomSequence();
+    }
 };
 
 Scroller.prototype.getViewportX = function() {
@@ -29,6 +33,5 @@ Scroller.prototype.getViewportX = function() {
 
 Scroller.prototype.moveViewportXBy = function(units) {
     var newViewportX = this.viewportX + units;
-    this.mapBuilder.buildRandomSequence();
     this.setViewportX(newViewportX);
 };

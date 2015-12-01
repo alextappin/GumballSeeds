@@ -9,6 +9,7 @@ function Walls() {
 
     this.slices = [];
     this.numOfSlices = 0;
+    this.removedSlicesCount = 0;
 
     this.viewportX = 0;
     this.viewportSliceX = 0;
@@ -39,12 +40,18 @@ Walls.prototype.removeOldSlices = function(prevViewportSliceX) {
 
     for (var i = prevViewportSliceX; i < prevViewportSliceX + numOldSlices; i++)
     {
-        var slice = this.slices[i];
+        //it is now offset because we are deleting, need to account for this
+        var slice = this.slices[i - this.removedSlicesCount];
         if (slice.sprite != null)
         {
             this.returnWallSprite(slice.type, slice.sprite);
             this.removeChild(slice.sprite);
             slice.sprite = null;
+
+            //need to remove slice and add to the count.
+            this.slices = this.slices.slice(1);
+            this.removedSlicesCount++;
+            console.log(this.slices.length);
         }
     }
 };
@@ -80,7 +87,8 @@ Walls.prototype.addNewSlices = function() {
          i < this.viewportSliceX + Walls.VIEWPORT_NUM_SLICES;
          i++, sliceIndex++)
     {
-        var slice = this.slices[i];
+        //it is now offset because it is removing slices. Need to account for this
+        var slice = this.slices[i - this.removedSlicesCount];
         if (slice.sprite == null && slice.type != SliceType.GAP)
         {
             slice.sprite = this.borrowWallSprite(slice.type);
@@ -119,4 +127,8 @@ Walls.prototype.borrowWallSprite = function(sliceType) {
 
 Walls.prototype.returnWallSprite = function(sliceType, sliceSprite) {
     return this.returnWallSpriteLookup[sliceType].call(this.pool, sliceSprite);
+};
+
+Walls.prototype.slicesAreLow = function() {
+    return this.slices.length < 100;
 };

@@ -15,13 +15,13 @@ MapBuilder.WALL_HEIGHTS = [
 ];
 
 MapBuilder.prototype.createMap = function() {
-    this.createWallSpan(3, 15, true);
+    this.createWallSpan(1, 15, true);
     this.createGap(1);
-    this.createWallSpan(1, 30);
+    /*this.createWallSpan(1, 30);
     this.createGap(1);
     this.createWallSpan(2, 18);
-    this.createGap(1);
-    this.createSteppedWallSpan(2, 5, 28);
+    this.createGap(1);*/
+/*    this.createSteppedWallSpan(2, 5, 28);
     this.createGap(1);
     this.createWallSpan(1, 10);
     this.createGap(1);
@@ -50,7 +50,7 @@ MapBuilder.prototype.createMap = function() {
     this.createWallSpan(0, 8);
     this.createGap(3);
     this.createWallSpan(1, 50);
-    this.createGap(20);
+    this.createGap(20);*/
 };
 
 MapBuilder.prototype.createGap = function(spanLength) {
@@ -124,52 +124,50 @@ MapBuilder.prototype.addWallStep = function(heightIndex) {
     this.walls.addSlice(SliceType.STEP, y);
 };
 
-MapBuilder.prototype.buildRandomSequence = function() {
-    //console.log(this.walls.slices.length);
-    /*if (this.walls.slices.length < 1000) {*/
-        //console.log("WE IN ", this.walls.slices);
-    /*console.log(this.walls.viewportSliceX);
-    console.log(this.walls.slices.length);*//*
-    this.sequenceOne();*/
-/*        var rand = Math.floor((Math.random() * 4));
-        switch (rand) {
-            case 0:
-                this.sequenceOne();
-                break;
-            case 1:
-                this.sequenceTwo();
-                break;
-            case 2:
-                this.sequenceThree();
-                break;
-            case 3:
-                this.sequenceThree();
-                break;
-            default:
-                break;*/
-        //}
-    //}
+MapBuilder.prototype.addAndBuildRandomSequence = function() {
+    var rand = Math.floor((Math.random() * 4));
+    switch (rand) {
+        case 0:
+            this.sequenceOne();
+            break;
+        case 1:
+            this.sequenceTwo();
+            break;
+        case 2:
+            this.sequenceThree();
+            break;
+        case 3:
+            this.sequenceFour();
+            break;
+        default:
+            break;
+    }
 };
 
 MapBuilder.prototype.sequenceOne = function() {
+    console.log('ONE');
     this.createWallSpan(1, 20);
     this.createGap(1);
 };
 
 
 MapBuilder.prototype.sequenceTwo = function() {
+    console.log('TWO');
     this.createWallSpan(1, 20);
     this.createGap(1);
 };
 
 
 MapBuilder.prototype.sequenceThree = function() {
-    this.createSteppedWallSpan(2, 5, 28);
-    this.createGap(2);
+    console.log('THREE');
+    this.createGap(1);
 };
 
 
 MapBuilder.prototype.sequenceFour = function() {
-    this.createSteppedWallSpan(2, 5, 20);
-    this.createGap(3);
+    console.log('FOUR');
+    this.createWallSpan(1, 10);
+    this.createGap(1);
+    this.createWallSpan(1, 6);
+    this.createGap(1);
 };
