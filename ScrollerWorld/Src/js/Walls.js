@@ -24,7 +24,7 @@ Walls.VIEWPORT_WIDTH = 512;
 Walls.VIEWPORT_NUM_SLICES = Math.ceil(Walls.VIEWPORT_WIDTH/WallSlice.WIDTH) + 1;
 
 Walls.prototype.setViewportX = function(viewportX) {
-    this.score += .05;
+    this.score += .04;
     this.viewportX = this.checkViewportXBounds(viewportX);
 
     var prevViewportSliceX = this.viewportSliceX;
