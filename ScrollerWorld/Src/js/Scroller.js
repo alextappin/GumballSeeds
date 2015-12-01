@@ -11,6 +11,8 @@ function Scroller(stage) {
     this.front = new Walls();
     stage.addChild(this.front);
 
+    this.character = new Character();
+    stage.addChild(this.character);
     this.mapBuilder = new MapBuilder(this.front);
 
     this.viewportX = 0;
@@ -21,7 +23,7 @@ Scroller.prototype.setViewportX = function(viewportX) {
     this.far.setViewportX(viewportX);
     this.mid.setViewportX(viewportX);
     this.front.setViewportX(viewportX);
-
+    this.character.position.y += .15;
     if (this.front.slicesAreLow()) {
         this.mapBuilder.addAndBuildRandomSequence();
     }

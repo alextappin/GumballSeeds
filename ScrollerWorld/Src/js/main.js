@@ -42,5 +42,5 @@ Main.prototype.spriteSheetLoaded = function() {
     //slice1.scale = 1.5;
     slice1.position.x = 32;
     slice1.position.y = 220;
-    this.stage.addChild(slice1);
+    /*this.stage.addChild(slice1);*/
 };
