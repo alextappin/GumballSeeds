@@ -86,6 +86,7 @@ Character.prototype.simulateGravity = function(posY) {
     if (posY > this.originalPosY) {
         posY = this.originalPosY;
         this.velocityY = 0.0;
+        this.jumping = false;
     }
     return posY;
 };
