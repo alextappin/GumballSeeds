@@ -24,7 +24,7 @@ Scroller.prototype.setViewportX = function(viewportX) {
     this.far.setViewportX(viewportX);
     this.mid.setViewportX(viewportX);
     this.front.setViewportX(viewportX);
-    this.character.position.y += .15;
+    this.character.updateSprite();
     if (this.front.slicesAreLow()) {
         this.mapBuilder.addAndBuildRandomSequence();
     }
