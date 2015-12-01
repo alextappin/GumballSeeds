@@ -15,8 +15,10 @@ MapBuilder.WALL_HEIGHTS = [
 ];
 
 MapBuilder.prototype.createMap = function() {
-    this.createWallSpan(1, 15, true);
+    this.createWallSpan(1, 25, true);
     this.createGap(1);
+/*    this.createSteppedWallSpan(2, 5, 28);
+    this.createGap(4);*/
     /*this.createWallSpan(1, 30);
     this.createGap(1);
     this.createWallSpan(2, 18);
@@ -125,49 +127,85 @@ MapBuilder.prototype.addWallStep = function(heightIndex) {
 };
 
 MapBuilder.prototype.addAndBuildRandomSequence = function() {
-    var rand = Math.floor((Math.random() * 4));
-    switch (rand) {
+    var rand = Math.floor((Math.random() * 6)),
+        randForMapGen = Math.floor((Math.random() * 5));
+    this.sequenceOne(rand, randForMapGen);
+/*    switch (rand) {
         case 0:
-            this.sequenceOne();
+            this.sequenceOne(randForMapGen,randForMapGen-rand);
             break;
         case 1:
-            this.sequenceTwo();
+            this.sequenceTwo(randForMapGen,randForMapGen-rand);
             break;
         case 2:
-            this.sequenceThree();
+            this.sequenceThree(randForMapGen,randForMapGen-rand);
             break;
         case 3:
-            this.sequenceFour();
+            this.sequenceFour(randForMapGen,randForMapGen-rand);
             break;
         default:
             break;
+    }*/
+};
+
+MapBuilder.prototype.sequenceOne = function(rand, rangeRand) {
+    if (rand >= 4) {
+        this.createWallSpan(rangeRand, (rand * 2) + 3);
+        this.createGap(2);
+    }
+    else if (rand > 2) {
+        this.createSteppedWallSpan(rangeRand,(rand * rand) + 2, (rand * 2) + 2);
+        this.createGap(1);
+    }
+
+    else if (rand >= 0) {
+        this.createWallSpan(rangeRand, (rand + rand) + 3);
+        this.createGap(1);
+    }
+};
+/*
+
+
+MapBuilder.prototype.sequenceTwo = function(rand, rangeRand) {
+    if (rangeRand < 0) {
+        this.createWallSpan(rand, 10);
+        this.createGap(rand);
+    }
+    else if (rangeRand === 0) {
+
+    }
+    else if (rangeRand > 0) {
+
     }
 };
 
-MapBuilder.prototype.sequenceOne = function() {
-    console.log('ONE');
-    this.createWallSpan(1, 20);
-    this.createGap(1);
+
+MapBuilder.prototype.sequenceThree = function(rand, rangeRand) {
+    if (rangeRand < 0) {
+        this.createGap(1);
+    }
+    else if (rangeRand === 0) {
+
+    }
+
+    else if (rangeRand > 0) {
+
+    }
 };
 
 
-MapBuilder.prototype.sequenceTwo = function() {
-    console.log('TWO');
-    this.createWallSpan(1, 20);
-    this.createGap(1);
-};
+MapBuilder.prototype.sequenceFour = function(rand, rangeRand) {
+    if (rangeRand < 0) {
+        this.createWallSpan(rand, 10);
+        this.createGap(1);
+        this.createWallSpan(rand, 6);
+        this.createGap(1);
+    }
+    else if (rangeRand === 0) {
 
+    }
 
-MapBuilder.prototype.sequenceThree = function() {
-    console.log('THREE');
-    this.createGap(1);
-};
+    else if (rangeRand > 0) {
 
-
-MapBuilder.prototype.sequenceFour = function() {
-    console.log('FOUR');
-    this.createWallSpan(1, 10);
-    this.createGap(1);
-    this.createWallSpan(1, 6);
-    this.createGap(1);
-};
+    }
+};*/
