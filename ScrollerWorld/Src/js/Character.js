@@ -6,8 +6,17 @@ function Character() {
 
     this.characterSprites = [];
     this.spriteCount = 0;
-    this.positionX = 32;
-    this.positionY = 220;
+
+    this.jumping = false;
+    this.jumpCounter = 0;
+
+    this.jumpHeight = 64;
+
+    this.originalPosY = 0;
+
+    this.velocityY = 0;
+    this.gravity = .25;
+
     this.changeSpriteCounter = 0;
     this.spriteSpeed = 8;
     this.initiateCharacterSprites();
@@ -25,28 +34,6 @@ Character.prototype.initiateCharacterSprites = function() {
         sprite4 = PIXI.Sprite.fromFrame("sprite4"),
         sprite5 = PIXI.Sprite.fromFrame("sprite5"),
         sprite6 = PIXI.Sprite.fromFrame("sprite6");
-    //scale each one down...
-    sprite1.scale.x = .5;
-    sprite1.scale.y = .5;
-
-    sprite2.scale.x = .5;
-    sprite2.scale.y = .5;
-
-    sprite3.scale.x = .5;
-    sprite3.scale.y = .5;
-
-    sprite4.scale.x = .5;
-    sprite4.scale.y = .5;
-
-    sprite5.scale.x = .5;
-    sprite5.scale.y = .5;
-
-    sprite6.scale.x = .5;
-    sprite6.scale.y = .5;
-
-    //initiate the width/height of the first one...
-    sprite1.position.x = this.positionX;
-    sprite1.position.y = this.positionY;
     //add them to the array
     this.characterSprites.push(sprite1,sprite2,sprite3, sprite4, sprite5, sprite6);
     this.addChild(this.characterSprites[this.spriteCount]);
@@ -60,8 +47,6 @@ Character.prototype.nextSprite = function() {
     else {
         this.spriteCount++;
     }
-    this.characterSprites[this.spriteCount].position.x = this.positionX;
-    this.characterSprites[this.spriteCount].position.y = this.positionY;
     this.addChild(this.characterSprites[this.spriteCount]);
 };
 
@@ -75,9 +60,43 @@ Character.prototype.updateSprite = function() {
     }
 };
 
+Character.prototype.startJumpAnimation = function() {
+    this.jumping = true;
+    this.velocityY = -8.0;
+};
+
+Character.prototype.moveHeightJumping = function(posY) {
+    return this.simulateGravity(posY);
+};
+
 Character.prototype.listenForJumpTrigger = function() {
+    var that = this;
     this.spaceBar.press = function () {
-        console.log('eeeeee');
-        //do whatever you want!
+        if (!that.jumping) {
+            that.startJumpAnimation();
+        }
     }
 };
+
+Character.prototype.simulateGravity = function(posY) {
+    console.log(posY);
+    this.velocityY += this.gravity;
+    posY += this.velocityY;
+
+    if (posY > this.originalPosY) {
+        posY = this.originalPosY;
+        this.velocityY = 0.0;
+    }
+    return posY;
+};
+
+Character.prototype.endJumping = function(pos) {
+    this.jumping = false;
+    this.jumpCounter = 0;
+    this.originalPosY = pos;
+};
+
+Character.prototype.charIsJumping = function() {
+    return (this.jumping && this.jumpCounter < this.jumpHeight)
+};
+
