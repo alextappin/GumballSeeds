@@ -28,7 +28,7 @@ Main.prototype.update = function() {
 
 Main.prototype.loadSpriteSheet = function() {
     var assetsToLoad = ["../resources/wall.json", "../resources/bg-mid.png",
-        "../resources/bg-far.png"];
+        "../resources/bg-far.png", "../resources/characterSprites.json", "../resources/characterSprites.png"];
     loader = new PIXI.loaders.Loader();
     loader.add(assetsToLoad).load(this.spriteSheetLoaded.bind(this))
 };
@@ -36,4 +36,11 @@ Main.prototype.loadSpriteSheet = function() {
 Main.prototype.spriteSheetLoaded = function() {
     this.scroller = new Scroller(this.stage);
     requestAnimationFrame(this.update.bind(this));
+    var slice1 = PIXI.Sprite.fromFrame("sprite1");
+    slice1.scale.x = .5;
+    slice1.scale.y = .5;
+    //slice1.scale = 1.5;
+    slice1.position.x = 32;
+    slice1.position.y = 220;
+    this.stage.addChild(slice1);
 };
