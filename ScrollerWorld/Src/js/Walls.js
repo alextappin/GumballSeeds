@@ -51,7 +51,6 @@ Walls.prototype.removeOldSlices = function(prevViewportSliceX) {
             //need to remove slice and add to the count.
             this.slices = this.slices.slice(1);
             this.removedSlicesCount++;
-            console.log(this.slices.length);
         }
     }
 };
@@ -92,7 +91,6 @@ Walls.prototype.addNewSlices = function() {
         if (slice.sprite == null && slice.type != SliceType.GAP)
         {
             slice.sprite = this.borrowWallSprite(slice.type);
-
             slice.sprite.position.x = firstX + (sliceIndex * WallSlice.WIDTH);
             slice.sprite.position.y = slice.y;
 
@@ -130,5 +128,5 @@ Walls.prototype.returnWallSprite = function(sliceType, sliceSprite) {
 };
 
 Walls.prototype.slicesAreLow = function() {
-    return this.slices.length < 100;
+    return this.slices.length < 1000;
 };

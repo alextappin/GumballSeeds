@@ -11,7 +11,7 @@ function Main() {
     this.loadSpriteSheet();
 }
 
-Main.MIN_SCROLL_SPEED = 3;
+Main.MIN_SCROLL_SPEED = 4;
 Main.MAX_SCROLL_SPEED = 5;
 Main.SCROLL_ACCELERATION = 0.005;
 

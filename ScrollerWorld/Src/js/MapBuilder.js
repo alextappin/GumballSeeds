@@ -127,85 +127,29 @@ MapBuilder.prototype.addWallStep = function(heightIndex) {
 };
 
 MapBuilder.prototype.addAndBuildRandomSequence = function() {
-    var rand = Math.floor((Math.random() * 6)),
+    var rand = Math.floor((Math.random() * 10) + 5),
         randForMapGen = Math.floor((Math.random() * 5));
     this.sequenceOne(rand, randForMapGen);
-/*    switch (rand) {
-        case 0:
-            this.sequenceOne(randForMapGen,randForMapGen-rand);
-            break;
-        case 1:
-            this.sequenceTwo(randForMapGen,randForMapGen-rand);
-            break;
-        case 2:
-            this.sequenceThree(randForMapGen,randForMapGen-rand);
-            break;
-        case 3:
-            this.sequenceFour(randForMapGen,randForMapGen-rand);
-            break;
-        default:
-            break;
-    }*/
 };
 
 MapBuilder.prototype.sequenceOne = function(rand, rangeRand) {
     if (rand >= 4) {
         this.createWallSpan(rangeRand, (rand * 2) + 3);
         this.createGap(2);
+        this.createWallSpan(rangeRand, (rand + rand) + 3);
+        this.createGap(1);
     }
     else if (rand > 2) {
         this.createSteppedWallSpan(rangeRand,(rand * rand) + 2, (rand * 2) + 2);
+        this.createGap(1);
+        this.createWallSpan(rangeRand, (rand + rand) + 3);
         this.createGap(1);
     }
 
     else if (rand >= 0) {
         this.createWallSpan(rangeRand, (rand + rand) + 3);
         this.createGap(1);
-    }
-};
-/*
-
-
-MapBuilder.prototype.sequenceTwo = function(rand, rangeRand) {
-    if (rangeRand < 0) {
-        this.createWallSpan(rand, 10);
-        this.createGap(rand);
-    }
-    else if (rangeRand === 0) {
-
-    }
-    else if (rangeRand > 0) {
-
-    }
-};
-
-
-MapBuilder.prototype.sequenceThree = function(rand, rangeRand) {
-    if (rangeRand < 0) {
+        this.createSteppedWallSpan(rangeRand,(rand * rand) + 2, (rand * 2) + 2);
         this.createGap(1);
     }
-    else if (rangeRand === 0) {
-
-    }
-
-    else if (rangeRand > 0) {
-
-    }
 };
-
-
-MapBuilder.prototype.sequenceFour = function(rand, rangeRand) {
-    if (rangeRand < 0) {
-        this.createWallSpan(rand, 10);
-        this.createGap(1);
-        this.createWallSpan(rand, 6);
-        this.createGap(1);
-    }
-    else if (rangeRand === 0) {
-
-    }
-
-    else if (rangeRand > 0) {
-
-    }
-};*/
