@@ -79,7 +79,6 @@ Character.prototype.listenForJumpTrigger = function() {
 };
 
 Character.prototype.simulateGravity = function(posY) {
-    console.log(posY);
     this.velocityY += this.gravity;
     posY += this.velocityY;
 
