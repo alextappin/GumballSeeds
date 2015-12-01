@@ -1,23 +1,6 @@
 /**
  * Created by t_tappa on 11/30/2015.
  */
-/*
-function Character() {
-    this.spriteNum = "sprite1";
-    var texture = PIXI.Texture.fromFrame(this.spriteNum);
-    PIXI.extras.TilingSprite.call(this, texture, 149, 135);
-    this.tilePosition.x = 0;
-    this.tilePosition.y = 0;
-    this.scale.x = .5;
-    this.scale.y = .5;
-    //this.scale = 1.5;
-    this.position.x = 32;
-    this.position.y = 220;
-}
-
-Character.constructor = Character;
-Character.prototype = Object.create(PIXI.extras.TilingSprite.prototype);
-*/
 function Character() {
     PIXI.Container.call(this);
 
@@ -28,6 +11,8 @@ function Character() {
     this.changeSpriteCounter = 0;
     this.spriteSpeed = 8;
     this.initiateCharacterSprites();
+    this.spaceBar = new KeyboardControl(32);
+    this.listenForJumpTrigger();
 }
 
 Character.constructor = Character;
@@ -87,5 +72,12 @@ Character.prototype.updateSprite = function() {
     }
     else {
         this.changeSpriteCounter ++;
+    }
+};
+
+Character.prototype.listenForJumpTrigger = function() {
+    this.spaceBar.press = function () {
+        console.log('eeeeee');
+        //do whatever you want!
     }
 };
