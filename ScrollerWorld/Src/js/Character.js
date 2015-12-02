@@ -82,6 +82,7 @@ Character.prototype.simulateGravity = function(posY) {
     this.velocityY += this.gravity;
     posY += this.velocityY;
 
+    //TODO psyY > endPos & velocity is positive(negative...)
     if (posY > this.originalPosY) {
         posY = this.originalPosY;
         this.velocityY = 0.0;
