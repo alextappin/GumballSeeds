@@ -15,7 +15,7 @@ function Character() {
     this.originalPosY = 0;
 
     this.velocityY = 0;
-    this.gravity = .25;
+    this.gravity = .27;
 
     this.changeSpriteCounter = 0;
     this.spriteSpeed = 8;
