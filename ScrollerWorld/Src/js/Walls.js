@@ -136,6 +136,10 @@ Walls.prototype.returnWallSprite = function(sliceType, sliceSprite) {
     return this.returnWallSpriteLookup[sliceType].call(this.pool, sliceSprite);
 };
 
+// TODO: What is happening is, it is adding new slices. Everytime a specific type of slice is used, it is making another slice.
+//the other slice it makes could be a different slice completely. What we could end up with was a pool of slices that
+//were all windows! If we have a pool of slices that are all windows and try to grab a step, it will FAIL. Need to have
+//some type of count for what types of pieces to use and when to use them.
 Walls.prototype.slicesAreLow = function() {
     return this.slices.length < 1000;
 };
