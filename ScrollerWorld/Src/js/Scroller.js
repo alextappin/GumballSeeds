@@ -31,6 +31,7 @@ Scroller.prototype.setViewportX = function(viewportX) {
     this.character.updateSprite();
     this.jumpCharacter();
     if (this.front.slicesAreLow()) {
+        //TODO:if slices are low, find which slice types are low and ADD THOSE ONES THAT ARE LOW
         this.mapBuilder.addAndBuildRandomSequence();
     }
 };
