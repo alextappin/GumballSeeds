@@ -13,7 +13,7 @@ function Scroller(stage) {
 
     this.character = new Character();
     this.character.position.y = 50;
-    this.character.position.x = 20;
+    this.character.position.x = 50;
     this.character.scale.x = .5;
     this.character.scale.y = .5;
     stage.addChild(this.character);
@@ -24,7 +24,6 @@ function Scroller(stage) {
 }
 
 Scroller.prototype.setViewportX = function(viewportX) {
-    this.front.getCurrentSliceHeight(viewportX);
     this.viewportX = viewportX;
     this.far.setViewportX(viewportX);
     this.mid.setViewportX(viewportX);
@@ -48,7 +47,6 @@ Scroller.prototype.moveViewportXBy = function(units) {
 
 Scroller.prototype.jumpCharacter = function() {
     if (this.character.charIsJumping()) {
-        this.character.jumpCounter++;
         this.character.position.y = this.character.moveHeightJumping(this.character.position.y, this.front.getCurrentSliceHeight());
     }
     else {

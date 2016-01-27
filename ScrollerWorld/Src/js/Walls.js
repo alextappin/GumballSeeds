@@ -144,8 +144,9 @@ Walls.prototype.slicesAreLow = function() {
     return this.slices.length < 1000;
 };
 
-Walls.prototype.getCurrentSliceHeight = function(xPos) {
-    var offset =(this.viewportSliceX - this.removedSlicesCount);
+Walls.prototype.getCurrentSliceHeight = function() {
+    //over time, there are slices that are not deleted and some that are. this just keeps the current slice up to date
+    var offset =(this.viewportSliceX - this.removedSlicesCount) + 2;
     //if it is null, return a huge y so it keeps falling....
-    return this.slices[offset].y ? this.slices[offset].y : 10000;
+    return this.slices[offset].y ? this.slices[offset].y : 100000;
 };

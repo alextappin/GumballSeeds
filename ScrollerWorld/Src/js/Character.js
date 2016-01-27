@@ -8,13 +8,6 @@ function Character() {
     this.spriteCount = 0;
 
     this.jumping = true;
-    this.jumpCounter = 0;
-
-    this.jumpHeight = 64;
-
-    this.originalPosY = 0;
-
-    this.endPosY = 0;
 
     this.velocityY = 0;
     this.gravity = .27;
@@ -86,6 +79,8 @@ Character.prototype.simulateGravity = function(posY, endPosY) {
     //console.log('this ',posY, endPosY);
     //TODO psyY > endPos & velocity is positive(negative...)
     if (posY >= endPosY) {
+
+        //IF there is a gap, trigger END state. Restart game.
         posY = endPosY;
         this.velocityY = 0.0;
         this.jumping = false;
@@ -95,12 +90,10 @@ Character.prototype.simulateGravity = function(posY, endPosY) {
 
 Character.prototype.endJumping = function(pos) {
     this.jumping = false;
-    this.jumpCounter = 0;
-    this.originalPosY = pos;
 };
 
 Character.prototype.charIsJumping = function() {
-    return (this.jumping && this.jumpCounter < this.jumpHeight)
+    return (this.jumping)
 };
 
 Character.prototype.updateEndJumpingHeight = function(jumpingHeight) {
