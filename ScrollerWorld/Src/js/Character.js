@@ -7,12 +7,14 @@ function Character() {
     this.characterSprites = [];
     this.spriteCount = 0;
 
-    this.jumping = false;
+    this.jumping = true;
     this.jumpCounter = 0;
 
     this.jumpHeight = 64;
 
     this.originalPosY = 0;
+
+    this.endPosY = 0;
 
     this.velocityY = 0;
     this.gravity = .27;
@@ -66,7 +68,7 @@ Character.prototype.startJumpAnimation = function() {
 };
 
 Character.prototype.moveHeightJumping = function(posY, endPos) {
-    return this.simulateGravity(posY);
+    return this.simulateGravity(posY, this.calculateMapToCharacterHeightOffset(endPos));
 };
 
 Character.prototype.listenForJumpTrigger = function() {
@@ -78,13 +80,13 @@ Character.prototype.listenForJumpTrigger = function() {
     }
 };
 
-Character.prototype.simulateGravity = function(posY) {
+Character.prototype.simulateGravity = function(posY, endPosY) {
     this.velocityY += this.gravity;
     posY += this.velocityY;
-
+    //console.log('this ',posY, endPosY);
     //TODO psyY > endPos & velocity is positive(negative...)
-    if (posY > this.originalPosY) {
-        posY = this.originalPosY;
+    if (posY >= endPosY) {
+        posY = endPosY;
         this.velocityY = 0.0;
         this.jumping = false;
     }
@@ -104,4 +106,7 @@ Character.prototype.charIsJumping = function() {
 Character.prototype.updateEndJumpingHeight = function(jumpingHeight) {
 };
 
+Character.prototype.calculateMapToCharacterHeightOffset = function(wallPos) {
+    return wallPos - 24;
+};
 

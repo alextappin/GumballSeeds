@@ -144,6 +144,8 @@ Walls.prototype.slicesAreLow = function() {
     return this.slices.length < 1000;
 };
 
-Walls.prototype.getCurrentSliceHeight = function() {
-    console.log(this.slices[0].y);
+Walls.prototype.getCurrentSliceHeight = function(xPos) {
+    var offset =(this.viewportSliceX - this.removedSlicesCount);
+    //if it is null, return a huge y so it keeps falling....
+    return this.slices[offset].y ? this.slices[offset].y : 10000;
 };
