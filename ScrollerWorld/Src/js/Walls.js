@@ -143,3 +143,7 @@ Walls.prototype.returnWallSprite = function(sliceType, sliceSprite) {
 Walls.prototype.slicesAreLow = function() {
     return this.slices.length < 1000;
 };
+
+Walls.prototype.getCurrentSliceHeight = function() {
+    console.log(this.slices[0].y);
+};

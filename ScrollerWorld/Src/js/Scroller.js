@@ -47,8 +47,9 @@ Scroller.prototype.moveViewportXBy = function(units) {
 
 Scroller.prototype.jumpCharacter = function() {
     if (this.character.charIsJumping()) {
-        this.character.position.y = this.character.moveHeightJumping(this.character.position.y);
         this.character.jumpCounter++;
+        this.character.position.y = this.character.moveHeightJumping(this.character.position.y);
+        this.front.getCurrentSliceHeight();
     }
     else {
         this.character.endJumping(this.character.position.y);

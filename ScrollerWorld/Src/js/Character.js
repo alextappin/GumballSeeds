@@ -65,7 +65,7 @@ Character.prototype.startJumpAnimation = function() {
     this.velocityY = -8.0;
 };
 
-Character.prototype.moveHeightJumping = function(posY) {
+Character.prototype.moveHeightJumping = function(posY, endPos) {
     return this.simulateGravity(posY);
 };
 
@@ -100,4 +100,8 @@ Character.prototype.endJumping = function(pos) {
 Character.prototype.charIsJumping = function() {
     return (this.jumping && this.jumpCounter < this.jumpHeight)
 };
+
+Character.prototype.updateEndJumpingHeight = function(jumpingHeight) {
+};
+
 
