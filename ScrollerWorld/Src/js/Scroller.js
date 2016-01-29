@@ -30,6 +30,7 @@ Scroller.prototype.setViewportX = function(viewportX) {
     this.front.setViewportX(viewportX);
     this.character.updateSprite();
     this.jumpCharacter();
+    this.applyFallingGravityToCharacter();
     if (this.front.slicesAreLow()) {
         //TODO:if slices are low, find which slice types are low and ADD THOSE ONES THAT ARE LOW
         this.mapBuilder.addAndBuildRandomSequence();
@@ -45,6 +46,9 @@ Scroller.prototype.moveViewportXBy = function(units) {
     this.setViewportX(newViewportX);
 };
 
+
+//TODO put the jump character and apply falling gravity to character in same function. Grab the next and current slices one time. this will helper performance.
+
 Scroller.prototype.jumpCharacter = function() {
     if (this.character.charIsJumping()) {
         this.character.position.y = this.character.moveHeightJumping(this.character.position.y, this.front.getCurrentSliceHeight(), this.front.getNextSliceHeight());
@@ -52,4 +56,8 @@ Scroller.prototype.jumpCharacter = function() {
     else {
         this.character.endJumping(this.character.position.y);
     }
+};
+
+Scroller.prototype.applyFallingGravityToCharacter = function() {
+    this.character.checkIfFalling(this.front.getCurrentSliceHeight(), this.front.getNextSliceHeight());
 };

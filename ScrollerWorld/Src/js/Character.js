@@ -8,7 +8,7 @@ function Character() {
     this.spriteCount = 0;
 
     this.jumping = true;
-
+    this.applyFallingGravity = false;
     this.continueGame = true;
 
     this.velocityY = 0;
@@ -109,3 +109,9 @@ Character.prototype.calculateMapToCharacterHeightOffset = function(wallPos) {
     return wallPos - 24;
 };
 
+Character.prototype.checkIfFalling = function(currentSliceHeight, nextSliceHeight) {
+    if (!this.jumping && currentSliceHeight > 9999) {
+        this.jumping = true;
+        this.simulateGravity(this.position.y, this.calculateMapToCharacterHeightOffset(currentSliceHeight), this.calculateMapToCharacterHeightOffset(nextSliceHeight));
+    }
+};

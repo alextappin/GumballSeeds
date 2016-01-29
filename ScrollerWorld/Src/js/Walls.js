@@ -141,7 +141,7 @@ Walls.prototype.returnWallSprite = function(sliceType, sliceSprite) {
 //were all windows! If we have a pool of slices that are all windows and try to grab a step, it will FAIL. Need to have
 //some type of count for what types of pieces to use and when to use them.
 Walls.prototype.slicesAreLow = function() {
-    return this.slices.length < 1000;
+    return this.slices.length < 100;
 };
 
 Walls.prototype.getCurrentSliceHeight = function() {
