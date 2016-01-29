@@ -82,14 +82,11 @@ Character.prototype.simulateGravity = function(posY, currentSlicePosY, nextSlice
     //TODO put these numbers in a config file. This number signifies the lowest wall
     //if the character isnt moving up and the next slice is taller than the character...
     //if the character is lower than the next slice, the character is travelling down and they are over a gap (99976) then the game is over
-    console.log('next ', nextSlicePosY);
     if (posY > nextSlicePosY && this.velocityY > 0 && currentSlicePosY == 99976) {
-        console.log(posY, nextSlicePosY, this.velocityY, currentSlicePosY);
         this.continueGame = false;
     }
     //TODO psyY > currentSlicePos & velocity is positive(negative...)
     if (posY >= currentSlicePosY && this.continueGame) {
-        console.log(currentSlicePosY);
         this.velocityY = 0.0;
         this.jumping = false;
         posY = currentSlicePosY;
