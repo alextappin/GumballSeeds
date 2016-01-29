@@ -9,6 +9,8 @@ function Character() {
 
     this.jumping = true;
 
+    this.continueGame = true;
+
     this.velocityY = 0;
     this.gravity = .27;
 
@@ -60,8 +62,8 @@ Character.prototype.startJumpAnimation = function() {
     this.velocityY = -8.0;
 };
 
-Character.prototype.moveHeightJumping = function(posY, endPos) {
-    return this.simulateGravity(posY, this.calculateMapToCharacterHeightOffset(endPos));
+Character.prototype.moveHeightJumping = function(posY, currentSlicePosY, nextSlicePosY) {
+    return this.simulateGravity(posY, this.calculateMapToCharacterHeightOffset(currentSlicePosY), this.calculateMapToCharacterHeightOffset(nextSlicePosY));
 };
 
 Character.prototype.listenForJumpTrigger = function() {
@@ -73,17 +75,24 @@ Character.prototype.listenForJumpTrigger = function() {
     }
 };
 
-Character.prototype.simulateGravity = function(posY, endPosY) {
+Character.prototype.simulateGravity = function(posY, currentSlicePosY, nextSlicePosY) {
     this.velocityY += this.gravity;
     posY += this.velocityY;
-    //console.log('this ',posY, endPosY);
-    //TODO psyY > endPos & velocity is positive(negative...)
-    if (posY >= endPosY) {
 
-        //IF there is a gap, trigger END state. Restart game.
-        posY = endPosY;
+    //TODO put these numbers in a config file. This number signifies the lowest wall
+    //if the character isnt moving up and the next slice is taller than the character...
+    //if the character is lower than the next slice, the character is travelling down and they are over a gap (99976) then the game is over
+    console.log('next ', nextSlicePosY);
+    if (posY > nextSlicePosY && this.velocityY > 0 && currentSlicePosY == 99976) {
+        console.log(posY, nextSlicePosY, this.velocityY, currentSlicePosY);
+        this.continueGame = false;
+    }
+    //TODO psyY > currentSlicePos & velocity is positive(negative...)
+    if (posY >= currentSlicePosY && this.continueGame) {
+        console.log(currentSlicePosY);
         this.velocityY = 0.0;
         this.jumping = false;
+        posY = currentSlicePosY;
     }
     return posY;
 };
@@ -94,9 +103,6 @@ Character.prototype.endJumping = function(pos) {
 
 Character.prototype.charIsJumping = function() {
     return (this.jumping)
-};
-
-Character.prototype.updateEndJumpingHeight = function(jumpingHeight) {
 };
 
 Character.prototype.calculateMapToCharacterHeightOffset = function(wallPos) {

@@ -150,3 +150,9 @@ Walls.prototype.getCurrentSliceHeight = function() {
     //if it is null, return a huge y so it keeps falling....
     return this.slices[offset].y ? this.slices[offset].y : 100000;
 };
+
+Walls.prototype.getNextSliceHeight = function() {
+    var offset =(this.viewportSliceX - this.removedSlicesCount) + 3;
+    //if it is null, return a huge y so it keeps falling....
+    return this.slices[offset].y ? this.slices[offset].y : 100000;
+};
