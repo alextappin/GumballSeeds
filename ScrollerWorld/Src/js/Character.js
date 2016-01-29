@@ -110,7 +110,7 @@ Character.prototype.calculateMapToCharacterHeightOffset = function(wallPos) {
 };
 
 Character.prototype.checkIfFalling = function(currentSliceHeight, nextSliceHeight) {
-    if (!this.jumping && currentSliceHeight > 9999) {
+    if (!this.jumping && this.calculateMapToCharacterHeightOffset(currentSliceHeight) > this.position.y) {
         this.jumping = true;
         this.simulateGravity(this.position.y, this.calculateMapToCharacterHeightOffset(currentSliceHeight), this.calculateMapToCharacterHeightOffset(nextSliceHeight));
     }
