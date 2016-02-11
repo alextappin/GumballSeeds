@@ -13,7 +13,7 @@ function Scroller(stage) {
 
     this.character = new Character();
     this.character.position.y = 50;
-    this.character.position.x = 50;
+    this.character.position.x = 65;
     this.character.scale.x = .5;
     this.character.scale.y = .5;
     stage.addChild(this.character);

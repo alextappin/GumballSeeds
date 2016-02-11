@@ -12,7 +12,7 @@ function Character() {
     this.continueGame = true;
 
     this.velocityY = 0;
-    this.gravity = .27;
+    this.gravity = .5;
 
     this.changeSpriteCounter = 0;
     this.spriteSpeed = 8;
@@ -59,7 +59,7 @@ Character.prototype.updateSprite = function() {
 
 Character.prototype.startJumpAnimation = function() {
     this.jumping = true;
-    this.velocityY = -8.0;
+    this.velocityY = -12.0;
 };
 
 Character.prototype.moveHeightJumping = function(posY, currentSlicePosY, nextSlicePosY) {
