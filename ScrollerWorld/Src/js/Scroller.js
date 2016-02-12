@@ -8,6 +8,9 @@ function Scroller(stage) {
     this.mid = new Mid();
     stage.addChild(this.mid);
 
+    this.mid2 = new Mid2();
+    stage.addChild(this.mid2);
+
     this.front = new Walls();
     stage.addChild(this.front);
 
@@ -28,6 +31,7 @@ Scroller.prototype.setViewportX = function(viewportX) {
     this.viewportX = viewportX;
     this.far.setViewportX(viewportX);
     this.mid.setViewportX(viewportX);
+    this.mid2.setViewportX(viewportX);
     this.front.setViewportX(viewportX);
     this.character.updateSprite();
     this.jumpCharacter();

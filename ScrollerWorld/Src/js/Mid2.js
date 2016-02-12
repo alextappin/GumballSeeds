@@ -1,8 +1,8 @@
 /**
  * Created by ajt on 11/29/2015.
  */
-function Mid() {
-    var texture = PIXI.Texture.fromImage("../resources/test2.png");
+function Mid2() {
+    var texture = PIXI.Texture.fromImage("../resources/bg3.png");
     PIXI.extras.TilingSprite.call(this, texture, 1080, 720);
 
     this.position.x = 0;
@@ -13,13 +13,13 @@ function Mid() {
     this.viewportX = 0;
 }
 
-Mid.constructor = Mid;
-Mid.prototype = Object.create(PIXI.extras.TilingSprite.prototype);
+Mid2.constructor = Mid2;
+Mid2.prototype = Object.create(PIXI.extras.TilingSprite.prototype);
 
-Mid.DELTA_X = 0.12;
+Mid2.DELTA_X = 0.29;
 
-Mid.prototype.setViewportX = function(newViewportX) {
+Mid2.prototype.setViewportX = function(newViewportX) {
     var distanceTravelled = newViewportX - this.viewportX;
     this.viewportX = newViewportX;
-    this.tilePosition.x -= (distanceTravelled * Mid.DELTA_X);
+    this.tilePosition.x -= (distanceTravelled * Mid2.DELTA_X);
 };

@@ -2,7 +2,7 @@
  * Created by ajt on 11/29/2015.
  */
 function Main() {
-    this.renderer = PIXI.autoDetectRenderer(512, 384, {backgroundColor: 0x66FF99});
+    this.renderer = PIXI.autoDetectRenderer(1080, 720, {backgroundColor: 0x66FF99});
     document.body.appendChild(this.renderer.view);
     this.stage = new PIXI.Container(0x66FF99);
 
@@ -27,8 +27,8 @@ Main.prototype.update = function() {
 };
 
 Main.prototype.loadSpriteSheet = function() {
-    var assetsToLoad = ["../resources/wall.json", "../resources/bg-mid.png",
-        "../resources/bg-far.png", "../resources/characterSprites.json", "../resources/characterSprites.png"];
+    var assetsToLoad = ["../resources/wall.json", "../resources/bg1.png",
+        "../resources/test2.png", "../resources/bg3.png", "../resources/characterSprites.json", "../resources/characterSprites.png"];
     loader = new PIXI.loaders.Loader();
     loader.add(assetsToLoad).load(this.spriteSheetLoaded.bind(this))
 };

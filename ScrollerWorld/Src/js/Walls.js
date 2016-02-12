@@ -20,7 +20,7 @@ function Walls() {
 Walls.constructor = Walls;
 Walls.prototype = Object.create(PIXI.Container.prototype);
 
-Walls.VIEWPORT_WIDTH = 512;
+Walls.VIEWPORT_WIDTH = 1080;
 Walls.VIEWPORT_NUM_SLICES = Math.ceil(Walls.VIEWPORT_WIDTH/WallSlice.WIDTH) + 1;
 
 Walls.prototype.setViewportX = function(viewportX) {

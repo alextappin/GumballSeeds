@@ -7,15 +7,19 @@ function MapBuilder(walls) {
 }
 
 MapBuilder.WALL_HEIGHTS = [
-    256, // Lowest slice
-    224,
-    192,
-    160,
-    128  // Highest slice
+    656, // Lowest slice
+    624,
+    592,
+    560,
+    528  // Highest slice
 ];
 
 MapBuilder.prototype.createMap = function() {
     this.createWallSpan(0, 10, true);
+    this.createGap(2);
+    this.createWallSpan(1, 10, true);
+    this.createGap(2);
+    this.createWallSpan(2, 10, true);
     this.createGap(2);
 /*    this.createSteppedWallSpan(2, 5, 28);
     this.createGap(4);*/
