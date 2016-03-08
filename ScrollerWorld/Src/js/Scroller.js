@@ -21,6 +21,13 @@ function Scroller(stage) {
     this.character.scale.y = .5;
     stage.addChild(this.character);
 
+    this.enemy = new Enemy();
+    this.enemy.position.y = 50;
+    this.enemy.position.x = 835;
+    this.enemy.scale.x = .3;
+    this.enemy.scale.y = .3;
+    stage.addChild(this.enemy);
+
     this.mapBuilder = new MapBuilder(this.front);
 
     this.viewportX = 0;
@@ -34,7 +41,9 @@ Scroller.prototype.setViewportX = function(viewportX) {
     this.mid2.setViewportX(viewportX);
     this.front.setViewportX(viewportX);
     this.character.updateSprite();
+    this.enemy.updateSprite();
     this.jumpCharacter();
+    this.moveEnemy();
     this.applyFallingGravityToCharacter();
     if (this.front.slicesAreLow()) {
         //TODO:if slices are low, find which slice types are low and ADD THOSE ONES THAT ARE LOW
@@ -65,4 +74,9 @@ Scroller.prototype.jumpCharacter = function() {
 
 Scroller.prototype.applyFallingGravityToCharacter = function() {
     this.character.checkIfFalling(this.front.getCurrentSliceHeight(), this.front.getNextSliceHeight());
+};
+
+Scroller.prototype.moveEnemy = function() {
+    this.enemy.position.x = this.enemy.updatePositionX(this.enemy.position.x);
+    this.enemy.position.y = this.enemy.updatePositionY(this.enemy.position.y);
 };

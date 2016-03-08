@@ -7,38 +7,30 @@ function Enemy() {
     this.characterSprites = [];
     this.spriteCount = 0;
 
-    this.jumping = true;
-    this.applyFallingGravity = false;
     this.continueGame = true;
 
-    this.velocityY = 0;
-    this.gravity = .5;
+    this.velocityX = 7;
+    this.velocityY = 2;
 
     this.changeSpriteCounter = 0;
-    this.spriteSpeed = 8;
+    this.spriteSpeed = 12;
     this.initiateCharacterSprites();
-    this.spaceBar = new KeyboardControl(32);
-    this.listenForJumpTrigger();
 }
 
 Enemy.constructor = Enemy;
 Enemy.prototype = Object.create(PIXI.Container.prototype);
 
 Enemy.prototype.initiateCharacterSprites = function() {
-    var sprite1 = PIXI.Sprite.fromFrame("sprite1"),
-        sprite2 = PIXI.Sprite.fromFrame("sprite2"),
-        sprite3 = PIXI.Sprite.fromFrame("sprite3"),
-        sprite4 = PIXI.Sprite.fromFrame("sprite4"),
-        sprite5 = PIXI.Sprite.fromFrame("sprite5"),
-        sprite6 = PIXI.Sprite.fromFrame("sprite6");
+    var sprite1 = PIXI.Sprite.fromFrame("BadGuy2Tran"),
+        sprite2 = PIXI.Sprite.fromFrame("BadGuy1Tran");
     //add them to the array
-    this.characterSprites.push(sprite1,sprite2,sprite3, sprite4, sprite5, sprite6);
+    this.characterSprites.push(sprite1,sprite2);
     this.addChild(this.characterSprites[this.spriteCount]);
 };
 
 Enemy.prototype.nextSprite = function() {
     this.removeChild(this.characterSprites[this.spriteCount]);
-    if (this.spriteCount == 5) {
+    if (this.spriteCount == 1) {
         this.spriteCount = 0;
     }
     else {
@@ -57,58 +49,26 @@ Enemy.prototype.updateSprite = function() {
     }
 };
 
-Enemy.prototype.startJumpAnimation = function() {
-    this.jumping = true;
-    this.velocityY = -12.0;
-};
-
-Enemy.prototype.moveHeightJumping = function(posY, currentSlicePosY, nextSlicePosY) {
-    return this.simulateGravity(posY, this.calculateMapToCharacterHeightOffset(currentSlicePosY), this.calculateMapToCharacterHeightOffset(nextSlicePosY));
-};
-
-Enemy.prototype.listenForJumpTrigger = function() {
-    var that = this;
-    this.spaceBar.press = function () {
-        if (!that.jumping) {
-            that.startJumpAnimation();
-        }
+//TODO make the 720 and 1080 or whatever screen size is a CONST
+Enemy.prototype.updatePositionX = function(posX) {
+    if (posX < 0) {
+        this.updateVelocity();
+        return 1080;
     }
+    return posX - this.velocityX;
 };
 
-Enemy.prototype.simulateGravity = function(posY, currentSlicePosY, nextSlicePosY) {
-    this.velocityY += this.gravity;
-    posY += this.velocityY;
-
-    //TODO put these numbers in a config file. This number signifies the lowest wall
-    //if the character isnt moving up and the next slice is taller than the character...
-    //if the character is lower than the next slice, the character is travelling down and they are over a gap (99976) then the game is over
-    if (posY > nextSlicePosY && this.velocityY > 0 && currentSlicePosY == 99976) {
-        this.continueGame = false;
+Enemy.prototype.updatePositionY = function(posY) {
+    if (posY > 720) {
+        this.updateVelocity();
+        return 0;
     }
-    //TODO psyY > currentSlicePos & velocity is positive(negative...)
-    if (posY >= currentSlicePosY && this.continueGame) {
-        this.velocityY = 0.0;
-        this.jumping = false;
-        posY = currentSlicePosY;
-    }
-    return posY;
+    return posY + this.velocityY;
 };
 
-Enemy.prototype.endJumping = function(pos) {
-    this.jumping = false;
-};
-
-Enemy.prototype.charIsJumping = function() {
-    return (this.jumping)
-};
-
-Enemy.prototype.calculateMapToCharacterHeightOffset = function(wallPos) {
-    return wallPos - 24;
-};
-
-Enemy.prototype.checkIfFalling = function(currentSliceHeight, nextSliceHeight) {
-    if (!this.jumping && this.calculateMapToCharacterHeightOffset(currentSliceHeight) > this.position.y) {
-        this.jumping = true;
-        this.simulateGravity(this.position.y, this.calculateMapToCharacterHeightOffset(currentSliceHeight), this.calculateMapToCharacterHeightOffset(nextSliceHeight));
-    }
+Enemy.prototype.updateVelocity = function() {
+    var randX = Math.floor((Math.random() * 15) + 6),
+        randY = Math.floor((Math.random() * 4) + 1);
+    this.velocityX = randX;
+    this.velocityY = randY;
 };
