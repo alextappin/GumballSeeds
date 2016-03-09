@@ -79,7 +79,7 @@ Character.prototype.updateSprite = function() {
 
 Character.prototype.startJumpAnimation = function() {
     this.jumping = true;
-    this.velocityY = -13.0;
+    this.velocityY = -15.0;
 };
 
 Character.prototype.moveHeightJumping = function(posY, currentSlicePosY, nextSlicePosY) {
