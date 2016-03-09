@@ -101,7 +101,7 @@ Walls.prototype.addNewSlices = function() {
 
             //TODO MOVE THIS INTO CLASS AND MAKE A TEXT ON SCREEN CLASS
             this.removeChild(this.text);
-            this.text = new PIXI.Text(Math.floor(this.score), {font:"25px Arial", fill:"#228869"});
+            this.text = new PIXI.Text("You have 3 lifes. Press ctrl to attack, left and right arrows to move. Score: " + Math.floor(this.score), {font:"25px Arial", fill:"#228869"});
             this.text.position.x = 20;
             this.addChild(this.text);
         }
