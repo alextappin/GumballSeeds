@@ -20,8 +20,9 @@ function Character() {
     this.spaceBar = new KeyboardControl(32);
     this.listenForJumpTrigger();
 
-    this.leftArrow = new KeyboardControl();
-    this.rightArrow = new KeyboardControl();
+    this.ctrlButton = new KeyboardControl(17);
+    this.leftArrow = new KeyboardControl(37);
+    this.rightArrow = new KeyboardControl(39);
 }
 
 Character.constructor = Character;
