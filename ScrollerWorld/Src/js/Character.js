@@ -69,7 +69,7 @@ Character.prototype.updateSprite = function() {
 
 Character.prototype.startJumpAnimation = function() {
     this.jumping = true;
-    this.velocityY = -12.0;
+    this.velocityY = -13.0;
 };
 
 Character.prototype.moveHeightJumping = function(posY, currentSlicePosY, nextSlicePosY) {
@@ -135,7 +135,7 @@ Character.prototype.listenForAttackTrigger = function() {
 Character.prototype.startAttackAnimation = function() {
     this.isAttacking = true;
     this.removeChild(this.text);
-    this.text = new PIXI.Text("Attacking", {font:"25px Arial", fill:"#228869"});
+    this.text = new PIXI.Text("Attacking", {font:"40px Arial", fill:"#228869"});
     this.text.position.x = 20;
     this.addChild(this.text);
 
