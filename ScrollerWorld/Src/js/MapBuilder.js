@@ -15,7 +15,8 @@ MapBuilder.WALL_HEIGHTS = [
 ];
 
 MapBuilder.prototype.createMap = function() {
-    this.createWallSpan(0, 10, true);
+    /*this.createWallSpan(0, 10, true);*/
+    this.createWallSpan(3, 1000, true);
     this.createGap(2);
     this.createWallSpan(1, 10, true);
     this.createGap(2);

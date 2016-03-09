@@ -67,7 +67,7 @@ Scroller.prototype.moveViewportXBy = function(units) {
 
 Scroller.prototype.jumpCharacter = function() {
     if (this.character.charIsJumping()) {
-        this.character.position.y = this.character.moveHeightJumping(this.character.position.y, this.front.getCurrentSliceHeight(), this.front.getNextSliceHeight());
+        this.character.position.y = this.character.moveHeightJumping(this.character.position.y, this.front.getCurrentSliceHeight(this.character.position.x), this.front.getNextSliceHeight(this.character.position.x));
     }
     else {
         this.character.endJumping(this.character.position.y);
@@ -89,11 +89,12 @@ Scroller.prototype.attackCharacter = function() {
 
 Scroller.prototype.moveCharacterX = function() {
     if (this.character.isMovingLeft) {
-        this.character.position.x -= 5;
+        this.character.position.x -= 3;
     }
     if (this.character.isMovingRight) {
-        this.character.position.x += 2;
+        this.character.position.x += 5;
     }
+    this.character.position.x -= 2;
 };
 
 Scroller.prototype.createEnemies = function(enemies, stage) {
@@ -130,6 +131,7 @@ Scroller.prototype.moveEnemies = function() {
                 }
             }
 
+            this.enemies[n].updateVelocity();
             var newObj = this.enemies[n].getNewPositions();
             this.enemies[n].position.x = newObj.x;
             this.enemies[n].position.y = newObj.y;
