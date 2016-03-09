@@ -11,6 +11,8 @@ function Character() {
     this.applyFallingGravity = false;
 
     this.isAttacking = false;
+    this.attackingTime = 0;
+
     this.continueGame = true;
 
     this.velocityY = 0;
@@ -23,6 +25,8 @@ function Character() {
     this.listenForJumpTrigger();
 
     this.ctrlButton = new KeyboardControl(17);
+    this.listenForAttackTrigger();
+
     this.leftArrow = new KeyboardControl(37);
     this.rightArrow = new KeyboardControl(39);
 }
@@ -117,4 +121,30 @@ Character.prototype.checkIfFalling = function(currentSliceHeight, nextSliceHeigh
         this.jumping = true;
         this.simulateGravity(this.position.y, this.calculateMapToCharacterHeightOffset(currentSliceHeight), this.calculateMapToCharacterHeightOffset(nextSliceHeight));
     }
+};
+
+Character.prototype.listenForAttackTrigger = function() {
+    var that = this;
+    this.ctrlButton.press = function () {
+        if (!that.isAttacking) {
+            that.startAttackAnimation();
+        }
+    }
+};
+
+Character.prototype.startAttackAnimation = function() {
+    this.isAttacking = true;
+    this.removeChild(this.text);
+    this.text = new PIXI.Text("Attacking", {font:"25px Arial", fill:"#228869"});
+    this.text.position.x = 20;
+    this.addChild(this.text);
+
+    this.attackingTime = 20;
+};
+
+Character.prototype.stopAttacking = function() {
+    this.isAttacking = false;
+    this.removeChild(this.text);
+
+    this.attackingTime = 0;
 };

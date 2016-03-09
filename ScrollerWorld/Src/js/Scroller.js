@@ -40,6 +40,7 @@ Scroller.prototype.setViewportX = function(viewportX) {
     this.front.setViewportX(viewportX);
     this.updateSprites();
     this.jumpCharacter();
+    this.attackCharacter();
     this.moveEnemies();
     this.applyFallingGravityToCharacter();
     if (this.front.slicesAreLow()) {
@@ -71,6 +72,15 @@ Scroller.prototype.jumpCharacter = function() {
 
 Scroller.prototype.applyFallingGravityToCharacter = function() {
     this.character.checkIfFalling(this.front.getCurrentSliceHeight(), this.front.getNextSliceHeight());
+};
+
+Scroller.prototype.attackCharacter = function() {
+    if (this.character.isAttacking) {
+        this.character.attackingTime -= 1;
+    }
+    if (this.character.attackingTime == 0) {
+        this.character.stopAttacking();
+    }
 };
 
 Scroller.prototype.createEnemies = function(enemies, stage) {
