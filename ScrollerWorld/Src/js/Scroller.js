@@ -24,9 +24,7 @@ function Scroller(stage) {
     stage.addChild(this.character);
 
     this.enemies = [];
-    this.createEnemies(CONST);
-    for (var n = 0; n < CONST; n++)
-        stage.addChild(this.enemies[n]);
+    this.createEnemies(CONST, stage);
 
     this.mapBuilder = new MapBuilder(this.front);
 
@@ -75,7 +73,7 @@ Scroller.prototype.applyFallingGravityToCharacter = function() {
     this.character.checkIfFalling(this.front.getCurrentSliceHeight(), this.front.getNextSliceHeight());
 };
 
-Scroller.prototype.createEnemies = function(enemies) {
+Scroller.prototype.createEnemies = function(enemies, stage) {
     for (var n = 0; n < enemies; n++) {
         this.enemy = new Enemy();
         var obj = this.enemy.getUpdatedPositionVariables(-100, 800);
@@ -84,6 +82,7 @@ Scroller.prototype.createEnemies = function(enemies) {
         this.enemy.scale.x = .3;
         this.enemy.scale.y = .3;
         this.enemies.push(this.enemy);
+        stage.addChild(this.enemy);
     }
 };
 Scroller.prototype.moveEnemies = function() {
