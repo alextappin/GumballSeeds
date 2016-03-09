@@ -40,15 +40,9 @@ Scroller.prototype.setViewportX = function(viewportX) {
     this.mid.setViewportX(viewportX);
     this.mid2.setViewportX(viewportX);
     this.front.setViewportX(viewportX);
-    this.character.updateSprite();
-    for (var n = 0; n < CONST; n++) {
-        this.enemies[n].updateSprite();
-    }
+    this.updateSprites();
     this.jumpCharacter();
-    for (n = 0; n < CONST; n++) {
-        this.enemies[n].updateSprite();
-    }
-    this.moveEnemy();
+    this.moveEnemies();
     this.applyFallingGravityToCharacter();
     if (this.front.slicesAreLow()) {
         //TODO:if slices are low, find which slice types are low and ADD THOSE ONES THAT ARE LOW
@@ -92,10 +86,16 @@ Scroller.prototype.createEnemies = function(enemies) {
         this.enemies.push(this.enemy);
     }
 };
-Scroller.prototype.moveEnemy = function() {
+Scroller.prototype.moveEnemies = function() {
     for (var n = 0; n < CONST; n++) {
         var obj = this.enemies[n].getUpdatedPositionVariables(this.enemies[n].position.x, this.enemies[n].position.y);
         this.enemies[n].position.x = obj.x;
         this.enemies[n].position.y = obj.y;
+    }
+};
+Scroller.prototype.updateSprites = function() {
+    this.character.updateSprite();
+    for (var n = 0; n < CONST; n++) {
+        this.enemies[n].updateSprite();
     }
 };
