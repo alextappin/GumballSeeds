@@ -10,13 +10,20 @@ function Character() {
     this.jumping = true;
     this.applyFallingGravity = false;
 
+    this.isMovingLeft = false;
+    this.isMovingRight = false;
+
     this.isAttacking = false;
     this.attackingTime = 0;
 
+    this.lives = 2;
+    this.enemiesKilled = 0;
     this.continueGame = true;
 
     this.velocityY = 0;
     this.gravity = .5;
+
+    this.velocityX = 3;
 
     this.changeSpriteCounter = 0;
     this.spriteSpeed = 8;
@@ -28,7 +35,10 @@ function Character() {
     this.listenForAttackTrigger();
 
     this.leftArrow = new KeyboardControl(37);
+    this.listenForMoveLeftTrigger();
+
     this.rightArrow = new KeyboardControl(39);
+    this.listenForMoveRightTrigger();
 }
 
 Character.constructor = Character;
@@ -147,4 +157,50 @@ Character.prototype.stopAttacking = function() {
     this.removeChild(this.text);
 
     this.attackingTime = 0;
+};
+
+Character.prototype.listenForMoveRightTrigger = function() {
+    var that = this;
+    this.rightArrow.press = function () {
+        if (!that.isMovingRight) {
+            that.startMoveRightAnimation();
+        }
+    };
+
+    this.rightArrow.release = function () {
+        if (that.isMovingRight) {
+            that.stopMoveRightAnimation();
+        }
+    }
+};
+
+Character.prototype.listenForMoveLeftTrigger = function() {
+    var that = this;
+    this.leftArrow.press = function () {
+        if (!that.isMovingLeft) {
+            that.startMoveLeftAnimation();
+        }
+    };
+
+    this.leftArrow.release = function () {
+        if (that.isMovingLeft) {
+            that.stopMoveLeftAnimation();
+        }
+    };
+};
+
+Character.prototype.startMoveRightAnimation = function() {
+    this.isMovingRight = true;
+};
+
+Character.prototype.startMoveLeftAnimation = function() {
+    this.isMovingLeft = true;
+};
+
+Character.prototype.stopMoveRightAnimation = function() {
+    this.isMovingRight = false;
+};
+
+Character.prototype.stopMoveLeftAnimation = function() {
+    this.isMovingLeft = false;
 };

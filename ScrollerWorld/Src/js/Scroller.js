@@ -29,6 +29,9 @@ function Scroller(stage) {
     this.mapBuilder = new MapBuilder(this.front);
 
     this.viewportX = 0;
+    this.getStage = function() {
+        return stage;
+    }
 }
 //
 
@@ -41,6 +44,7 @@ Scroller.prototype.setViewportX = function(viewportX) {
     this.updateSprites();
     this.jumpCharacter();
     this.attackCharacter();
+    this.moveCharacterX();
     this.moveEnemies();
     this.applyFallingGravityToCharacter();
     if (this.front.slicesAreLow()) {
@@ -83,6 +87,15 @@ Scroller.prototype.attackCharacter = function() {
     }
 };
 
+Scroller.prototype.moveCharacterX = function() {
+    if (this.character.isMovingLeft) {
+        this.character.position.x -= 5;
+    }
+    if (this.character.isMovingRight) {
+        this.character.position.x += 2;
+    }
+};
+
 Scroller.prototype.createEnemies = function(enemies, stage) {
     for (var n = 0; n < enemies; n++) {
         this.enemy = new Enemy();
@@ -104,14 +117,22 @@ Scroller.prototype.moveEnemies = function() {
         if (this.enemies[n].isIntersecting(this.character, this.enemies[n])) {
             if (this.character.isAttacking) {
                 //give more points
-                var newObj = this.enemies[n].getNewPositions();
-                this.enemies[n].position.x = newObj.x;
-                this.enemies[n].position.y = newObj.y;
+                //make more enemies
+                this.character.enemiesKilled += 1;
+                this.createEnemies(1, this.getStage());
+                CONST += 1;
             }
             else {
-                this.character.continueGame = false;
-                this.character.jumping = true;
+                this.character.lives -= 1;
+                if (this.character.lives < 0) {
+                    this.character.continueGame = false;
+                    this.character.jumping = true;
+                }
             }
+
+            var newObj = this.enemies[n].getNewPositions();
+            this.enemies[n].position.x = newObj.x;
+            this.enemies[n].position.y = newObj.y;
         }
     }
 };
