@@ -19,6 +19,9 @@ function Character() {
     this.initiateCharacterSprites();
     this.spaceBar = new KeyboardControl(32);
     this.listenForJumpTrigger();
+
+    this.leftArrow = new KeyboardControl();
+    this.rightArrow = new KeyboardControl();
 }
 
 Character.constructor = Character;

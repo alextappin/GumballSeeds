@@ -1,6 +1,8 @@
 /**
  * Created by ajt on 11/29/2015.
  */
+
+CONST = 2;
 function Scroller(stage) {
     this.far = new Far();
     stage.addChild(this.far);
@@ -21,12 +23,10 @@ function Scroller(stage) {
     this.character.scale.y = .5;
     stage.addChild(this.character);
 
-    this.enemy = new Enemy();
-    this.enemy.position.y = 50;
-    this.enemy.position.x = 835;
-    this.enemy.scale.x = .3;
-    this.enemy.scale.y = .3;
-    stage.addChild(this.enemy);
+    this.enemies = [];
+    this.createEnemies(CONST);
+    for (var n = 0; n < CONST; n++)
+        stage.addChild(this.enemies[n]);
 
     this.mapBuilder = new MapBuilder(this.front);
 
@@ -41,8 +41,13 @@ Scroller.prototype.setViewportX = function(viewportX) {
     this.mid2.setViewportX(viewportX);
     this.front.setViewportX(viewportX);
     this.character.updateSprite();
-    this.enemy.updateSprite();
+    for (var n = 0; n < CONST; n++) {
+        this.enemies[n].updateSprite();
+    }
     this.jumpCharacter();
+    for (n = 0; n < CONST; n++) {
+        this.enemies[n].updateSprite();
+    }
     this.moveEnemy();
     this.applyFallingGravityToCharacter();
     if (this.front.slicesAreLow()) {
@@ -76,7 +81,21 @@ Scroller.prototype.applyFallingGravityToCharacter = function() {
     this.character.checkIfFalling(this.front.getCurrentSliceHeight(), this.front.getNextSliceHeight());
 };
 
+Scroller.prototype.createEnemies = function(enemies) {
+    for (var n = 0; n < enemies; n++) {
+        this.enemy = new Enemy();
+        var obj = this.enemy.getUpdatedPositionVariables(-100, 800);
+        this.enemy.position.y = obj.y;
+        this.enemy.position.x = obj.x;
+        this.enemy.scale.x = .3;
+        this.enemy.scale.y = .3;
+        this.enemies.push(this.enemy);
+    }
+};
 Scroller.prototype.moveEnemy = function() {
-    this.enemy.position.x = this.enemy.updatePositionX(this.enemy.position.x);
-    this.enemy.position.y = this.enemy.updatePositionY(this.enemy.position.y);
+    for (var n = 0; n < CONST; n++) {
+        var obj = this.enemies[n].getUpdatedPositionVariables(this.enemies[n].position.x, this.enemies[n].position.y);
+        this.enemies[n].position.x = obj.x;
+        this.enemies[n].position.y = obj.y;
+    }
 };

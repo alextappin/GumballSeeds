@@ -11,6 +11,9 @@ function Enemy() {
 
     this.velocityX = 7;
     this.velocityY = 2;
+    this.changeVelocityX = 0;
+    this.changeVelocityY = 0;
+    this.slowOrSpeedTrigger = false;
 
     this.changeSpriteCounter = 0;
     this.spriteSpeed = 12;
@@ -50,25 +53,59 @@ Enemy.prototype.updateSprite = function() {
 };
 
 //TODO make the 720 and 1080 or whatever screen size is a CONST
-Enemy.prototype.updatePositionX = function(posX) {
-    if (posX < 0) {
-        this.updateVelocity();
-        return 1080;
-    }
-    return posX - this.velocityX;
-};
-
-Enemy.prototype.updatePositionY = function(posY) {
-    if (posY > 720) {
-        this.updateVelocity();
-        return 0;
-    }
-    return posY + this.velocityY;
-};
-
 Enemy.prototype.updateVelocity = function() {
-    var randX = Math.floor((Math.random() * 15) + 6),
-        randY = Math.floor((Math.random() * 4) + 1);
+    var randX = Math.floor((Math.random() * 10) + 4),
+        randY = Math.floor((Math.random() * 3) + 1);
+    this.speedOrSlow();
     this.velocityX = randX;
     this.velocityY = randY;
+};
+
+Enemy.prototype.getUpdatedPositionVariables = function(posX, posY) {
+    var obj = {
+        x : 0,
+        y : 0
+    };
+    if (posX < -50 || posY > 720) {
+        this.updateVelocity();
+        var newObj = this.getNewPositions();
+        obj.x = newObj.x;
+        obj.y = newObj.y;
+        console.log(obj);
+    }
+    else {
+        this.velocityX += this.velocityX < 1 ? this.changeVelocityX : 0;
+        this.velocityY += this.velocityY > 1 ? this.changeVelocityY : 0;
+        obj.x = posX - this.velocityX;
+        obj.y = posY + this.velocityY;
+    }
+    return obj;
+
+};
+
+Enemy.prototype.getNewPositions = function() {
+    var obj = {
+        x : 0,
+        y : 0
+    };
+    obj.y = Math.floor(Math.random() * 200);
+    obj.x = 1100;
+    return obj;
+};
+
+Enemy.prototype.speedOrSlow = function() {
+    var trig = Math.floor((Math.random() * 2) + 1);
+    if (trig == 1) {
+        this.changeVelocityX = -.01;
+    }
+    else {
+        this.changeVelocityX = .05;
+    }
+    trig = Math.floor((Math.random() * 2) + 1);
+    if (trig == 1) {
+        this.changeVelocityY = -.01;
+    }
+    else {
+        this.changeVelocityY = .05;
+    }
 };
