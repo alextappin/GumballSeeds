@@ -28,16 +28,16 @@ function Character() {
     this.changeSpriteCounter = 0;
     this.spriteSpeed = 8;
     this.initiateCharacterSprites();
-    this.spaceBar = new keyboardControl(32);
+    this.spaceBar = new KeyboardControl(32);
     this.listenForJumpTrigger();
 
-    this.ctrlButton = new keyboardControl(17);
+    this.ctrlButton = new KeyboardControl(17);
     this.listenForAttackTrigger();
 
-    this.leftArrow = new keyboardControl(37);
+    this.leftArrow = new KeyboardControl(37);
     this.listenForMoveLeftTrigger();
 
-    this.rightArrow = new keyboardControl(39);
+    this.rightArrow = new KeyboardControl(39);
     this.listenForMoveRightTrigger();
 }
 
