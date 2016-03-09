@@ -71,7 +71,6 @@ Enemy.prototype.getUpdatedPositionVariables = function(posX, posY) {
         var newObj = this.getNewPositions();
         obj.x = newObj.x;
         obj.y = newObj.y;
-        console.log(obj);
     }
     else {
         this.velocityX += this.velocityX < 1 ? this.changeVelocityX : 0;
@@ -108,4 +107,19 @@ Enemy.prototype.speedOrSlow = function() {
     else {
         this.changeVelocityY = .05;
     }
+};
+
+Enemy.prototype.collideWithCharacter = function(charX, charY, enemyX, enemyY) {
+    if (charX == enemyX)
+    {
+        console.log("collided");
+    }
+};
+
+Enemy.prototype.isIntersecting = function(r1, r2) {
+    return !(r2.position.x > (r1.position.x + r1.width) ||
+    (r2.position.x + r2.width) < r1.x ||
+    r2.position.y > (r1.position.y + r1.height) ||
+    (r2.position.y + r2.height) < r1.position.y);
+
 };

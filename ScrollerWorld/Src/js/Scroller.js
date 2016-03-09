@@ -85,11 +85,24 @@ Scroller.prototype.createEnemies = function(enemies, stage) {
         stage.addChild(this.enemy);
     }
 };
+
 Scroller.prototype.moveEnemies = function() {
     for (var n = 0; n < CONST; n++) {
         var obj = this.enemies[n].getUpdatedPositionVariables(this.enemies[n].position.x, this.enemies[n].position.y);
         this.enemies[n].position.x = obj.x;
         this.enemies[n].position.y = obj.y;
+        if (this.enemies[n].isIntersecting(this.character, this.enemies[n])) {
+            if (this.character.isAttacking) {
+                //give more points
+                var newObj = this.enemies[n].getNewPositions();
+                this.enemies[n].position.x = newObj.x;
+                this.enemies[n].position.y = newObj.y;
+            }
+            else {
+                this.character.continueGame = false;
+                this.character.jumping = true;
+            }
+        }
     }
 };
 Scroller.prototype.updateSprites = function() {

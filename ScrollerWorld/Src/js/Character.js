@@ -9,6 +9,8 @@ function Character() {
 
     this.jumping = true;
     this.applyFallingGravity = false;
+
+    this.isAttacking = false;
     this.continueGame = true;
 
     this.velocityY = 0;
