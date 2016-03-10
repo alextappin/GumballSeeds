@@ -46,6 +46,7 @@ Scroller.prototype.setViewportX = function(viewportX) {
     this.attackCharacter();
     this.moveCharacterX();
     this.moveEnemies();
+    this.writeScoreAndLives();
     this.applyFallingGravityToCharacter();
     if (this.front.slicesAreLow()) {
         //TODO:if slices are low, find which slice types are low and ADD THOSE ONES THAT ARE LOW
@@ -146,4 +147,10 @@ Scroller.prototype.updateSprites = function() {
     for (var n = 0; n < CONST; n++) {
         this.enemies[n].updateSprite();
     }
+};
+
+Scroller.prototype.writeScoreAndLives = function() {
+    this.getStage().removeChild(this.text);
+    this.text = new PIXI.Text("Killed  " + this.character.enemiesKilled + "       Lives  " + (this.character.lives + 1) , {font:"25px Arial", fill:"#1144FF"});
+    this.getStage().addChild(this.text);
 };
