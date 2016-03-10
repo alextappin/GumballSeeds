@@ -1,46 +1,34 @@
 /**
  * Created by ajt on 11/29/2015.
  */
-
-CONST = 2;
 function Scroller(stage) {
-    this.far = new Far();
-    stage.addChild(this.far);
-
-    this.mid = new Mid();
-    stage.addChild(this.mid);
-
-    this.mid2 = new Mid2();
-    stage.addChild(this.mid2);
-
-    this.front = new Walls();
-    stage.addChild(this.front);
-
-    this.character = new Character();
-    this.character.position.y = 50;
-    this.character.position.x = 65;
-    this.character.scale.x = .5;
-    this.character.scale.y = .5;
-    stage.addChild(this.character);
-
-    this.enemies = [];
-    this.createEnemies(CONST, stage);
-
-    this.mapBuilder = new MapBuilder(this.front);
-
-    this.viewportX = 0;
+    this.constructScroller(stage);
     this.getStage = function() {
         return stage;
     }
 }
-//
+//TODO have the character and ememies each hold THEIR own position.x.
+
+Scroller.prototype.constructScroller = function(stage) {
+    this.ScrollerProps = new ScrollerProperties();
+    //Add to stage
+    stage.addChild(this.ScrollerProps.far);
+    stage.addChild(this.ScrollerProps.mid);
+    stage.addChild(this.ScrollerProps.mid2);
+    stage.addChild(this.ScrollerProps.front);
+    //Add location props to character/enemies
+    this.createCharacter(stage);
+    this.createEnemies(GameVariables.getEnemies(), stage);
+    //Start Building the Map
+    this.ScrollerProps.mapBuilder = new MapBuilder(this.ScrollerProps.front);
+};
 
 Scroller.prototype.setViewportX = function(viewportX) {
-    this.viewportX = viewportX;
-    this.far.setViewportX(viewportX);
-    this.mid.setViewportX(viewportX);
-    this.mid2.setViewportX(viewportX);
-    this.front.setViewportX(viewportX);
+    this.ScrollerProps.viewportX = viewportX;
+    this.ScrollerProps.far.setViewportX(viewportX);
+    this.ScrollerProps.mid.setViewportX(viewportX);
+    this.ScrollerProps.mid2.setViewportX(viewportX);
+    this.ScrollerProps.front.setViewportX(viewportX);
     this.updateSprites();
     this.jumpCharacter();
     this.attackCharacter();
@@ -48,18 +36,18 @@ Scroller.prototype.setViewportX = function(viewportX) {
     this.moveEnemies();
     this.writeScoreAndLives();
     this.applyFallingGravityToCharacter();
-    if (this.front.slicesAreLow()) {
+    if (this.ScrollerProps.front.slicesAreLow()) {
         //TODO:if slices are low, find which slice types are low and ADD THOSE ONES THAT ARE LOW
-        this.mapBuilder.addAndBuildRandomSequence();
+        this.ScrollerProps.mapBuilder.addAndBuildRandomSequence();
     }
 };
 
 Scroller.prototype.getViewportX = function() {
-    return this.viewportX;
+    return this.ScrollerProps.viewportX;
 };
 
 Scroller.prototype.moveViewportXBy = function(units) {
-    var newViewportX = this.viewportX + units;
+    var newViewportX = this.ScrollerProps.viewportX + units;
     this.setViewportX(newViewportX);
 };
 
@@ -67,35 +55,43 @@ Scroller.prototype.moveViewportXBy = function(units) {
 //TODO put the jump character and apply falling gravity to character in same function. Grab the next and current slices one time. this will helper performance.
 
 Scroller.prototype.jumpCharacter = function() {
-    if (this.character.charIsJumping()) {
-        this.character.position.y = this.character.moveHeightJumping(this.character.position.y, this.front.getCurrentSliceHeight(this.character.position.x), this.front.getNextSliceHeight(this.character.position.x));
+    if (this.ScrollerProps.character.charIsJumping()) {
+        this.ScrollerProps.character.position.y = this.ScrollerProps.character.moveHeightJumping(this.ScrollerProps.character.position.y, this.ScrollerProps.front.getCurrentSliceHeight(this.ScrollerProps.character.position.x), this.ScrollerProps.front.getNextSliceHeight(this.ScrollerProps.character.position.x));
     }
     else {
-        this.character.endJumping(this.character.position.y);
+        this.ScrollerProps.character.endJumping(this.ScrollerProps.character.position.y);
     }
 };
 
 Scroller.prototype.applyFallingGravityToCharacter = function() {
-    this.character.checkIfFalling(this.front.getCurrentSliceHeight(), this.front.getNextSliceHeight());
+    this.ScrollerProps.character.checkIfFalling(this.ScrollerProps.front.getCurrentSliceHeight(), this.ScrollerProps.front.getNextSliceHeight());
 };
 
 Scroller.prototype.attackCharacter = function() {
-    if (this.character.isAttacking) {
-        this.character.attackingTime -= 1;
+    if (this.ScrollerProps.character.CharacterProperties.isAttacking) {
+        this.ScrollerProps.character.CharacterProperties.attackingTime -= 1;
     }
-    if (this.character.attackingTime == 0) {
-        this.character.stopAttacking();
+    if (this.ScrollerProps.character.CharacterProperties.attackingTime == 0) {
+        this.ScrollerProps.character.stopAttacking();
     }
 };
 
 Scroller.prototype.moveCharacterX = function() {
-    if (this.character.isMovingLeft) {
-        this.character.position.x -= 3;
+    if (this.ScrollerProps.character.CharacterProperties.isMovingLeft) {
+        this.ScrollerProps.character.position.x -= 3;
     }
-    if (this.character.isMovingRight) {
-        this.character.position.x += 5;
+    if (this.ScrollerProps.character.CharacterProperties.isMovingRight) {
+        this.ScrollerProps.character.position.x += 5;
     }/*
-    this.character.position.x -= 2;*/
+    this.ScrollerProps.character.position.x -= 2;*/
+};
+
+Scroller.prototype.createCharacter = function(stage) {
+    this.ScrollerProps.character.position.y = 50;
+    this.ScrollerProps.character.position.x = 65;
+    this.ScrollerProps.character.scale.x = .5;
+    this.ScrollerProps.character.scale.y = .5;
+    stage.addChild(this.ScrollerProps.character);
 };
 
 //TODO make a random global function where I pass the bounds and return the random number...
@@ -109,48 +105,50 @@ Scroller.prototype.createEnemies = function(enemies, stage) {
 
         this.enemy.scale.x = rand/10;
         this.enemy.scale.y = rand/10;
-        this.enemies.push(this.enemy);
+        this.ScrollerProps.enemies.push(this.enemy);
         stage.addChild(this.enemy);
     }
 };
 
 Scroller.prototype.moveEnemies = function() {
-    for (var n = 0; n < CONST; n++) {
-        var obj = this.enemies[n].getUpdatedPositionVariables(this.enemies[n].position.x, this.enemies[n].position.y);
-        this.enemies[n].position.x = obj.x;
-        this.enemies[n].position.y = obj.y;
-        if (this.enemies[n].isIntersecting(this.character, this.enemies[n])) {
-            if (this.character.isAttacking) {
+    for (var n = 0; n < GameVariables.getEnemies(); n++) {
+        var obj = this.ScrollerProps.enemies[n].getUpdatedPositionVariables(this.ScrollerProps.enemies[n].position.x, this.ScrollerProps.enemies[n].position.y);
+        this.ScrollerProps.enemies[n].position.x = obj.x;
+        this.ScrollerProps.enemies[n].position.y = obj.y;
+        if (this.ScrollerProps.enemies[n].isIntersecting(this.ScrollerProps.character, this.ScrollerProps.enemies[n])) {
+            if (this.ScrollerProps.character.CharacterProperties.isAttacking) {
                 //give more points
                 //make more enemies
-                this.character.enemiesKilled += 1;
-                this.createEnemies(1, this.getStage());
-                CONST += 1;
+                this.ScrollerProps.character.CharacterProperties.enemiesKilled += 1;
+                if (this.ScrollerProps.character.CharacterProperties.enemiesKilled%15 == 0) {
+                    this.createEnemies(1, this.getStage());
+                    GameVariables.setEnemies(GameVariables.getEnemies()+1);
+                }
             }
             else {
-                this.character.lives -= 1;
-                if (this.character.lives < 0) {
-                    this.character.continueGame = false;
-                    this.character.jumping = true;
+                this.ScrollerProps.character.CharacterProperties.lives -= 1;
+                if (this.ScrollerProps.character.CharacterProperties.lives < 0) {
+                    this.ScrollerProps.character.CharacterProperties.continueGame = false;
+                    this.ScrollerProps.character.CharacterProperties.jumping = true;
                 }
             }
 
-            this.enemies[n].updateVelocity();
-            var newObj = this.enemies[n].getNewPositions();
-            this.enemies[n].position.x = newObj.x;
-            this.enemies[n].position.y = newObj.y;
+            this.ScrollerProps.enemies[n].updateVelocity();
+            var newObj = this.ScrollerProps.enemies[n].getNewPositions();
+            this.ScrollerProps.enemies[n].position.x = newObj.x;
+            this.ScrollerProps.enemies[n].position.y = newObj.y;
         }
     }
 };
 Scroller.prototype.updateSprites = function() {
-    this.character.updateSprite();
-    for (var n = 0; n < CONST; n++) {
-        this.enemies[n].updateSprite();
+    this.ScrollerProps.character.updateSprite();
+    for (var n = 0; n < GameVariables.getEnemies(); n++) {
+        this.ScrollerProps.enemies[n].updateSprite();
     }
 };
 
 Scroller.prototype.writeScoreAndLives = function() {
     this.getStage().removeChild(this.text);
-    this.text = new PIXI.Text("Killed  " + this.character.enemiesKilled + "       Lives  " + (this.character.lives + 1) , {font:"25px Arial", fill:"#1144FF"});
+    this.text = new PIXI.Text("Killed  " + this.ScrollerProps.character.CharacterProperties.enemiesKilled + "       Lives  " + (this.ScrollerProps.character.CharacterProperties.lives + 1) , {font:"25px Arial", fill:"#1144FF"});
     this.getStage().addChild(this.text);
 };
