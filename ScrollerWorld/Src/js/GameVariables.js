@@ -9,7 +9,9 @@ var GameVariables = (function GameVariables() {
         minScrollSpeed : 5.5,
         maxScrollSpeed : 7,
         scrollAcceleration : 0.005,
-        currentScrollSpeed : 0
+        currentScrollSpeed : 0,
+        offScreenOffsetX : -200,
+        offScreenOffsetY : 200
     };
 
     return {
@@ -34,6 +36,16 @@ var GameVariables = (function GameVariables() {
         },
         getCurrentScrollSpeed : function getCurrentScrollSpeed() {
             return constants.currentScrollSpeed;
+        },
+        getScreenOffsetX : function getScreenOffsetX() {
+            return constants.offScreenOffsetX;
+        },
+        getScreenOffsetY : function getScreenOffsetY() {
+            return constants.offScreenOffsetY;
+        },
+        getRandomNumber : function getRandomNumber(startRange, endRange) {
+            //Will return a random number from startRange to endRange
+            return Math.floor((Math.random() * endRange) + startRange);
         },
 
         //setters

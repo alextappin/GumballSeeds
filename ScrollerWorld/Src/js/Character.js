@@ -4,6 +4,13 @@
 function Character() {
     PIXI.Container.call(this);
 
+    this.constructCharacter();
+}
+
+Character.constructor = Character;
+Character.prototype = Object.create(PIXI.Container.prototype);
+
+Character.prototype.constructCharacter = function() {
     this.CharacterProperties = new CharacterProperties();
 
     this.initiateCharacterSprites();
@@ -11,10 +18,7 @@ function Character() {
     this.listenForAttackTrigger();
     this.listenForMoveLeftTrigger();
     this.listenForMoveRightTrigger();
-}
-
-Character.constructor = Character;
-Character.prototype = Object.create(PIXI.Container.prototype);
+};
 
 Character.prototype.initiateCharacterSprites = function() {
     var sprite1 = PIXI.Sprite.fromFrame("sprite1"),
@@ -91,7 +95,7 @@ Character.prototype.endJumping = function(pos) {
 };
 
 Character.prototype.charIsJumping = function() {
-    return (this.CharacterProperties.jumping)
+    return (this.CharacterProperties.jumping);
 };
 
 Character.prototype.calculateMapToCharacterHeightOffset = function(wallPos) {

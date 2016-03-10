@@ -12,7 +12,9 @@ function EnemyProperties() {
         changeVelocityY : 0,
         slowOrSpeedTrigger : false,
         changeSpriteCounter : 0,
-        spriteSpeed : 12
+        spriteSpeed : 12,
+        velocityDecelerate : -.1,
+        velocityAccelerate : .05
     };
 
     return props;

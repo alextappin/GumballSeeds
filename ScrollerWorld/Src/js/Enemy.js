@@ -3,13 +3,16 @@
  */
 function Enemy() {
     PIXI.Container.call(this);
-
-    this.EnemyProperties = new EnemyProperties();
-    this.initiateCharacterSprites();
+    this.constructEnemy();
 }
 
 Enemy.constructor = Enemy;
 Enemy.prototype = Object.create(PIXI.Container.prototype);
+
+Enemy.prototype.constructEnemy = function() {
+    this.EnemyProperties = new EnemyProperties();
+    this.initiateCharacterSprites();
+};
 
 Enemy.prototype.initiateCharacterSprites = function() {
     var sprite1 = PIXI.Sprite.fromFrame("BadGuy2Tran"),
@@ -36,65 +39,44 @@ Enemy.prototype.updateSprite = function() {
         this.nextSprite();
     }
     else {
-        this.EnemyProperties.changeSpriteCounter ++;
+        this.EnemyProperties.changeSpriteCounter++;
     }
 };
 
 //TODO make the 720 and 1080 or whatever screen size is a CONST
 Enemy.prototype.updateVelocity = function() {
-    var randX = Math.floor((Math.random() * 10) + 4),
-        randY = Math.floor((Math.random() * 3) + 1);
+    this.EnemyProperties.velocityX = GameVariables.getRandomNumber(4,10);
+    this.EnemyProperties.velocityY =  GameVariables.getRandomNumber(1,3);
     this.speedOrSlow();
-    this.EnemyProperties.velocityX = randX;
-    this.EnemyProperties.velocityY = randY;
 };
 
 Enemy.prototype.getUpdatedPositionVariables = function(posX, posY) {
-    var obj = {
-        x : 0,
-        y : 0
-    };
-    if (posX < -50 || posY > 720) {
+    if (posX < GameVariables.getScreenOffsetX() || posY > GameVariables.getHeight() + GameVariables.getScreenOffsetY()) {
         this.updateVelocity();
-        var newObj = this.getNewPositions();
-        obj.x = newObj.x;
-        obj.y = newObj.y;
+        return this.getNewPositions();
     }
     else {
         this.EnemyProperties.velocityX += this.EnemyProperties.velocityX < 1 ? this.EnemyProperties.changeVelocityX : 0;
         this.EnemyProperties.velocityY += this.EnemyProperties.velocityY > 1 ? this.EnemyProperties.changeVelocityY : 0;
-        obj.x = posX - this.EnemyProperties.velocityX;
-        obj.y = posY + this.EnemyProperties.velocityY;
+
+        return {
+            x : posX - this.EnemyProperties.velocityX,
+            y : posY + this.EnemyProperties.velocityY
+        };
     }
-    return obj;
 
 };
 
 Enemy.prototype.getNewPositions = function() {
-    var obj = {
-        x : 0,
-        y : 0
+    return {
+        x : GameVariables.getWidth()+100,
+        y :  GameVariables.getRandomNumber(0, 400)
     };
-    obj.y = Math.floor(Math.random() * 200);
-    obj.x = 1100;
-    return obj;
 };
 
 Enemy.prototype.speedOrSlow = function() {
-    var trig = Math.floor((Math.random() * 2) + 1);
-    if (trig == 1) {
-        this.EnemyProperties.changeVelocityX = -.01;
-    }
-    else {
-        this.EnemyProperties.changeVelocityX = .05;
-    }
-    trig = Math.floor((Math.random() * 2) + 1);
-    if (trig == 1) {
-        this.EnemyProperties.changeVelocityY = -.01;
-    }
-    else {
-        this.EnemyProperties.changeVelocityY = .05;
-    }
+    this.EnemyProperties.changeVelocityX = GameVariables.getRandomNumber(1,2) == 1 ? this.EnemyProperties.velocityDecelerate : this.EnemyProperties.velocityAccelerate;
+    this.EnemyProperties.changeVelocityY = GameVariables.getRandomNumber(1,2) == 1 ? this.EnemyProperties.velocityDecelerate : this.EnemyProperties.velocityAccelerate;
 };
 
 Enemy.prototype.isIntersecting = function(r1, r2) {

@@ -2,7 +2,7 @@
  * Created by ajt on 11/29/2015.
  */
 
-CONST = 10;
+CONST = 1;
 function Scroller(stage) {
     this.far = new Far();
     stage.addChild(this.far);
