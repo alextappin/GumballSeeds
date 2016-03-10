@@ -130,7 +130,7 @@ Scroller.prototype.moveEnemies = function() {
                 this.character.lives -= 1;
                 if (this.character.lives < 0) {
                     this.character.continueGame = false;
-                    this.character.startJumpAnimation();
+                    this.character.jumping = true;
                 }
             }
 
