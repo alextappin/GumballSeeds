@@ -79,10 +79,10 @@ Enemy.prototype.speedOrSlow = function() {
     this.EnemyProperties.changeVelocityY = GameVariables.getRandomNumber(1,2) == 1 ? this.EnemyProperties.velocityDecelerate : this.EnemyProperties.velocityAccelerate;
 };
 
-Enemy.prototype.isIntersecting = function(r1, r2) {
-    return !(r2.position.x > (r1.position.x + r1.width) ||
-    (r2.position.x + r2.width) < r1.x ||
-    r2.position.y > (r1.position.y + r1.height) ||
-    (r2.position.y + r2.height) < r1.position.y);
+Enemy.prototype.isIntersecting = function(rectangle1, rectangle2) {
+    return !(rectangle2.position.x > (rectangle1.position.x + rectangle1.width) ||
+    (rectangle2.position.x + rectangle2.width) < rectangle1.x ||
+    rectangle2.position.y > (rectangle1.position.y + rectangle1.height) ||
+    (rectangle2.position.y + rectangle2.height) < rectangle1.position.y);
 
 };
