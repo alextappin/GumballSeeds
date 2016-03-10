@@ -16,7 +16,7 @@ function Character() {
     this.isAttacking = false;
     this.attackingTime = 0;
 
-    this.lives = 2;
+    this.lives = 30;
     this.enemiesKilled = 0;
     this.continueGame = true;
 

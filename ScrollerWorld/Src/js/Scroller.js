@@ -2,7 +2,7 @@
  * Created by ajt on 11/29/2015.
  */
 
-CONST = 2;
+CONST = 1;
 function Scroller(stage) {
     this.far = new Far();
     stage.addChild(this.far);
@@ -124,8 +124,10 @@ Scroller.prototype.moveEnemies = function() {
                 //give more points
                 //make more enemies
                 this.character.enemiesKilled += 1;
-                this.createEnemies(1, this.getStage());
-                CONST += 1;
+                if (this.character.enemiesKilled%15 == 0) {
+                    this.createEnemies(1, this.getStage());
+                    CONST += 1;
+                }
             }
             else {
                 this.character.lives -= 1;
