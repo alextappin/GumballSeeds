@@ -8,7 +8,6 @@ document.body.appendChild(renderer.view);
 GameFlow().start();
 
 function updateRender() {
-/*    map.loadSpriteSheet("resources/wall.json");*/
     map.updateFrame();
     renderer.render(map.stage);
     requestAnimationFrame(updateRender);
