@@ -93,18 +93,21 @@ Scroller.prototype.moveCharacterX = function() {
     }
     if (this.character.isMovingRight) {
         this.character.position.x += 5;
-    }
-    this.character.position.x -= 2;
+    }/*
+    this.character.position.x -= 2;*/
 };
 
+//TODO make a random global function where I pass the bounds and return the random number...
 Scroller.prototype.createEnemies = function(enemies, stage) {
     for (var n = 0; n < enemies; n++) {
         this.enemy = new Enemy();
         var obj = this.enemy.getUpdatedPositionVariables(-100, 800);
         this.enemy.position.y = obj.y;
         this.enemy.position.x = obj.x;
-        this.enemy.scale.x = .3;
-        this.enemy.scale.y = .3;
+        var rand = Math.floor((Math.random() * 5) + 3);
+
+        this.enemy.scale.x = rand/10;
+        this.enemy.scale.y = rand/10;
         this.enemies.push(this.enemy);
         stage.addChild(this.enemy);
     }
@@ -127,7 +130,7 @@ Scroller.prototype.moveEnemies = function() {
                 this.character.lives -= 1;
                 if (this.character.lives < 0) {
                     this.character.continueGame = false;
-                    this.character.jumping = true;
+                    this.character.startJumpAnimation();
                 }
             }
 
