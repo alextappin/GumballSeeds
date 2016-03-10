@@ -4,40 +4,12 @@
 function Character() {
     PIXI.Container.call(this);
 
-    this.characterSprites = [];
-    this.spriteCount = 0;
+    this.CharacterProperties = new CharacterProperties();
 
-    this.jumping = true;
-    this.applyFallingGravity = false;
-
-    this.isMovingLeft = false;
-    this.isMovingRight = false;
-
-    this.isAttacking = false;
-    this.attackingTime = 0;
-
-    this.lives = 30;
-    this.enemiesKilled = 0;
-    this.continueGame = true;
-
-    this.velocityY = 0;
-    this.gravity = .5;
-
-    this.velocityX = 3;
-
-    this.changeSpriteCounter = 0;
-    this.spriteSpeed = 8;
     this.initiateCharacterSprites();
-    this.spaceBar = new KeyboardControl(32);
     this.listenForJumpTrigger();
-
-    this.ctrlButton = new KeyboardControl(17);
     this.listenForAttackTrigger();
-
-    this.leftArrow = new KeyboardControl(37);
     this.listenForMoveLeftTrigger();
-
-    this.rightArrow = new KeyboardControl(39);
     this.listenForMoveRightTrigger();
 }
 
@@ -52,34 +24,34 @@ Character.prototype.initiateCharacterSprites = function() {
         sprite5 = PIXI.Sprite.fromFrame("sprite5"),
         sprite6 = PIXI.Sprite.fromFrame("sprite6");
     //add them to the array
-    this.characterSprites.push(sprite1,sprite2,sprite3, sprite4, sprite5, sprite6);
-    this.addChild(this.characterSprites[this.spriteCount]);
+    this.CharacterProperties.characterSprites.push(sprite1,sprite2,sprite3, sprite4, sprite5, sprite6);
+    this.addChild(this.CharacterProperties.characterSprites[this.CharacterProperties.spriteCount]);
 };
 
 Character.prototype.nextSprite = function() {
-    this.removeChild(this.characterSprites[this.spriteCount]);
-    if (this.spriteCount == 5) {
-        this.spriteCount = 0;
+    this.removeChild(this.CharacterProperties.characterSprites[this.CharacterProperties.spriteCount]);
+    if (this.CharacterProperties.spriteCount == 5) {
+        this.CharacterProperties.spriteCount = 0;
     }
     else {
-        this.spriteCount++;
+        this.CharacterProperties.spriteCount++;
     }
-    this.addChild(this.characterSprites[this.spriteCount]);
+    this.addChild(this.CharacterProperties.characterSprites[this.CharacterProperties.spriteCount]);
 };
 
 Character.prototype.updateSprite = function() {
-    if (this.changeSpriteCounter == this.spriteSpeed) {
-        this.changeSpriteCounter = 0;
+    if (this.CharacterProperties.changeSpriteCounter == this.CharacterProperties.spriteSpeed) {
+        this.CharacterProperties.changeSpriteCounter = 0;
         this.nextSprite();
     }
     else {
-        this.changeSpriteCounter ++;
+        this.CharacterProperties.changeSpriteCounter ++;
     }
 };
 
 Character.prototype.startJumpAnimation = function() {
-    this.jumping = true;
-    this.velocityY = -15.0;
+    this.CharacterProperties.jumping = true;
+    this.CharacterProperties.velocityY = -15.0;
 };
 
 Character.prototype.moveHeightJumping = function(posY, currentSlicePosY, nextSlicePosY) {
@@ -88,38 +60,38 @@ Character.prototype.moveHeightJumping = function(posY, currentSlicePosY, nextSli
 
 Character.prototype.listenForJumpTrigger = function() {
     var that = this;
-    this.spaceBar.press = function () {
-        if (!that.jumping) {
+    this.CharacterProperties.spaceBar.press = function () {
+        if (!that.CharacterProperties.jumping) {
             that.startJumpAnimation();
         }
     }
 };
 
 Character.prototype.simulateGravity = function(posY, currentSlicePosY, nextSlicePosY) {
-    this.velocityY += this.gravity;
-    posY += this.velocityY;
+    this.CharacterProperties.velocityY += this.CharacterProperties.gravity;
+    posY += this.CharacterProperties.velocityY;
 
     //TODO put these numbers in a config file. This number signifies the lowest wall
     //if the character isnt moving up and the next slice is taller than the character...
     //if the character is lower than the next slice, the character is travelling down and they are over a gap (99976) then the game is over
-    if (posY > nextSlicePosY && this.velocityY > 0 && currentSlicePosY == 99976) {
-        this.continueGame = false;
+    if (posY > nextSlicePosY && this.CharacterProperties.velocityY > 0 && currentSlicePosY == 99976) {
+        this.CharacterProperties.continueGame = false;
     }
     //TODO psyY > currentSlicePos & velocity is positive(negative...)
-    if (posY >= currentSlicePosY && this.continueGame) {
-        this.velocityY = 0.0;
-        this.jumping = false;
+    if (posY >= currentSlicePosY && this.CharacterProperties.continueGame) {
+        this.CharacterProperties.velocityY = 0.0;
+        this.CharacterProperties.jumping = false;
         posY = currentSlicePosY;
     }
     return posY;
 };
 
 Character.prototype.endJumping = function(pos) {
-    this.jumping = false;
+    this.CharacterProperties.jumping = false;
 };
 
 Character.prototype.charIsJumping = function() {
-    return (this.jumping)
+    return (this.CharacterProperties.jumping)
 };
 
 Character.prototype.calculateMapToCharacterHeightOffset = function(wallPos) {
@@ -127,48 +99,48 @@ Character.prototype.calculateMapToCharacterHeightOffset = function(wallPos) {
 };
 
 Character.prototype.checkIfFalling = function(currentSliceHeight, nextSliceHeight) {
-    if (!this.jumping && this.calculateMapToCharacterHeightOffset(currentSliceHeight) > this.position.y) {
-        this.jumping = true;
+    if (!this.CharacterProperties.jumping && this.calculateMapToCharacterHeightOffset(currentSliceHeight) > this.position.y) {
+        this.CharacterProperties.jumping = true;
         this.simulateGravity(this.position.y, this.calculateMapToCharacterHeightOffset(currentSliceHeight), this.calculateMapToCharacterHeightOffset(nextSliceHeight));
     }
 };
 
 Character.prototype.listenForAttackTrigger = function() {
     var that = this;
-    this.ctrlButton.press = function () {
-        if (!that.isAttacking) {
+    this.CharacterProperties.ctrlButton.press = function () {
+        if (!that.CharacterProperties.isAttacking) {
             that.startAttackAnimation();
         }
     }
 };
 
 Character.prototype.startAttackAnimation = function() {
-    this.isAttacking = true;
+    this.CharacterProperties.isAttacking = true;
     this.removeChild(this.text);
     this.text = new PIXI.Text("Attacking", {font:"40px Arial", fill:"#228869"});
     this.text.position.x = 20;
     this.addChild(this.text);
 
-    this.attackingTime = 20;
+    this.CharacterProperties.attackingTime = 20;
 };
 
 Character.prototype.stopAttacking = function() {
-    this.isAttacking = false;
+    this.CharacterProperties.isAttacking = false;
     this.removeChild(this.text);
 
-    this.attackingTime = 0;
+    this.CharacterProperties.attackingTime = 0;
 };
 
 Character.prototype.listenForMoveRightTrigger = function() {
     var that = this;
-    this.rightArrow.press = function () {
-        if (!that.isMovingRight) {
+    this.CharacterProperties.rightArrow.press = function () {
+        if (!that.CharacterProperties.isMovingRight) {
             that.startMoveRightAnimation();
         }
     };
 
-    this.rightArrow.release = function () {
-        if (that.isMovingRight) {
+    this.CharacterProperties.rightArrow.release = function () {
+        if (that.CharacterProperties.isMovingRight) {
             that.stopMoveRightAnimation();
         }
     }
@@ -176,14 +148,14 @@ Character.prototype.listenForMoveRightTrigger = function() {
 
 Character.prototype.listenForMoveLeftTrigger = function() {
     var that = this;
-    this.leftArrow.press = function () {
-        if (!that.isMovingLeft) {
+    this.CharacterProperties.leftArrow.press = function () {
+        if (!that.CharacterProperties.isMovingLeft) {
             that.startMoveLeftAnimation();
         }
     };
 
-    this.leftArrow.release = function () {
-        if (that.isMovingLeft) {
+    this.CharacterProperties.leftArrow.release = function () {
+        if (that.CharacterProperties.isMovingLeft) {
             that.stopMoveLeftAnimation();
         }
     };
@@ -191,18 +163,18 @@ Character.prototype.listenForMoveLeftTrigger = function() {
 
 //set the moving to false so you cant move now
 Character.prototype.startMoveRightAnimation = function() {
-    this.isMovingRight = false;
+    this.CharacterProperties.isMovingRight = false;
 };
 
 //set the moving to false so you cant move now
 Character.prototype.startMoveLeftAnimation = function() {
-    this.isMovingLeft = false;
+    this.CharacterProperties.isMovingLeft = false;
 };
 
 Character.prototype.stopMoveRightAnimation = function() {
-    this.isMovingRight = false;
+    this.CharacterProperties.isMovingRight = false;
 };
 
 Character.prototype.stopMoveLeftAnimation = function() {
-    this.isMovingLeft = false;
+    this.CharacterProperties.isMovingLeft = false;
 };

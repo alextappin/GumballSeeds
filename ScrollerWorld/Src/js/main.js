@@ -10,7 +10,6 @@ function Main() {
 }
 
 Main.prototype.update = function() {
-    GameVariables.setCurrentScrollSpeed(GameVariables.getMinScrollSpeed());
     this.scroller.moveViewportXBy(GameVariables.getCurrentScrollSpeed());
     GameVariables.setCurrentScrollSpeed(GameVariables.getCurrentScrollSpeed() + GameVariables.getScrollAcceleration());
     if (GameVariables.getCurrentScrollSpeed() > GameVariables.getMaxScrollSpeed())

@@ -4,19 +4,7 @@
 function Enemy() {
     PIXI.Container.call(this);
 
-    this.characterSprites = [];
-    this.spriteCount = 0;
-
-    this.continueGame = true;
-
-    this.velocityX = 7;
-    this.velocityY = 2;
-    this.changeVelocityX = 0;
-    this.changeVelocityY = 0;
-    this.slowOrSpeedTrigger = false;
-
-    this.changeSpriteCounter = 0;
-    this.spriteSpeed = 12;
+    this.EnemyProperties = new EnemyProperties();
     this.initiateCharacterSprites();
 }
 
@@ -27,28 +15,28 @@ Enemy.prototype.initiateCharacterSprites = function() {
     var sprite1 = PIXI.Sprite.fromFrame("BadGuy2Tran"),
         sprite2 = PIXI.Sprite.fromFrame("BadGuy1Tran");
     //add them to the array
-    this.characterSprites.push(sprite1,sprite2);
-    this.addChild(this.characterSprites[this.spriteCount]);
+    this.EnemyProperties.characterSprites.push(sprite1,sprite2);
+    this.addChild(this.EnemyProperties.characterSprites[this.EnemyProperties.spriteCount]);
 };
 
 Enemy.prototype.nextSprite = function() {
-    this.removeChild(this.characterSprites[this.spriteCount]);
-    if (this.spriteCount == 1) {
-        this.spriteCount = 0;
+    this.removeChild(this.EnemyProperties.characterSprites[this.EnemyProperties.spriteCount]);
+    if (this.EnemyProperties.spriteCount == 1) {
+        this.EnemyProperties.spriteCount = 0;
     }
     else {
-        this.spriteCount++;
+        this.EnemyProperties.spriteCount++;
     }
-    this.addChild(this.characterSprites[this.spriteCount]);
+    this.addChild(this.EnemyProperties.characterSprites[this.EnemyProperties.spriteCount]);
 };
 
 Enemy.prototype.updateSprite = function() {
-    if (this.changeSpriteCounter == this.spriteSpeed) {
-        this.changeSpriteCounter = 0;
+    if (this.EnemyProperties.changeSpriteCounter == this.EnemyProperties.spriteSpeed) {
+        this.EnemyProperties.changeSpriteCounter = 0;
         this.nextSprite();
     }
     else {
-        this.changeSpriteCounter ++;
+        this.EnemyProperties.changeSpriteCounter ++;
     }
 };
 
@@ -57,8 +45,8 @@ Enemy.prototype.updateVelocity = function() {
     var randX = Math.floor((Math.random() * 10) + 4),
         randY = Math.floor((Math.random() * 3) + 1);
     this.speedOrSlow();
-    this.velocityX = randX;
-    this.velocityY = randY;
+    this.EnemyProperties.velocityX = randX;
+    this.EnemyProperties.velocityY = randY;
 };
 
 Enemy.prototype.getUpdatedPositionVariables = function(posX, posY) {
@@ -73,10 +61,10 @@ Enemy.prototype.getUpdatedPositionVariables = function(posX, posY) {
         obj.y = newObj.y;
     }
     else {
-        this.velocityX += this.velocityX < 1 ? this.changeVelocityX : 0;
-        this.velocityY += this.velocityY > 1 ? this.changeVelocityY : 0;
-        obj.x = posX - this.velocityX;
-        obj.y = posY + this.velocityY;
+        this.EnemyProperties.velocityX += this.EnemyProperties.velocityX < 1 ? this.EnemyProperties.changeVelocityX : 0;
+        this.EnemyProperties.velocityY += this.EnemyProperties.velocityY > 1 ? this.EnemyProperties.changeVelocityY : 0;
+        obj.x = posX - this.EnemyProperties.velocityX;
+        obj.y = posY + this.EnemyProperties.velocityY;
     }
     return obj;
 
@@ -95,24 +83,17 @@ Enemy.prototype.getNewPositions = function() {
 Enemy.prototype.speedOrSlow = function() {
     var trig = Math.floor((Math.random() * 2) + 1);
     if (trig == 1) {
-        this.changeVelocityX = -.01;
+        this.EnemyProperties.changeVelocityX = -.01;
     }
     else {
-        this.changeVelocityX = .05;
+        this.EnemyProperties.changeVelocityX = .05;
     }
     trig = Math.floor((Math.random() * 2) + 1);
     if (trig == 1) {
-        this.changeVelocityY = -.01;
+        this.EnemyProperties.changeVelocityY = -.01;
     }
     else {
-        this.changeVelocityY = .05;
-    }
-};
-
-Enemy.prototype.collideWithCharacter = function(charX, charY, enemyX, enemyY) {
-    if (charX == enemyX)
-    {
-        console.log("collided");
+        this.EnemyProperties.changeVelocityY = .05;
     }
 };
 

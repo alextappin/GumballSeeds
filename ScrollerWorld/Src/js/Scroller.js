@@ -2,7 +2,7 @@
  * Created by ajt on 11/29/2015.
  */
 
-CONST = 1;
+CONST = 10;
 function Scroller(stage) {
     this.far = new Far();
     stage.addChild(this.far);
@@ -80,19 +80,19 @@ Scroller.prototype.applyFallingGravityToCharacter = function() {
 };
 
 Scroller.prototype.attackCharacter = function() {
-    if (this.character.isAttacking) {
-        this.character.attackingTime -= 1;
+    if (this.character.CharacterProperties.isAttacking) {
+        this.character.CharacterProperties.attackingTime -= 1;
     }
-    if (this.character.attackingTime == 0) {
+    if (this.character.CharacterProperties.attackingTime == 0) {
         this.character.stopAttacking();
     }
 };
 
 Scroller.prototype.moveCharacterX = function() {
-    if (this.character.isMovingLeft) {
+    if (this.character.CharacterProperties.isMovingLeft) {
         this.character.position.x -= 3;
     }
-    if (this.character.isMovingRight) {
+    if (this.character.CharacterProperties.isMovingRight) {
         this.character.position.x += 5;
     }/*
     this.character.position.x -= 2;*/
@@ -120,20 +120,20 @@ Scroller.prototype.moveEnemies = function() {
         this.enemies[n].position.x = obj.x;
         this.enemies[n].position.y = obj.y;
         if (this.enemies[n].isIntersecting(this.character, this.enemies[n])) {
-            if (this.character.isAttacking) {
+            if (this.character.CharacterProperties.isAttacking) {
                 //give more points
                 //make more enemies
-                this.character.enemiesKilled += 1;
-                if (this.character.enemiesKilled%15 == 0) {
+                this.character.CharacterProperties.enemiesKilled += 1;
+                if (this.character.CharacterProperties.enemiesKilled%15 == 0) {
                     this.createEnemies(1, this.getStage());
                     CONST += 1;
                 }
             }
             else {
-                this.character.lives -= 1;
-                if (this.character.lives < 0) {
-                    this.character.continueGame = false;
-                    this.character.jumping = true;
+                this.character.CharacterProperties.lives -= 1;
+                if (this.character.CharacterProperties.lives < 0) {
+                    this.character.CharacterProperties.continueGame = false;
+                    this.character.CharacterProperties.jumping = true;
                 }
             }
 
@@ -153,6 +153,6 @@ Scroller.prototype.updateSprites = function() {
 
 Scroller.prototype.writeScoreAndLives = function() {
     this.getStage().removeChild(this.text);
-    this.text = new PIXI.Text("Killed  " + this.character.enemiesKilled + "       Lives  " + (this.character.lives + 1) , {font:"25px Arial", fill:"#1144FF"});
+    this.text = new PIXI.Text("Killed  " + this.character.CharacterProperties.enemiesKilled + "       Lives  " + (this.character.CharacterProperties.lives + 1) , {font:"25px Arial", fill:"#1144FF"});
     this.getStage().addChild(this.text);
 };
