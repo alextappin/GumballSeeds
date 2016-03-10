@@ -189,12 +189,14 @@ Character.prototype.listenForMoveLeftTrigger = function() {
     };
 };
 
+//set the moving to false so you cant move now
 Character.prototype.startMoveRightAnimation = function() {
-    this.isMovingRight = true;
+    this.isMovingRight = false;
 };
 
+//set the moving to false so you cant move now
 Character.prototype.startMoveLeftAnimation = function() {
-    this.isMovingLeft = true;
+    this.isMovingLeft = false;
 };
 
 Character.prototype.stopMoveRightAnimation = function() {
