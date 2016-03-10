@@ -43,7 +43,6 @@ Enemy.prototype.updateSprite = function() {
     }
 };
 
-//TODO make the 720 and 1080 or whatever screen size is a CONST
 Enemy.prototype.updateVelocity = function() {
     this.EnemyProperties.velocityX = GameVariables.getRandomNumber(4,10);
     this.EnemyProperties.velocityY =  GameVariables.getRandomNumber(1,3);
