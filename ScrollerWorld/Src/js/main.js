@@ -2,12 +2,10 @@
  * Created by ajt on 11/29/2015.
  */
 function Main() {
-    this.renderer = PIXI.autoDetectRenderer(1080, 720, {backgroundColor: 0x66FF99});
+    this.renderer = PIXI.autoDetectRenderer(GameVariables().getWidth(), GameVariables().getHeight(), {backgroundColor: 0x66FF99});
     document.body.appendChild(this.renderer.view);
     this.stage = new PIXI.Container(0x66FF99);
-
     this.scrollSpeed = Main.MIN_SCROLL_SPEED;
-
     this.loadSpriteSheet();
 }
 
