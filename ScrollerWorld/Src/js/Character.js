@@ -12,7 +12,6 @@ Character.prototype = Object.create(PIXI.Container.prototype);
 
 Character.prototype.constructCharacter = function() {
     this.CharacterProperties = new CharacterProperties();
-
     this.initiateCharacterSprites();
     this.listenForJumpTrigger();
     this.listenForAttackTrigger();
