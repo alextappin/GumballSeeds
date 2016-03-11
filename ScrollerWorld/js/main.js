@@ -10,11 +10,16 @@ function Main() {
 }
 
 Main.prototype.update = function() {
-    this.scroller.moveViewportXBy(GameVariables.getCurrentScrollSpeed());
-    GameVariables.setCurrentScrollSpeed(GameVariables.getCurrentScrollSpeed() + GameVariables.getScrollAcceleration());
-    if (GameVariables.getCurrentScrollSpeed() > GameVariables.getMaxScrollSpeed())
-    {
-        GameVariables.setCurrentScrollSpeed(GameVariables.getMaxScrollSpeed());
+    if (GameVariables.getSwitchScreen()) {
+        this.stage.destroy();
+        this.stage = new PIXI.Container(0x66FF99);
+    }
+    else {
+        this.scroller.moveViewportXBy(GameVariables.getCurrentScrollSpeed());
+        GameVariables.setCurrentScrollSpeed(GameVariables.getCurrentScrollSpeed() + GameVariables.getScrollAcceleration());
+        if (GameVariables.getCurrentScrollSpeed() > GameVariables.getMaxScrollSpeed()) {
+            GameVariables.setCurrentScrollSpeed(GameVariables.getMaxScrollSpeed());
+        }
     }
     this.renderer.render(this.stage);
     requestAnimationFrame(this.update.bind(this));
