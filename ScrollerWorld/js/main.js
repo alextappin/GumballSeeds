@@ -10,17 +10,8 @@ function Main() {
 }
 
 Main.prototype.update = function() {
-    if (GameVariables.getSwitchScreen()) {
-        this.stage.destroy();
-        this.stage = new PIXI.Container(0x66FF99);
-    }
-    else {
-        this.scroller.moveViewportXBy(GameVariables.getCurrentScrollSpeed());
-        GameVariables.setCurrentScrollSpeed(GameVariables.getCurrentScrollSpeed() + GameVariables.getScrollAcceleration());
-        if (GameVariables.getCurrentScrollSpeed() > GameVariables.getMaxScrollSpeed()) {
-            GameVariables.setCurrentScrollSpeed(GameVariables.getMaxScrollSpeed());
-        }
-    }
+    this.gameStatesHandler();
+    //render the stage to the screen
     this.renderer.render(this.stage);
     requestAnimationFrame(this.update.bind(this));
 };
@@ -35,4 +26,53 @@ Main.prototype.loadSpriteSheet = function() {
 Main.prototype.spriteSheetLoaded = function() {
     this.scroller = new Scroller(this.stage);
     requestAnimationFrame(this.update.bind(this));
+};
+
+Main.prototype.gameStatesHandler = function() {
+    GameVariables.getSwitchScreen() ? this.purgeStage() : this.updatedSelectedScreen();
+};
+
+Main.prototype.scrollerUpdater = function() {
+    this.scroller.moveViewportXBy(GameVariables.getCurrentScrollSpeed());
+    GameVariables.setCurrentScrollSpeed(GameVariables.getCurrentScrollSpeed() + GameVariables.getScrollAcceleration());
+    if (GameVariables.getCurrentScrollSpeed() > GameVariables.getMaxScrollSpeed()) {
+        GameVariables.setCurrentScrollSpeed(GameVariables.getMaxScrollSpeed());
+    }
+};
+
+Main.prototype.titleScreenUpdater = function() {
+
+};
+
+Main.prototype.purgeStage = function() {
+    this.stage.destroy();
+    this.stage = new PIXI.Container(0x66FF99);
+    this.startAppropriateScreen();
+    GameVariables.toggleScreenChange();
+};
+
+Main.prototype.updatedSelectedScreen = function() {
+    if (GameVariables.getScreenToShow() == "Title") {
+        this.titleScreenUpdater();
+    }
+    else if(GameVariables.getScreenToShow() == "Game") {
+        this.scrollerUpdater();
+    }
+};
+
+Main.prototype.startAppropriateScreen = function() {
+    if (GameVariables.getScreenToShow() == "Title") {
+        this.startTitleScreen();
+    }
+    else if(GameVariables.getScreenToShow() == "Game") {
+        this.startScrollerScreen();
+    }
+};
+
+Main.prototype.startScrollerScreen = function() {
+    this.scroller = new Scroller(this.stage);
+};
+
+Main.prototype.startTitleScreen = function() {
+    this.titleScreen = new TitleScreen(this.stage);
 };

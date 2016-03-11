@@ -13,3 +13,7 @@ TitleScreen.prototype.constructTitleScreen = function(stage) {
     /*stage.addChild(this.ScrollerProps.far);*/
     //Add location props to character/enemies
 };
+
+TitleScreen.prototype.update = function() {
+
+};
