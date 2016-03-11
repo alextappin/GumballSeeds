@@ -18,13 +18,14 @@ Main.prototype.update = function() {
 
 Main.prototype.loadSpriteSheet = function() {
     var assetsToLoad = ["../resources/wall.json", "../resources/bg1.png",
-        "../resources/test2.png", "../resources/bg3.png", "../resources/characterSprites.json", "../resources/characterSprites.png", "../resources/enemy.json", "../resources/enemy.png"];
+        "../resources/test2.png", "../resources/bg3.png", "../resources/characterSprites.json", "../resources/characterSprites.png",
+        "../resources/enemy.json", "../resources/enemy.png","../resources/TitleScreen.json", "../resources/TitleSprites.png"];
     loader = new PIXI.loaders.Loader();
     loader.add(assetsToLoad).load(this.spriteSheetLoaded.bind(this))
 };
 
 Main.prototype.spriteSheetLoaded = function() {
-    this.scroller = new Scroller(this.stage);
+    this.startAppropriateScreen();
     requestAnimationFrame(this.update.bind(this));
 };
 
@@ -41,7 +42,7 @@ Main.prototype.scrollerUpdater = function() {
 };
 
 Main.prototype.titleScreenUpdater = function() {
-
+    this.titleScreen.update();
 };
 
 Main.prototype.purgeStage = function() {
@@ -62,6 +63,7 @@ Main.prototype.updatedSelectedScreen = function() {
 
 Main.prototype.startAppropriateScreen = function() {
     if (GameVariables.getScreenToShow() == "Title") {
+        this.stage.interaction = true;
         this.startTitleScreen();
     }
     else if(GameVariables.getScreenToShow() == "Game") {

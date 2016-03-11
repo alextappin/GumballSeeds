@@ -79,6 +79,8 @@ Character.prototype.simulateGravity = function(posY, currentSlicePosY, nextSlice
     //if the character is lower than the next slice, the character is travelling down and they are over a gap (99976) then the game is over
     if (posY > nextSlicePosY && this.CharacterProperties.velocityY > 0 && currentSlicePosY == 99976) {
         this.CharacterProperties.continueGame = false;
+        GameVariables.toggleScreenChange();
+        GameVariables.setScreenTitle();
     }
     //TODO psyY > currentSlicePos & velocity is positive(negative...)
     if (posY >= currentSlicePosY && this.CharacterProperties.continueGame) {

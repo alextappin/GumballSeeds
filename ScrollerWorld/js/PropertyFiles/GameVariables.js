@@ -12,8 +12,8 @@ var GameVariables = (function GameVariables() {
         currentScrollSpeed : 0,
         offScreenOffsetX : -200,
         offScreenOffsetY : 200,
-        ScreenToShow : "Game",
-        SwitchScreen : false
+        screenToShow : "Title",
+        switchScreen : false
     };
 
     return {
@@ -50,10 +50,10 @@ var GameVariables = (function GameVariables() {
             return Math.floor((Math.random() * endRange) + startRange);
         },
         getScreenToShow : function getScreenToShow() {
-            return constants.ScreenToShow;
+            return constants.screenToShow;
         },
         getSwitchScreen : function getSwitchScreen() {
-            return constants.SwitchScreen;
+            return constants.switchScreen;
         },
 
         //setters
@@ -64,13 +64,13 @@ var GameVariables = (function GameVariables() {
             constants.currentScrollSpeed = value;
         },
         setScreenTitle : function setScreenTitle() {
-            constants.ScreenToShow = "Title";
+            constants.screenToShow = "Title";
         },
         setScreenGame : function SetScreenGame() {
-            constants.ScreenToShow = "Game";
+            constants.screenToShow = "Game";
         },
         toggleScreenChange : function toggleScreenChange() {
-            constants.ScreenToShow = !constants.ScreenToShow;
+            constants.switchScreen = !constants.switchScreen;
         }
     };
 })();
