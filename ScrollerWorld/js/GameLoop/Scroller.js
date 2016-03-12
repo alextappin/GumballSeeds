@@ -47,8 +47,7 @@ Scroller.prototype.getViewportX = function() {
 };
 
 Scroller.prototype.moveViewportXBy = function(units) {
-    var newViewportX = this.ScrollerProps.viewportX + units;
-    this.setViewportX(newViewportX);
+    this.setViewportX(this.ScrollerProps.viewportX + units);
 };
 
 
