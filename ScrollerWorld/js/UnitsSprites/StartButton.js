@@ -59,17 +59,12 @@ StartButton.prototype.handleClickEvents = function(spriteToHandle) {
     if (!spriteToHandle.interactive) {
         var spriteTimeout;
         function onButtonDown() {
-            // Change the texture to gooseHurt
-            console.log("asdf");
             GameVariables.toggleScreenChange();
             GameVariables.setScreenGame();
-            // Clears the timeout
             clearTimeout(spriteTimeout);
         }
-
         spriteToHandle.interactive = true;
         spriteToHandle.interactive = true;
-
         spriteToHandle
             .on('mousedown', onButtonDown)
             .on('touchstart', onButtonDown);
