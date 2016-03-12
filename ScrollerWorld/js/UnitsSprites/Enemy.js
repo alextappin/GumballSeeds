@@ -32,9 +32,10 @@ Enemy.prototype.instantiateProperties = function() {
     this.EnemyProperties.scaleY = rand/10;
     this.EnemyProperties.scaleX = rand/10;
 };
-Enemy.prototype.update = function(enemyObj) {
+Enemy.prototype.update = function(enemyObj, characterObj) {
     this.updateSprite();
     this.updatePosition(enemyObj);
+    this.moveEnemy(enemyObj, characterObj);
 };
 Enemy.prototype.updateSprite = function() {
     if (this.EnemyProperties.changeSpriteCounter == this.EnemyProperties.spriteSpeed) {
@@ -60,6 +61,32 @@ Enemy.prototype.updatePosition = function(enemyObj) {
     enemyObj.scale.x = this.EnemyProperties.scaleX;
     enemyObj.scale.y = this.EnemyProperties.scaleY;
 };
+
+Enemy.prototype.moveEnemy = function(enemyObj, characterObj) {
+    var obj = this.getUpdatedPositionVariables(enemyObj.position.x, enemyObj.position.y);
+    enemyObj.position.x = obj.x;
+    enemyObj.position.y = obj.y;
+    if (this.isIntersecting(characterObj, this)) {
+        if (characterObj.CharacterProperties.isAttacking) {
+            characterObj.CharacterProperties.enemiesKilled += 1;
+            if (characterObj.CharacterProperties.enemiesKilled%5 == 0) {
+                GameVariables.setEnemies(GameVariables.getEnemies()+1);
+            }
+        }
+        else {
+            characterObj.CharacterProperties.lives -= 1;
+            if (characterObj.CharacterProperties.lives < 0) {
+                characterObj.CharacterProperties.continueGame = false;
+                characterObj.CharacterProperties.jumping = true;
+            }
+        }
+        this.updateVelocity();
+        var newObj = this.getNewPositions();
+        enemyObj.position.x = newObj.x;
+        enemyObj.position.y = newObj.y;
+    }
+};
+
 
 Enemy.prototype.updateVelocity = function() {
     this.EnemyProperties.velocityX = GameVariables.getRandomNumber(4,10);
