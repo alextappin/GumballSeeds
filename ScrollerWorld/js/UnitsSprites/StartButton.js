@@ -19,7 +19,7 @@ StartButton.prototype.initiateStartButtonSprites = function() {
         sprite2 = PIXI.Sprite.fromFrame("Start2");
     //add them to the array
     this.StartButtonProperties.sprites.push(sprite1,sprite2);
-    this.handleClickEvents();
+    this.handleClickEvents(this.StartButtonProperties.sprites[0]);
     this.addChild(this.StartButtonProperties.sprites[this.StartButtonProperties.spriteCount]);
 };
 
@@ -33,6 +33,9 @@ StartButton.prototype.updateSprites = function() {
         this.StartButtonProperties.changeSpriteCounter = 0;
         this.nextSprite();
     }
+    else {
+        this.StartButtonProperties.changeSpriteCounter++;
+    }
 };
 
 StartButton.prototype.nextSprite = function() {
@@ -43,6 +46,7 @@ StartButton.prototype.nextSprite = function() {
     else {
         this.StartButtonProperties.spriteCount++;
     }
+    this.handleClickEvents(this.StartButtonProperties.sprites[this.StartButtonProperties.spriteCount]);
     this.addChild(this.StartButtonProperties.sprites[this.StartButtonProperties.spriteCount]);
 };
 
@@ -51,39 +55,23 @@ StartButton.prototype.updatePosition = function(obj) {
     obj.position.y = (GameVariables.getHeight() - obj.height)/2;
 };
 
-StartButton.prototype.changeSprite = function() {
-    this.nextSprite();
-};
+StartButton.prototype.handleClickEvents = function(spriteToHandle) {
+    if (!spriteToHandle.interactive) {
+        var spriteTimeout;
+        function onButtonDown() {
+            // Change the texture to gooseHurt
+            console.log("asdf");
+            GameVariables.toggleScreenChange();
+            GameVariables.setScreenGame();
+            // Clears the timeout
+            clearTimeout(spriteTimeout);
+        }
 
-StartButton.prototype.handleClickEvents = function() {
-    var spriteTimeout,
-        that = this;
+        spriteToHandle.interactive = true;
+        spriteToHandle.interactive = true;
 
-    function onHoverEnter(param) {
-        param.changeSprite();
-        clearTimeout(spriteTimeout);
+        spriteToHandle
+            .on('mousedown', onButtonDown)
+            .on('touchstart', onButtonDown);
     }
-    function onHoverLeave(param) {
-        param.changeSprite();
-        clearTimeout(spriteTimeout);
-    }
-    function onButtonDown() {
-        // Change the texture to gooseHurt
-        GameVariables.toggleScreenChange();
-        GameVariables.setScreenGame();
-
-        // Clears the timeout
-        clearTimeout(spriteTimeout);
-    }
-
-    this.StartButtonProperties.sprites[0].interactive = true;
-    this.StartButtonProperties.sprites[1].interactive = true;
-
-    this.StartButtonProperties.sprites[1]
-        .on('mousedown', onButtonDown)
-        .on('touchstart', onButtonDown)
-        .on('mouseout', function() { onHoverLeave(that);});
-
-    this.StartButtonProperties.sprites[0]
-        .on('mouseover', function() { onHoverEnter(that);});
 };
