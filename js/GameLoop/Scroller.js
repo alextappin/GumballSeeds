@@ -19,6 +19,8 @@ Scroller.prototype.addChildrenToStage = function(stage) {
     stage.addChild(this.ScrollerProps.front);
     stage.addChild(this.ScrollerProps.character);
     this.createEnemies(GameVariables.getEnemies(), stage);
+    stage.addChild(this.ScrollerProps.touchJump);
+    stage.addChild(this.ScrollerProps.touchAttack);
 };
 Scroller.prototype.update = function() {
     this.updateViewport();
@@ -39,6 +41,8 @@ Scroller.prototype.updateObjects = function() {
     this.ScrollerProps.mid2.setViewportX(this.ScrollerProps.viewportX);
     this.ScrollerProps.front.setViewportX(this.ScrollerProps.viewportX);
     this.ScrollerProps.character.update(this.ScrollerProps.character, this.ScrollerProps.front);
+    this.ScrollerProps.touchJump.update(this.ScrollerProps.touchJump, this.ScrollerProps.character);
+    this.ScrollerProps.touchAttack.update(this.ScrollerProps.touchAttack, this.ScrollerProps.character);
     //multiple enemies to be updated
     for (var n = 0; n < GameVariables.getEnemies(); n++) {
         if (this.ScrollerProps.enemies[n]) {

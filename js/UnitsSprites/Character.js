@@ -90,8 +90,10 @@ Character.prototype.applyFallingGravityToCharacter = function(characterObj, fron
 };
 
 Character.prototype.startJumpAnimation = function() {
-    this.CharacterProperties.jumping = true;
-    this.CharacterProperties.velocityY = -15.0;
+    if (!this.charIsJumping()) {
+        this.CharacterProperties.jumping = true;
+        this.CharacterProperties.velocityY = -15.0;
+    }
 };
 
 Character.prototype.moveHeightJumping = function(posY, currentSlicePosY, nextSlicePosY) {
