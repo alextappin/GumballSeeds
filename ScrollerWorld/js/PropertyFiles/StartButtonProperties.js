@@ -6,7 +6,7 @@ function StartButtonProperties() {
         sprites : [],
         spriteCount : 0,
         changeSpriteCounter : 0,
-        spriteSpeed : 40,
+        spriteSpeed : 80,
         locationX : 20,
         locationY : 20
     };
