@@ -33,7 +33,7 @@ TitleBoard.prototype.nextSprite = function() {
     this.addChild(this.TitleBoardProperties.boardSprites[this.TitleBoardProperties.spriteCount]);
 };
 
-TitleBoard.prototype.updateSprite = function() {
+TitleBoard.prototype.update = function() {
     if (this.TitleBoardProperties.changeSpriteCounter == this.TitleBoardProperties.spriteSpeed) {
         this.TitleBoardProperties.changeSpriteCounter = 0;
         this.nextSprite();

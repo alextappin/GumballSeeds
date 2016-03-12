@@ -7,6 +7,7 @@ function TitleScreenProperties() {
         mid : new Mid(),
         mid2 : new Mid2(),
         titleBoard : new TitleBoard(),
+        startButton : new StartButton(),
         viewportX : 0
     };
 

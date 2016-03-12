@@ -12,10 +12,13 @@ TitleScreen.prototype.constructTitleScreen = function(stage) {
     this.TitleScreenProps = new TitleScreenProperties();
     //Add to stage the units
     stage.addChild(this.TitleScreenProps.titleBoard);
+    stage.addChild(this.TitleScreenProps.startButton);
 };
 
 TitleScreen.prototype.update = function() {
-    this.TitleScreenProps.titleBoard.updateSprite();
+    //update the position and stuff IN the start button class/title board class
+    this.TitleScreenProps.titleBoard.update(this.TitleScreenProps.titleBoard);
+    this.TitleScreenProps.startButton.update(this.TitleScreenProps.startButton);
 };
 
 /*TitleScreen.prototype.initiateTitleScreenSprites = function() {
