@@ -11,43 +11,13 @@ function Scroller(stage) {
 
 Scroller.prototype.constructScroller = function(stage) {
     this.ScrollerProps = new ScrollerProperties();
-    //Add to stage
     stage.addChild(this.ScrollerProps.far);
     stage.addChild(this.ScrollerProps.mid);
     stage.addChild(this.ScrollerProps.mid2);
     stage.addChild(this.ScrollerProps.front);
-    //Add location props to character/enemies
     this.createCharacter(stage);
     this.createEnemies(GameVariables.getEnemies(), stage);
-    //Start Building the Map
     this.ScrollerProps.mapBuilder = new MapBuilder(this.ScrollerProps.front);
-};
-
-Scroller.prototype.setViewportX = function(viewportX) {
-    this.ScrollerProps.viewportX = viewportX;
-    this.ScrollerProps.far.setViewportX(viewportX);
-    this.ScrollerProps.mid.setViewportX(viewportX);
-    this.ScrollerProps.mid2.setViewportX(viewportX);
-    this.ScrollerProps.front.setViewportX(viewportX);
-    this.updateSprites();
-    this.jumpCharacter();
-    this.attackCharacter();
-    this.moveCharacterX();
-    this.moveEnemies();
-    this.writeScoreAndLives();
-    this.applyFallingGravityToCharacter();
-    if (this.ScrollerProps.front.slicesAreLow()) {
-        //TODO:if slices are low, find which slice types are low and ADD THOSE ONES THAT ARE LOW
-        this.ScrollerProps.mapBuilder.addAndBuildRandomSequence();
-    }
-};
-
-Scroller.prototype.getViewportX = function() {
-    return this.ScrollerProps.viewportX;
-};
-
-Scroller.prototype.moveViewportXBy = function(units) {
-    this.setViewportX(this.ScrollerProps.viewportX + units);
 };
 
 Scroller.prototype.update = function() {
