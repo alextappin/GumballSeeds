@@ -31,9 +31,12 @@ Character.prototype.initiateCharacterSprites = function() {
     this.addChild(this.CharacterProperties.characterSprites[this.CharacterProperties.spriteCount]);
 };
 
-Character.prototype.update = function(characterObj) {
+Character.prototype.update = function(characterObj, frontObj) {
     this.updateSprites();
     this.updatePosition(characterObj);
+    this.jumpCharacter(characterObj, frontObj);
+    this.attackCharacter();
+    this.applyFallingGravityToCharacter(characterObj, frontObj);
 };
 
 Character.prototype.updateSprites = function() {
@@ -61,6 +64,29 @@ Character.prototype.updatePosition = function(obj) {
     obj.position.x = 65;
     obj.scale.x = .5;
     obj.scale.y = .5;
+};
+
+Character.prototype.jumpCharacter = function(characterObj, frontObj){
+    if (this.charIsJumping()) {
+        characterObj.position.y = this.moveHeightJumping(characterObj.position.y,
+            frontObj.getCurrentSliceHeight(characterObj.position.x), frontObj.getNextSliceHeight(characterObj.position.x));
+    }
+    else {
+        this.endJumping();
+    }
+};
+
+Character.prototype.attackCharacter = function() {
+    if (this.CharacterProperties.isAttacking) {
+        this.CharacterProperties.attackingTime -= 1;
+        if (this.CharacterProperties.attackingTime == 0) {
+            this.stopAttacking();
+        }
+    }
+};
+
+Character.prototype.applyFallingGravityToCharacter = function(characterObj, frontObj) {
+    this.checkIfFalling(frontObj.getCurrentSliceHeight(), frontObj.getNextSliceHeight());
 };
 
 Character.prototype.startJumpAnimation = function() {
@@ -102,7 +128,7 @@ Character.prototype.simulateGravity = function(posY, currentSlicePosY, nextSlice
     return posY;
 };
 
-Character.prototype.endJumping = function(pos) {
+Character.prototype.endJumping = function() {
     this.CharacterProperties.jumping = false;
 };
 

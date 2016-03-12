@@ -24,14 +24,12 @@ Scroller.prototype.update = function() {
     this.ScrollerProps.mid.setViewportX(this.ScrollerProps.viewportX);
     this.ScrollerProps.mid2.setViewportX(this.ScrollerProps.viewportX);
     this.ScrollerProps.front.setViewportX(this.ScrollerProps.viewportX);
-    this.ScrollerProps.character.update(this.ScrollerProps.character);
+    this.ScrollerProps.character.update(this.ScrollerProps.character, this.ScrollerProps.front);
+
+    //enemies
     this.updateSprites();
-    this.jumpCharacter();
-    this.attackCharacter();
-    this.moveCharacterX();
     this.moveEnemies();
     this.writeScoreAndLives();
-    this.applyFallingGravityToCharacter();
     if (this.ScrollerProps.front.slicesAreLow()) {
         //TODO:if slices are low, find which slice types are low and ADD THOSE ONES THAT ARE LOW
         this.ScrollerProps.mapBuilder.addAndBuildRandomSequence();
@@ -41,41 +39,6 @@ Scroller.prototype.update = function() {
 Scroller.prototype.updateViewport = function() {
     GameVariables.getCurrentScrollSpeed() > GameVariables.getMaxScrollSpeed() ? GameVariables.setCurrentScrollSpeed(GameVariables.getMaxScrollSpeed()) : null;
     this.ScrollerProps.viewportX = this.ScrollerProps.viewportX + GameVariables.getCurrentScrollSpeed();
-};
-
-
-//TODO put the jump character and apply falling gravity to character in same function. Grab the next and current slices one time. this will helper performance.
-
-Scroller.prototype.jumpCharacter = function() {
-    if (this.ScrollerProps.character.charIsJumping()) {
-        this.ScrollerProps.character.position.y = this.ScrollerProps.character.moveHeightJumping(this.ScrollerProps.character.position.y, this.ScrollerProps.front.getCurrentSliceHeight(this.ScrollerProps.character.position.x), this.ScrollerProps.front.getNextSliceHeight(this.ScrollerProps.character.position.x));
-    }
-    else {
-        this.ScrollerProps.character.endJumping(this.ScrollerProps.character.position.y);
-    }
-};
-
-Scroller.prototype.applyFallingGravityToCharacter = function() {
-    this.ScrollerProps.character.checkIfFalling(this.ScrollerProps.front.getCurrentSliceHeight(), this.ScrollerProps.front.getNextSliceHeight());
-};
-
-Scroller.prototype.attackCharacter = function() {
-    if (this.ScrollerProps.character.CharacterProperties.isAttacking) {
-        this.ScrollerProps.character.CharacterProperties.attackingTime -= 1;
-    }
-    if (this.ScrollerProps.character.CharacterProperties.attackingTime == 0) {
-        this.ScrollerProps.character.stopAttacking();
-    }
-};
-
-Scroller.prototype.moveCharacterX = function() {
-    if (this.ScrollerProps.character.CharacterProperties.isMovingLeft) {
-        this.ScrollerProps.character.position.x -= 3;
-    }
-    if (this.ScrollerProps.character.CharacterProperties.isMovingRight) {
-        this.ScrollerProps.character.position.x += 5;
-    }/*
-    this.ScrollerProps.character.position.x -= 2;*/
 };
 
 //TODO make a random global function where I pass the bounds and return the random number...
