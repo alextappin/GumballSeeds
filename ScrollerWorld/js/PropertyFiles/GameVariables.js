@@ -9,7 +9,7 @@ var GameVariables = (function GameVariables() {
         minScrollSpeed : 5.5,
         maxScrollSpeed : 7,
         scrollAcceleration : 0.005,
-        currentScrollSpeed : 0,
+        currentScrollSpeed : 20,
         offScreenOffsetX : -200,
         offScreenOffsetY : 200,
         screenToShow : "Title",
