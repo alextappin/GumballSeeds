@@ -58,6 +58,7 @@ Character.prototype.nextSprite = function() {
 };
 
 Character.prototype.updatePosition = function(obj) {
+    obj.position.x = 65;
     obj.scale.x = .5;
     obj.scale.y = .5;
 };
