@@ -22,6 +22,21 @@ TitleBoard.prototype.initiateTitleBoardSprites = function() {
     this.addChild(this.TitleBoardProperties.boardSprites[this.TitleBoardProperties.spriteCount]);
 };
 
+TitleBoard.prototype.update = function(titleBoardObj) {
+    this.updateSprites();
+    this.updatePosition(titleBoardObj);
+};
+
+TitleBoard.prototype.updateSprites = function() {
+    if (this.TitleBoardProperties.changeSpriteCounter == this.TitleBoardProperties.spriteSpeed) {
+        this.TitleBoardProperties.changeSpriteCounter = 0;
+        this.nextSprite();
+    }
+    else {
+        this.TitleBoardProperties.changeSpriteCounter++;
+    }
+};
+
 TitleBoard.prototype.nextSprite = function() {
     this.removeChild(this.TitleBoardProperties.boardSprites[this.TitleBoardProperties.spriteCount]);
     if (this.TitleBoardProperties.spriteCount == 1) {
@@ -33,12 +48,7 @@ TitleBoard.prototype.nextSprite = function() {
     this.addChild(this.TitleBoardProperties.boardSprites[this.TitleBoardProperties.spriteCount]);
 };
 
-TitleBoard.prototype.update = function() {
-    if (this.TitleBoardProperties.changeSpriteCounter == this.TitleBoardProperties.spriteSpeed) {
-        this.TitleBoardProperties.changeSpriteCounter = 0;
-        this.nextSprite();
-    }
-    else {
-        this.TitleBoardProperties.changeSpriteCounter++;
-    }
+TitleBoard.prototype.updatePosition = function(obj) {
+    obj.position.y = (GameVariables.getHeight() - obj.height)/2;
+    obj.position.x = (GameVariables.getWidth() - obj.width)/2;
 };
