@@ -31,8 +31,9 @@ Character.prototype.initiateCharacterSprites = function() {
     this.addChild(this.CharacterProperties.characterSprites[this.CharacterProperties.spriteCount]);
 };
 
-Character.prototype.update = function() {
+Character.prototype.update = function(characterObj) {
     this.updateSprites();
+    this.updatePosition(characterObj);
 };
 
 Character.prototype.updateSprites = function() {
@@ -41,7 +42,7 @@ Character.prototype.updateSprites = function() {
         this.nextSprite();
     }
     else {
-        this.CharacterProperties.changeSpriteCounter ++;
+        this.CharacterProperties.changeSpriteCounter++;
     }
 };
 
@@ -54,6 +55,11 @@ Character.prototype.nextSprite = function() {
         this.CharacterProperties.spriteCount++;
     }
     this.addChild(this.CharacterProperties.characterSprites[this.CharacterProperties.spriteCount]);
+};
+
+Character.prototype.updatePosition = function(obj) {
+    obj.scale.x = .5;
+    obj.scale.y = .5;
 };
 
 Character.prototype.startJumpAnimation = function() {

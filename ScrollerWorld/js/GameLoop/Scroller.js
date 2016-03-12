@@ -13,7 +13,7 @@ Scroller.prototype.constructScroller = function(stage) {
     stage.addChild(this.ScrollerProps.mid);
     stage.addChild(this.ScrollerProps.mid2);
     stage.addChild(this.ScrollerProps.front);
-    this.createCharacter(stage);
+    stage.addChild(this.ScrollerProps.character);
     this.createEnemies(GameVariables.getEnemies(), stage);
     this.ScrollerProps.mapBuilder = new MapBuilder(this.ScrollerProps.front);
 };
@@ -24,7 +24,7 @@ Scroller.prototype.update = function() {
     this.ScrollerProps.mid.setViewportX(this.ScrollerProps.viewportX);
     this.ScrollerProps.mid2.setViewportX(this.ScrollerProps.viewportX);
     this.ScrollerProps.front.setViewportX(this.ScrollerProps.viewportX);
-    this.ScrollerProps.character.update();
+    this.ScrollerProps.character.update(this.ScrollerProps.character);
     this.updateSprites();
     this.jumpCharacter();
     this.attackCharacter();
@@ -76,14 +76,6 @@ Scroller.prototype.moveCharacterX = function() {
         this.ScrollerProps.character.position.x += 5;
     }/*
     this.ScrollerProps.character.position.x -= 2;*/
-};
-
-Scroller.prototype.createCharacter = function(stage) {
-    this.ScrollerProps.character.position.y = 50;
-    this.ScrollerProps.character.position.x = 65;
-    this.ScrollerProps.character.scale.x = .5;
-    this.ScrollerProps.character.scale.y = .5;
-    stage.addChild(this.ScrollerProps.character);
 };
 
 //TODO make a random global function where I pass the bounds and return the random number...
