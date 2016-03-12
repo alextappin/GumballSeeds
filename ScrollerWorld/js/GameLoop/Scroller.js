@@ -12,7 +12,6 @@ Scroller.prototype.constructScroller = function(stage) {
     this.addChildrenToStage(stage);
     this.ScrollerProps.mapBuilder = new MapBuilder(this.ScrollerProps.front);
 };
-
 Scroller.prototype.addChildrenToStage = function(stage) {
     stage.addChild(this.ScrollerProps.far);
     stage.addChild(this.ScrollerProps.mid);
@@ -21,7 +20,6 @@ Scroller.prototype.addChildrenToStage = function(stage) {
     stage.addChild(this.ScrollerProps.character);
     this.createEnemies(GameVariables.getEnemies(), stage);
 };
-
 Scroller.prototype.update = function() {
     this.updateViewport();
     this.updateObjects();
@@ -31,7 +29,6 @@ Scroller.prototype.update = function() {
         this.ScrollerProps.mapBuilder.addAndBuildRandomSequence();
     }
 };
-
 Scroller.prototype.updateViewport = function() {
     GameVariables.getCurrentScrollSpeed() > GameVariables.getMaxScrollSpeed() ? GameVariables.setCurrentScrollSpeed(GameVariables.getMaxScrollSpeed()) : null;
     this.ScrollerProps.viewportX = this.ScrollerProps.viewportX + GameVariables.getCurrentScrollSpeed();
