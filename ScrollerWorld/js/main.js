@@ -33,18 +33,6 @@ Main.prototype.gameStatesHandler = function() {
     GameVariables.getSwitchScreen() ? this.purgeStage() : this.updatedSelectedScreen();
 };
 
-Main.prototype.scrollerUpdater = function() {
-    this.scroller.moveViewportXBy(GameVariables.getCurrentScrollSpeed());
-    GameVariables.setCurrentScrollSpeed(GameVariables.getCurrentScrollSpeed() + GameVariables.getScrollAcceleration());
-    if (GameVariables.getCurrentScrollSpeed() > GameVariables.getMaxScrollSpeed()) {
-        GameVariables.setCurrentScrollSpeed(GameVariables.getMaxScrollSpeed());
-    }
-};
-
-Main.prototype.titleScreenUpdater = function() {
-    this.titleScreen.update();
-};
-
 Main.prototype.purgeStage = function() {
     this.stage.destroy();
     this.stage = new PIXI.Container(0x66FF99);
@@ -54,10 +42,10 @@ Main.prototype.purgeStage = function() {
 
 Main.prototype.updatedSelectedScreen = function() {
     if (GameVariables.getScreenToShow() == "Title") {
-        this.titleScreenUpdater();
+        this.titleScreen.update();
     }
     else if(GameVariables.getScreenToShow() == "Game") {
-        this.scrollerUpdater();
+        this.scroller.update();
     }
 };
 

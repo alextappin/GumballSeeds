@@ -50,6 +50,30 @@ Scroller.prototype.moveViewportXBy = function(units) {
     this.setViewportX(this.ScrollerProps.viewportX + units);
 };
 
+Scroller.prototype.update = function() {
+    this.updateViewport();
+    this.ScrollerProps.far.setViewportX(this.ScrollerProps.viewportX);
+    this.ScrollerProps.mid.setViewportX(this.ScrollerProps.viewportX);
+    this.ScrollerProps.mid2.setViewportX(this.ScrollerProps.viewportX);
+    this.ScrollerProps.front.setViewportX(this.ScrollerProps.viewportX);
+    this.updateSprites();
+    this.jumpCharacter();
+    this.attackCharacter();
+    this.moveCharacterX();
+    this.moveEnemies();
+    this.writeScoreAndLives();
+    this.applyFallingGravityToCharacter();
+    if (this.ScrollerProps.front.slicesAreLow()) {
+        //TODO:if slices are low, find which slice types are low and ADD THOSE ONES THAT ARE LOW
+        this.ScrollerProps.mapBuilder.addAndBuildRandomSequence();
+    }
+};
+
+Scroller.prototype.updateViewport = function() {
+    GameVariables.getCurrentScrollSpeed() > GameVariables.getMaxScrollSpeed() ? GameVariables.setCurrentScrollSpeed(GameVariables.getMaxScrollSpeed()) : null;
+    this.ScrollerProps.viewportX = this.ScrollerProps.viewportX + GameVariables.getCurrentScrollSpeed();
+};
+
 
 //TODO put the jump character and apply falling gravity to character in same function. Grab the next and current slices one time. this will helper performance.
 
