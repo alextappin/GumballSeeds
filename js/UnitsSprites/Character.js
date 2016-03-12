@@ -31,6 +31,24 @@ Character.prototype.initiateCharacterSprites = function() {
     this.addChild(this.CharacterProperties.characterSprites[this.CharacterProperties.spriteCount]);
 };
 
+Character.prototype.update = function(characterObj, frontObj) {
+    this.updateSprites();
+    this.updatePosition(characterObj);
+    this.jumpCharacter(characterObj, frontObj);
+    this.attackCharacter();
+    this.applyFallingGravityToCharacter(characterObj, frontObj);
+};
+
+Character.prototype.updateSprites = function() {
+    if (this.CharacterProperties.changeSpriteCounter == this.CharacterProperties.spriteSpeed) {
+        this.CharacterProperties.changeSpriteCounter = 0;
+        this.nextSprite();
+    }
+    else {
+        this.CharacterProperties.changeSpriteCounter++;
+    }
+};
+
 Character.prototype.nextSprite = function() {
     this.removeChild(this.CharacterProperties.characterSprites[this.CharacterProperties.spriteCount]);
     if (this.CharacterProperties.spriteCount == 5) {
@@ -42,14 +60,33 @@ Character.prototype.nextSprite = function() {
     this.addChild(this.CharacterProperties.characterSprites[this.CharacterProperties.spriteCount]);
 };
 
-Character.prototype.updateSprite = function() {
-    if (this.CharacterProperties.changeSpriteCounter == this.CharacterProperties.spriteSpeed) {
-        this.CharacterProperties.changeSpriteCounter = 0;
-        this.nextSprite();
+Character.prototype.updatePosition = function(obj) {
+    obj.position.x = 65;
+    obj.scale.x = .5;
+    obj.scale.y = .5;
+};
+
+Character.prototype.jumpCharacter = function(characterObj, frontObj){
+    if (this.charIsJumping()) {
+        characterObj.position.y = this.moveHeightJumping(characterObj.position.y,
+            frontObj.getCurrentSliceHeight(characterObj.position.x), frontObj.getNextSliceHeight(characterObj.position.x));
     }
     else {
-        this.CharacterProperties.changeSpriteCounter ++;
+        this.endJumping();
     }
+};
+
+Character.prototype.attackCharacter = function() {
+    if (this.CharacterProperties.isAttacking) {
+        this.CharacterProperties.attackingTime -= 1;
+        if (this.CharacterProperties.attackingTime == 0) {
+            this.stopAttacking();
+        }
+    }
+};
+
+Character.prototype.applyFallingGravityToCharacter = function(characterObj, frontObj) {
+    this.checkIfFalling(frontObj.getCurrentSliceHeight(), frontObj.getNextSliceHeight());
 };
 
 Character.prototype.startJumpAnimation = function() {
@@ -79,6 +116,8 @@ Character.prototype.simulateGravity = function(posY, currentSlicePosY, nextSlice
     //if the character is lower than the next slice, the character is travelling down and they are over a gap (99976) then the game is over
     if (posY > nextSlicePosY && this.CharacterProperties.velocityY > 0 && currentSlicePosY == 99976) {
         this.CharacterProperties.continueGame = false;
+        GameVariables.toggleScreenChange();
+        GameVariables.setScreenTitle();
     }
     //TODO psyY > currentSlicePos & velocity is positive(negative...)
     if (posY >= currentSlicePosY && this.CharacterProperties.continueGame) {
@@ -89,7 +128,7 @@ Character.prototype.simulateGravity = function(posY, currentSlicePosY, nextSlice
     return posY;
 };
 
-Character.prototype.endJumping = function(pos) {
+Character.prototype.endJumping = function() {
     this.CharacterProperties.jumping = false;
 };
 
