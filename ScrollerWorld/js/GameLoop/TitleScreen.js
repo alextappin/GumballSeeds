@@ -9,21 +9,16 @@ function TitleScreen(stage) {
 }
 
 TitleScreen.prototype.constructTitleScreen = function(stage) {
-    //Add to stage
-    this.titleSprites = [];
-    this.spriteCount = 0;
-    this.changeSpriteCounter = 0;
-    this.spriteSpeed = 100;
-    this.initiateTitleScreenSprites();
-    stage.addChild(this.initiateTitleScreenSprites());
-    //Add location props to character/enemies
+    this.TitleScreenProps = new TitleScreenProperties();
+    //Add to stage the units
+    stage.addChild(this.TitleScreenProps.titleBoard);
 };
 
 TitleScreen.prototype.update = function() {
-    this.updateSprite();
+    this.TitleScreenProps.titleBoard.updateSprite();
 };
 
-TitleScreen.prototype.initiateTitleScreenSprites = function() {
+/*TitleScreen.prototype.initiateTitleScreenSprites = function() {
     var sprite1 = PIXI.Sprite.fromFrame("Title1"),
         sprite2 = PIXI.Sprite.fromFrame("Title2");
     sprite1.interactive = true;
@@ -42,7 +37,8 @@ TitleScreen.prototype.initiateTitleScreenSprites = function() {
     //add them to the array
     this.titleSprites.push(sprite1,sprite2);
     return this.titleSprites[this.spriteCount];
-};
+};*/
+/*
 
 TitleScreen.prototype.nextSprite = function() {
     this.getStage().removeChild(this.titleSprites[this.spriteCount]);
@@ -63,4 +59,4 @@ TitleScreen.prototype.updateSprite = function() {
     else {
         this.changeSpriteCounter ++;
     }
-};
+};*/
