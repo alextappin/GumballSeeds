@@ -7,7 +7,6 @@ function TitleScreen(stage) {
         return stage;
     }
 }
-
 TitleScreen.prototype.constructTitleScreen = function(stage) {
     this.TitleScreenProps = new TitleScreenProperties();
     //Add to stage the units
@@ -17,7 +16,6 @@ TitleScreen.prototype.constructTitleScreen = function(stage) {
     stage.addChild(this.TitleScreenProps.titleBoard);
     stage.addChild(this.TitleScreenProps.startButton);
 };
-
 TitleScreen.prototype.update = function() {
     this.updateViewport();
     this.TitleScreenProps.far.setViewportX(this.TitleScreenProps.viewportX);
@@ -26,7 +24,6 @@ TitleScreen.prototype.update = function() {
     this.TitleScreenProps.titleBoard.update(this.TitleScreenProps.titleBoard);
     this.TitleScreenProps.startButton.update(this.TitleScreenProps.startButton);
 };
-
 TitleScreen.prototype.updateViewport = function() {
     GameVariables.getCurrentScrollSpeed() > GameVariables.getMaxScrollSpeed() ? GameVariables.setCurrentScrollSpeed(GameVariables.getMaxScrollSpeed()) : null;
     this.TitleScreenProps.viewportX = this.TitleScreenProps.viewportX + GameVariables.getCurrentScrollSpeed();

@@ -8,14 +8,12 @@ function Main() {
     GameVariables.setCurrentScrollSpeed(GameVariables.getMinScrollSpeed());
     this.loadSpriteSheet();
 }
-
 Main.prototype.update = function() {
     this.gameStatesHandler();
     //render the stage to the screen
     this.renderer.render(this.stage);
     requestAnimationFrame(this.update.bind(this));
 };
-
 Main.prototype.loadSpriteSheet = function() {
     var assetsToLoad = ["../resources/wall.json", "../resources/bg1.png",
         "../resources/test2.png", "../resources/bg3.png", "../resources/characterSprites.json", "../resources/characterSprites.png",
@@ -23,23 +21,19 @@ Main.prototype.loadSpriteSheet = function() {
     loader = new PIXI.loaders.Loader();
     loader.add(assetsToLoad).load(this.spriteSheetLoaded.bind(this))
 };
-
 Main.prototype.spriteSheetLoaded = function() {
     this.startAppropriateScreen();
     requestAnimationFrame(this.update.bind(this));
 };
-
 Main.prototype.gameStatesHandler = function() {
     GameVariables.getSwitchScreen() ? this.purgeStage() : this.updatedSelectedScreen();
 };
-
 Main.prototype.purgeStage = function() {
     this.stage.destroy();
     this.stage = new PIXI.Container(0x66FF99);
     this.startAppropriateScreen();
     GameVariables.toggleScreenChange();
 };
-
 Main.prototype.updatedSelectedScreen = function() {
     if (GameVariables.getScreenToShow() == "Title") {
         this.titleScreen.update();
@@ -48,21 +42,11 @@ Main.prototype.updatedSelectedScreen = function() {
         this.scroller.update();
     }
 };
-
 Main.prototype.startAppropriateScreen = function() {
     if (GameVariables.getScreenToShow() == "Title") {
-        this.stage.interaction = true;
-        this.startTitleScreen();
+        this.titleScreen = new TitleScreen(this.stage);
     }
     else if(GameVariables.getScreenToShow() == "Game") {
-        this.startScrollerScreen();
+        this.scroller = new Scroller(this.stage);
     }
-};
-
-Main.prototype.startScrollerScreen = function() {
-    this.scroller = new Scroller(this.stage);
-};
-
-Main.prototype.startTitleScreen = function() {
-    this.titleScreen = new TitleScreen(this.stage);
 };
