@@ -9,25 +9,36 @@ function Scroller(stage) {
 }
 Scroller.prototype.constructScroller = function(stage) {
     this.ScrollerProps = new ScrollerProperties();
+    this.addChildrenToStage(stage);
+    this.createEnemies(GameVariables.getEnemies(), stage);
+    this.ScrollerProps.mapBuilder = new MapBuilder(this.ScrollerProps.front);
+};
+
+Scroller.prototype.addChildrenToStage = function(stage) {
     stage.addChild(this.ScrollerProps.far);
     stage.addChild(this.ScrollerProps.mid);
     stage.addChild(this.ScrollerProps.mid2);
     stage.addChild(this.ScrollerProps.front);
     stage.addChild(this.ScrollerProps.character);
-    this.createEnemies(GameVariables.getEnemies(), stage);
-    this.ScrollerProps.mapBuilder = new MapBuilder(this.ScrollerProps.front);
+
+    for (var n = 0; n < GameVariables.getEnemies(); n++) {
+        this.enemy = new Enemy();
+/*        var obj = this.enemy.getUpdatedPositionVariables(-100, 800);
+        this.enemy.position.y = obj.y;
+        this.enemy.position.x = obj.x;
+        var rand = Math.floor((Math.random() * 5) + 3);
+
+        this.enemy.scale.x = rand/10;
+        this.enemy.scale.y = rand/10;*/
+        this.ScrollerProps.enemies.push(this.enemy);
+        stage.addChild(this.enemy);
+    }
+
 };
 
 Scroller.prototype.update = function() {
     this.updateViewport();
-    this.ScrollerProps.far.setViewportX(this.ScrollerProps.viewportX);
-    this.ScrollerProps.mid.setViewportX(this.ScrollerProps.viewportX);
-    this.ScrollerProps.mid2.setViewportX(this.ScrollerProps.viewportX);
-    this.ScrollerProps.front.setViewportX(this.ScrollerProps.viewportX);
-    this.ScrollerProps.character.update(this.ScrollerProps.character, this.ScrollerProps.front);
-
-    //enemies
-    this.updateSprites();
+    this.updateObjects();
     this.moveEnemies();
     this.writeScoreAndLives();
     if (this.ScrollerProps.front.slicesAreLow()) {
@@ -87,9 +98,15 @@ Scroller.prototype.moveEnemies = function() {
         }
     }
 };
-Scroller.prototype.updateSprites = function() {
+Scroller.prototype.updateObjects = function() {
+    this.ScrollerProps.far.setViewportX(this.ScrollerProps.viewportX);
+    this.ScrollerProps.mid.setViewportX(this.ScrollerProps.viewportX);
+    this.ScrollerProps.mid2.setViewportX(this.ScrollerProps.viewportX);
+    this.ScrollerProps.front.setViewportX(this.ScrollerProps.viewportX);
+    this.ScrollerProps.character.update(this.ScrollerProps.character, this.ScrollerProps.front);
+    //multiple enemies to be updated
     for (var n = 0; n < GameVariables.getEnemies(); n++) {
-        this.ScrollerProps.enemies[n].updateSprite();
+        this.ScrollerProps.enemies[n].update(this.ScrollerProps.enemies[n]);
     }
 };
 

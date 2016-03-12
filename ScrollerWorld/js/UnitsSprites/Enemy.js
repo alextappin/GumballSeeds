@@ -20,8 +20,31 @@ Enemy.prototype.initiateCharacterSprites = function() {
     //add them to the array
     this.EnemyProperties.characterSprites.push(sprite1,sprite2);
     this.addChild(this.EnemyProperties.characterSprites[this.EnemyProperties.spriteCount]);
+    this.instantiateProperties();
 };
+Enemy.prototype.instantiateProperties = function() {
 
+    //USE RAND CLASS
+    var obj = this.getUpdatedPositionVariables(-100, 800);
+    this.EnemyProperties.positionY = obj.y;
+    this.EnemyProperties.positionX = obj.x;
+    var rand = Math.floor((Math.random() * 5) + 3);
+    this.EnemyProperties.scaleY = rand/10;
+    this.EnemyProperties.scaleX = rand/10;
+};
+Enemy.prototype.update = function(enemyObj) {
+    this.updateSprite();
+    this.updatePosition(enemyObj);
+};
+Enemy.prototype.updateSprite = function() {
+    if (this.EnemyProperties.changeSpriteCounter == this.EnemyProperties.spriteSpeed) {
+        this.EnemyProperties.changeSpriteCounter = 0;
+        this.nextSprite();
+    }
+    else {
+        this.EnemyProperties.changeSpriteCounter++;
+    }
+};
 Enemy.prototype.nextSprite = function() {
     this.removeChild(this.EnemyProperties.characterSprites[this.EnemyProperties.spriteCount]);
     if (this.EnemyProperties.spriteCount == 1) {
@@ -33,14 +56,9 @@ Enemy.prototype.nextSprite = function() {
     this.addChild(this.EnemyProperties.characterSprites[this.EnemyProperties.spriteCount]);
 };
 
-Enemy.prototype.updateSprite = function() {
-    if (this.EnemyProperties.changeSpriteCounter == this.EnemyProperties.spriteSpeed) {
-        this.EnemyProperties.changeSpriteCounter = 0;
-        this.nextSprite();
-    }
-    else {
-        this.EnemyProperties.changeSpriteCounter++;
-    }
+Enemy.prototype.updatePosition = function(enemyObj) {
+    enemyObj.scale.x = this.EnemyProperties.scaleX;
+    enemyObj.scale.y = this.EnemyProperties.scaleY;
 };
 
 Enemy.prototype.updateVelocity = function() {
