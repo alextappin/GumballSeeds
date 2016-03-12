@@ -24,6 +24,7 @@ Scroller.prototype.update = function() {
     this.ScrollerProps.mid.setViewportX(this.ScrollerProps.viewportX);
     this.ScrollerProps.mid2.setViewportX(this.ScrollerProps.viewportX);
     this.ScrollerProps.front.setViewportX(this.ScrollerProps.viewportX);
+    this.ScrollerProps.character.update();
     this.updateSprites();
     this.jumpCharacter();
     this.attackCharacter();
@@ -132,7 +133,6 @@ Scroller.prototype.moveEnemies = function() {
     }
 };
 Scroller.prototype.updateSprites = function() {
-    this.ScrollerProps.character.updateSprite();
     for (var n = 0; n < GameVariables.getEnemies(); n++) {
         this.ScrollerProps.enemies[n].updateSprite();
     }
