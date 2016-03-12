@@ -16,7 +16,8 @@ Main.prototype.update = function() {
 Main.prototype.loadSpriteSheet = function() {
     var assetsToLoad = ["../resources/wall.json", "../resources/bg1.png",
         "../resources/test2.png", "../resources/bg3.png", "../resources/characterSprites.json", "../resources/characterSprites.png",
-        "../resources/enemy.json", "../resources/enemy.png","../resources/TitleScreen.json", "../resources/TitleSprites.png", "../resources/StartButton.json", "../resources/StartButton.png"];
+        "../resources/enemy.json", "../resources/enemy.png","../resources/TitleScreen.json", "../resources/TitleSprites.png",
+        "../resources/StartButton.json", "../resources/StartButton.png", "../resources/Gumballs.json", "../resources/Gumballs.png"];
     loader = new PIXI.loaders.Loader();
     loader.add(assetsToLoad).load(this.spriteSheetLoaded.bind(this))
 };
