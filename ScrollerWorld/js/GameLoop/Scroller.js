@@ -7,8 +7,6 @@ function Scroller(stage) {
         return stage;
     }
 }
-//TODO have the character and ememies each hold THEIR own position.x.
-
 Scroller.prototype.constructScroller = function(stage) {
     this.ScrollerProps = new ScrollerProperties();
     stage.addChild(this.ScrollerProps.far);

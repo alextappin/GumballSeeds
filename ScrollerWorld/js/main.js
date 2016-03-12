@@ -10,7 +10,6 @@ function Main() {
 }
 Main.prototype.update = function() {
     this.gameStatesHandler();
-    //render the stage to the screen
     this.renderer.render(this.stage);
     requestAnimationFrame(this.update.bind(this));
 };
