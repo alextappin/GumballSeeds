@@ -49,7 +49,6 @@ StartButton.prototype.nextSprite = function() {
 };
 
 StartButton.prototype.updatePosition = function(obj) {
-    this.StartButtonProperties.locationX += 1;
-    obj.position.x = this.StartButtonProperties.locationX;
-    obj.position.y = this.StartButtonProperties.locationY;
+    obj.position.x = (GameVariables.getWidth() - obj.width)/2;
+    obj.position.y = (GameVariables.getHeight() - obj.height)/2;
 };
