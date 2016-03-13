@@ -27,16 +27,6 @@ TouchAttack.prototype.update = function(jumpButtonObj, characterObj) {
     this.updatePosition(jumpButtonObj);
 };
 
-TouchAttack.prototype.updateSprites = function(characterObj) {
-    if (this.TouchAttackOverlayProperties.changeSpriteCounter == this.TouchAttackOverlayProperties.spriteSpeed) {
-        this.TouchAttackOverlayProperties.changeSpriteCounter = 0;
-        this.nextSprite(characterObj);
-    }
-    else {
-        this.TouchAttackOverlayProperties.changeSpriteCounter++;
-    }
-};
-
 TouchAttack.prototype.updatePosition = function(obj) {
     obj.position.x = GameVariables.getWidth()/2;
     obj.position.y = 0;
