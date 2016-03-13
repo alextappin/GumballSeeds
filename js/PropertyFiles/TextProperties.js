@@ -1,14 +1,36 @@
 /**
  * Created by ajt on 3/12/2016.
  */
-function TextProperties() {
+function TextProperties(textType) {
     var props = {
-        sprites : [],
-        spriteCount : 0,
-        changeSpriteCounter : 0,
-        spriteSpeed : 80,
-        positionX : 20,
-        positionY : 200
+        words : {},
+        type : textType,
+        setValues : function() {
+            if (this.type == "kills") {
+                this.text = "Kills  " + 10;
+                this.positionX = 50;
+                this.positionY = 200;
+                this.fill = "Green";
+            }
+            else if(this.type == "highscore") {
+                this.text = "HighScore  " + GameVariables.getHighScore();
+                this.positionX = (GameVariables.getWidth() - this.words.width) / 2;
+                this.positionY = (GameVariables.getHeight() / 2) + GameVariables.getHeight()*.1;
+                this.fill = "Yellow";
+            }
+            else {
+                this.text = "DEFAULT";
+                this.positionX = 0;
+                this.positionY = 0;
+                this.fill = "Black";
+            }
+        },
+        getStyleProperties : function() {
+            return {
+                fill : this.fill
+            }
+
+        }
     };
 
     return props;
