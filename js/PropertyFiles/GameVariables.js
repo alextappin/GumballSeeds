@@ -15,7 +15,8 @@ var GameVariables = (function GameVariables() {
         screenToShow : "Title",
         switchScreen : false,
         currentScore : 0,
-        highScore : 0
+        highScore : 0,
+        lives : 30
     };
 
     return {
@@ -63,6 +64,9 @@ var GameVariables = (function GameVariables() {
         getHighScore : function getHighScore() {
             return constants.highScore;
         },
+        getLives : function getLives() {
+            return constants.lives;
+        },
         //setters
         setEnemies : function setEnemies(value) {
             constants.enemies = value;
@@ -84,6 +88,9 @@ var GameVariables = (function GameVariables() {
         },
         setHighScore : function setHighScore(score) {
             constants.highScore = score;
+        },
+        setLives : function setLives(lives) {
+            constants.lives = lives;
         }
     };
 })();
