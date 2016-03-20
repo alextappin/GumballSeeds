@@ -27,7 +27,6 @@ Scroller.prototype.addChildrenToStage = function(stage) {
 Scroller.prototype.update = function() {
     this.updateViewport();
     this.updateObjects();
-    this.writeScoreAndLives();
     if (this.ScrollerProps.front.slicesAreLow()) {
         //TODO:if slices are low, find which slice types are low and ADD THOSE ONES THAT ARE LOW
         this.ScrollerProps.mapBuilder.addAndBuildRandomSequence();
@@ -65,9 +64,4 @@ Scroller.prototype.createEnemies = function(number, stage) {
         this.ScrollerProps.enemies.push(this.enemy);
         stage.addChild(this.enemy);
     }
-};
-Scroller.prototype.writeScoreAndLives = function() {
-    this.getStage().removeChild(this.text);
-    this.text = new PIXI.Text("Killed  " + this.ScrollerProps.character.CharacterProperties.enemiesKilled + "       Lives  " + (this.ScrollerProps.character.CharacterProperties.lives + 1) , {font:"25px Arial", fill:"#1144FF"});
-    this.getStage().addChild(this.text);
 };
