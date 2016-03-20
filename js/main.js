@@ -30,6 +30,7 @@ Main.prototype.gameStatesHandler = function() {
     GameVariables.getSwitchScreen() ? this.purgeStage() : this.updatedSelectedScreen();
 };
 Main.prototype.purgeStage = function() {
+    this.saveAndRestartGameVariables();
     this.stage.destroy();
     this.stage = new PIXI.Container(0x66FF99);
     this.startAppropriateScreen();
@@ -50,4 +51,11 @@ Main.prototype.startAppropriateScreen = function() {
     else if(GameVariables.getScreenToShow() == "Game") {
         this.scroller = new Scroller(this.stage);
     }
+};
+Main.prototype.saveAndRestartGameVariables = function() {
+    if (GameVariables.getCurrentScore() > GameVariables.getHighScore()) {
+        GameVariables.setHighScore(GameVariables.getCurrentScore());
+    }
+    GameVariables.setEnemies(2);
+    GameVariables.setLives(20);
 };
