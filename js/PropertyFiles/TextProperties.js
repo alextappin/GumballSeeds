@@ -8,8 +8,8 @@ function TextProperties(textType) {
         setValues : function() {
             if (this.type == "kills") {
                 this.text = "Kills  " + GameVariables.getCurrentScore();
-                this.positionX = 50;
-                this.positionY = 50;
+                this.positionX = 10;
+                this.positionY = 10;
                 this.fill = "Green";
             }
             else if(this.type == "highscore") {
@@ -20,8 +20,8 @@ function TextProperties(textType) {
             }
             else if(this.type == "lives") {
                 this.text = "Lives  " + GameVariables.getLives();
-                this.positionX = 50;
-                this.positionY = 150;
+                this.positionX = 10;
+                this.positionY = 40;
                 this.fill = "Yellow";
             }
             else {
