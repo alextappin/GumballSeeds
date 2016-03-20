@@ -58,4 +58,5 @@ Main.prototype.saveAndRestartGameVariables = function() {
     }
     GameVariables.setEnemies(2);
     GameVariables.setLives(20);
+    GameVariables.setCurrentScore(0);
 };
