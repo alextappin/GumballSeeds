@@ -14,6 +14,7 @@ var GameVariables = (function GameVariables() {
         offScreenOffsetY : 200,
         screenToShow : "Title",
         switchScreen : false,
+        currentScore : 0,
         highScore : 0
     };
 
@@ -56,10 +57,12 @@ var GameVariables = (function GameVariables() {
         getSwitchScreen : function getSwitchScreen() {
             return constants.switchScreen;
         },
+        getCurrentScore : function getCurrentScore() {
+            return constants.currentScore;
+        },
         getHighScore : function getHighScore() {
             return constants.highScore;
         },
-
         //setters
         setEnemies : function setEnemies(value) {
             constants.enemies = value;
@@ -75,6 +78,9 @@ var GameVariables = (function GameVariables() {
         },
         toggleScreenChange : function toggleScreenChange() {
             constants.switchScreen = !constants.switchScreen;
+        },
+        setCurrentScore : function setCurrentScore(updatedScore) {
+        constants.currentScore = updatedScore;
         },
         setHighScore : function setHighScore(score) {
             constants.highScore = score;
