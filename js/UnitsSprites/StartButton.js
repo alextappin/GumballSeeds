@@ -61,6 +61,7 @@ StartButton.prototype.handleClickEvents = function(spriteToHandle) {
         function onButtonDown() {
             GameVariables.toggleScreenChange();
             GameVariables.setScreenGame();
+            createjs.Sound.stop("title");
             clearTimeout(spriteTimeout);
         }
         spriteToHandle.interactive = true;
