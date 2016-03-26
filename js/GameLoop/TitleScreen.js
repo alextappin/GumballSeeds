@@ -5,7 +5,8 @@ function TitleScreen(stage) {
     this.constructTitleScreen(stage);
     this.getStage = function() {
         return stage;
-    }
+    };
+    createjs.Sound.play("title");
 }
 TitleScreen.prototype.constructTitleScreen = function(stage) {
     this.TitleScreenProps = new TitleScreenProperties();
