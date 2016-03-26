@@ -5,7 +5,8 @@ function TitleScreen(stage) {
     this.constructTitleScreen(stage);
     this.getStage = function() {
         return stage;
-    }
+    };
+    createjs.Sound.play("title", {loop: 10, volume:.2});
 }
 TitleScreen.prototype.constructTitleScreen = function(stage) {
     this.TitleScreenProps = new TitleScreenProperties();
@@ -15,6 +16,7 @@ TitleScreen.prototype.constructTitleScreen = function(stage) {
     stage.addChild(this.TitleScreenProps.mid2);
     stage.addChild(this.TitleScreenProps.titleBoard);
     stage.addChild(this.TitleScreenProps.startButton);
+    stage.addChild(this.TitleScreenProps.textScore);
 };
 TitleScreen.prototype.update = function() {
     this.updateViewport();
@@ -23,6 +25,7 @@ TitleScreen.prototype.update = function() {
     this.TitleScreenProps.mid2.setViewportX(this.TitleScreenProps.viewportX);
     this.TitleScreenProps.titleBoard.update(this.TitleScreenProps.titleBoard);
     this.TitleScreenProps.startButton.update(this.TitleScreenProps.startButton);
+    this.TitleScreenProps.textScore.update(this.TitleScreenProps.textScore);
 };
 TitleScreen.prototype.updateViewport = function() {
     GameVariables.getCurrentScrollSpeed() > GameVariables.getMaxScrollSpeed() ? GameVariables.setCurrentScrollSpeed(GameVariables.getMaxScrollSpeed()) : null;

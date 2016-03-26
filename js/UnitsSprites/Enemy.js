@@ -68,14 +68,14 @@ Enemy.prototype.moveEnemy = function(enemyObj, characterObj) {
     enemyObj.position.y = obj.y;
     if (this.isIntersecting(characterObj, this)) {
         if (characterObj.CharacterProperties.isAttacking) {
-            characterObj.CharacterProperties.enemiesKilled += 1;
-            if (characterObj.CharacterProperties.enemiesKilled%5 == 0) {
+            GameVariables.setCurrentScore(GameVariables.getCurrentScore()+1);
+            if (GameVariables.getCurrentScore()%5 == 0) {
                 GameVariables.setEnemies(GameVariables.getEnemies()+1);
             }
         }
         else {
-            characterObj.CharacterProperties.lives -= 1;
-            if (characterObj.CharacterProperties.lives < 0) {
+            GameVariables.setLives(GameVariables.getLives()-1);
+            if (GameVariables.getLives() < 0) {
                 characterObj.CharacterProperties.continueGame = false;
                 characterObj.CharacterProperties.jumping = true;
             }

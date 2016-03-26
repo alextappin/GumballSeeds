@@ -18,12 +18,15 @@ Scroller.prototype.addChildrenToStage = function(stage) {
     stage.addChild(this.ScrollerProps.mid2);
     stage.addChild(this.ScrollerProps.front);
     stage.addChild(this.ScrollerProps.character);
+    stage.addChild(this.ScrollerProps.textScore);
+    stage.addChild(this.ScrollerProps.textLives);
     this.createEnemies(GameVariables.getEnemies(), stage);
+    stage.addChild(this.ScrollerProps.touchJump);
+    stage.addChild(this.ScrollerProps.touchAttack);
 };
 Scroller.prototype.update = function() {
     this.updateViewport();
     this.updateObjects();
-    this.writeScoreAndLives();
     if (this.ScrollerProps.front.slicesAreLow()) {
         //TODO:if slices are low, find which slice types are low and ADD THOSE ONES THAT ARE LOW
         this.ScrollerProps.mapBuilder.addAndBuildRandomSequence();
@@ -39,6 +42,10 @@ Scroller.prototype.updateObjects = function() {
     this.ScrollerProps.mid2.setViewportX(this.ScrollerProps.viewportX);
     this.ScrollerProps.front.setViewportX(this.ScrollerProps.viewportX);
     this.ScrollerProps.character.update(this.ScrollerProps.character, this.ScrollerProps.front);
+    this.ScrollerProps.textScore.update(this.ScrollerProps.textScore);
+    this.ScrollerProps.textLives.update(this.ScrollerProps.textLives);
+    this.ScrollerProps.touchJump.update(this.ScrollerProps.touchJump, this.ScrollerProps.character);
+    this.ScrollerProps.touchAttack.update(this.ScrollerProps.touchAttack, this.ScrollerProps.character);
     //multiple enemies to be updated
     for (var n = 0; n < GameVariables.getEnemies(); n++) {
         if (this.ScrollerProps.enemies[n]) {
@@ -57,9 +64,4 @@ Scroller.prototype.createEnemies = function(number, stage) {
         this.ScrollerProps.enemies.push(this.enemy);
         stage.addChild(this.enemy);
     }
-};
-Scroller.prototype.writeScoreAndLives = function() {
-    this.getStage().removeChild(this.text);
-    this.text = new PIXI.Text("Killed  " + this.ScrollerProps.character.CharacterProperties.enemiesKilled + "       Lives  " + (this.ScrollerProps.character.CharacterProperties.lives + 1) , {font:"25px Arial", fill:"#1144FF"});
-    this.getStage().addChild(this.text);
 };

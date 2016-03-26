@@ -3,6 +3,7 @@
     <title>Gumball Seeds</title>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <script src="../lib/pixi.js"></script>
+    <script src="../lib/soundjs-0.6.2.min.js"></script>
     <script src="../js/PropertyFiles/GameVariables.js"></script>
     <script src="../js/PropertyFiles/CharacterProperties.js"></script>
     <script src="../js/PropertyFiles/EnemyProperties.js"></script>
@@ -10,7 +11,11 @@
     <script src="../js/PropertyFiles/TitleScreenProperties.js"></script>
     <script src="../js/PropertyFiles/TitleBoardProperties.js"></script>
     <script src="../js/PropertyFiles/StartButtonProperties.js"></script>
+    <script src="../js/PropertyFiles/TouchJumpOverlayProperties.js"></script>
+    <script src="../js/PropertyFiles/TouchAttackOverlayProperties.js"></script>
+    <script src="../js/PropertyFiles/TextProperties.js"></script>
     <script src="../js/Helpers/KeyboardControl.js"></script>
+    <script src="../js/Helpers/Sound.js"></script>
     <script src="../js/MapControl/Far.js"></script>
     <script src="../js/MapControl/Mid.js"></script>
     <script src="../js/MapControl/Mid2.js"></script>
@@ -25,11 +30,18 @@
     <script src="../js/UnitsSprites/Enemy.js"></script>
     <script src="../js/UnitsSprites/TitleBoard.js"></script>
     <script src="../js/UnitsSprites/StartButton.js"></script>
+    <script src="../js/UnitsSprites/TouchJumpOverlay.js"></script>
+    <script src="../js/UnitsSprites/TouchAttackOverlay.js"></script>
+    <script src="../js/UnitsSprites/Text.js"></script>
     <script src="../js/main.js"></script>
 </head>
-<body onload="init()">
+<body onload="init();">
 <script>
     function init() {
+        //once the GameSounds loads, start pixi
+        GameSounds(startPixi);
+    }
+    function startPixi() {
         main = new Main();
     }
 </script>
