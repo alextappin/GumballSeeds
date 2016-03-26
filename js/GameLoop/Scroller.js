@@ -5,7 +5,8 @@ function Scroller(stage) {
     this.constructScroller(stage);
     this.getStage = function() {
         return stage;
-    }
+    };
+    createjs.Sound.stop("title");
 }
 Scroller.prototype.constructScroller = function(stage) {
     this.ScrollerProps = new ScrollerProperties();
