@@ -67,6 +67,12 @@ var GameVariables = (function GameVariables() {
         getLives : function getLives() {
             return constants.lives;
         },
+        getNewPoint : function getNewPoint(x, y) {
+            return {
+                x : x,
+                y : y
+            }
+        },
         //setters
         setEnemies : function setEnemies(value) {
             constants.enemies = value;
