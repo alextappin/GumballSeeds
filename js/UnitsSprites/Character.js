@@ -32,15 +32,12 @@ Character.prototype.initiateCharacterSprites = function() {
     this.CharacterProperties.characterSprites.push(sprite1,sprite2,sprite3, sprite4, sprite5, sprite6);
     this.addChild(this.CharacterProperties.characterSprites[this.CharacterProperties.spriteCount]);
 };
-
 Character.prototype.update = function(characterObj, frontObj) {
     this.updateSprites();
-    this.updatePosition(characterObj);
     this.jumpCharacter(characterObj, frontObj);
     this.attackCharacter();
     this.applyFallingGravityToCharacter(characterObj, frontObj);
 };
-
 Character.prototype.updateSprites = function() {
     if (this.CharacterProperties.changeSpriteCounter == this.CharacterProperties.spriteSpeed) {
         this.CharacterProperties.changeSpriteCounter = 0;
@@ -50,7 +47,6 @@ Character.prototype.updateSprites = function() {
         this.CharacterProperties.changeSpriteCounter++;
     }
 };
-
 Character.prototype.nextSprite = function() {
     this.removeChild(this.CharacterProperties.characterSprites[this.CharacterProperties.spriteCount]);
     if (this.CharacterProperties.spriteCount == 5) {
@@ -61,13 +57,6 @@ Character.prototype.nextSprite = function() {
     }
     this.addChild(this.CharacterProperties.characterSprites[this.CharacterProperties.spriteCount]);
 };
-
-Character.prototype.updatePosition = function(obj) {
-    obj.position.x = 65;
-    obj.scale.x = .5;
-    obj.scale.y = .5;
-};
-
 Character.prototype.jumpCharacter = function(characterObj, frontObj){
     if (this.charIsJumping()) {
         characterObj.position.y = this.moveHeightJumping(characterObj.position.y,
@@ -77,7 +66,6 @@ Character.prototype.jumpCharacter = function(characterObj, frontObj){
         this.endJumping();
     }
 };
-
 Character.prototype.attackCharacter = function() {
     if (this.CharacterProperties.isAttacking) {
         this.CharacterProperties.attackingTime -= 1;
@@ -86,22 +74,18 @@ Character.prototype.attackCharacter = function() {
         }
     }
 };
-
 Character.prototype.applyFallingGravityToCharacter = function(characterObj, frontObj) {
     this.checkIfFalling(frontObj.getCurrentSliceHeight(), frontObj.getNextSliceHeight());
 };
-
 Character.prototype.startJumpAnimation = function() {
     if (!this.charIsJumping()) {
         this.CharacterProperties.jumping = true;
         this.CharacterProperties.velocityY = -15.0;
     }
 };
-
 Character.prototype.moveHeightJumping = function(posY, currentSlicePosY, nextSlicePosY) {
     return this.simulateGravity(posY, this.calculateMapToCharacterHeightOffset(currentSlicePosY), this.calculateMapToCharacterHeightOffset(nextSlicePosY));
 };
-
 Character.prototype.listenForJumpTrigger = function() {
     var that = this;
     this.CharacterProperties.spaceBar.press = function () {
@@ -110,7 +94,6 @@ Character.prototype.listenForJumpTrigger = function() {
         }
     }
 };
-
 Character.prototype.simulateGravity = function(posY, currentSlicePosY, nextSlicePosY) {
     this.CharacterProperties.velocityY += this.CharacterProperties.gravity;
     posY += this.CharacterProperties.velocityY;
@@ -131,26 +114,21 @@ Character.prototype.simulateGravity = function(posY, currentSlicePosY, nextSlice
     }
     return posY;
 };
-
 Character.prototype.endJumping = function() {
     this.CharacterProperties.jumping = false;
 };
-
 Character.prototype.charIsJumping = function() {
     return (this.CharacterProperties.jumping);
 };
-
 Character.prototype.calculateMapToCharacterHeightOffset = function(wallPos) {
     return wallPos - 24;
 };
-
 Character.prototype.checkIfFalling = function(currentSliceHeight, nextSliceHeight) {
     if (!this.CharacterProperties.jumping && this.calculateMapToCharacterHeightOffset(currentSliceHeight) > this.position.y) {
         this.CharacterProperties.jumping = true;
         this.simulateGravity(this.position.y, this.calculateMapToCharacterHeightOffset(currentSliceHeight), this.calculateMapToCharacterHeightOffset(nextSliceHeight));
     }
 };
-
 Character.prototype.listenForAttackTrigger = function() {
     var that = this;
     this.CharacterProperties.ctrlButton.press = function () {
@@ -159,7 +137,6 @@ Character.prototype.listenForAttackTrigger = function() {
         }
     }
 };
-
 Character.prototype.startAttackAnimation = function() {
     this.CharacterProperties.isAttacking = true;
     this.removeChild(this.text);
@@ -169,14 +146,12 @@ Character.prototype.startAttackAnimation = function() {
 
     this.CharacterProperties.attackingTime = 20;
 };
-
 Character.prototype.stopAttacking = function() {
     this.CharacterProperties.isAttacking = false;
     this.removeChild(this.text);
 
     this.CharacterProperties.attackingTime = 0;
 };
-
 Character.prototype.listenForMoveRightTrigger = function() {
     var that = this;
     this.CharacterProperties.rightArrow.press = function () {
@@ -191,7 +166,6 @@ Character.prototype.listenForMoveRightTrigger = function() {
         }
     }
 };
-
 Character.prototype.listenForMoveLeftTrigger = function() {
     var that = this;
     this.CharacterProperties.leftArrow.press = function () {
@@ -206,21 +180,17 @@ Character.prototype.listenForMoveLeftTrigger = function() {
         }
     };
 };
-
 //set the moving to false so you cant move now
 Character.prototype.startMoveRightAnimation = function() {
     this.CharacterProperties.isMovingRight = false;
 };
-
 //set the moving to false so you cant move now
 Character.prototype.startMoveLeftAnimation = function() {
     this.CharacterProperties.isMovingLeft = false;
 };
-
 Character.prototype.stopMoveRightAnimation = function() {
     this.CharacterProperties.isMovingRight = false;
 };
-
 Character.prototype.stopMoveLeftAnimation = function() {
     this.CharacterProperties.isMovingLeft = false;
 };
