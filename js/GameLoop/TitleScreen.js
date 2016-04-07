@@ -2,14 +2,20 @@
  * Created by ajt on 3/10/2016.
  */
 function TitleScreen(stage) {
+    this.TitleScreenProps = new TitleScreenProperties();
+    this.initializePositions();
     this.constructTitleScreen(stage);
     this.getStage = function() {
         return stage;
     };
     createjs.Sound.play("title", {loop: 10, volume:.2});
 }
+
+TitleScreen.prototype.initializePositions = function() {
+    this.TitleScreenProps.titleBoard.position = this.TitleScreenProps.titleBoard.getStartPosition(this.TitleScreenProps.titleBoard);
+    this.TitleScreenProps.startButton.position = this.TitleScreenProps.startButton.getStartPosition(this.TitleScreenProps.startButton);
+};
 TitleScreen.prototype.constructTitleScreen = function(stage) {
-    this.TitleScreenProps = new TitleScreenProperties();
     //Add to stage the units
     stage.addChild(this.TitleScreenProps.far);
     stage.addChild(this.TitleScreenProps.mid);

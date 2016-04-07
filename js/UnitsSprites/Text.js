@@ -1,26 +1,21 @@
 /**
  * Created by ajt on 3/12/2016.
  */
-
 function Text(type) {
     PIXI.Container.call(this);
     this.constructText(type);
 }
-
 Text.constructor = Text;
 Text.prototype = Object.create(PIXI.Container.prototype);
-
 Text.prototype.constructText = function(type) {
     this.TextProperties = new TextProperties(type);
     this.TextProperties.setValues();
     this.initiateTextType();
 };
-
 Text.prototype.initiateTextType = function() {
     this.TextProperties.words = new PIXI.Text(this.TextProperties.text);
     this.addChild(this.TextProperties.words);
 };
-
 Text.prototype.update = function() {
     this.deleteAndReAddText();
 };
