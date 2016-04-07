@@ -13,8 +13,9 @@ StartButton.prototype.constructStartButton = function() {
     this.StartButtonProperties = new StartButtonProperties();
     this.initiateStartButtonSprites();
 };
-StartButton.prototype.getStartPosition = function(obj) {
-    return new GameVariables.getNewPoint((GameVariables.getWidth() - obj.width)/2, (GameVariables.getHeight() - obj.height)/2);
+StartButton.prototype.setPositionAndScale = function(obj) {
+    obj.position = GameVariables.getNewPoint((GameVariables.getWidth() - obj.width)/2, (GameVariables.getHeight() - obj.height)/2);
+    //obj.scale is not being use YET
 };
 StartButton.prototype.initiateStartButtonSprites = function() {
     var sprite1 = PIXI.Sprite.fromFrame("Start1"),

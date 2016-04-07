@@ -13,8 +13,9 @@ TitleBoard.prototype.constructTitleBoard = function() {
     this.TitleBoardProperties = new TitleBoardProperties();
     this.initiateTitleBoardSprites();
 };
-TitleBoard.prototype.getStartPosition = function(obj) {
-    return new GameVariables.getNewPoint((GameVariables.getWidth() - obj.width)/2, (GameVariables.getHeight() - obj.height)/2);
+TitleBoard.prototype.setPositionAndScale = function(obj) {
+    obj.position =  GameVariables.getNewPoint((GameVariables.getWidth() - obj.width)/2, (GameVariables.getHeight() - obj.height)/2);
+    //no scale yet...
 };
 TitleBoard.prototype.initiateTitleBoardSprites = function() {
     var sprite1 = PIXI.Sprite.fromFrame("Title1"),

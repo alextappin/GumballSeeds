@@ -12,8 +12,8 @@ function TitleScreen(stage) {
 }
 
 TitleScreen.prototype.initializePositions = function() {
-    this.TitleScreenProps.titleBoard.position = this.TitleScreenProps.titleBoard.getStartPosition(this.TitleScreenProps.titleBoard);
-    this.TitleScreenProps.startButton.position = this.TitleScreenProps.startButton.getStartPosition(this.TitleScreenProps.startButton);
+    this.TitleScreenProps.titleBoard.setPositionAndScale(this.TitleScreenProps.titleBoard);
+    this.TitleScreenProps.startButton.setPositionAndScale(this.TitleScreenProps.startButton);
 };
 TitleScreen.prototype.constructTitleScreen = function(stage) {
     //Add to stage the units
