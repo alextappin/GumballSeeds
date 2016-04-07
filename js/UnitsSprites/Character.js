@@ -18,7 +18,9 @@ Character.prototype.constructCharacter = function() {
     this.listenForMoveLeftTrigger();
     this.listenForMoveRightTrigger();
 };
-
+Character.prototype.getStartPosition = function() {
+    return new GameVariables.getNewPoint(this.CharacterProperties.startPosX, this.CharacterProperties.startPosY)
+};
 Character.prototype.initiateCharacterSprites = function() {
     var sprite1 = PIXI.Sprite.fromFrame("sprite1"),
         sprite2 = PIXI.Sprite.fromFrame("sprite2"),

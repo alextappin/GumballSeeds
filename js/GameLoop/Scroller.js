@@ -12,7 +12,9 @@ function Scroller(stage) {
 }
 Scroller.prototype.initializePositions = function() {
     //character textscore textlives
-
+    this.ScrollerProps.character.position = this.ScrollerProps.character.getStartPosition();
+    //this.ScrollerProps.textScore.position = this.ScrollerProps.textScore.getStartPosition(this.ScrollerProps.textScore);
+    //this.ScrollerProps.textLives.position = this.ScrollerProps.textLives.getStartPosition(this.ScrollerProps.textLives);
 };
 Scroller.prototype.constructScroller = function(stage) {
     this.addChildrenToStage(stage);

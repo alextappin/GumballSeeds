@@ -6,6 +6,8 @@ function CharacterProperties() {
         characterSprites : [],
         spriteCount : 0,
         jumping : true,
+        startPosY : 40,
+        startPosX : 65,
         applyFallingGravity : false,
         isMovingLeft : false,
         isMovingRight : false,
