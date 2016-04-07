@@ -30,5 +30,4 @@ TitleScreen.prototype.update = function() {
 TitleScreen.prototype.updateViewport = function() {
     GameVariables.getCurrentScrollSpeed() > GameVariables.getMaxScrollSpeed() ? GameVariables.setCurrentScrollSpeed(GameVariables.getMaxScrollSpeed()) : null;
     this.TitleScreenProps.viewportX = this.TitleScreenProps.viewportX + GameVariables.getCurrentScrollSpeed();
-
 };
