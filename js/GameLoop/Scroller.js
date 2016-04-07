@@ -2,14 +2,19 @@
  * Created by ajt on 11/29/2015.
  */
 function Scroller(stage) {
+    this.ScrollerProps = new ScrollerProperties();
+    this.initializePositions();
     this.constructScroller(stage);
     this.getStage = function() {
         return stage;
     };
     createjs.Sound.stop("title");
 }
+Scroller.prototype.initializePositions = function() {
+    //character textscore textlives
+
+};
 Scroller.prototype.constructScroller = function(stage) {
-    this.ScrollerProps = new ScrollerProperties();
     this.addChildrenToStage(stage);
     this.ScrollerProps.mapBuilder = new MapBuilder(this.ScrollerProps.front);
 };
@@ -59,10 +64,10 @@ Scroller.prototype.updateObjects = function() {
     }
 };
 Scroller.prototype.createEnemies = function(number, stage) {
-    for (var n = 0; n < number; n++) {
-        this.enemy = new Enemy();
-        this.enemy.position.x = -500;
-        this.ScrollerProps.enemies.push(this.enemy);
-        stage.addChild(this.enemy);
+    for (var n = 0, enemy; n < number; n++) {
+        enemy = new Enemy();
+        enemy.position.x = -500;
+        this.ScrollerProps.enemies.push(enemy);
+        stage.addChild(enemy);
     }
 };
