@@ -11,10 +11,7 @@ function Scroller(stage) {
     createjs.Sound.stop("title");
 }
 Scroller.prototype.initializePositions = function() {
-    //character textscore textlives
     this.ScrollerProps.character.position = this.ScrollerProps.character.getStartPosition();
-    //this.ScrollerProps.textScore.position = this.ScrollerProps.textScore.getStartPosition(this.ScrollerProps.textScore);
-    //this.ScrollerProps.textLives.position = this.ScrollerProps.textLives.getStartPosition(this.ScrollerProps.textLives);
 };
 Scroller.prototype.constructScroller = function(stage) {
     this.addChildrenToStage(stage);
@@ -68,7 +65,7 @@ Scroller.prototype.updateObjects = function() {
 Scroller.prototype.createEnemies = function(number, stage) {
     for (var n = 0, enemy; n < number; n++) {
         enemy = new Enemy();
-        enemy.position.x = -500;
+        enemy.position = enemy.getStartPosition();
         this.ScrollerProps.enemies.push(enemy);
         stage.addChild(enemy);
     }

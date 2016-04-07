@@ -6,6 +6,8 @@ function EnemyProperties() {
         characterSprites : [],
         spriteCount : 0,
         continueGame : true,
+        startPosX : -500,
+        startPosY : 50,
         positionX : 1200,
         positionY : 800,
         scaleX :.5,

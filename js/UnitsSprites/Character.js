@@ -3,7 +3,6 @@
  */
 function Character() {
     PIXI.Container.call(this);
-
     this.constructCharacter();
 }
 

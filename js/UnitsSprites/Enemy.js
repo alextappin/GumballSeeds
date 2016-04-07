@@ -13,7 +13,9 @@ Enemy.prototype.constructEnemy = function() {
     this.EnemyProperties = new EnemyProperties();
     this.initiateCharacterSprites();
 };
-
+Enemy.prototype.getStartPosition = function() {
+    return new GameVariables.getNewPoint(this.EnemyProperties.startPosX, this.EnemyProperties.startPosY)
+};
 Enemy.prototype.initiateCharacterSprites = function() {
     var sprite1 = PIXI.Sprite.fromFrame("BadGuy2Tran"),
         sprite2 = PIXI.Sprite.fromFrame("BadGuy1Tran");
