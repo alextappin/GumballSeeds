@@ -8,6 +8,8 @@ function CharacterProperties() {
         jumping : true,
         startPosY : 40,
         startPosX : 65,
+        scaleX: .5,
+        scaleY: .5,
         applyFallingGravity : false,
         isMovingLeft : false,
         isMovingRight : false,

@@ -3,15 +3,15 @@
  */
 function Scroller(stage) {
     this.ScrollerProps = new ScrollerProperties();
-    this.initializePositions();
+    this.initializePositionsAndScale();
     this.constructScroller(stage);
     this.getStage = function() {
         return stage;
     };
     createjs.Sound.stop("title");
 }
-Scroller.prototype.initializePositions = function() {
-    this.ScrollerProps.character.position = this.ScrollerProps.character.getStartPosition();
+Scroller.prototype.initializePositionsAndScale = function() {
+    this.ScrollerProps.character.setPositionAndScale(this.ScrollerProps.character);
 };
 Scroller.prototype.constructScroller = function(stage) {
     this.addChildrenToStage(stage);
@@ -56,7 +56,7 @@ Scroller.prototype.updateObjects = function() {
         if (this.ScrollerProps.enemies[n]) {
             this.ScrollerProps.enemies[n].update(this.ScrollerProps.enemies[n], this.ScrollerProps.character);
         }
-        //if there is not enough enemies, add another
+        //if there are not enough enemies, add another
         else {
             this.createEnemies(1, this.getStage());
         }
@@ -65,7 +65,7 @@ Scroller.prototype.updateObjects = function() {
 Scroller.prototype.createEnemies = function(number, stage) {
     for (var n = 0, enemy; n < number; n++) {
         enemy = new Enemy();
-        enemy.position = enemy.getStartPosition();
+        enemy.setPositionAndScale(enemy);
         this.ScrollerProps.enemies.push(enemy);
         stage.addChild(enemy);
     }

@@ -11,10 +11,12 @@ Enemy.prototype = Object.create(PIXI.Container.prototype);
 
 Enemy.prototype.constructEnemy = function() {
     this.EnemyProperties = new EnemyProperties();
+    this.instantiateProperties();
     this.initiateCharacterSprites();
 };
-Enemy.prototype.getStartPosition = function() {
-    return new GameVariables.getNewPoint(this.EnemyProperties.startPosX, this.EnemyProperties.startPosY)
+Enemy.prototype.setPositionAndScale = function(obj) {
+    obj.position = GameVariables.getNewPoint(this.EnemyProperties.startPosX, this.EnemyProperties.startPosY);
+    obj.scale = GameVariables.getNewPoint(this.EnemyProperties.scaleX, this.EnemyProperties.scaleY);
 };
 Enemy.prototype.initiateCharacterSprites = function() {
     var sprite1 = PIXI.Sprite.fromFrame("BadGuy2Tran"),
@@ -22,10 +24,8 @@ Enemy.prototype.initiateCharacterSprites = function() {
     //add them to the array
     this.EnemyProperties.characterSprites.push(sprite1,sprite2);
     this.addChild(this.EnemyProperties.characterSprites[this.EnemyProperties.spriteCount]);
-    this.instantiateProperties();
 };
 Enemy.prototype.instantiateProperties = function() {
-
     //USE RAND CLASS
     var obj = this.getUpdatedPositionVariables(-100, 800);
     this.EnemyProperties.positionY = obj.y;

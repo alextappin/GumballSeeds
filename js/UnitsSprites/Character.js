@@ -17,8 +17,9 @@ Character.prototype.constructCharacter = function() {
     this.listenForMoveLeftTrigger();
     this.listenForMoveRightTrigger();
 };
-Character.prototype.getStartPosition = function() {
-    return new GameVariables.getNewPoint(this.CharacterProperties.startPosX, this.CharacterProperties.startPosY)
+Character.prototype.setPositionAndScale = function(obj) {
+    obj.position =  new GameVariables.getNewPoint(this.CharacterProperties.startPosX, this.CharacterProperties.startPosY);
+    obj.scale = new GameVariables.getNewPoint(this.CharacterProperties.scaleX, this.CharacterProperties.scaleY);
 };
 Character.prototype.initiateCharacterSprites = function() {
     var sprite1 = PIXI.Sprite.fromFrame("sprite1"),
