@@ -17,7 +17,6 @@ function ScoreHelper() {
         GameVariables.incrementLoopCounter();
         if (GameVariables.getLoopCounter() % GameVariables.getLoopScoreIncrement() === 0) {
             scoreHelpers.runningScore();
-            console.log(GameVariables.getLoopCounter());
         }
     };
     return scoreHelpers;

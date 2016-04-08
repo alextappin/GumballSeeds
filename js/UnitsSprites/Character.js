@@ -30,7 +30,19 @@ Character.prototype.initiateCharacterSprites = function() {
         sprite6 = PIXI.Sprite.fromFrame("sprite6");
     //add them to the array
     this.CharacterProperties.characterSprites.push(sprite1,sprite2,sprite3, sprite4, sprite5, sprite6);
-    this.addChild(this.CharacterProperties.characterSprites[this.CharacterProperties.spriteCount]);
+    //add all the children to the stage at the start. Then just set the correct ones to visible or not.
+    for (var i = 0; i < this.CharacterProperties.characterSprites.length; i++) {
+        this.CharacterProperties.characterSprites[i].visible = false;
+        this.addChild(this.CharacterProperties.characterSprites[i]);
+    }
+    //set the first one to be visible
+    this.setSpriteVisibility(true);
+};
+Character.prototype.getChildFromStage = function() {
+    return this.getChildAt(this.getChildIndex(this.CharacterProperties.characterSprites[this.CharacterProperties.spriteCount]));
+};
+Character.prototype.setSpriteVisibility = function(visibilityBool) {
+    this.getChildFromStage().visible = visibilityBool;
 };
 Character.prototype.update = function(characterObj, frontObj) {
     this.updateSprites();
@@ -48,14 +60,15 @@ Character.prototype.updateSprites = function() {
     }
 };
 Character.prototype.nextSprite = function() {
-    this.removeChild(this.CharacterProperties.characterSprites[this.CharacterProperties.spriteCount]);
+    //set the first one to not be visible and then set the next one to be visible.
+    this.setSpriteVisibility(false);
     if (this.CharacterProperties.spriteCount == 5) {
         this.CharacterProperties.spriteCount = 0;
     }
     else {
         this.CharacterProperties.spriteCount++;
     }
-    this.addChild(this.CharacterProperties.characterSprites[this.CharacterProperties.spriteCount]);
+    this.setSpriteVisibility(true);
 };
 Character.prototype.jumpCharacter = function(characterObj, frontObj){
     if (this.charIsJumping()) {
