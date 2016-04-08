@@ -3,6 +3,7 @@
  */
 var GameVariables = (function GameVariables() {
     var constants = {
+        loopCounter : 1,
         screenWidth : 1080,
         screenHeight : 720,
         enemies : 2,
@@ -18,7 +19,8 @@ var GameVariables = (function GameVariables() {
         highScore : 0,
         lives : 30,
         kills : 0,
-        createNewEnemiesCounter : 5
+        createNewEnemiesCounter : 5,
+        loopScoreIncrement : 60
     };
 
     return {
@@ -81,6 +83,12 @@ var GameVariables = (function GameVariables() {
         getNewEnemyCounter : function getNewEnemyCounter() {
             return constants.createNewEnemiesCounter;
         },
+        getLoopCounter : function getLoopCounter() {
+            return constants.loopCounter;
+        },
+        getLoopScoreIncrement : function getLoopScoreIncrement() {
+            return constants.loopScoreIncrement;
+        },
         //setters
         setEnemies : function setEnemies(value) {
             constants.enemies = value;
@@ -108,6 +116,9 @@ var GameVariables = (function GameVariables() {
         },
         setKills : function setKills(kills) {
             constants.kills = kills;
+        },
+        incrementLoopCounter : function incrementLoopCounter() {
+            constants.loopCounter++;
         }
     };
 })();

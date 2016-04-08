@@ -36,6 +36,7 @@ Scroller.prototype.update = function() {
         //TODO:if slices are low, find which slice types are low and ADD THOSE ONES THAT ARE LOW
         this.ScrollerProps.mapBuilder.addAndBuildRandomSequence();
     }
+    ScoreHelper().updateScore();
 };
 Scroller.prototype.updateViewport = function() {
     GameVariables.getCurrentScrollSpeed() > GameVariables.getMaxScrollSpeed() ? GameVariables.setCurrentScrollSpeed(GameVariables.getMaxScrollSpeed()) : null;

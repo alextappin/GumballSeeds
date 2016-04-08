@@ -10,6 +10,11 @@ function ScoreHelper() {
     scoreHelpers.createNewEnemy = function() {
         return GameVariables.getKills() % GameVariables.getNewEnemyCounter() === 0;
     };
-
+    scoreHelpers.updateScore = function() {
+        GameVariables.incrementLoopCounter();
+        if (GameVariables.getLoopCounter() % GameVariables.getLoopScoreIncrement() === 0) {
+            GameVariables.setCurrentScore(GameVariables.getCurrentScore() + 1);
+        }
+    };
     return scoreHelpers;
 }
