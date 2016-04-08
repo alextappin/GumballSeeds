@@ -16,7 +16,9 @@ var GameVariables = (function GameVariables() {
         switchScreen : false,
         currentScore : 0,
         highScore : 0,
-        lives : 30
+        lives : 30,
+        kills : 0,
+        createNewEnemiesCounter : 5
     };
 
     return {
@@ -73,6 +75,12 @@ var GameVariables = (function GameVariables() {
                 y : y
             }
         },
+        getKills : function getKills() {
+            return constants.kills;
+        },
+        getNewEnemyCounter : function getNewEnemyCounter() {
+            return constants.createNewEnemiesCounter;
+        },
         //setters
         setEnemies : function setEnemies(value) {
             constants.enemies = value;
@@ -97,6 +105,9 @@ var GameVariables = (function GameVariables() {
         },
         setLives : function setLives(lives) {
             constants.lives = lives;
+        },
+        setKills : function setKills(kills) {
+            constants.kills = kills;
         }
     };
 })();
