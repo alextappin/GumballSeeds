@@ -119,6 +119,9 @@ var GameVariables = (function GameVariables() {
         },
         incrementLoopCounter : function incrementLoopCounter() {
             constants.loopCounter++;
+        },
+        resetLoopCounter : function resetLoopCounter() {
+            constants.loopCounter = 0;
         }
     };
 })();
