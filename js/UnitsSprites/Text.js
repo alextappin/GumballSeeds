@@ -25,5 +25,4 @@ Text.prototype.updateText = function() {
     this.TextProperties.words.style = this.TextProperties.getStyleProperties();
     this.TextProperties.words.position.x = this.TextProperties.positionX;
     this.TextProperties.words.position.y = this.TextProperties.positionY;
-
 };
