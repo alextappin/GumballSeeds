@@ -13,18 +13,17 @@ Text.prototype.constructText = function(type) {
     this.initiateTextType();
 };
 Text.prototype.initiateTextType = function() {
-    this.TextProperties.words = new PIXI.Text(this.TextProperties.text);
+    this.TextProperties.words = new PIXI.Text(this.TextProperties.text, this.TextProperties.getStyleProperties);
     this.addChild(this.TextProperties.words);
 };
 Text.prototype.update = function() {
-    this.deleteAndReAddText();
+    this.updateText();
 };
-Text.prototype.deleteAndReAddText = function() {
+Text.prototype.updateText = function() {
     this.TextProperties.setValues();
-    this.removeChild(this.TextProperties.words);
-    this.TextProperties.words = new PIXI.Text(this.TextProperties.text, this.TextProperties.getStyleProperties());
+    this.TextProperties.words.text = this.TextProperties.text;
+    this.TextProperties.words.style = this.TextProperties.getStyleProperties();
     this.TextProperties.words.position.x = this.TextProperties.positionX;
     this.TextProperties.words.position.y = this.TextProperties.positionY;
-    this.addChild(this.TextProperties.words);
 
 };
