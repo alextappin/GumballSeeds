@@ -18,12 +18,14 @@ StartButton.prototype.setPositionAndScale = function(obj) {
     //obj.scale is not being use YET
 };
 StartButton.prototype.initiateStartButtonSprites = function() {
-    var sprite1 = PIXI.Sprite.fromFrame("Start1"),
-        sprite2 = PIXI.Sprite.fromFrame("Start2");
-    //add them to the array
-    this.StartButtonProperties.sprites.push(sprite1,sprite2);
-    this.handleClickEvents(this.StartButtonProperties.sprites[0]);
-    this.addChild(this.StartButtonProperties.sprites[this.StartButtonProperties.spriteCount]);
+    this.StartButtonProperties.textures.push(
+        PIXI.Texture.fromFrame("Start1"),
+        PIXI.Texture.fromFrame("Start2")
+    );
+    this.StartButtonProperties.sprite = new PIXI.Sprite(this.StartButtonProperties.textures[this.StartButtonProperties.spriteCount]);
+    this.handleClickEvents(this.StartButtonProperties.sprite);
+    //add the child once
+    this.addChild(this.StartButtonProperties.sprite);
 };
 StartButton.prototype.update = function(startButtonObj) {
     this.updateSprites();
@@ -38,15 +40,15 @@ StartButton.prototype.updateSprites = function() {
     }
 };
 StartButton.prototype.nextSprite = function() {
-    this.removeChild(this.StartButtonProperties.sprites[this.StartButtonProperties.spriteCount]);
+    //TODO ternary this
     if (this.StartButtonProperties.spriteCount == 1) {
         this.StartButtonProperties.spriteCount = 0;
     }
     else {
         this.StartButtonProperties.spriteCount++;
     }
-    this.handleClickEvents(this.StartButtonProperties.sprites[this.StartButtonProperties.spriteCount]);
-    this.addChild(this.StartButtonProperties.sprites[this.StartButtonProperties.spriteCount]);
+    //just change the texture
+    this.StartButtonProperties.sprite.texture = this.StartButtonProperties.textures[this.StartButtonProperties.spriteCount];
 };
 StartButton.prototype.handleClickEvents = function(spriteToHandle) {
     if (!spriteToHandle.interactive) {
