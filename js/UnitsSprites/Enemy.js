@@ -68,7 +68,7 @@ Enemy.prototype.moveEnemy = function(enemyObj, characterObj) {
     enemyObj.position.y = obj.y;
     if (this.isIntersecting(characterObj, this)) {
         if (characterObj.CharacterProperties.isAttacking) {
-            GameVariables.setCurrentScore(GameVariables.getCurrentScore()+1);
+            GameVariables.setCurrentScore(GameVariables.getCurrentScore()+this.EnemyProperties.pointsForKill);
             if (GameVariables.getCurrentScore()%5 == 0) {
                 GameVariables.setEnemies(GameVariables.getEnemies()+1);
             }

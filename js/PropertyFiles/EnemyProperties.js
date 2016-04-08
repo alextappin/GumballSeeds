@@ -18,7 +18,8 @@ function EnemyProperties() {
         changeSpriteCounter : 0,
         spriteSpeed : 12,
         velocityDecelerate : -.1,
-        velocityAccelerate : .05
+        velocityAccelerate : .05,
+        pointsForKill : 5
     };
 
     return props;
