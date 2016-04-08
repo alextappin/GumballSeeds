@@ -13,8 +13,9 @@ StartButton.prototype.constructStartButton = function() {
     this.StartButtonProperties = new StartButtonProperties();
     this.initiateStartButtonSprites();
 };
-StartButton.prototype.getStartPosition = function(obj) {
-    return new GameVariables.getNewPoint((GameVariables.getWidth() - obj.width)/2, (GameVariables.getHeight() - obj.height)/2);
+StartButton.prototype.setPositionAndScale = function(obj) {
+    obj.position = GameVariables.getNewPoint((GameVariables.getWidth() - obj.width)/2, (GameVariables.getHeight() - obj.height)/2);
+    //obj.scale is not being use YET
 };
 StartButton.prototype.initiateStartButtonSprites = function() {
     var sprite1 = PIXI.Sprite.fromFrame("Start1"),
@@ -24,11 +25,9 @@ StartButton.prototype.initiateStartButtonSprites = function() {
     this.handleClickEvents(this.StartButtonProperties.sprites[0]);
     this.addChild(this.StartButtonProperties.sprites[this.StartButtonProperties.spriteCount]);
 };
-
 StartButton.prototype.update = function(startButtonObj) {
     this.updateSprites();
 };
-
 StartButton.prototype.updateSprites = function() {
     if (this.StartButtonProperties.changeSpriteCounter == this.StartButtonProperties.spriteSpeed) {
         this.StartButtonProperties.changeSpriteCounter = 0;
@@ -38,7 +37,6 @@ StartButton.prototype.updateSprites = function() {
         this.StartButtonProperties.changeSpriteCounter++;
     }
 };
-
 StartButton.prototype.nextSprite = function() {
     this.removeChild(this.StartButtonProperties.sprites[this.StartButtonProperties.spriteCount]);
     if (this.StartButtonProperties.spriteCount == 1) {
@@ -50,12 +48,6 @@ StartButton.prototype.nextSprite = function() {
     this.handleClickEvents(this.StartButtonProperties.sprites[this.StartButtonProperties.spriteCount]);
     this.addChild(this.StartButtonProperties.sprites[this.StartButtonProperties.spriteCount]);
 };
-
-StartButton.prototype.updatePosition = function(obj) {
-    obj.position.x = (GameVariables.getWidth() - obj.width)/2;
-    obj.position.y = (GameVariables.getHeight() - obj.height)/2;
-};
-
 StartButton.prototype.handleClickEvents = function(spriteToHandle) {
     if (!spriteToHandle.interactive) {
         var spriteTimeout;

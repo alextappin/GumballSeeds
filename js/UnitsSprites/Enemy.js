@@ -11,19 +11,21 @@ Enemy.prototype = Object.create(PIXI.Container.prototype);
 
 Enemy.prototype.constructEnemy = function() {
     this.EnemyProperties = new EnemyProperties();
+    this.instantiateProperties();
     this.initiateCharacterSprites();
 };
-
+Enemy.prototype.setPositionAndScale = function(obj) {
+    obj.position = GameVariables.getNewPoint(this.EnemyProperties.startPosX, this.EnemyProperties.startPosY);
+    obj.scale = GameVariables.getNewPoint(this.EnemyProperties.scaleX, this.EnemyProperties.scaleY);
+};
 Enemy.prototype.initiateCharacterSprites = function() {
     var sprite1 = PIXI.Sprite.fromFrame("BadGuy2Tran"),
         sprite2 = PIXI.Sprite.fromFrame("BadGuy1Tran");
     //add them to the array
     this.EnemyProperties.characterSprites.push(sprite1,sprite2);
     this.addChild(this.EnemyProperties.characterSprites[this.EnemyProperties.spriteCount]);
-    this.instantiateProperties();
 };
 Enemy.prototype.instantiateProperties = function() {
-
     //USE RAND CLASS
     var obj = this.getUpdatedPositionVariables(-100, 800);
     this.EnemyProperties.positionY = obj.y;
@@ -34,7 +36,6 @@ Enemy.prototype.instantiateProperties = function() {
 };
 Enemy.prototype.update = function(enemyObj, characterObj) {
     this.updateSprite();
-    this.updatePosition(enemyObj);
     this.moveEnemy(enemyObj, characterObj);
 };
 Enemy.prototype.updateSprite = function() {
@@ -56,12 +57,6 @@ Enemy.prototype.nextSprite = function() {
     }
     this.addChild(this.EnemyProperties.characterSprites[this.EnemyProperties.spriteCount]);
 };
-
-Enemy.prototype.updatePosition = function(enemyObj) {
-    enemyObj.scale.x = this.EnemyProperties.scaleX;
-    enemyObj.scale.y = this.EnemyProperties.scaleY;
-};
-
 Enemy.prototype.moveEnemy = function(enemyObj, characterObj) {
     var obj = this.getUpdatedPositionVariables(enemyObj.position.x, enemyObj.position.y);
     enemyObj.position.x = obj.x;
@@ -86,14 +81,11 @@ Enemy.prototype.moveEnemy = function(enemyObj, characterObj) {
         enemyObj.position.y = newObj.y;
     }
 };
-
-
 Enemy.prototype.updateVelocity = function() {
     this.EnemyProperties.velocityX = GameVariables.getRandomNumber(4,10);
     this.EnemyProperties.velocityY =  GameVariables.getRandomNumber(1,3);
     this.speedOrSlow();
 };
-
 Enemy.prototype.getUpdatedPositionVariables = function(posX, posY) {
     if (posX < GameVariables.getScreenOffsetX() || posY > GameVariables.getHeight() + GameVariables.getScreenOffsetY()) {
         this.updateVelocity();
@@ -110,19 +102,16 @@ Enemy.prototype.getUpdatedPositionVariables = function(posX, posY) {
     }
 
 };
-
 Enemy.prototype.getNewPositions = function() {
     return {
         x : GameVariables.getWidth()+100,
         y :  GameVariables.getRandomNumber(0, 400)
     };
 };
-
 Enemy.prototype.speedOrSlow = function() {
     this.EnemyProperties.changeVelocityX = GameVariables.getRandomNumber(1,2) == 1 ? this.EnemyProperties.velocityDecelerate : this.EnemyProperties.velocityAccelerate;
     this.EnemyProperties.changeVelocityY = GameVariables.getRandomNumber(1,2) == 1 ? this.EnemyProperties.velocityDecelerate : this.EnemyProperties.velocityAccelerate;
 };
-
 Enemy.prototype.isIntersecting = function(rectangle1, rectangle2) {
     return !(rectangle2.position.x > (rectangle1.position.x + rectangle1.width) ||
     (rectangle2.position.x + rectangle2.width) < rectangle1.x ||

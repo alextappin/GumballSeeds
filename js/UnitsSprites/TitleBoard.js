@@ -13,8 +13,9 @@ TitleBoard.prototype.constructTitleBoard = function() {
     this.TitleBoardProperties = new TitleBoardProperties();
     this.initiateTitleBoardSprites();
 };
-TitleBoard.prototype.getStartPosition = function(obj) {
-    return new GameVariables.getNewPoint((GameVariables.getWidth() - obj.width)/2, (GameVariables.getHeight() - obj.height)/2);
+TitleBoard.prototype.setPositionAndScale = function(obj) {
+    obj.position =  GameVariables.getNewPoint((GameVariables.getWidth() - obj.width)/2, (GameVariables.getHeight() - obj.height)/2);
+    //no scale yet...
 };
 TitleBoard.prototype.initiateTitleBoardSprites = function() {
     var sprite1 = PIXI.Sprite.fromFrame("Title1"),
@@ -23,12 +24,9 @@ TitleBoard.prototype.initiateTitleBoardSprites = function() {
     this.TitleBoardProperties.boardSprites.push(sprite1,sprite2);
     this.addChild(this.TitleBoardProperties.boardSprites[this.TitleBoardProperties.spriteCount]);
 };
-
 TitleBoard.prototype.update = function(titleBoardObj) {
     this.updateSprites();
-    //his.updatePosition(titleBoardObj);
 };
-
 TitleBoard.prototype.updateSprites = function() {
     if (this.TitleBoardProperties.changeSpriteCounter == this.TitleBoardProperties.spriteSpeed) {
         this.TitleBoardProperties.changeSpriteCounter = 0;
@@ -38,7 +36,6 @@ TitleBoard.prototype.updateSprites = function() {
         this.TitleBoardProperties.changeSpriteCounter++;
     }
 };
-
 TitleBoard.prototype.nextSprite = function() {
     this.removeChild(this.TitleBoardProperties.boardSprites[this.TitleBoardProperties.spriteCount]);
     if (this.TitleBoardProperties.spriteCount == 1) {
@@ -48,9 +45,4 @@ TitleBoard.prototype.nextSprite = function() {
         this.TitleBoardProperties.spriteCount++;
     }
     this.addChild(this.TitleBoardProperties.boardSprites[this.TitleBoardProperties.spriteCount]);
-};
-
-TitleBoard.prototype.updatePosition = function(obj) {
-    obj.position.y = (GameVariables.getHeight() - obj.height)/2;
-    obj.position.x = (GameVariables.getWidth() - obj.width)/2;
 };

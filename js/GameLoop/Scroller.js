@@ -2,14 +2,18 @@
  * Created by ajt on 11/29/2015.
  */
 function Scroller(stage) {
+    this.ScrollerProps = new ScrollerProperties();
+    this.initializePositionsAndScale();
     this.constructScroller(stage);
     this.getStage = function() {
         return stage;
     };
     createjs.Sound.stop("title");
 }
+Scroller.prototype.initializePositionsAndScale = function() {
+    this.ScrollerProps.character.setPositionAndScale(this.ScrollerProps.character);
+};
 Scroller.prototype.constructScroller = function(stage) {
-    this.ScrollerProps = new ScrollerProperties();
     this.addChildrenToStage(stage);
     this.ScrollerProps.mapBuilder = new MapBuilder(this.ScrollerProps.front);
 };
@@ -52,17 +56,17 @@ Scroller.prototype.updateObjects = function() {
         if (this.ScrollerProps.enemies[n]) {
             this.ScrollerProps.enemies[n].update(this.ScrollerProps.enemies[n], this.ScrollerProps.character);
         }
-        //if there is not enough enemies, add another
+        //if there are not enough enemies, add another
         else {
             this.createEnemies(1, this.getStage());
         }
     }
 };
 Scroller.prototype.createEnemies = function(number, stage) {
-    for (var n = 0; n < number; n++) {
-        this.enemy = new Enemy();
-        this.enemy.position.x = -500;
-        this.ScrollerProps.enemies.push(this.enemy);
-        stage.addChild(this.enemy);
+    for (var n = 0, enemy; n < number; n++) {
+        enemy = new Enemy();
+        enemy.setPositionAndScale(enemy);
+        this.ScrollerProps.enemies.push(enemy);
+        stage.addChild(enemy);
     }
 };
