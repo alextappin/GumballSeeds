@@ -10,10 +10,13 @@ function ScoreHelper() {
     scoreHelpers.createNewEnemy = function() {
         return GameVariables.getKills() % GameVariables.getNewEnemyCounter() === 0;
     };
+    scoreHelpers.pickupGumball = function() {
+        GameVariables.setCurrentScore(GameVariables.getCurrentScore() + 1);
+    };
     scoreHelpers.updateScore = function() {
         GameVariables.incrementLoopCounter();
         if (GameVariables.getLoopCounter() % GameVariables.getLoopScoreIncrement() === 0) {
-            GameVariables.setCurrentScore(GameVariables.getCurrentScore() + 1);
+            scoreHelpers.runningScore();
         }
     };
     return scoreHelpers;

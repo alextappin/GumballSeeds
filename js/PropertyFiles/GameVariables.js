@@ -20,7 +20,7 @@ var GameVariables = (function GameVariables() {
         lives : 30,
         kills : 0,
         createNewEnemiesCounter : 5,
-        loopScoreIncrement : 60
+        loopScoreIncrementTime : 60
     };
 
     return {
@@ -87,7 +87,7 @@ var GameVariables = (function GameVariables() {
             return constants.loopCounter;
         },
         getLoopScoreIncrement : function getLoopScoreIncrement() {
-            return constants.loopScoreIncrement;
+            return constants.loopScoreIncrementTime;
         },
         //setters
         setEnemies : function setEnemies(value) {
