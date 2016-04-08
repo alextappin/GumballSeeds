@@ -6,8 +6,8 @@ function TextProperties(textType) {
         words : {},
         type : textType,
         setValues : function() {
-            if (this.type == "kills") {
-                this.text = "Kills  " + GameVariables.getCurrentScore();
+            if (this.type == "score") {
+                this.text = "Score  " + GameVariables.getCurrentScore();
                 this.positionX = 10;
                 this.positionY = 10;
                 this.fill = "Green";

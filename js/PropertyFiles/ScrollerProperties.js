@@ -12,7 +12,7 @@ function ScrollerProperties() {
         touchAttack : new TouchAttack(),
         enemies : [],
         mapBuilder : {},
-        textScore : new Text("kills"),
+        textScore : new Text("score"),
         textLives : new Text("lives"),
         viewportX : 0
     };
