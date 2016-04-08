@@ -27,6 +27,9 @@ StartButton.prototype.initiateStartButtonSprites = function() {
     //add the child once
     this.addChild(this.StartButtonProperties.sprite);
 };
+StartButton.prototype.setSpriteToCurrentTexture = function() {
+    this.StartButtonProperties.sprite.texture = this.StartButtonProperties.textures[this.StartButtonProperties.spriteCount];
+};
 StartButton.prototype.update = function(startButtonObj) {
     this.updateSprites();
 };
@@ -48,7 +51,7 @@ StartButton.prototype.nextSprite = function() {
         this.StartButtonProperties.spriteCount++;
     }
     //just change the texture
-    this.StartButtonProperties.sprite.texture = this.StartButtonProperties.textures[this.StartButtonProperties.spriteCount];
+    this.setSpriteToCurrentTexture();
 };
 StartButton.prototype.handleClickEvents = function(spriteToHandle) {
     if (!spriteToHandle.interactive) {
