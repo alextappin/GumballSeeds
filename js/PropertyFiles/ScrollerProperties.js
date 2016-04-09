@@ -8,6 +8,7 @@ function ScrollerProperties() {
         mid2 : new Mid2(),
         front : new Walls(),
         character : new Character(),
+        powerBar : new PowerBar(),
         touchJump : new TouchJump(),
         touchAttack : new TouchAttack(),
         enemies : [],
