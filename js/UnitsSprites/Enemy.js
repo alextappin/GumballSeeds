@@ -19,11 +19,16 @@ Enemy.prototype.setPositionAndScale = function(obj) {
     obj.scale = GameVariables.getNewPoint(this.EnemyProperties.scaleX, this.EnemyProperties.scaleY);
 };
 Enemy.prototype.initiateCharacterSprites = function() {
-    var sprite1 = PIXI.Sprite.fromFrame("BadGuy2Tran"),
-        sprite2 = PIXI.Sprite.fromFrame("BadGuy1Tran");
+    this.EnemyProperties.textures.push(
+        PIXI.Texture.fromFrame("BadGuy1Tran"),
+        PIXI.Texture.fromFrame("BadGuy2Tran")
+    );
     //add them to the array
-    this.EnemyProperties.characterSprites.push(sprite1,sprite2);
-    this.addChild(this.EnemyProperties.characterSprites[this.EnemyProperties.spriteCount]);
+    this.EnemyProperties.sprite = new PIXI.Sprite(this.EnemyProperties.textures[this.EnemyProperties.spriteCount]);
+    this.addChild(this.EnemyProperties.sprite);
+};
+Enemy.prototype.setSpriteToCurrentTexture = function() {
+    this.EnemyProperties.sprite.texture = this.EnemyProperties.textures[this.EnemyProperties.spriteCount];
 };
 Enemy.prototype.instantiateProperties = function() {
     //USE RAND CLASS
@@ -48,14 +53,13 @@ Enemy.prototype.updateSprite = function() {
     }
 };
 Enemy.prototype.nextSprite = function() {
-    this.removeChild(this.EnemyProperties.characterSprites[this.EnemyProperties.spriteCount]);
     if (this.EnemyProperties.spriteCount == 1) {
         this.EnemyProperties.spriteCount = 0;
     }
     else {
         this.EnemyProperties.spriteCount++;
     }
-    this.addChild(this.EnemyProperties.characterSprites[this.EnemyProperties.spriteCount]);
+    this.setSpriteToCurrentTexture();
 };
 Enemy.prototype.moveEnemy = function(enemyObj, characterObj) {
     var obj = this.getUpdatedPositionVariables(enemyObj.position.x, enemyObj.position.y);
