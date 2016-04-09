@@ -52,6 +52,7 @@ Character.prototype.updateSprites = function() {
     }
 };
 Character.prototype.nextSprite = function() {
+    //Set ternary
     if (this.CharacterProperties.spriteCount == 5) {
         this.CharacterProperties.spriteCount = 0;
     }
