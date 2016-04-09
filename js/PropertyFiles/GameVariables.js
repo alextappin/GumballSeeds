@@ -20,7 +20,8 @@ var GameVariables = (function GameVariables() {
         lives : 30,
         kills : 0,
         createNewEnemiesCounter : 5,
-        loopScoreIncrementTime : 60
+        loopScoreIncrementTime : 60,
+        powerBarScore : 2
     };
 
     return {
@@ -89,6 +90,9 @@ var GameVariables = (function GameVariables() {
         getLoopScoreIncrement : function getLoopScoreIncrement() {
             return constants.loopScoreIncrementTime;
         },
+        getPowerBarScore : function getPowerBarScore() {
+            return constants.powerBarScore;
+        },
         //setters
         setEnemies : function setEnemies(value) {
             constants.enemies = value;
@@ -122,6 +126,9 @@ var GameVariables = (function GameVariables() {
         },
         resetLoopCounter : function resetLoopCounter() {
             constants.loopCounter = 0;
+        },
+        setPowerBarScore : function setPowerBarScore(score) {
+            constants.powerBarScore = score;
         }
     };
 })();
