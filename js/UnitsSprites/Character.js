@@ -22,27 +22,19 @@ Character.prototype.setPositionAndScale = function(obj) {
     obj.scale = new GameVariables.getNewPoint(this.CharacterProperties.scaleX, this.CharacterProperties.scaleY);
 };
 Character.prototype.initiateCharacterSprites = function() {
-    var sprite1 = PIXI.Sprite.fromFrame("sprite1"),
-        sprite2 = PIXI.Sprite.fromFrame("sprite2"),
-        sprite3 = PIXI.Sprite.fromFrame("sprite3"),
-        sprite4 = PIXI.Sprite.fromFrame("sprite4"),
-        sprite5 = PIXI.Sprite.fromFrame("sprite5"),
-        sprite6 = PIXI.Sprite.fromFrame("sprite6");
-    //add them to the array
-    this.CharacterProperties.characterSprites.push(sprite1,sprite2,sprite3, sprite4, sprite5, sprite6);
-    //add all the children to the stage at the start. Then just set the correct ones to visible or not.
-    for (var i = 0; i < this.CharacterProperties.characterSprites.length; i++) {
-        this.CharacterProperties.characterSprites[i].visible = false;
-        this.addChild(this.CharacterProperties.characterSprites[i]);
-    }
-    //set the first one to be visible
-    this.setSpriteVisibility(true);
+    this.CharacterProperties.textures.push(
+        PIXI.Texture.fromFrame("sprite1"),
+        PIXI.Texture.fromFrame("sprite2"),
+        PIXI.Texture.fromFrame("sprite3"),
+        PIXI.Texture.fromFrame("sprite4"),
+        PIXI.Texture.fromFrame("sprite5"),
+        PIXI.Texture.fromFrame("sprite6")
+    );
+    this.CharacterProperties.sprite = new PIXI.Sprite(this.CharacterProperties.textures[this.CharacterProperties.spriteCount]);
+    this.addChild(this.CharacterProperties.sprite);
 };
-Character.prototype.getChildFromStage = function() {
-    return this.getChildAt(this.getChildIndex(this.CharacterProperties.characterSprites[this.CharacterProperties.spriteCount]));
-};
-Character.prototype.setSpriteVisibility = function(visibilityBool) {
-    this.getChildFromStage().visible = visibilityBool;
+Character.prototype.setSpriteToCurrentTexture = function() {
+    this.CharacterProperties.sprite.texture = this.CharacterProperties.textures[this.CharacterProperties.spriteCount];
 };
 Character.prototype.update = function(characterObj, frontObj) {
     this.updateSprites();
@@ -60,15 +52,13 @@ Character.prototype.updateSprites = function() {
     }
 };
 Character.prototype.nextSprite = function() {
-    //set the first one to not be visible and then set the next one to be visible.
-    this.setSpriteVisibility(false);
     if (this.CharacterProperties.spriteCount == 5) {
         this.CharacterProperties.spriteCount = 0;
     }
     else {
         this.CharacterProperties.spriteCount++;
     }
-    this.setSpriteVisibility(true);
+    this.setSpriteToCurrentTexture();
 };
 Character.prototype.jumpCharacter = function(characterObj, frontObj){
     if (this.charIsJumping()) {

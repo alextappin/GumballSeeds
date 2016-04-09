@@ -3,7 +3,8 @@
  */
 function CharacterProperties() {
     var props = {
-        characterSprites : [],
+        sprites : {},
+        textures : [],
         spriteCount : 0,
         jumping : true,
         startPosY : -100,
