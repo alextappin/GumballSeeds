@@ -23,8 +23,6 @@ TitleBoard.prototype.initiateTitleBoardSprites = function() {
         PIXI.Texture.fromFrame("Title2")
     );
     this.Properties.sprite = new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]);
-    //add them to the array
-    //this.Properties.boardSprites.push(sprite1,sprite2);
     this.addChild(this.Properties.sprite);
 };
 TitleBoard.prototype.setSpriteToCurrentTexture = function() {
