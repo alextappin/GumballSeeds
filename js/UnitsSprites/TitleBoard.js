@@ -18,11 +18,17 @@ TitleBoard.prototype.setPositionAndScale = function(obj) {
     //no scale yet...
 };
 TitleBoard.prototype.initiateTitleBoardSprites = function() {
-    var sprite1 = PIXI.Sprite.fromFrame("Title1"),
-        sprite2 = PIXI.Sprite.fromFrame("Title2");
+    this.TitleBoardProperties.textures.push(
+        PIXI.Texture.fromFrame("Title1"),
+        PIXI.Texture.fromFrame("Title2")
+    );
+    this.TitleBoardProperties.sprite = new PIXI.Sprite(this.TitleBoardProperties.textures[this.TitleBoardProperties.spriteCount]);
     //add them to the array
-    this.TitleBoardProperties.boardSprites.push(sprite1,sprite2);
-    this.addChild(this.TitleBoardProperties.boardSprites[this.TitleBoardProperties.spriteCount]);
+    //this.TitleBoardProperties.boardSprites.push(sprite1,sprite2);
+    this.addChild(this.TitleBoardProperties.sprite);
+};
+TitleBoard.prototype.setSpriteToCurrentTexture = function() {
+    this.TitleBoardProperties.sprite.texture = this.TitleBoardProperties.textures[this.TitleBoardProperties.spriteCount];
 };
 TitleBoard.prototype.update = function(titleBoardObj) {
     this.updateSprites();
@@ -37,12 +43,11 @@ TitleBoard.prototype.updateSprites = function() {
     }
 };
 TitleBoard.prototype.nextSprite = function() {
-    this.removeChild(this.TitleBoardProperties.boardSprites[this.TitleBoardProperties.spriteCount]);
     if (this.TitleBoardProperties.spriteCount == 1) {
         this.TitleBoardProperties.spriteCount = 0;
     }
     else {
         this.TitleBoardProperties.spriteCount++;
     }
-    this.addChild(this.TitleBoardProperties.boardSprites[this.TitleBoardProperties.spriteCount]);
+    this.setSpriteToCurrentTexture();
 };
