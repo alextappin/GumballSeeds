@@ -14,24 +14,33 @@ PowerBar.prototype.constructPowerBar = function() {
     this.initiatePowerBarSprites();
 };
 PowerBar.prototype.setPositionAndScale = function(obj) {
-    obj.position =  GameVariables.getNewPoint((GameVariables.getWidth() - obj.width)/2, obj.height + obj.height * .2);
-    //no scale yet...
+    obj.scale = GameVariables.getNewPoint(.4,.4);
+    obj.position =  GameVariables.getNewPoint((GameVariables.getWidth() - obj.width)/2, 0);
 };
 PowerBar.prototype.initiatePowerBarSprites = function() {
     this.Properties.textures.push(
-        PIXI.Texture.fromFrame("Title1"),
-        PIXI.Texture.fromFrame("Title2"),
-        PIXI.Texture.fromFrame("Title3"),
-        PIXI.Texture.fromFrame("Title4"),
-        PIXI.Texture.fromFrame("Title5"),
-        PIXI.Texture.fromFrame("Title6"),
-        PIXI.Texture.fromFrame("Title7")
+        PIXI.Texture.fromFrame("life1"),
+        PIXI.Texture.fromFrame("life2"),
+        PIXI.Texture.fromFrame("life3"),
+        PIXI.Texture.fromFrame("life4"),
+        PIXI.Texture.fromFrame("life5"),
+        PIXI.Texture.fromFrame("life6"),
+        PIXI.Texture.fromFrame("life7")
     );
     this.Properties.sprite = new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]);
     this.addChild(this.Properties.sprite);
 };
 PowerBar.prototype.setSpriteToCurrentTexture = function() {
     this.Properties.sprite.texture = this.Properties.textures[this.Properties.spriteCount];
+};
+PowerBar.prototype.update = function(obj) {
+    this.checkForUpdate();
+};
+PowerBar.prototype.checkForUpdate = function() {
+    if (GameVariables.getPowerBarScore() != this.Properties.spriteCount) {
+        this.Properties.spriteCount = GameVariables.getPowerBarScore();
+        this.setSpriteToCurrentTexture();
+    }
 };
 PowerBar.prototype.addBar = function() {
     if (this.Properties.spriteCount !== this.Properties.textures.length) {
