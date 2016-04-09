@@ -11,29 +11,29 @@ TouchJump.constructor = TouchJump;
 TouchJump.prototype = Object.create(PIXI.Container.prototype);
 
 TouchJump.prototype.constructTouchJump = function() {
-    this.TouchJumpOverlayProperties = new TouchJumpOverlayProperties();
+    this.Properties = new TouchJumpOverlayProperties();
     this.initiateTouchJumpSprites();
 };
 
 TouchJump.prototype.initiateTouchJumpSprites = function() {
     var sprite1 = PIXI.Sprite.fromFrame("trans");
     //add them to the array
-    this.TouchJumpOverlayProperties.sprites.push(sprite1);
-    this.addChild(this.TouchJumpOverlayProperties.sprites[this.TouchJumpOverlayProperties.spriteCount]);
+    this.Properties.sprites.push(sprite1);
+    this.addChild(this.Properties.sprites[this.Properties.spriteCount]);
 };
 
 TouchJump.prototype.update = function(jumpButtonObj, characterObj) {
-    this.handleClickEvents(this.TouchJumpOverlayProperties.sprites[0], characterObj);
+    this.handleClickEvents(this.Properties.sprites[0], characterObj);
     this.updatePosition(jumpButtonObj);
 };
 
 TouchJump.prototype.updateSprites = function(characterObj) {
-    if (this.TouchJumpOverlayProperties.changeSpriteCounter == this.TouchJumpOverlayProperties.spriteSpeed) {
-        this.TouchJumpOverlayProperties.changeSpriteCounter = 0;
+    if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
+        this.Properties.changeSpriteCounter = 0;
         this.nextSprite(characterObj);
     }
     else {
-        this.TouchJumpOverlayProperties.changeSpriteCounter++;
+        this.Properties.changeSpriteCounter++;
     }
 };
 
