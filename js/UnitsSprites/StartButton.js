@@ -10,7 +10,7 @@ StartButton.constructor = StartButton;
 StartButton.prototype = Object.create(PIXI.Container.prototype);
 
 StartButton.prototype.constructStartButton = function() {
-    this.StartButtonProperties = new StartButtonProperties();
+    this.Properties = new StartButtonProperties();
     this.initiateStartButtonSprites();
 };
 StartButton.prototype.setPositionAndScale = function(obj) {
@@ -18,37 +18,37 @@ StartButton.prototype.setPositionAndScale = function(obj) {
     //obj.scale is not being use YET
 };
 StartButton.prototype.initiateStartButtonSprites = function() {
-    this.StartButtonProperties.textures.push(
+    this.Properties.textures.push(
         PIXI.Texture.fromFrame("Start1"),
         PIXI.Texture.fromFrame("Start2")
     );
-    this.StartButtonProperties.sprite = new PIXI.Sprite(this.StartButtonProperties.textures[this.StartButtonProperties.spriteCount]);
-    this.handleClickEvents(this.StartButtonProperties.sprite);
+    this.Properties.sprite = new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]);
+    this.handleClickEvents(this.Properties.sprite);
     //add the child once
-    this.addChild(this.StartButtonProperties.sprite);
+    this.addChild(this.Properties.sprite);
 };
 StartButton.prototype.setSpriteToCurrentTexture = function() {
-    this.StartButtonProperties.sprite.texture = this.StartButtonProperties.textures[this.StartButtonProperties.spriteCount];
+    this.Properties.sprite.texture = this.Properties.textures[this.Properties.spriteCount];
 };
 StartButton.prototype.update = function(startButtonObj) {
     this.updateSprites();
 };
 StartButton.prototype.updateSprites = function() {
-    if (this.StartButtonProperties.changeSpriteCounter == this.StartButtonProperties.spriteSpeed) {
-        this.StartButtonProperties.changeSpriteCounter = 0;
+    if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
+        this.Properties.changeSpriteCounter = 0;
         this.nextSprite();
     }
     else {
-        this.StartButtonProperties.changeSpriteCounter++;
+        this.Properties.changeSpriteCounter++;
     }
 };
 StartButton.prototype.nextSprite = function() {
     //TODO ternary this
-    if (this.StartButtonProperties.spriteCount == 1) {
-        this.StartButtonProperties.spriteCount = 0;
+    if (this.Properties.spriteCount == 1) {
+        this.Properties.spriteCount = 0;
     }
     else {
-        this.StartButtonProperties.spriteCount++;
+        this.Properties.spriteCount++;
     }
     //just change the texture
     this.setSpriteToCurrentTexture();
