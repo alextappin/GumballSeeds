@@ -3,7 +3,8 @@
  */
 function EnemyProperties() {
     var props = {
-        characterSprites : [],
+        sprite : {},
+        textures : [],
         spriteCount : 0,
         continueGame : true,
         startPosX : -500,
