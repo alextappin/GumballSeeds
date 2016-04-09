@@ -10,7 +10,7 @@ Character.constructor = Character;
 Character.prototype = Object.create(PIXI.Container.prototype);
 
 Character.prototype.constructCharacter = function() {
-    this.CharacterProperties = new CharacterProperties();
+    this.Properties = new CharacterProperties();
     this.initiateCharacterSprites();
     this.listenForJumpTrigger();
     this.listenForAttackTrigger();
@@ -18,11 +18,11 @@ Character.prototype.constructCharacter = function() {
     this.listenForMoveRightTrigger();
 };
 Character.prototype.setPositionAndScale = function(obj) {
-    obj.position =  new GameVariables.getNewPoint(this.CharacterProperties.startPosX, this.CharacterProperties.startPosY);
-    obj.scale = new GameVariables.getNewPoint(this.CharacterProperties.scaleX, this.CharacterProperties.scaleY);
+    obj.position =  new GameVariables.getNewPoint(this.Properties.startPosX, this.Properties.startPosY);
+    obj.scale = new GameVariables.getNewPoint(this.Properties.scaleX, this.Properties.scaleY);
 };
 Character.prototype.initiateCharacterSprites = function() {
-    this.CharacterProperties.textures.push(
+    this.Properties.textures.push(
         PIXI.Texture.fromFrame("sprite1"),
         PIXI.Texture.fromFrame("sprite2"),
         PIXI.Texture.fromFrame("sprite3"),
@@ -30,11 +30,11 @@ Character.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("sprite5"),
         PIXI.Texture.fromFrame("sprite6")
     );
-    this.CharacterProperties.sprite = new PIXI.Sprite(this.CharacterProperties.textures[this.CharacterProperties.spriteCount]);
-    this.addChild(this.CharacterProperties.sprite);
+    this.Properties.sprite = new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]);
+    this.addChild(this.Properties.sprite);
 };
 Character.prototype.setSpriteToCurrentTexture = function() {
-    this.CharacterProperties.sprite.texture = this.CharacterProperties.textures[this.CharacterProperties.spriteCount];
+    this.Properties.sprite.texture = this.Properties.textures[this.Properties.spriteCount];
 };
 Character.prototype.update = function(characterObj, frontObj) {
     this.updateSprites();
@@ -43,21 +43,21 @@ Character.prototype.update = function(characterObj, frontObj) {
     this.applyFallingGravityToCharacter(characterObj, frontObj);
 };
 Character.prototype.updateSprites = function() {
-    if (this.CharacterProperties.changeSpriteCounter == this.CharacterProperties.spriteSpeed) {
-        this.CharacterProperties.changeSpriteCounter = 0;
+    if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
+        this.Properties.changeSpriteCounter = 0;
         this.nextSprite();
     }
     else {
-        this.CharacterProperties.changeSpriteCounter++;
+        this.Properties.changeSpriteCounter++;
     }
 };
 Character.prototype.nextSprite = function() {
     //Set ternary
-    if (this.CharacterProperties.spriteCount == 5) {
-        this.CharacterProperties.spriteCount = 0;
+    if (this.Properties.spriteCount == 5) {
+        this.Properties.spriteCount = 0;
     }
     else {
-        this.CharacterProperties.spriteCount++;
+        this.Properties.spriteCount++;
     }
     this.setSpriteToCurrentTexture();
 };
@@ -71,9 +71,9 @@ Character.prototype.jumpCharacter = function(characterObj, frontObj){
     }
 };
 Character.prototype.attackCharacter = function() {
-    if (this.CharacterProperties.isAttacking) {
-        this.CharacterProperties.attackingTime -= 1;
-        if (this.CharacterProperties.attackingTime == 0) {
+    if (this.Properties.isAttacking) {
+        this.Properties.attackingTime -= 1;
+        if (this.Properties.attackingTime == 0) {
             this.stopAttacking();
         }
     }
@@ -83,8 +83,8 @@ Character.prototype.applyFallingGravityToCharacter = function(characterObj, fron
 };
 Character.prototype.startJumpAnimation = function() {
     if (!this.charIsJumping()) {
-        this.CharacterProperties.jumping = true;
-        this.CharacterProperties.velocityY = -15.0;
+        this.Properties.jumping = true;
+        this.Properties.velocityY = -15.0;
     }
 };
 Character.prototype.moveHeightJumping = function(posY, currentSlicePosY, nextSlicePosY) {
@@ -92,109 +92,109 @@ Character.prototype.moveHeightJumping = function(posY, currentSlicePosY, nextSli
 };
 Character.prototype.listenForJumpTrigger = function() {
     var that = this;
-    this.CharacterProperties.spaceBar.press = function () {
-        if (!that.CharacterProperties.jumping) {
+    this.Properties.spaceBar.press = function () {
+        if (!that.Properties.jumping) {
             that.startJumpAnimation();
         }
     }
 };
 Character.prototype.simulateGravity = function(posY, currentSlicePosY, nextSlicePosY) {
-    this.CharacterProperties.velocityY += this.CharacterProperties.gravity;
-    posY += this.CharacterProperties.velocityY;
+    this.Properties.velocityY += this.Properties.gravity;
+    posY += this.Properties.velocityY;
 
     //TODO put these numbers in a config file. This number signifies the lowest wall
     //if the character isnt moving up and the next slice is taller than the character...
     //if the character is lower than the next slice, the character is travelling down and they are over a gap (99976) then the game is over
-    if (posY > nextSlicePosY && this.CharacterProperties.velocityY > 0 && currentSlicePosY == 99976) {
-        this.CharacterProperties.continueGame = false;
+    if (posY > nextSlicePosY && this.Properties.velocityY > 0 && currentSlicePosY == 99976) {
+        this.Properties.continueGame = false;
         GameVariables.toggleScreenChange();
         GameVariables.setScreenTitle();
     }
     //TODO psyY > currentSlicePos & velocity is positive(negative...)
-    if (posY >= currentSlicePosY && this.CharacterProperties.continueGame) {
-        this.CharacterProperties.velocityY = 0.0;
-        this.CharacterProperties.jumping = false;
+    if (posY >= currentSlicePosY && this.Properties.continueGame) {
+        this.Properties.velocityY = 0.0;
+        this.Properties.jumping = false;
         posY = currentSlicePosY;
     }
     return posY;
 };
 Character.prototype.endJumping = function() {
-    this.CharacterProperties.jumping = false;
+    this.Properties.jumping = false;
 };
 Character.prototype.charIsJumping = function() {
-    return (this.CharacterProperties.jumping);
+    return (this.Properties.jumping);
 };
 Character.prototype.calculateMapToCharacterHeightOffset = function(wallPos) {
     return wallPos - 24;
 };
 Character.prototype.checkIfFalling = function(currentSliceHeight, nextSliceHeight) {
-    if (!this.CharacterProperties.jumping && this.calculateMapToCharacterHeightOffset(currentSliceHeight) > this.position.y) {
-        this.CharacterProperties.jumping = true;
+    if (!this.Properties.jumping && this.calculateMapToCharacterHeightOffset(currentSliceHeight) > this.position.y) {
+        this.Properties.jumping = true;
         this.simulateGravity(this.position.y, this.calculateMapToCharacterHeightOffset(currentSliceHeight), this.calculateMapToCharacterHeightOffset(nextSliceHeight));
     }
 };
 Character.prototype.listenForAttackTrigger = function() {
     var that = this;
-    this.CharacterProperties.ctrlButton.press = function () {
-        if (!that.CharacterProperties.isAttacking) {
+    this.Properties.ctrlButton.press = function () {
+        if (!that.Properties.isAttacking) {
             that.startAttackAnimation();
         }
     }
 };
 Character.prototype.startAttackAnimation = function() {
-    this.CharacterProperties.isAttacking = true;
+    this.Properties.isAttacking = true;
     this.removeChild(this.text);
     this.text = new PIXI.Text("Attacking", {font:"40px Arial", fill:"#228869"});
     this.text.position.x = 20;
     this.addChild(this.text);
 
-    this.CharacterProperties.attackingTime = 20;
+    this.Properties.attackingTime = 20;
 };
 Character.prototype.stopAttacking = function() {
-    this.CharacterProperties.isAttacking = false;
+    this.Properties.isAttacking = false;
     this.removeChild(this.text);
 
-    this.CharacterProperties.attackingTime = 0;
+    this.Properties.attackingTime = 0;
 };
 Character.prototype.listenForMoveRightTrigger = function() {
     var that = this;
-    this.CharacterProperties.rightArrow.press = function () {
-        if (!that.CharacterProperties.isMovingRight) {
+    this.Properties.rightArrow.press = function () {
+        if (!that.Properties.isMovingRight) {
             that.startMoveRightAnimation();
         }
     };
 
-    this.CharacterProperties.rightArrow.release = function () {
-        if (that.CharacterProperties.isMovingRight) {
+    this.Properties.rightArrow.release = function () {
+        if (that.Properties.isMovingRight) {
             that.stopMoveRightAnimation();
         }
     }
 };
 Character.prototype.listenForMoveLeftTrigger = function() {
     var that = this;
-    this.CharacterProperties.leftArrow.press = function () {
-        if (!that.CharacterProperties.isMovingLeft) {
+    this.Properties.leftArrow.press = function () {
+        if (!that.Properties.isMovingLeft) {
             that.startMoveLeftAnimation();
         }
     };
 
-    this.CharacterProperties.leftArrow.release = function () {
-        if (that.CharacterProperties.isMovingLeft) {
+    this.Properties.leftArrow.release = function () {
+        if (that.Properties.isMovingLeft) {
             that.stopMoveLeftAnimation();
         }
     };
 };
 //set the moving to false so you cant move now
 Character.prototype.startMoveRightAnimation = function() {
-    this.CharacterProperties.isMovingRight = false;
+    this.Properties.isMovingRight = false;
 };
 //set the moving to false so you cant move now
 Character.prototype.startMoveLeftAnimation = function() {
-    this.CharacterProperties.isMovingLeft = false;
+    this.Properties.isMovingLeft = false;
 };
 Character.prototype.stopMoveRightAnimation = function() {
-    this.CharacterProperties.isMovingRight = false;
+    this.Properties.isMovingRight = false;
 };
 Character.prototype.stopMoveLeftAnimation = function() {
-    this.CharacterProperties.isMovingLeft = false;
+    this.Properties.isMovingLeft = false;
 };
