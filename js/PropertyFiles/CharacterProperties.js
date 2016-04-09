@@ -6,7 +6,7 @@ function CharacterProperties() {
         characterSprites : [],
         spriteCount : 0,
         jumping : true,
-        startPosY : 40,
+        startPosY : -100,
         startPosX : 65,
         scaleX: .5,
         scaleY: .5,
