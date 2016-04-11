@@ -12,6 +12,7 @@ function Scroller(stage) {
 }
 Scroller.prototype.initializePositionsAndScale = function() {
     this.Properties.character.setPositionAndScale(this.Properties.character);
+    this.Properties.ground.setPositionAndScale(this.Properties.ground);
     this.Properties.powerBar.setPositionAndScale(this.Properties.powerBar);
 };
 Scroller.prototype.constructScroller = function(stage) {

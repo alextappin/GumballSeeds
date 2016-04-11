@@ -14,8 +14,9 @@ Ground.prototype.constructGround = function() {
     this.initiateGroundSprites();
 };
 Ground.prototype.setPositionAndScale = function(obj) {
-    obj.position.y =  300;
-    //no scale yet...
+    for (var i = 0; i < this.Properties.numberOfSprites; i++) {
+        obj.children[i].position =  GameVariables.getNewPoint(obj.children[i].width * i, 400);
+    }
 };
 Ground.prototype.initiateGroundSprites = function() {
     this.Properties.textures.push(
