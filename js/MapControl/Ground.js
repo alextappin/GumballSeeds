@@ -38,7 +38,7 @@ Ground.prototype.update = function(obj) {
 };
 Ground.prototype.updateSprites = function(obj) {
     for (var i = 0; i < this.Properties.numberOfSprites; i++) {
-        if (obj.children[i].position.x < this.Properties.spriteWidth) {
+        if (obj.children[i].position.x < (0-obj.children[i].width)) {
             obj.children[i].position.x = this.calcuateNewPosition(obj, i);
         }
         else {
