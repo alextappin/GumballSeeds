@@ -10,7 +10,8 @@ function GroundProperties() {
         spriteCount : 0,
         changeSpriteCounter : 0,
         speed : 10,
-        spriteWidth : -800
+        spriteWidth : -800,
+        positionY : 550
     };
 
     return props;
