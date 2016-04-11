@@ -16,6 +16,7 @@ Ground.prototype.constructGround = function() {
 Ground.prototype.setPositionAndScale = function(obj) {
     for (var i = 0; i < this.Properties.numberOfSprites; i++) {
         obj.children[i].position =  GameVariables.getNewPoint(obj.children[i].width * i, 400);
+        obj.children[i].scale = GameVariables.getNewPoint(1,1);
     }
 };
 Ground.prototype.initiateGroundSprites = function() {
@@ -37,11 +38,17 @@ Ground.prototype.update = function(obj) {
 };
 Ground.prototype.updateSprites = function(obj) {
     for (var i = 0; i < this.Properties.numberOfSprites; i++) {
-        this.Properties.sprites[i].position.x -= 10;
-        if (this.Properties.sprites[i].position.x + this.Properties.spriteWidth < 0) {
-            this.Properties.sprites[i].position.x = this.Properties.spriteWidth * this.Properties.spriteCount;
+        if (obj.children[i].position.x < this.Properties.spriteWidth) {
+            obj.children[i].position.x = this.calcuateNewPosition(obj, i);
+        }
+        else {
+            obj.children[i].position.x -= this.Properties.speed;
         }
     }
+};
+Ground.prototype.calcuateNewPosition = function(obj, currentElement) {
+    var lastElementChanged = currentElement - 1 < 0 ? obj.children.length-1 : currentElement - 1;
+    return (obj.children[lastElementChanged].position.x + obj.children[lastElementChanged].width - this.Properties.speed);
 };/*
 Ground.prototype.nextSprite = function() {
     if (this.Properties.spriteCount == 1) {
