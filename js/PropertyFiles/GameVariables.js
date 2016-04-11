@@ -93,6 +93,9 @@ var GameVariables = (function GameVariables() {
         getPowerBarScore : function getPowerBarScore() {
             return constants.powerBarScore;
         },
+        getCharacterPositionX : function getCharacterPositionX() {
+            return constants.screenWidth * .2
+        },
         //setters
         setEnemies : function setEnemies(value) {
             constants.enemies = value;

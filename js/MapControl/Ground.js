@@ -49,7 +49,11 @@ Ground.prototype.updateSprites = function(obj) {
 Ground.prototype.calcuateNewPosition = function(obj, currentElement) {
     var lastElementChanged = currentElement - 1 < 0 ? obj.children.length-1 : currentElement - 1;
     return (obj.children[lastElementChanged].position.x + obj.children[lastElementChanged].width - this.Properties.speed);
-};/*
+};
+Ground.prototype.returnGroundHeight = function() {
+
+};
+/*
 Ground.prototype.nextSprite = function() {
     if (this.Properties.spriteCount == 1) {
         this.Properties.spriteCount = 0;
