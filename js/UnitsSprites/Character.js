@@ -36,11 +36,11 @@ Character.prototype.initiateCharacterSprites = function() {
 Character.prototype.setSpriteToCurrentTexture = function() {
     this.Properties.sprite.texture = this.Properties.textures[this.Properties.spriteCount];
 };
-Character.prototype.update = function(characterObj, frontObj) {
+Character.prototype.update = function(characterObj, groundObj) {
     this.updateSprites();
-    this.jumpCharacter(characterObj, frontObj);
+    this.jumpCharacter(characterObj, groundObj);
     this.attackCharacter();
-    this.applyFallingGravityToCharacter(characterObj, frontObj);
+    this.applyFallingGravityToCharacter(characterObj, groundObj);
 };
 Character.prototype.updateSprites = function() {
     if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
@@ -61,10 +61,10 @@ Character.prototype.nextSprite = function() {
     }
     this.setSpriteToCurrentTexture();
 };
-Character.prototype.jumpCharacter = function(characterObj, frontObj){
+Character.prototype.jumpCharacter = function(characterObj, groundObj){
     if (this.charIsJumping()) {
         characterObj.position.y = this.moveHeightJumping(characterObj.position.y,
-            frontObj.getCurrentSliceHeight(characterObj.position.x), frontObj.getNextSliceHeight(characterObj.position.x));
+            groundObj.Properties.positionY, groundObj.Properties.positionY);
     }
     else {
         this.endJumping();
@@ -78,8 +78,8 @@ Character.prototype.attackCharacter = function() {
         }
     }
 };
-Character.prototype.applyFallingGravityToCharacter = function(characterObj, frontObj) {
-    this.checkIfFalling(frontObj.getCurrentSliceHeight(), frontObj.getNextSliceHeight());
+Character.prototype.applyFallingGravityToCharacter = function(characterObj, groundObj) {
+    this.checkIfFalling(groundObj.Properties.positionY, groundObj.Properties.positionY);
 };
 Character.prototype.startJumpAnimation = function() {
     if (!this.charIsJumping()) {
@@ -125,7 +125,7 @@ Character.prototype.charIsJumping = function() {
     return (this.Properties.jumping);
 };
 Character.prototype.calculateMapToCharacterHeightOffset = function(wallPos) {
-    return wallPos - 24;
+    return wallPos - 52;
 };
 Character.prototype.checkIfFalling = function(currentSliceHeight, nextSliceHeight) {
     if (!this.Properties.jumping && this.calculateMapToCharacterHeightOffset(currentSliceHeight) > this.position.y) {

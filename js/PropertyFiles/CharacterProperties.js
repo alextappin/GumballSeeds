@@ -8,7 +8,7 @@ function CharacterProperties() {
         spriteCount : 0,
         jumping : true,
         startPosY : -100,
-        startPosX : 65,
+        startPosX : GameVariables.getWidth() *.2,
         scaleX: .5,
         scaleY: .5,
         applyFallingGravity : false,
