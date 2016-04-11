@@ -35,6 +35,7 @@ Ground.prototype.setSpriteToCurrentTexture = function() {
 };
 Ground.prototype.update = function(obj) {
     this.updateSprites(obj);
+    this.updateProperties(obj);
 };
 Ground.prototype.updateSprites = function(obj) {
     for (var i = 0; i < this.Properties.numberOfSprites; i++) {
@@ -50,8 +51,13 @@ Ground.prototype.calcuateNewPosition = function(obj, currentElement) {
     var lastElementChanged = currentElement - 1 < 0 ? obj.children.length-1 : currentElement - 1;
     return (obj.children[lastElementChanged].position.x + obj.children[lastElementChanged].width - this.Properties.speed);
 };
-Ground.prototype.returnGroundHeight = function() {
-
+Ground.prototype.updateProperties = function(obj) {
+    for (var i = 0; i < obj.children.length; i++) {
+        if (obj.children[i].position.x < GameVariables.getCharacterPositionX()
+            && obj.children[i].width + obj.children[i].position.x > GameVariables.getCharacterPositionX()) {
+            GameVariables.setGroundPositionAtCharacter(obj.children[i].position.y);
+        }
+    }
 };
 /*
 Ground.prototype.nextSprite = function() {
