@@ -17,13 +17,11 @@ Scroller.prototype.initializePositionsAndScale = function() {
 };
 Scroller.prototype.constructScroller = function(stage) {
     this.addChildrenToStage(stage);
-    //this.Properties.mapBuilder = new MapBuilder(this.Properties.front);
 };
 Scroller.prototype.addChildrenToStage = function(stage) {
     stage.addChild(this.Properties.far);
     stage.addChild(this.Properties.mid);
     stage.addChild(this.Properties.mid2);
-    //stage.addChild(this.Properties.front);
     stage.addChild(this.Properties.ground);
     stage.addChild(this.Properties.character);
     stage.addChild(this.Properties.powerBar);
@@ -36,10 +34,6 @@ Scroller.prototype.addChildrenToStage = function(stage) {
 Scroller.prototype.update = function() {
     this.updateViewport();
     this.updateObjects();
-    /*if (this.Properties.front.slicesAreLow()) {
-        //TODO:if slices are low, find which slice types are low and ADD THOSE ONES THAT ARE LOW
-        this.Properties.mapBuilder.addAndBuildRandomSequence();
-    }*/
     ScoreHelper().updateScore();
 };
 Scroller.prototype.updateViewport = function() {
@@ -50,7 +44,6 @@ Scroller.prototype.updateObjects = function() {
     this.Properties.far.setViewportX(this.Properties.viewportX);
     this.Properties.mid.setViewportX(this.Properties.viewportX);
     this.Properties.mid2.setViewportX(this.Properties.viewportX);
-    //this.Properties.front.setViewportX(this.Properties.viewportX);
     this.Properties.ground.update(this.Properties.ground);
     this.Properties.character.update(this.Properties.character, this.Properties.ground);
     this.Properties.powerBar.update(this.Properties.powerBar);
