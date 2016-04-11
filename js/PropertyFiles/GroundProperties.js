@@ -3,11 +3,14 @@
  */
 function GroundProperties() {
     var props = {
-        sprite : {},
+        sprites : [],
         textures : [],
+        //4 sprites for the ground. The textures of each will be changing
+        numberOfSprites : 4,
         spriteCount : 0,
         changeSpriteCounter : 0,
-        spriteSpeed : 40
+        spriteSpeed : 40,
+        spriteWidth : 624
     };
 
     return props;
