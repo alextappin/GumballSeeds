@@ -59,6 +59,18 @@ Ground.prototype.updateProperties = function(obj) {
         }
     }
 };
+Ground.prototype.getHeightAtPositionX = function(positionX) {
+    //this.Properties.sprites[].position.x;
+    for (var i = 0; i < this.Properties.sprites.length; i++) {
+        if (this.Properties.sprites[i].position.x < positionX
+            && this.Properties.sprites[i].width + this.Properties.sprites[i].position.x > positionX) {
+            return this.Properties.sprites[i].position.y;
+        }
+    }
+    //if nothing is returned... should never be hit
+    console.log("error Here");
+    return null;
+};
 /*
 Ground.prototype.nextSprite = function() {
     if (this.Properties.spriteCount == 1) {
