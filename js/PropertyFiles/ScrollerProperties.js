@@ -6,7 +6,6 @@ function ScrollerProperties() {
         far : new Far(),
         mid : new Mid(),
         mid2 : new Mid2(),
-        front : new Walls(),
         ground : new Ground(),
         character : new Character(),
         powerBar : new PowerBar(),
