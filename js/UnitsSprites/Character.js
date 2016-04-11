@@ -105,7 +105,7 @@ Character.prototype.simulateGravity = function(posY, currentSlicePosY, nextSlice
     //TODO put these numbers in a config file. This number signifies the lowest wall
     //if the character isnt moving up and the next slice is taller than the character...
     //if the character is lower than the next slice, the character is travelling down and they are over a gap (99976) then the game is over
-    if (posY > nextSlicePosY && this.Properties.velocityY > 0 && currentSlicePosY == 99976) {
+    if (posY > nextSlicePosY+100 && this.Properties.velocityY > 0) {
         this.Properties.continueGame = false;
         GameVariables.toggleScreenChange();
         GameVariables.setScreenTitle();
