@@ -95,7 +95,7 @@ var GameVariables = (function GameVariables() {
         },
         getCharacterPositionX : function getCharacterPositionX() {
             return constants.screenWidth * .2
-        }
+        },
         //setters
         setEnemies : function setEnemies(value) {
             constants.enemies = value;
