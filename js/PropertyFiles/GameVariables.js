@@ -21,8 +21,7 @@ var GameVariables = (function GameVariables() {
         kills : 0,
         createNewEnemiesCounter : 5,
         loopScoreIncrementTime : 60,
-        powerBarScore : 2,
-        groundPositionAtCharacter : 0
+        powerBarScore : 2
     };
 
     return {
@@ -96,10 +95,7 @@ var GameVariables = (function GameVariables() {
         },
         getCharacterPositionX : function getCharacterPositionX() {
             return constants.screenWidth * .2
-        },
-        getGroundPositionAtcharacter : function getGroundPositionAtCharacter() {
-            return constants.groundPositionAtCharacter;
-        },
+        }
         //setters
         setEnemies : function setEnemies(value) {
             constants.enemies = value;
@@ -136,9 +132,6 @@ var GameVariables = (function GameVariables() {
         },
         setPowerBarScore : function setPowerBarScore(score) {
             constants.powerBarScore = score;
-        },
-        setGroundPositionAtCharacter : function setGroundPositionAtCharacter(position) {
-            constants.groundPositionAtCharacter = position;
         }
     };
 })();

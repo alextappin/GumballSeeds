@@ -35,7 +35,6 @@ Ground.prototype.setSpriteToCurrentTexture = function() {
 };
 Ground.prototype.update = function(obj) {
     this.updateSprites(obj);
-    this.updateProperties(obj);
 };
 Ground.prototype.updateSprites = function(obj) {
     for (var i = 0; i < this.Properties.numberOfSprites; i++) {
@@ -51,33 +50,14 @@ Ground.prototype.calcuateNewPosition = function(obj, currentElement) {
     var lastElementChanged = currentElement - 1 < 0 ? obj.children.length-1 : currentElement - 1;
     return (obj.children[lastElementChanged].position.x + obj.children[lastElementChanged].width - this.Properties.speed);
 };
-Ground.prototype.updateProperties = function(obj) {
-    for (var i = 0; i < obj.children.length; i++) {
-        if (obj.children[i].position.x < GameVariables.getCharacterPositionX()
-            && obj.children[i].width + obj.children[i].position.x > GameVariables.getCharacterPositionX()) {
-            GameVariables.setGroundPositionAtCharacter(obj.children[i].position.y);
-        }
-    }
-};
 Ground.prototype.getHeightAtPositionX = function(positionX) {
-    //this.Properties.sprites[].position.x;
     for (var i = 0; i < this.Properties.sprites.length; i++) {
         if (this.Properties.sprites[i].position.x < positionX
             && this.Properties.sprites[i].width + this.Properties.sprites[i].position.x > positionX) {
             return this.Properties.sprites[i].position.y;
         }
     }
-    //if nothing is returned... should never be hit
-    console.log("error Here");
+    //if nothing is returned... it is a gap. No wall.
+    console.log("gap Here");
     return null;
 };
-/*
-Ground.prototype.nextSprite = function() {
-    if (this.Properties.spriteCount == 1) {
-        this.Properties.spriteCount = 0;
-    }
-    else {
-        this.Properties.spriteCount++;
-    }
-    this.setSpriteToCurrentTexture();
-};*/
