@@ -63,7 +63,7 @@ Character.prototype.characterGravity = function(characterObj, groundObj) {
         this.gravitateAndCheckIfLanded(characterObj,
             this.calculateMapToCharacterHeightOffset(groundObj.getHeightAtPositionX(characterObj.position.x)));
     }
-    //if there is no ground,
+    //if there is no ground, notice ! sign
     else if (!this.calculateMapToCharacterHeightOffset(groundObj.getHeightAtPositionX(characterObj.position.x))) {
         this.Properties.airborn = true;
         this.gravitateAndCheckIfLanded(characterObj,
