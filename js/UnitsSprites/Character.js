@@ -36,9 +36,10 @@ Character.prototype.setSpriteToCurrentTexture = function() {
 };
 Character.prototype.update = function(characterObj, groundObj) {
     this.updateSprites();
-    this.jumpCharacter(characterObj, groundObj);
+    this.characterGravity();
+    //this.jumpCharacter(characterObj, groundObj);
     this.attackCharacter();
-    this.applyFallingGravityToCharacter(characterObj, groundObj);
+    //this.applyFallingGravityToCharacter(characterObj, groundObj);
 };
 Character.prototype.updateSprites = function() {
     if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
@@ -58,6 +59,25 @@ Character.prototype.nextSprite = function() {
         this.Properties.spriteCount++;
     }
     this.setSpriteToCurrentTexture();
+};
+Character.prototype.characterGravity = function() {
+    if (this.Properties.airborn) {
+        this.fallOrRise();
+    }
+};
+Character.prototype.fallOrRise = function() {
+    if (this.isFalling()) {
+        //falling logic
+    }
+    else {
+        //jumping logic
+    }
+};
+Character.prototype.isFalling = function() {
+    return this.Properties.velocityY > 0;
+};
+Character.prototype.isRising = function() {
+
 };
 Character.prototype.jumpCharacter = function(characterObj, groundObj){
     if (this.charIsJumping()) {

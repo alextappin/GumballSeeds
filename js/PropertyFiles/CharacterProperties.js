@@ -7,6 +7,7 @@ function CharacterProperties() {
         textures : [],
         spriteCount : 0,
         jumping : true,
+        airborn : true,
         startPosY : -100,
         startPosX : GameVariables.getWidth() *.2,
         scaleX: .5,
