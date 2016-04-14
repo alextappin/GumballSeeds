@@ -102,14 +102,6 @@ Character.prototype.endGame = function() {
 Character.prototype.startGravity = function() {
     this.Properties.velocityY += this.Properties.gravity;
 };
-Character.prototype.attackCharacter = function() {
-    if (this.Properties.isAttacking) {
-        this.Properties.attackingTime -= 1;
-        if (this.Properties.attackingTime == 0) {
-            this.stopAttacking();
-        }
-    }
-};
 Character.prototype.startJumpAnimation = function() {
     //not airborn, then GO AIRBORN and set velocity
     if (!this.Properties.airborn) {
@@ -119,6 +111,14 @@ Character.prototype.startJumpAnimation = function() {
 };
 Character.prototype.calculateMapToCharacterHeightOffset = function(wallPos) {
     return wallPos - 52;
+};
+Character.prototype.attackCharacter = function() {
+    if (this.Properties.isAttacking) {
+        this.Properties.attackingTime -= 1;
+        if (this.Properties.attackingTime == 0) {
+            this.stopAttacking();
+        }
+    }
 };
 Character.prototype.startAttackAnimation = function() {
     this.Properties.isAttacking = true;
