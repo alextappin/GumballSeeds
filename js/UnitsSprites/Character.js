@@ -36,7 +36,7 @@ Character.prototype.setSpriteToCurrentTexture = function() {
 };
 Character.prototype.update = function(characterObj, groundObj) {
     this.updateSprites();
-    this.characterGravity();
+    this.characterGravity(groundObj);
     //this.jumpCharacter(characterObj, groundObj);
     this.attackCharacter();
     //this.applyFallingGravityToCharacter(characterObj, groundObj);
@@ -60,22 +60,27 @@ Character.prototype.nextSprite = function() {
     }
     this.setSpriteToCurrentTexture();
 };
-Character.prototype.characterGravity = function() {
-    if (this.Properties.airborn) {
-        this.fallOrRise();
+Character.prototype.characterGravity = function(groundObj) {
+    //if there is no ground,
+    if (!groundObj.getHeightAtPositionX(this.Properties.sprite.position.x)) {
+        this.Properties.airborn = true;
+        this.isFalling() ? this.fall(null) : this.rise();
     }
-};
-Character.prototype.fallOrRise = function() {
-    if (this.isFalling()) {
-        //falling logic
-    }
-    else {
-        //jumping logic
+    else if (this.Properties.airborn) {
+        this.isFalling() ? this.fall(groundObj.getHeightAtPositionX(this.Properties.sprite.position.x)) : this.rise();
     }
 };
 Character.prototype.isFalling = function() {
+    //negative velocity is up... not rising ur falling. maybe >=
     return this.Properties.velocityY > 0;
 };
+Character.prototype.fall = function(groundHeight) {
+
+};
+Character.prototype.rise = function() {
+
+};
+
 Character.prototype.isRising = function() {
 
 };
