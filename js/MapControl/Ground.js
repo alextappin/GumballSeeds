@@ -48,7 +48,7 @@ Ground.prototype.updateSprites = function(obj) {
 };
 Ground.prototype.calcuateNewPosition = function(obj, currentElement) {
     var lastElementChanged = currentElement - 1 < 0 ? obj.children.length-1 : currentElement - 1;
-    return (obj.children[lastElementChanged].position.x + obj.children[lastElementChanged].width - this.Properties.speed-1);
+    return (obj.children[lastElementChanged].position.x + obj.children[lastElementChanged].width - this.Properties.speed-1 + this.getRandomSpace());
 };
 Ground.prototype.getHeightAtPositionX = function(positionX) {
     for (var i = 0; i < this.Properties.sprites.length; i++) {
@@ -60,4 +60,7 @@ Ground.prototype.getHeightAtPositionX = function(positionX) {
     //if nothing is returned... it is a gap. No wall.
     console.log("gap Here");
     return undefined;
+};
+Ground.prototype.getRandomSpace = function() {
+    return Math.floor((Math.random() * 200) + 50);
 };

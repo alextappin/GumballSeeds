@@ -61,28 +61,33 @@ Character.prototype.nextSprite = function() {
 Character.prototype.characterGravity = function(characterObj, groundObj) {
     if (this.Properties.airborn) {
         if (this.isFalling()) {
-            this.fall(characterObj,this.calculateMapToCharacterHeightOffset(groundObj.getHeightAtPositionX(characterObj.position.x)));
+            this.fall(characterObj,this.calculateMapToCharacterHeightOffset(groundObj.getHeightAtPositionX(this.calculateCharacterFrontX(characterObj))));
         }
         else {
             this.rise(characterObj);
         }
     }
     //if there is no ground, notice ! sign, you will FALL
-    else if (!this.calculateMapToCharacterHeightOffset(groundObj.getHeightAtPositionX(characterObj.position.x))) {
+    else if (!this.calculateMapToCharacterHeightOffset(groundObj.getHeightAtPositionX(this.calculateCharacterFrontX(characterObj)))) {
         this.Properties.airborn = true;
-        this.fall(characterObj,this.calculateMapToCharacterHeightOffset(groundObj.getHeightAtPositionX(characterObj.position.x)));
+        this.fall(characterObj,this.calculateMapToCharacterHeightOffset(groundObj.getHeightAtPositionX(this.calculateCharacterFrontX(characterObj))));
     }
 };
 Character.prototype.fall = function(characterObj, groundHeight) {
     this.startGravity();
+    //passed ground
     if(characterObj.position.y > groundHeight) {
+        console.log(this.Properties.velocityY);
         this.endGame();
         characterObj.position.y += this.Properties.velocityY;
     }
+    //landed
     else if ((characterObj.position.y + this.Properties.velocityY) > groundHeight) {
         characterObj.position.y = groundHeight;
+        this.Properties.velocityY = 0;
         this.Properties.airborn = false;
     }
+    //falling
     else {
         characterObj.position.y += this.Properties.velocityY;
     }
@@ -93,7 +98,7 @@ Character.prototype.rise = function(characterObj) {
 };
 Character.prototype.isFalling = function() {
     //negative velocity is up... not rising ur falling. maybe >=
-    return this.Properties.velocityY > 0;
+    return this.Properties.velocityY >= 0;
 };
 Character.prototype.endGame = function() {
     this.Properties.airborn = true;
@@ -111,9 +116,12 @@ Character.prototype.startJumpAnimation = function() {
         this.Properties.velocityY = this.Properties.jumpVelocity;
     }
 };
+Character.prototype.calculateCharacterFrontX = function(characterObj) {
+    return characterObj.position.x + characterObj.width/2;
+};
 Character.prototype.calculateMapToCharacterHeightOffset = function(groundY) {
     //if there is a height, return the offset, else null
-    return groundY ? groundY - this.Properties.sprite.height/2 + 10: null;
+    return groundY ? groundY - this.Properties.sprite.height/2 + 10: undefined;
 };
 Character.prototype.attackCharacter = function() {
     if (this.Properties.isAttacking) {
