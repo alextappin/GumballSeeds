@@ -60,37 +60,36 @@ Character.prototype.nextSprite = function() {
 };
 Character.prototype.characterGravity = function(characterObj, groundObj) {
     if (this.Properties.airborn) {
-        this.gravitateAndCheckIfLanded(characterObj,
-            this.calculateMapToCharacterHeightOffset(groundObj.getHeightAtPositionX(characterObj.position.x)));
-    }
-    //if there is no ground, notice ! sign
-    else if (!this.calculateMapToCharacterHeightOffset(groundObj.getHeightAtPositionX(characterObj.position.x))) {
-        this.Properties.airborn = true;
-        this.gravitateAndCheckIfLanded(characterObj,
-            this.calculateMapToCharacterHeightOffset(groundObj.getHeightAtPositionX(characterObj.position.x)));
-    }
-};
-Character.prototype.gravitateAndCheckIfLanded = function(characterObj, groundHeight) {
-    //get new velocity
-    this.startGravity();
-    //if falling, check if lower than ground, then check if next position is lower than ground, set character on ground
-    if (this.isFalling()) {
-        if(characterObj.position.y > groundHeight) {
-            this.endGame();
-            characterObj.position.y += this.Properties.velocityY;
-        }
-        else if ((characterObj.position.y + this.Properties.velocityY) > groundHeight) {
-            characterObj.position.y = groundHeight;
-            this.Properties.airborn = false;
+        if (this.isFalling()) {
+            this.fall(characterObj,this.calculateMapToCharacterHeightOffset(groundObj.getHeightAtPositionX(characterObj.position.x)));
         }
         else {
-            characterObj.position.y += this.Properties.velocityY;
+            this.rise(characterObj);
         }
     }
-    //if not falling, you are rising at this point, apply gravity.
+    //if there is no ground, notice ! sign, you will FALL
+    else if (!this.calculateMapToCharacterHeightOffset(groundObj.getHeightAtPositionX(characterObj.position.x))) {
+        this.Properties.airborn = true;
+        this.fall(characterObj,this.calculateMapToCharacterHeightOffset(groundObj.getHeightAtPositionX(characterObj.position.x)));
+    }
+};
+Character.prototype.fall = function(characterObj, groundHeight) {
+    this.startGravity();
+    if(characterObj.position.y > groundHeight) {
+        this.endGame();
+        characterObj.position.y += this.Properties.velocityY;
+    }
+    else if ((characterObj.position.y + this.Properties.velocityY) > groundHeight) {
+        characterObj.position.y = groundHeight;
+        this.Properties.airborn = false;
+    }
     else {
         characterObj.position.y += this.Properties.velocityY;
     }
+};
+Character.prototype.rise = function(characterObj) {
+    this.startGravity();
+    characterObj.position.y += this.Properties.velocityY;
 };
 Character.prototype.isFalling = function() {
     //negative velocity is up... not rising ur falling. maybe >=
