@@ -76,8 +76,7 @@ Enemy.prototype.moveEnemy = function(enemyObj, characterObj) {
             GameVariables.setLives(GameVariables.getLives()-1);
             ScoreHelper().getHitByEnemy(1);
             if (GameVariables.getLives() < 0) {
-                characterObj.Properties.continueGame = false;
-                characterObj.Properties.jumping = true;
+                characterObj.endGame();
             }
         }
         this.updateVelocity();

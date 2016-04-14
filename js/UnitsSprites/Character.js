@@ -96,6 +96,7 @@ Character.prototype.isFalling = function() {
     return this.Properties.velocityY > 0;
 };
 Character.prototype.endGame = function() {
+    this.Properties.airborn = true;
     this.Properties.continueGame = false;
     GameVariables.toggleScreenChange();
     GameVariables.setScreenTitle();
