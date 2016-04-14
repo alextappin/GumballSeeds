@@ -75,7 +75,13 @@ Character.prototype.isFalling = function() {
     return this.Properties.velocityY > 0;
 };
 Character.prototype.fall = function(groundHeight) {
+    //if there is a ground height...
+    if (groundHeight) {
 
+    }
+    else {
+
+    }
 };
 Character.prototype.rise = function() {
 
