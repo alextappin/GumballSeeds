@@ -77,7 +77,6 @@ Character.prototype.fall = function(characterObj, groundHeight) {
     this.startGravity();
     //passed ground
     if(characterObj.position.y > groundHeight) {
-        console.log(this.Properties.velocityY);
         this.endGame();
         characterObj.position.y += this.Properties.velocityY;
     }
