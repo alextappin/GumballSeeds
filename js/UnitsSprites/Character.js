@@ -36,7 +36,7 @@ Character.prototype.setSpriteToCurrentTexture = function() {
 };
 Character.prototype.update = function(characterObj, groundObj) {
     this.updateSprites();
-    this.characterGravity(groundObj);
+    this.characterGravity(characterObj, groundObj);
     //this.jumpCharacter(characterObj, groundObj);
     this.attackCharacter();
     //this.applyFallingGravityToCharacter(characterObj, groundObj);
@@ -60,36 +60,43 @@ Character.prototype.nextSprite = function() {
     }
     this.setSpriteToCurrentTexture();
 };
-Character.prototype.characterGravity = function(groundObj) {
+Character.prototype.characterGravity = function(characterObj, groundObj) {
     //if there is no ground,
     if (!groundObj.getHeightAtPositionX(this.Properties.sprite.position.x)) {
         this.Properties.airborn = true;
-        this.isFalling() ? this.fall(null) : this.rise();
+        this.gravitateAndCheckIfLanded(characterObj, groundObj.getHeightAtPositionX(this.Properties.sprite.position.x));
     }
     else if (this.Properties.airborn) {
-        this.isFalling() ? this.fall(groundObj.getHeightAtPositionX(this.Properties.sprite.position.x)) : this.rise();
+        this.gravitateAndCheckIfLanded(characterObj, groundObj.getHeightAtPositionX(this.Properties.sprite.position.x));
+    }
+};
+Character.prototype.gravitateAndCheckIfLanded = function(characterObj, groundHeight) {
+    //if falling, check if lower than ground, then check if next position is lower than ground, set character on ground
+    //if not falling, you are rising at this point, apply gravity.
+    if (this.isFalling()) {
+        if(this.Properties.sprite.position.x > groundHeight) {
+            this.endGame();
+        }
+        else if (this.startGravityGetPosition() > groundHeight) {
+            characterObj.position.y = groundHeight;
+        }
+    }
+    else {
+        characterObj.position.y = this.startGravityGetPosition();
     }
 };
 Character.prototype.isFalling = function() {
     //negative velocity is up... not rising ur falling. maybe >=
     return this.Properties.velocityY > 0;
 };
-Character.prototype.fall = function(groundHeight) {
-    //if there is a ground height...
-    if (groundHeight) {
-
-    }
-    else {
-
-    }
-};
-Character.prototype.rise = function() {
+Character.prototype.endGame = function() {
 
 };
-
-Character.prototype.isRising = function() {
-
+Character.prototype.startGravityGetPosition = function() {
+    this.Properties.velocityY += this.Properties.gravity;
+    return this.Properties.sprite.position.y + this.Properties.velocityY;
 };
+
 Character.prototype.jumpCharacter = function(characterObj, groundObj){
     if (this.charIsJumping()) {
         characterObj.position.y = this.moveHeightJumping(characterObj.position.y,
