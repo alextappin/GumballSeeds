@@ -25,6 +25,7 @@ function CharacterProperties() {
         velocityX : 3,
         changeSpriteCounter : 0,
         spriteSpeed : 8,
+        jumpVelocity : -15,
         spaceBar : new KeyboardControl(32),
         ctrlButton : new KeyboardControl(17),
         leftArrow : new KeyboardControl(37),

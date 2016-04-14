@@ -113,9 +113,10 @@ Character.prototype.attackCharacter = function() {
     }
 };
 Character.prototype.startJumpAnimation = function() {
-    if (!this.charIsJumping()) {
-        this.Properties.jumping = true;
-        this.Properties.velocityY = -15.0;
+    //not airborn, then GO AIRBORN and set velocity
+    if (!this.Properties.airborn) {
+        this.Properties.airborn = true;
+        this.Properties.velocityY = this.Properties.jumpVelocity;
     }
 };
 Character.prototype.moveHeightJumping = function(posY, currentSlicePosY, nextSlicePosY) {
