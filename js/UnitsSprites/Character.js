@@ -72,7 +72,6 @@ Character.prototype.characterGravity = function(characterObj, groundObj) {
 };
 Character.prototype.gravitateAndCheckIfLanded = function(characterObj, groundHeight) {
     //if falling, check if lower than ground, then check if next position is lower than ground, set character on ground
-    //if not falling, you are rising at this point, apply gravity.
     if (this.isFalling()) {
         if(this.Properties.sprite.position.x > groundHeight) {
             this.endGame();
@@ -81,6 +80,7 @@ Character.prototype.gravitateAndCheckIfLanded = function(characterObj, groundHei
             characterObj.position.y = groundHeight;
         }
     }
+    //if not falling, you are rising at this point, apply gravity.
     else {
         characterObj.position.y = this.startGravityGetPosition();
     }
