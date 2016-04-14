@@ -14,8 +14,6 @@ Character.prototype.constructCharacter = function() {
     this.initiateCharacterSprites();
     this.listenForJumpTrigger();
     this.listenForAttackTrigger();
-    this.listenForMoveLeftTrigger();
-    this.listenForMoveRightTrigger();
 };
 Character.prototype.setPositionAndScale = function(obj) {
     obj.position =  new GameVariables.getNewPoint(GameVariables.getCharacterPositionX(), this.Properties.startPosY);
