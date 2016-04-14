@@ -62,5 +62,8 @@ Ground.prototype.getHeightAtPositionX = function(positionX) {
     return undefined;
 };
 Ground.prototype.getRandomSpace = function() {
-    return Math.floor((Math.random() * 200) + 50);
+    if (Math.round(Math.random()) == 1) {
+        return Math.floor((Math.random() * this.Properties.largeGapConst) + this.Properties.smallGapConst);
+    }
+    return 0;
 };
