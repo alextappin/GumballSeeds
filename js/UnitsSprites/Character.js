@@ -37,9 +37,7 @@ Character.prototype.setSpriteToCurrentTexture = function() {
 Character.prototype.update = function(characterObj, groundObj) {
     this.updateSprites();
     this.characterGravity(characterObj, groundObj);
-    //this.jumpCharacter(characterObj, groundObj);
     this.attackCharacter();
-    //this.applyFallingGravityToCharacter(characterObj, groundObj);
 };
 Character.prototype.updateSprites = function() {
     if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
@@ -114,9 +112,6 @@ Character.prototype.attackCharacter = function() {
         }
     }
 };
-Character.prototype.applyFallingGravityToCharacter = function(characterObj, groundObj) {
-    this.checkIfFalling(groundObj.Properties.positionY, groundObj.Properties.positionY);
-};
 Character.prototype.startJumpAnimation = function() {
     if (!this.charIsJumping()) {
         this.Properties.jumping = true;
@@ -125,14 +120,6 @@ Character.prototype.startJumpAnimation = function() {
 };
 Character.prototype.moveHeightJumping = function(posY, currentSlicePosY, nextSlicePosY) {
     return this.simulateGravity(posY, this.calculateMapToCharacterHeightOffset(currentSlicePosY), this.calculateMapToCharacterHeightOffset(nextSlicePosY));
-};
-Character.prototype.listenForJumpTrigger = function() {
-    var that = this;
-    this.Properties.spaceBar.press = function () {
-        if (!that.Properties.jumping) {
-            that.startJumpAnimation();
-        }
-    }
 };
 Character.prototype.simulateGravity = function(posY, currentSlicePosY, nextSlicePosY) {
     this.Properties.velocityY += this.Properties.gravity;
@@ -169,14 +156,6 @@ Character.prototype.checkIfFalling = function(currentSliceHeight, nextSliceHeigh
         this.simulateGravity(this.position.y, this.calculateMapToCharacterHeightOffset(currentSliceHeight), this.calculateMapToCharacterHeightOffset(nextSliceHeight));
     }
 };
-Character.prototype.listenForAttackTrigger = function() {
-    var that = this;
-    this.Properties.ctrlButton.press = function () {
-        if (!that.Properties.isAttacking) {
-            that.startAttackAnimation();
-        }
-    }
-};
 Character.prototype.startAttackAnimation = function() {
     this.Properties.isAttacking = true;
     this.removeChild(this.text);
@@ -191,4 +170,20 @@ Character.prototype.stopAttacking = function() {
     this.removeChild(this.text);
 
     this.Properties.attackingTime = 0;
+};
+Character.prototype.listenForJumpTrigger = function() {
+    var that = this;
+    this.Properties.spaceBar.press = function () {
+        if (!that.Properties.jumping) {
+            that.startJumpAnimation();
+        }
+    }
+};
+Character.prototype.listenForAttackTrigger = function() {
+    var that = this;
+    this.Properties.ctrlButton.press = function () {
+        if (!that.Properties.isAttacking) {
+            that.startAttackAnimation();
+        }
+    }
 };
