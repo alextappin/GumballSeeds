@@ -60,12 +60,14 @@ Character.prototype.nextSprite = function() {
 };
 Character.prototype.characterGravity = function(characterObj, groundObj) {
     if (this.Properties.airborn) {
-        this.gravitateAndCheckIfLanded(characterObj, groundObj.getHeightAtPositionX(characterObj.position.x));
+        this.gravitateAndCheckIfLanded(characterObj,
+            this.calculateMapToCharacterHeightOffset(groundObj.getHeightAtPositionX(characterObj.position.x)));
     }
     //if there is no ground,
-    else if (!groundObj.getHeightAtPositionX(this.Properties.sprite.position.x)) {
+    else if (!this.calculateMapToCharacterHeightOffset(groundObj.getHeightAtPositionX(characterObj.position.x))) {
         this.Properties.airborn = true;
-        this.gravitateAndCheckIfLanded(characterObj, groundObj.getHeightAtPositionX(characterObj.position.x));
+        this.gravitateAndCheckIfLanded(characterObj,
+            this.calculateMapToCharacterHeightOffset(groundObj.getHeightAtPositionX(characterObj.position.x)));
     }
 };
 Character.prototype.gravitateAndCheckIfLanded = function(characterObj, groundHeight) {
@@ -109,8 +111,9 @@ Character.prototype.startJumpAnimation = function() {
         this.Properties.velocityY = this.Properties.jumpVelocity;
     }
 };
-Character.prototype.calculateMapToCharacterHeightOffset = function(wallPos) {
-    return wallPos - 52;
+Character.prototype.calculateMapToCharacterHeightOffset = function(groundY) {
+    //if there is a height, return the offset, else null
+    return groundY ? groundY - this.Properties.sprite.height/2 + 10: null;
 };
 Character.prototype.attackCharacter = function() {
     if (this.Properties.isAttacking) {
