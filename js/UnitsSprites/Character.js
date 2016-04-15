@@ -14,8 +14,6 @@ Character.prototype.constructCharacter = function() {
     this.initiateCharacterSprites();
     this.listenForJumpTrigger();
     this.listenForAttackTrigger();
-    this.listenForMoveLeftTrigger();
-    this.listenForMoveRightTrigger();
 };
 Character.prototype.setPositionAndScale = function(obj) {
     obj.position =  new GameVariables.getNewPoint(GameVariables.getCharacterPositionX(), this.Properties.startPosY);
@@ -38,9 +36,8 @@ Character.prototype.setSpriteToCurrentTexture = function() {
 };
 Character.prototype.update = function(characterObj, groundObj) {
     this.updateSprites();
-    this.jumpCharacter(characterObj, groundObj);
+    this.characterGravity(characterObj, groundObj);
     this.attackCharacter();
-    this.applyFallingGravityToCharacter(characterObj, groundObj);
 };
 Character.prototype.updateSprites = function() {
     if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
@@ -62,83 +59,75 @@ Character.prototype.nextSprite = function() {
     }
     this.setSpriteToCurrentTexture();
 };
-Character.prototype.jumpCharacter = function(characterObj, groundObj){
-    if (this.charIsJumping()) {
-        characterObj.position.y = this.moveHeightJumping(characterObj.position.y,
-            groundObj.Properties.positionY, groundObj.Properties.positionY);
+Character.prototype.characterGravity = function(characterObj, groundObj) {
+    if (this.Properties.airborn) {
+        if (this.isFalling()) {
+            this.fall(characterObj,this.calculateMapToCharacterHeightOffset(groundObj.getHeightAtPositionX(this.calculateCharacterFrontX(characterObj))));
+        }
+        else {
+            this.rise(characterObj);
+        }
     }
+    //if there is no ground, notice ! sign, you will FALL
+    else if (!this.calculateMapToCharacterHeightOffset(groundObj.getHeightAtPositionX(this.calculateCharacterFrontX(characterObj)))) {
+        this.Properties.airborn = true;
+        this.fall(characterObj,this.calculateMapToCharacterHeightOffset(groundObj.getHeightAtPositionX(this.calculateCharacterFrontX(characterObj))));
+    }
+};
+Character.prototype.fall = function(characterObj, groundHeight) {
+    this.startGravity();
+    //passed ground
+    if(characterObj.position.y > groundHeight) {
+        this.endGame();
+        characterObj.position.y += this.Properties.velocityY;
+    }
+    //landed
+    else if ((characterObj.position.y + this.Properties.velocityY) > groundHeight) {
+        characterObj.position.y = groundHeight;
+        this.Properties.velocityY = 0;
+        this.Properties.airborn = false;
+    }
+    //falling
     else {
-        this.endJumping();
+        characterObj.position.y += this.Properties.velocityY;
     }
+};
+Character.prototype.rise = function(characterObj) {
+    this.startGravity();
+    characterObj.position.y += this.Properties.velocityY;
+};
+Character.prototype.isFalling = function() {
+    //negative velocity is up... not rising ur falling. maybe >=
+    return this.Properties.velocityY >= 0;
+};
+Character.prototype.endGame = function() {
+    this.Properties.airborn = true;
+    this.Properties.continueGame = false;
+    GameVariables.toggleScreenChange();
+    GameVariables.setScreenTitle();
+};
+Character.prototype.startGravity = function() {
+    this.Properties.velocityY += this.Properties.gravity;
+};
+Character.prototype.startJumpAnimation = function() {
+    //not airborn, then GO AIRBORN and set velocity
+    if (!this.Properties.airborn) {
+        this.Properties.airborn = true;
+        this.Properties.velocityY = this.Properties.jumpVelocity;
+    }
+};
+Character.prototype.calculateCharacterFrontX = function(characterObj) {
+    return characterObj.position.x + characterObj.width/2;
+};
+Character.prototype.calculateMapToCharacterHeightOffset = function(groundY) {
+    //if there is a height, return the offset, else null
+    return groundY ? groundY - this.Properties.sprite.height/2 + 10: undefined;
 };
 Character.prototype.attackCharacter = function() {
     if (this.Properties.isAttacking) {
         this.Properties.attackingTime -= 1;
         if (this.Properties.attackingTime == 0) {
             this.stopAttacking();
-        }
-    }
-};
-Character.prototype.applyFallingGravityToCharacter = function(characterObj, groundObj) {
-    this.checkIfFalling(groundObj.Properties.positionY, groundObj.Properties.positionY);
-};
-Character.prototype.startJumpAnimation = function() {
-    if (!this.charIsJumping()) {
-        this.Properties.jumping = true;
-        this.Properties.velocityY = -15.0;
-    }
-};
-Character.prototype.moveHeightJumping = function(posY, currentSlicePosY, nextSlicePosY) {
-    return this.simulateGravity(posY, this.calculateMapToCharacterHeightOffset(currentSlicePosY), this.calculateMapToCharacterHeightOffset(nextSlicePosY));
-};
-Character.prototype.listenForJumpTrigger = function() {
-    var that = this;
-    this.Properties.spaceBar.press = function () {
-        if (!that.Properties.jumping) {
-            that.startJumpAnimation();
-        }
-    }
-};
-Character.prototype.simulateGravity = function(posY, currentSlicePosY, nextSlicePosY) {
-    this.Properties.velocityY += this.Properties.gravity;
-    posY += this.Properties.velocityY;
-
-    //TODO put these numbers in a config file. This number signifies the lowest wall
-    //if the character isnt moving up and the next slice is taller than the character...
-    //if the character is lower than the next slice, the character is travelling down and they are over a gap (99976) then the game is over
-    if (posY > nextSlicePosY+100 && this.Properties.velocityY > 0) {
-        this.Properties.continueGame = false;
-        GameVariables.toggleScreenChange();
-        GameVariables.setScreenTitle();
-    }
-    //TODO psyY > currentSlicePos & velocity is positive(negative...)
-    if (posY >= currentSlicePosY && this.Properties.continueGame) {
-        this.Properties.velocityY = 0.0;
-        this.Properties.jumping = false;
-        posY = currentSlicePosY;
-    }
-    return posY;
-};
-Character.prototype.endJumping = function() {
-    this.Properties.jumping = false;
-};
-Character.prototype.charIsJumping = function() {
-    return (this.Properties.jumping);
-};
-Character.prototype.calculateMapToCharacterHeightOffset = function(wallPos) {
-    return wallPos - 52;
-};
-Character.prototype.checkIfFalling = function(currentSliceHeight, nextSliceHeight) {
-    if (!this.Properties.jumping && this.calculateMapToCharacterHeightOffset(currentSliceHeight) > this.position.y) {
-        this.Properties.jumping = true;
-        this.simulateGravity(this.position.y, this.calculateMapToCharacterHeightOffset(currentSliceHeight), this.calculateMapToCharacterHeightOffset(nextSliceHeight));
-    }
-};
-Character.prototype.listenForAttackTrigger = function() {
-    var that = this;
-    this.Properties.ctrlButton.press = function () {
-        if (!that.Properties.isAttacking) {
-            that.startAttackAnimation();
         }
     }
 };
@@ -157,45 +146,17 @@ Character.prototype.stopAttacking = function() {
 
     this.Properties.attackingTime = 0;
 };
-Character.prototype.listenForMoveRightTrigger = function() {
+Character.prototype.listenForJumpTrigger = function() {
     var that = this;
-    this.Properties.rightArrow.press = function () {
-        if (!that.Properties.isMovingRight) {
-            that.startMoveRightAnimation();
-        }
-    };
-
-    this.Properties.rightArrow.release = function () {
-        if (that.Properties.isMovingRight) {
-            that.stopMoveRightAnimation();
-        }
+    this.Properties.spaceBar.press = function () {
+        that.startJumpAnimation();
     }
 };
-Character.prototype.listenForMoveLeftTrigger = function() {
+Character.prototype.listenForAttackTrigger = function() {
     var that = this;
-    this.Properties.leftArrow.press = function () {
-        if (!that.Properties.isMovingLeft) {
-            that.startMoveLeftAnimation();
+    this.Properties.ctrlButton.press = function () {
+        if (!that.Properties.isAttacking) {
+            that.startAttackAnimation();
         }
-    };
-
-    this.Properties.leftArrow.release = function () {
-        if (that.Properties.isMovingLeft) {
-            that.stopMoveLeftAnimation();
-        }
-    };
-};
-//set the moving to false so you cant move now
-Character.prototype.startMoveRightAnimation = function() {
-    this.Properties.isMovingRight = false;
-};
-//set the moving to false so you cant move now
-Character.prototype.startMoveLeftAnimation = function() {
-    this.Properties.isMovingLeft = false;
-};
-Character.prototype.stopMoveRightAnimation = function() {
-    this.Properties.isMovingRight = false;
-};
-Character.prototype.stopMoveLeftAnimation = function() {
-    this.Properties.isMovingLeft = false;
+    }
 };

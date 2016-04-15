@@ -39,7 +39,16 @@ Ground.prototype.update = function(obj) {
 Ground.prototype.updateSprites = function(obj) {
     for (var i = 0; i < this.Properties.numberOfSprites; i++) {
         if (obj.children[i].position.x < (0-obj.children[i].width)) {
-            obj.children[i].position.x = this.calcuateNewPosition(obj, i);
+            if (this.doGapAndHeight()) {
+                obj.children[i].position.x = this.calcuateNewPosition(obj, i) + this.getRandomSpace();
+                obj.children[i].position.y = this.getRandomHeight();
+            }
+            else {
+                obj.children[i].position.x = this.calcuateNewPosition(obj, i);
+                //get the height of the part currently on the end so the heights match up and dont look weird without gap.
+                obj.children[i].position.y = obj.children[i - 1 < 0 ? obj.children.length-1 : i - 1].position.y
+            }
+
         }
         else {
             obj.children[i].position.x -= this.Properties.speed;
@@ -48,7 +57,7 @@ Ground.prototype.updateSprites = function(obj) {
 };
 Ground.prototype.calcuateNewPosition = function(obj, currentElement) {
     var lastElementChanged = currentElement - 1 < 0 ? obj.children.length-1 : currentElement - 1;
-    return (obj.children[lastElementChanged].position.x + obj.children[lastElementChanged].width - this.Properties.speed);
+    return (obj.children[lastElementChanged].position.x + obj.children[lastElementChanged].width - this.Properties.speed-1);
 };
 Ground.prototype.getHeightAtPositionX = function(positionX) {
     for (var i = 0; i < this.Properties.sprites.length; i++) {
@@ -59,5 +68,15 @@ Ground.prototype.getHeightAtPositionX = function(positionX) {
     }
     //if nothing is returned... it is a gap. No wall.
     console.log("gap Here");
-    return null;
+    return undefined;
+};
+Ground.prototype.doGapAndHeight = function() {
+    //random true or false. If there is a height change, there is also a gap.
+    return Math.round(Math.random()) == 1;
+};
+Ground.prototype.getRandomHeight = function() {
+    return Math.floor((Math.random() * (this.Properties.yPositionMax-this.Properties.yPositionMin)) + this.Properties.yPositionMin);
+};
+Ground.prototype.getRandomSpace = function() {
+    return Math.floor((Math.random() * (this.Properties.largeGapConst-this.Properties.smallGapConst)) + this.Properties.smallGapConst);
 };
