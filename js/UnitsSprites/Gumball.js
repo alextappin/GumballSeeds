@@ -20,7 +20,6 @@ Gumball.prototype.setPositionAndScale = function(obj) {
 };
 Gumball.prototype.initiateGumballSprites = function() {
     this.Properties.textures.push(
-        PIXI.Texture.fromFrame("Gumballs"),
         PIXI.Texture.fromFrame("Gumballs")
     );
     for (var i = 0; i < this.Properties.numberStartingSprites; i++) {
@@ -36,23 +35,10 @@ Gumball.prototype.setSpriteToCurrentTexture = function() {
     this.Properties.sprite.texture = this.Properties.textures[this.Properties.spriteCount];
 };
 Gumball.prototype.update = function(gumballObj) {
-    this.updateSprites();
+    this.updateSprites(gumballObj);
 };
-Gumball.prototype.updateSprites = function() {
-    if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
-        this.Properties.changeSpriteCounter = 0;
-        this.nextSprite();
+Gumball.prototype.updateSprites = function(obj) {
+    for (var i = 0; i < this.Properties.numberOfSprites; i++) {
+        obj.children[i].position.x -= 10;
     }
-    else {
-        this.Properties.changeSpriteCounter++;
-    }
-};
-Gumball.prototype.nextSprite = function() {
-    if (this.Properties.spriteCount == 1) {
-        this.Properties.spriteCount = 0;
-    }
-    else {
-        this.Properties.spriteCount++;
-    }
-    this.setSpriteToCurrentTexture();
 };

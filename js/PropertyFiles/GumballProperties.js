@@ -10,8 +10,8 @@ function GumballProperties() {
         spriteCount : 0,
         changeSpriteCounter : 0,
         spriteSpeed : 40,
-        startingX : -50,
-        startingY : -50
+        startingX : 1000,
+        startingY : 500
     };
 
     return props;
