@@ -6,11 +6,11 @@ function GumballProperties() {
         sprites : [],
         textures : [],
         numberOfSprites : 0,
-        numberStartingSprites : 2,
+        numberStartingSprites : 1,
         spriteCount : 0,
         changeSpriteCounter : 0,
         spriteSpeed : 40,
-        startingX : 1000,
+        startingX : GameVariables.getWidth()*1.5,
         startingY : 500
     };
 
