@@ -44,6 +44,7 @@ Gumball.prototype.updateSprites = function(gumballObj, groundObj, characterObj) 
         if (gumballObj.children[i].position.x < (0-gumballObj.children[i].width)) {
             gumballObj.children[i].position = this.getNewPosition(groundObj, this.Properties.startingX);
         }
+        //check if the character and gumball are intersecting
         else if(this.isIntersecting(gumballObj.children[i], characterObj)) {
             ScoreHelper().pickupGumball();
             gumballObj.children[i].position = this.getNewPosition(groundObj, this.Properties.startingX);
