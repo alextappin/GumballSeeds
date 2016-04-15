@@ -15,7 +15,7 @@ Gumball.prototype.constructGumball = function() {
 };
 Gumball.prototype.setPositionAndScale = function(obj) {
     for (var i = 0; i < this.Properties.numberOfSprites; i++) {
-        obj.children[i].position =  GameVariables.getNewPoint(this.Properties.startingX, this.Properties.startingY);
+        obj.children[i].position =  GameVariables.getNewPoint(-100, this.Properties.startingY);
         obj.children[i].scale = GameVariables.getNewPoint(.35,.35);
     }
     //no scale yet...
@@ -50,7 +50,7 @@ Gumball.prototype.updateSprites = function(gumballObj, groundObj) {
 Gumball.prototype.getNewPosition = function(groundObj, gumballX) {
     var groundHeight = groundObj.getHeightAtPositionX(gumballX);
     if (groundHeight) {
-        return GameVariables.getNewPoint(gumballX, groundHeight);
+        return GameVariables.getNewPoint(gumballX, groundHeight-this.Properties.yGumballOffsetWithMap);
     }
     //recursion. If there is a gap, check another X
     return this.getNewPosition(groundObj, gumballX + 500);
