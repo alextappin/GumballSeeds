@@ -1,35 +1,28 @@
 /**
  * Created by ajt on 3/12/2016.
  */
-
 function Text(type) {
     PIXI.Container.call(this);
     this.constructText(type);
 }
-
 Text.constructor = Text;
 Text.prototype = Object.create(PIXI.Container.prototype);
-
 Text.prototype.constructText = function(type) {
-    this.TextProperties = new TextProperties(type);
-    this.TextProperties.setValues();
+    this.Properties = new TextProperties(type);
+    this.Properties.setValues();
     this.initiateTextType();
 };
-
 Text.prototype.initiateTextType = function() {
-    this.TextProperties.words = new PIXI.Text(this.TextProperties.text);
-    this.addChild(this.TextProperties.words);
+    this.Properties.words = new PIXI.Text(this.Properties.text, this.Properties.getStyleProperties);
+    this.addChild(this.Properties.words);
 };
-
 Text.prototype.update = function() {
-    this.deleteAndReAddText();
+    this.updateText();
 };
-Text.prototype.deleteAndReAddText = function() {
-    this.TextProperties.setValues();
-    this.removeChild(this.TextProperties.words);
-    this.TextProperties.words = new PIXI.Text(this.TextProperties.text, this.TextProperties.getStyleProperties());
-    this.TextProperties.words.position.x = this.TextProperties.positionX;
-    this.TextProperties.words.position.y = this.TextProperties.positionY;
-    this.addChild(this.TextProperties.words);
-
+Text.prototype.updateText = function() {
+    this.Properties.setValues();
+    this.Properties.words.text = this.Properties.text;
+    this.Properties.words.style = this.Properties.getStyleProperties();
+    this.Properties.words.position.x = this.Properties.positionX;
+    this.Properties.words.position.y = this.Properties.positionY;
 };

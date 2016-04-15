@@ -3,12 +3,11 @@
  */
 function TitleBoardProperties() {
     var props = {
-        boardSprites : [],
+        sprite : {},
+        textures : [],
         spriteCount : 0,
         changeSpriteCounter : 0,
-        spriteSpeed : 40,
-        locationX : 20,
-        locationY : 20
+        spriteSpeed : 40
     };
 
     return props;

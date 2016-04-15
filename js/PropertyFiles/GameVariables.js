@@ -3,6 +3,7 @@
  */
 var GameVariables = (function GameVariables() {
     var constants = {
+        loopCounter : 1,
         screenWidth : 1080,
         screenHeight : 720,
         enemies : 2,
@@ -16,7 +17,11 @@ var GameVariables = (function GameVariables() {
         switchScreen : false,
         currentScore : 0,
         highScore : 0,
-        lives : 30
+        lives : 30,
+        kills : 0,
+        createNewEnemiesCounter : 5,
+        loopScoreIncrementTime : 60,
+        powerBarScore : 2
     };
 
     return {
@@ -67,6 +72,30 @@ var GameVariables = (function GameVariables() {
         getLives : function getLives() {
             return constants.lives;
         },
+        getNewPoint : function getNewPoint(x, y) {
+            return {
+                x : x,
+                y : y
+            }
+        },
+        getKills : function getKills() {
+            return constants.kills;
+        },
+        getNewEnemyCounter : function getNewEnemyCounter() {
+            return constants.createNewEnemiesCounter;
+        },
+        getLoopCounter : function getLoopCounter() {
+            return constants.loopCounter;
+        },
+        getLoopScoreIncrement : function getLoopScoreIncrement() {
+            return constants.loopScoreIncrementTime;
+        },
+        getPowerBarScore : function getPowerBarScore() {
+            return constants.powerBarScore;
+        },
+        getCharacterPositionX : function getCharacterPositionX() {
+            return constants.screenWidth * .2
+        },
         //setters
         setEnemies : function setEnemies(value) {
             constants.enemies = value;
@@ -91,6 +120,18 @@ var GameVariables = (function GameVariables() {
         },
         setLives : function setLives(lives) {
             constants.lives = lives;
+        },
+        setKills : function setKills(kills) {
+            constants.kills = kills;
+        },
+        incrementLoopCounter : function incrementLoopCounter() {
+            constants.loopCounter++;
+        },
+        resetLoopCounter : function resetLoopCounter() {
+            constants.loopCounter = 0;
+        },
+        setPowerBarScore : function setPowerBarScore(score) {
+            constants.powerBarScore = score;
         }
     };
 })();

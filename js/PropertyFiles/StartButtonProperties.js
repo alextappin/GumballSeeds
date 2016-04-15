@@ -3,8 +3,9 @@
  */
 function StartButtonProperties() {
     var props = {
-        sprites : [],
+        sprite : {},
         spriteCount : 0,
+        textures : [],
         changeSpriteCounter : 0,
         spriteSpeed : 80,
         locationX : 20,

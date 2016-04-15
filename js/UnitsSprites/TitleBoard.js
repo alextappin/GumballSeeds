@@ -10,45 +10,42 @@ TitleBoard.constructor = TitleBoard;
 TitleBoard.prototype = Object.create(PIXI.Container.prototype);
 
 TitleBoard.prototype.constructTitleBoard = function() {
-    this.TitleBoardProperties = new TitleBoardProperties();
+    this.Properties = new TitleBoardProperties();
     this.initiateTitleBoardSprites();
 };
-
-TitleBoard.prototype.initiateTitleBoardSprites = function() {
-    var sprite1 = PIXI.Sprite.fromFrame("Title1"),
-        sprite2 = PIXI.Sprite.fromFrame("Title2");
-    //add them to the array
-    this.TitleBoardProperties.boardSprites.push(sprite1,sprite2);
-    this.addChild(this.TitleBoardProperties.boardSprites[this.TitleBoardProperties.spriteCount]);
+TitleBoard.prototype.setPositionAndScale = function(obj) {
+    obj.position =  GameVariables.getNewPoint((GameVariables.getWidth() - obj.width)/2, (GameVariables.getHeight() - obj.height)/2);
+    //no scale yet...
 };
-
+TitleBoard.prototype.initiateTitleBoardSprites = function() {
+    this.Properties.textures.push(
+        PIXI.Texture.fromFrame("Title1"),
+        PIXI.Texture.fromFrame("Title2")
+    );
+    this.Properties.sprite = new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]);
+    this.addChild(this.Properties.sprite);
+};
+TitleBoard.prototype.setSpriteToCurrentTexture = function() {
+    this.Properties.sprite.texture = this.Properties.textures[this.Properties.spriteCount];
+};
 TitleBoard.prototype.update = function(titleBoardObj) {
     this.updateSprites();
-    this.updatePosition(titleBoardObj);
 };
-
 TitleBoard.prototype.updateSprites = function() {
-    if (this.TitleBoardProperties.changeSpriteCounter == this.TitleBoardProperties.spriteSpeed) {
-        this.TitleBoardProperties.changeSpriteCounter = 0;
+    if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
+        this.Properties.changeSpriteCounter = 0;
         this.nextSprite();
     }
     else {
-        this.TitleBoardProperties.changeSpriteCounter++;
+        this.Properties.changeSpriteCounter++;
     }
 };
-
 TitleBoard.prototype.nextSprite = function() {
-    this.removeChild(this.TitleBoardProperties.boardSprites[this.TitleBoardProperties.spriteCount]);
-    if (this.TitleBoardProperties.spriteCount == 1) {
-        this.TitleBoardProperties.spriteCount = 0;
+    if (this.Properties.spriteCount == 1) {
+        this.Properties.spriteCount = 0;
     }
     else {
-        this.TitleBoardProperties.spriteCount++;
+        this.Properties.spriteCount++;
     }
-    this.addChild(this.TitleBoardProperties.boardSprites[this.TitleBoardProperties.spriteCount]);
-};
-
-TitleBoard.prototype.updatePosition = function(obj) {
-    obj.position.y = (GameVariables.getHeight() - obj.height)/2;
-    obj.position.x = (GameVariables.getWidth() - obj.width)/2;
+    this.setSpriteToCurrentTexture();
 };

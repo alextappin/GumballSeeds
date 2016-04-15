@@ -3,9 +3,12 @@
  */
 function EnemyProperties() {
     var props = {
-        characterSprites : [],
+        sprite : {},
+        textures : [],
         spriteCount : 0,
         continueGame : true,
+        startPosX : -500,
+        startPosY : 50,
         positionX : 1200,
         positionY : 800,
         scaleX :.5,
@@ -18,7 +21,8 @@ function EnemyProperties() {
         changeSpriteCounter : 0,
         spriteSpeed : 12,
         velocityDecelerate : -.1,
-        velocityAccelerate : .05
+        velocityAccelerate : .05,
+        pointsForKill : 5
     };
 
     return props;

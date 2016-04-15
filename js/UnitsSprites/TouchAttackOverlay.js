@@ -11,19 +11,19 @@ TouchAttack.constructor = TouchAttack;
 TouchAttack.prototype = Object.create(PIXI.Container.prototype);
 
 TouchAttack.prototype.constructTouchAttack = function() {
-    this.TouchAttackOverlayProperties = new TouchAttackOverlayProperties();
+    this.Properties = new TouchAttackOverlayProperties();
     this.initiateTouchAttackSprites();
 };
 
 TouchAttack.prototype.initiateTouchAttackSprites = function() {
     var sprite1 = PIXI.Sprite.fromFrame("trans");
     //add them to the array
-    this.TouchAttackOverlayProperties.sprites.push(sprite1);
-    this.addChild(this.TouchAttackOverlayProperties.sprites[this.TouchAttackOverlayProperties.spriteCount]);
+    this.Properties.sprites.push(sprite1);
+    this.addChild(this.Properties.sprites[this.Properties.spriteCount]);
 };
 
 TouchAttack.prototype.update = function(jumpButtonObj, characterObj) {
-    this.handleClickEvents(this.TouchAttackOverlayProperties.sprites[0], characterObj);
+    this.handleClickEvents(this.Properties.sprites[0], characterObj);
     this.updatePosition(jumpButtonObj);
 };
 

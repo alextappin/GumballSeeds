@@ -6,13 +6,15 @@ function ScrollerProperties() {
         far : new Far(),
         mid : new Mid(),
         mid2 : new Mid2(),
-        front : new Walls(),
+        ground : new Ground(),
         character : new Character(),
+        gumball : new Gumball(),
+        powerBar : new PowerBar(),
         touchJump : new TouchJump(),
         touchAttack : new TouchAttack(),
         enemies : [],
         mapBuilder : {},
-        textScore : new Text("kills"),
+        textScore : new Text("score"),
         textLives : new Text("lives"),
         viewportX : 0
     };

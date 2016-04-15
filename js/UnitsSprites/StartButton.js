@@ -10,51 +10,49 @@ StartButton.constructor = StartButton;
 StartButton.prototype = Object.create(PIXI.Container.prototype);
 
 StartButton.prototype.constructStartButton = function() {
-    this.StartButtonProperties = new StartButtonProperties();
+    this.Properties = new StartButtonProperties();
     this.initiateStartButtonSprites();
 };
-
-StartButton.prototype.initiateStartButtonSprites = function() {
-    var sprite1 = PIXI.Sprite.fromFrame("Start1"),
-        sprite2 = PIXI.Sprite.fromFrame("Start2");
-    //add them to the array
-    this.StartButtonProperties.sprites.push(sprite1,sprite2);
-    this.handleClickEvents(this.StartButtonProperties.sprites[0]);
-    this.addChild(this.StartButtonProperties.sprites[this.StartButtonProperties.spriteCount]);
+StartButton.prototype.setPositionAndScale = function(obj) {
+    obj.position = GameVariables.getNewPoint((GameVariables.getWidth() - obj.width)/2, (GameVariables.getHeight() - obj.height)/2);
+    //obj.scale is not being use YET
 };
-
+StartButton.prototype.initiateStartButtonSprites = function() {
+    this.Properties.textures.push(
+        PIXI.Texture.fromFrame("Start1"),
+        PIXI.Texture.fromFrame("Start2")
+    );
+    this.Properties.sprite = new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]);
+    this.handleClickEvents(this.Properties.sprite);
+    //add the child once
+    this.addChild(this.Properties.sprite);
+};
+StartButton.prototype.setSpriteToCurrentTexture = function() {
+    this.Properties.sprite.texture = this.Properties.textures[this.Properties.spriteCount];
+};
 StartButton.prototype.update = function(startButtonObj) {
     this.updateSprites();
-    this.updatePosition(startButtonObj);
 };
-
 StartButton.prototype.updateSprites = function() {
-    if (this.StartButtonProperties.changeSpriteCounter == this.StartButtonProperties.spriteSpeed) {
-        this.StartButtonProperties.changeSpriteCounter = 0;
+    if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
+        this.Properties.changeSpriteCounter = 0;
         this.nextSprite();
     }
     else {
-        this.StartButtonProperties.changeSpriteCounter++;
+        this.Properties.changeSpriteCounter++;
     }
 };
-
 StartButton.prototype.nextSprite = function() {
-    this.removeChild(this.StartButtonProperties.sprites[this.StartButtonProperties.spriteCount]);
-    if (this.StartButtonProperties.spriteCount == 1) {
-        this.StartButtonProperties.spriteCount = 0;
+    //TODO ternary this
+    if (this.Properties.spriteCount == 1) {
+        this.Properties.spriteCount = 0;
     }
     else {
-        this.StartButtonProperties.spriteCount++;
+        this.Properties.spriteCount++;
     }
-    this.handleClickEvents(this.StartButtonProperties.sprites[this.StartButtonProperties.spriteCount]);
-    this.addChild(this.StartButtonProperties.sprites[this.StartButtonProperties.spriteCount]);
+    //just change the texture
+    this.setSpriteToCurrentTexture();
 };
-
-StartButton.prototype.updatePosition = function(obj) {
-    obj.position.x = (GameVariables.getWidth() - obj.width)/2;
-    obj.position.y = (GameVariables.getHeight() - obj.height)/2;
-};
-
 StartButton.prototype.handleClickEvents = function(spriteToHandle) {
     if (!spriteToHandle.interactive) {
         var spriteTimeout;

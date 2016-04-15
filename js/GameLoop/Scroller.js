@@ -2,67 +2,74 @@
  * Created by ajt on 11/29/2015.
  */
 function Scroller(stage) {
+    this.Properties = new ScrollerProperties();
+    this.initializePositionsAndScale();
     this.constructScroller(stage);
     this.getStage = function() {
         return stage;
     };
     createjs.Sound.stop("title");
 }
+Scroller.prototype.initializePositionsAndScale = function() {
+    this.Properties.character.setPositionAndScale(this.Properties.character);
+    this.Properties.ground.setPositionAndScale(this.Properties.ground);
+    this.Properties.powerBar.setPositionAndScale(this.Properties.powerBar);
+    this.Properties.gumball.setPositionAndScale(this.Properties.gumball);
+};
 Scroller.prototype.constructScroller = function(stage) {
-    this.ScrollerProps = new ScrollerProperties();
     this.addChildrenToStage(stage);
-    this.ScrollerProps.mapBuilder = new MapBuilder(this.ScrollerProps.front);
 };
 Scroller.prototype.addChildrenToStage = function(stage) {
-    stage.addChild(this.ScrollerProps.far);
-    stage.addChild(this.ScrollerProps.mid);
-    stage.addChild(this.ScrollerProps.mid2);
-    stage.addChild(this.ScrollerProps.front);
-    stage.addChild(this.ScrollerProps.character);
-    stage.addChild(this.ScrollerProps.textScore);
-    stage.addChild(this.ScrollerProps.textLives);
+    stage.addChild(this.Properties.far);
+    stage.addChild(this.Properties.mid);
+    stage.addChild(this.Properties.mid2);
+    stage.addChild(this.Properties.ground);
+    stage.addChild(this.Properties.character);
+    stage.addChild(this.Properties.gumball);
+    stage.addChild(this.Properties.powerBar);
+    stage.addChild(this.Properties.textScore);
+    stage.addChild(this.Properties.textLives);
     this.createEnemies(GameVariables.getEnemies(), stage);
-    stage.addChild(this.ScrollerProps.touchJump);
-    stage.addChild(this.ScrollerProps.touchAttack);
+    stage.addChild(this.Properties.touchJump);
+    stage.addChild(this.Properties.touchAttack);
 };
 Scroller.prototype.update = function() {
     this.updateViewport();
     this.updateObjects();
-    if (this.ScrollerProps.front.slicesAreLow()) {
-        //TODO:if slices are low, find which slice types are low and ADD THOSE ONES THAT ARE LOW
-        this.ScrollerProps.mapBuilder.addAndBuildRandomSequence();
-    }
+    ScoreHelper().updateScore();
 };
 Scroller.prototype.updateViewport = function() {
     GameVariables.getCurrentScrollSpeed() > GameVariables.getMaxScrollSpeed() ? GameVariables.setCurrentScrollSpeed(GameVariables.getMaxScrollSpeed()) : null;
-    this.ScrollerProps.viewportX = this.ScrollerProps.viewportX + GameVariables.getCurrentScrollSpeed();
+    this.Properties.viewportX = this.Properties.viewportX + GameVariables.getCurrentScrollSpeed();
 };
 Scroller.prototype.updateObjects = function() {
-    this.ScrollerProps.far.setViewportX(this.ScrollerProps.viewportX);
-    this.ScrollerProps.mid.setViewportX(this.ScrollerProps.viewportX);
-    this.ScrollerProps.mid2.setViewportX(this.ScrollerProps.viewportX);
-    this.ScrollerProps.front.setViewportX(this.ScrollerProps.viewportX);
-    this.ScrollerProps.character.update(this.ScrollerProps.character, this.ScrollerProps.front);
-    this.ScrollerProps.textScore.update(this.ScrollerProps.textScore);
-    this.ScrollerProps.textLives.update(this.ScrollerProps.textLives);
-    this.ScrollerProps.touchJump.update(this.ScrollerProps.touchJump, this.ScrollerProps.character);
-    this.ScrollerProps.touchAttack.update(this.ScrollerProps.touchAttack, this.ScrollerProps.character);
+    this.Properties.far.setViewportX(this.Properties.viewportX);
+    this.Properties.mid.setViewportX(this.Properties.viewportX);
+    this.Properties.mid2.setViewportX(this.Properties.viewportX);
+    this.Properties.ground.update(this.Properties.ground);
+    this.Properties.character.update(this.Properties.character, this.Properties.ground);
+    this.Properties.gumball.update(this.Properties.gumball, this.Properties.ground, this.Properties.character);
+    this.Properties.powerBar.update(this.Properties.powerBar);
+    this.Properties.textScore.update(this.Properties.textScore);
+    this.Properties.textLives.update(this.Properties.textLives);
+    this.Properties.touchJump.update(this.Properties.touchJump, this.Properties.character);
+    this.Properties.touchAttack.update(this.Properties.touchAttack, this.Properties.character);
     //multiple enemies to be updated
     for (var n = 0; n < GameVariables.getEnemies(); n++) {
-        if (this.ScrollerProps.enemies[n]) {
-            this.ScrollerProps.enemies[n].update(this.ScrollerProps.enemies[n], this.ScrollerProps.character);
+        if (this.Properties.enemies[n]) {
+            this.Properties.enemies[n].update(this.Properties.enemies[n], this.Properties.character);
         }
-        //if there is not enough enemies, add another
+        //if there are not enough enemies, add another
         else {
             this.createEnemies(1, this.getStage());
         }
     }
 };
 Scroller.prototype.createEnemies = function(number, stage) {
-    for (var n = 0; n < number; n++) {
-        this.enemy = new Enemy();
-        this.enemy.position.x = -500;
-        this.ScrollerProps.enemies.push(this.enemy);
-        stage.addChild(this.enemy);
+    for (var n = 0, enemy; n < number; n++) {
+        enemy = new Enemy();
+        enemy.setPositionAndScale(enemy);
+        this.Properties.enemies.push(enemy);
+        stage.addChild(enemy);
     }
 };
