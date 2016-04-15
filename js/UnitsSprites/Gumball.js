@@ -36,11 +36,22 @@ Gumball.prototype.createSprite = function() {
 Gumball.prototype.setSpriteToCurrentTexture = function() {
     this.Properties.sprite.texture = this.Properties.textures[this.Properties.spriteCount];
 };
-Gumball.prototype.update = function(gumballObj) {
-    this.updateSprites(gumballObj);
+Gumball.prototype.update = function(gumballObj, groundObj) {
+    this.updateSprites(gumballObj, groundObj);
 };
-Gumball.prototype.updateSprites = function(obj) {
+Gumball.prototype.updateSprites = function(gumballObj, groundObj) {
     for (var i = 0; i < this.Properties.numberOfSprites; i++) {
-        obj.children[i].position.x -= 10;
+        if (gumballObj.children[i].position.x < (0-gumballObj.children[i].width)) {
+            gumballObj.children[i].position = this.getNewPosition(groundObj, this.Properties.startingX);
+        }
+        gumballObj.children[i].position.x -= groundObj.Properties.speed;
     }
+};
+Gumball.prototype.getNewPosition = function(groundObj, gumballX) {
+    var groundHeight = groundObj.getHeightAtPositionX(gumballX);
+    if (groundHeight) {
+        return GameVariables.getNewPoint(gumballX, groundHeight);
+    }
+    //recursion. If there is a gap, check another X
+    return this.getNewPosition(groundObj, gumballX + 500);
 };
