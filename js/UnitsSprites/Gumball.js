@@ -23,8 +23,14 @@ Gumball.prototype.initiateGumballSprites = function() {
         PIXI.Texture.fromFrame("Gumballs"),
         PIXI.Texture.fromFrame("Gumballs")
     );
-    this.Properties.sprite = new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]);
-    this.addChild(this.Properties.sprite);
+    for (var i = 0; i < this.Properties.numberStartingSprites; i++) {
+        this.createSprite();
+    }
+};
+Gumball.prototype.createSprite = function() {
+    this.Properties.sprites.push(new PIXI.Sprite(this.Properties.textures[0]));
+    this.Properties.numberOfSprites++;
+    this.addChild(this.Properties.sprites[this.Properties.numberOfSprites-1]);
 };
 Gumball.prototype.setSpriteToCurrentTexture = function() {
     this.Properties.sprite.texture = this.Properties.textures[this.Properties.spriteCount];
