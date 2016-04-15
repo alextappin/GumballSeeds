@@ -41,8 +41,11 @@ Gumball.prototype.update = function(gumballObj, groundObj, characterObj) {
 };
 Gumball.prototype.updateSprites = function(gumballObj, groundObj, characterObj) {
     for (var i = 0; i < this.Properties.numberOfSprites; i++) {
-        if (gumballObj.children[i].position.x < (0-gumballObj.children[i].width) || this.isIntersecting(gumballObj.children[i], characterObj)) {
-
+        if (gumballObj.children[i].position.x < (0-gumballObj.children[i].width)) {
+            gumballObj.children[i].position = this.getNewPosition(groundObj, this.Properties.startingX);
+        }
+        else if(this.isIntersecting(gumballObj.children[i], characterObj)) {
+            ScoreHelper().pickupGumball();
             gumballObj.children[i].position = this.getNewPosition(groundObj, this.Properties.startingX);
         }
         gumballObj.children[i].position.x -= groundObj.Properties.speed;
