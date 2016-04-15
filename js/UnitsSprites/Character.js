@@ -24,9 +24,9 @@ Character.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("sprite1"),
         PIXI.Texture.fromFrame("sprite2"),
         PIXI.Texture.fromFrame("sprite3"),
-        PIXI.Texture.fromFrame("sprite4"),
         PIXI.Texture.fromFrame("sprite5"),
-        PIXI.Texture.fromFrame("sprite6")
+        PIXI.Texture.fromFrame("sprite6"),
+        PIXI.Texture.fromFrame("sprite4")
     );
     this.Properties.sprite = new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]);
     this.addChild(this.Properties.sprite);
