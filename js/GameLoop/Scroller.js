@@ -48,7 +48,7 @@ Scroller.prototype.updateObjects = function() {
     this.Properties.mid2.setViewportX(this.Properties.viewportX);
     this.Properties.ground.update(this.Properties.ground);
     this.Properties.character.update(this.Properties.character, this.Properties.ground);
-    this.Properties.gumball.update(this.Properties.gumball, this.Properties.ground);
+    this.Properties.gumball.update(this.Properties.gumball, this.Properties.ground, this.Properties.character);
     this.Properties.powerBar.update(this.Properties.powerBar);
     this.Properties.textScore.update(this.Properties.textScore);
     this.Properties.textLives.update(this.Properties.textLives);
