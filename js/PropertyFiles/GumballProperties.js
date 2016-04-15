@@ -12,7 +12,7 @@ function GumballProperties() {
         spriteSpeed : 40,
         startingX : GameVariables.getWidth()*1.5,
         startingY : 500,
-        yGumballOffsetWithMap : 40
+        yGumballOffsetWithMap : 90
     };
 
     return props;
