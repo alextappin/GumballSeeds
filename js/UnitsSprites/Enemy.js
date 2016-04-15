@@ -62,10 +62,11 @@ Enemy.prototype.nextSprite = function() {
     this.setSpriteToCurrentTexture();
 };
 Enemy.prototype.moveEnemy = function(enemyObj, characterObj) {
+    //Use the point object in the GameVariables class and set position.
     var obj = this.getUpdatedPositionVariables(enemyObj.position.x, enemyObj.position.y);
     enemyObj.position.x = obj.x;
     enemyObj.position.y = obj.y;
-    if (this.isIntersecting(characterObj, this)) {
+    if (this.isIntersecting(characterObj, enemyObj)) {
         if (characterObj.Properties.isAttacking) {
             ScoreHelper().killEnemy(this.Properties.pointsForKill);
             if (ScoreHelper().createNewEnemy()) {
