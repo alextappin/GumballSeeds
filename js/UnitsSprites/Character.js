@@ -53,6 +53,7 @@ Character.prototype.updateSprites = function() {
 };
 Character.prototype.nextSprite = function() {
     //Set ternary
+    //TODO dont use ==5 instead use the maximum number of textures the character has
     if (this.Properties.spriteCount == 5) {
         this.Properties.spriteCount = 0;
     }
