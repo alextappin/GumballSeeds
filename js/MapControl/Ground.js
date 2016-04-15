@@ -24,11 +24,15 @@ Ground.prototype.initiateGroundSprites = function() {
         PIXI.Texture.fromFrame("fg5New")
     );
     //will have around 4 sprites for the ground. The ground will be moving. In the future, it may be better to have 2...
-    for (var i = 0; i < this.Properties.numberOfSprites; i++) {
-        this.Properties.sprites.push(new PIXI.Sprite(this.Properties.textures[0]));
-        this.addChild(this.Properties.sprites[i]);
+    for (var i = 0; i < this.Properties.numberStartingSprites; i++) {
+        this.createSprite();
     }
 
+};
+Ground.prototype.createSprite = function() {
+    this.Properties.sprites.push(new PIXI.Sprite(this.Properties.textures[0]));
+    this.Properties.numberOfSprites++;
+    this.addChild(this.Properties.sprites[this.Properties.numberOfSprites-1]);
 };
 Ground.prototype.setSpriteToCurrentTexture = function() {
     this.Properties.sprite.texture = this.Properties.textures[this.Properties.spriteCount];
