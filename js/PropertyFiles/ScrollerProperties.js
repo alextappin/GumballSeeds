@@ -8,6 +8,7 @@ function ScrollerProperties() {
         mid2 : new Mid2(),
         ground : new Ground(),
         character : new Character(),
+        gumball : new Gumball(),
         powerBar : new PowerBar(),
         touchJump : new TouchJump(),
         touchAttack : new TouchAttack(),
