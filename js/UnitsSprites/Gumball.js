@@ -19,7 +19,8 @@ Gumball.prototype.setPositionAndScale = function(obj) {
 };
 Gumball.prototype.initiateGumballSprites = function() {
     this.Properties.textures.push(
-        PIXI.Texture.fromFrame("RedGumball")
+        PIXI.Texture.fromFrame("Gumballs"),
+        PIXI.Texture.fromFrame("Gumballs")
     );
     this.Properties.sprite = new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]);
     this.addChild(this.Properties.sprite);

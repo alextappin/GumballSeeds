@@ -14,7 +14,7 @@ Scroller.prototype.initializePositionsAndScale = function() {
     this.Properties.character.setPositionAndScale(this.Properties.character);
     this.Properties.ground.setPositionAndScale(this.Properties.ground);
     this.Properties.powerBar.setPositionAndScale(this.Properties.powerBar);
-    //this.Properties.gumball.setPositionAndScale(this.Properties.gumball);
+    this.Properties.gumball.setPositionAndScale(this.Properties.gumball);
 };
 Scroller.prototype.constructScroller = function(stage) {
     this.addChildrenToStage(stage);
@@ -25,7 +25,7 @@ Scroller.prototype.addChildrenToStage = function(stage) {
     stage.addChild(this.Properties.mid2);
     stage.addChild(this.Properties.ground);
     stage.addChild(this.Properties.character);
-    //stage.addChild(this.Properties.gumball);
+    stage.addChild(this.Properties.gumball);
     stage.addChild(this.Properties.powerBar);
     stage.addChild(this.Properties.textScore);
     stage.addChild(this.Properties.textLives);
@@ -48,7 +48,7 @@ Scroller.prototype.updateObjects = function() {
     this.Properties.mid2.setViewportX(this.Properties.viewportX);
     this.Properties.ground.update(this.Properties.ground);
     this.Properties.character.update(this.Properties.character, this.Properties.ground);
-    //this.Properties.gumball.update(this.Properties.gumball);
+    this.Properties.gumball.update(this.Properties.gumball);
     this.Properties.powerBar.update(this.Properties.powerBar);
     this.Properties.textScore.update(this.Properties.textScore);
     this.Properties.textLives.update(this.Properties.textLives);
