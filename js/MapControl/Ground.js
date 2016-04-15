@@ -71,7 +71,6 @@ Ground.prototype.getHeightAtPositionX = function(positionX) {
         }
     }
     //if nothing is returned... it is a gap. No wall.
-    console.log("gap Here");
     return undefined;
 };
 Ground.prototype.doGapAndHeight = function() {
