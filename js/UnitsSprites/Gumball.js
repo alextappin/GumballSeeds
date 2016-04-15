@@ -36,12 +36,13 @@ Gumball.prototype.createSprite = function() {
 Gumball.prototype.setSpriteToCurrentTexture = function() {
     this.Properties.sprite.texture = this.Properties.textures[this.Properties.spriteCount];
 };
-Gumball.prototype.update = function(gumballObj, groundObj) {
-    this.updateSprites(gumballObj, groundObj);
+Gumball.prototype.update = function(gumballObj, groundObj, characterObj) {
+    this.updateSprites(gumballObj, groundObj, characterObj);
 };
-Gumball.prototype.updateSprites = function(gumballObj, groundObj) {
+Gumball.prototype.updateSprites = function(gumballObj, groundObj, characterObj) {
     for (var i = 0; i < this.Properties.numberOfSprites; i++) {
-        if (gumballObj.children[i].position.x < (0-gumballObj.children[i].width)) {
+        if (gumballObj.children[i].position.x < (0-gumballObj.children[i].width) || this.isIntersecting(gumballObj.children[i], characterObj)) {
+
             gumballObj.children[i].position = this.getNewPosition(groundObj, this.Properties.startingX);
         }
         gumballObj.children[i].position.x -= groundObj.Properties.speed;
@@ -54,4 +55,10 @@ Gumball.prototype.getNewPosition = function(groundObj, gumballX) {
     }
     //recursion. If there is a gap, check another X
     return this.getNewPosition(groundObj, gumballX + 500);
+};
+Gumball.prototype.isIntersecting = function(rectangle1, rectangle2) {
+    return !(rectangle2.position.x > (rectangle1.position.x + rectangle1.width) ||
+    (rectangle2.position.x + rectangle2.width) < rectangle1.x ||
+    rectangle2.position.y > (rectangle1.position.y + rectangle1.height) ||
+    (rectangle2.position.y + rectangle2.height) < rectangle1.position.y);
 };
