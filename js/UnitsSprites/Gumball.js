@@ -14,7 +14,7 @@ Gumball.prototype.constructGumball = function() {
     this.initiateGumballSprites();
 };
 Gumball.prototype.setPositionAndScale = function(obj) {
-    obj.position =  GameVariables.getNewPoint(800,300);
+    obj.position =  GameVariables.getNewPoint(this.Properties.startingX,this.Properties.startingY);
     obj.scale = GameVariables.getNewPoint(.2,.2);
     //no scale yet...
 };
@@ -29,7 +29,7 @@ Gumball.prototype.initiateGumballSprites = function() {
 Gumball.prototype.setSpriteToCurrentTexture = function() {
     this.Properties.sprite.texture = this.Properties.textures[this.Properties.spriteCount];
 };
-Gumball.prototype.update = function(titleBoardObj) {
+Gumball.prototype.update = function(gumballObj) {
     this.updateSprites();
 };
 Gumball.prototype.updateSprites = function() {

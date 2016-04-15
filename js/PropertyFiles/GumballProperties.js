@@ -7,7 +7,9 @@ function GumballProperties() {
         textures : [],
         spriteCount : 0,
         changeSpriteCounter : 0,
-        spriteSpeed : 40
+        spriteSpeed : 40,
+        startingX : -50,
+        startingY : -50
     };
 
     return props;
