@@ -29,7 +29,7 @@ Scroller.prototype.addChildrenToStage = function(stage) {
     stage.addChild(this.Properties.powerBar);
     stage.addChild(this.Properties.textScore);
     stage.addChild(this.Properties.textLives);
-    this.createEnemies(GameVariables.getEnemies(), stage);
+    //this.createEnemies(GameVariables.getEnemies(), stage);
     stage.addChild(this.Properties.touchJump);
     stage.addChild(this.Properties.touchAttack);
 };
@@ -55,7 +55,7 @@ Scroller.prototype.updateObjects = function() {
     this.Properties.touchJump.update(this.Properties.touchJump, this.Properties.character);
     this.Properties.touchAttack.update(this.Properties.touchAttack, this.Properties.character);
     //multiple enemies to be updated
-    for (var n = 0; n < GameVariables.getEnemies(); n++) {
+    /*for (var n = 0; n < GameVariables.getEnemies(); n++) {
         if (this.Properties.enemies[n]) {
             this.Properties.enemies[n].update(this.Properties.enemies[n], this.Properties.character);
         }
@@ -63,7 +63,7 @@ Scroller.prototype.updateObjects = function() {
         else {
             this.createEnemies(1, this.getStage());
         }
-    }
+    }*/
 };
 Scroller.prototype.createEnemies = function(number, stage) {
     for (var n = 0, enemy; n < number; n++) {
