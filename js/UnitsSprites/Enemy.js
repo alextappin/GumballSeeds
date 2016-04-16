@@ -25,9 +25,14 @@ Enemy.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("BadGuy1Tran"),
         PIXI.Texture.fromFrame("BadGuy2Tran")
     );
-    //add them to the array
-    this.Properties.sprite = new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]);
-    this.addChild(this.Properties.sprite);
+    for (var i = 0; i < this.Properties.numberStartingSprites; i++) {
+        this.createSprite();
+    }
+};
+Enemy.prototype.createSprite = function() {
+    this.Properties.sprites.push(new PIXI.Sprite(this.Properties.textures[0]));
+    this.Properties.numberOfSprites++;
+    this.addChild(this.Properties.sprites[this.Properties.numberOfSprites-1]);
 };
 Enemy.prototype.setSpriteToCurrentTexture = function() {
     this.Properties.sprite.texture = this.Properties.textures[this.Properties.spriteCount];
