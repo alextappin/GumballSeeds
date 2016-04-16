@@ -64,6 +64,32 @@ Enemy.prototype.updateSprites = function(enemyObj, characterObj) {
         this.checkForIntersect(enemyObj, characterObj);
     }
 };
+Enemy.prototype.updateTexture = function(enemyObj) {
+    if (this.Properties.spriteCount == this.Properties.textures.length-1) {
+        this.Properties.spriteCount = 0;
+    }
+    else {
+        this.Properties.spriteCount++;
+    }
+    enemyObj.texture = this.Properties.textures[this.Properties.spriteCount];
+};
+Enemy.prototype.checkForIntersect = function(enemyObj, characterObj) {
+    if (this.isIntersecting(characterObj, enemyObj)) {
+        if (characterObj.Properties.isAttacking) {
+            ScoreHelper().killEnemy(this.Properties.pointsForKill);
+            if (ScoreHelper().createNewEnemy()) {
+                GameVariables.setEnemies(GameVariables.getEnemies() + 1);
+            }
+        }
+        else {
+            GameVariables.setLives(GameVariables.getLives() - 1);
+            ScoreHelper().getHitByEnemy(1);
+            if (GameVariables.getLives() < 0) {
+                characterObj.endGame();
+            }
+        }
+    }
+};
 Enemy.prototype.nextSprite = function() {
     if (this.Properties.spriteCount == 1) {
         this.Properties.spriteCount = 0;
