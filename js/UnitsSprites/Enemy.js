@@ -15,8 +15,10 @@ Enemy.prototype.constructEnemy = function() {
     this.initiateCharacterSprites();
 };
 Enemy.prototype.setPositionAndScale = function(obj) {
-    obj.position = GameVariables.getNewPoint(this.Properties.startPosX, this.Properties.startPosY);
-    obj.scale = GameVariables.getNewPoint(this.Properties.scaleX, this.Properties.scaleY);
+    for (var i = 0; i < this.Properties.numberOfSprites; i++) {
+        obj.children[i].position = GameVariables.getNewPoint(this.Properties.startingX, this.Properties.startingY);
+        obj.children[i].scale = GameVariables.getNewPoint(this.Properties.scaleX, this.Properties.scaleY);
+    }
 };
 Enemy.prototype.initiateCharacterSprites = function() {
     this.Properties.textures.push(
