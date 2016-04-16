@@ -47,16 +47,21 @@ Enemy.prototype.instantiateProperties = function() {
     this.Properties.scaleX = rand/10;
 };
 Enemy.prototype.update = function(enemyObj, characterObj) {
-    this.updateSprite();
+    this.updateSprites(enemyObj, characterObj);
     this.moveEnemy(enemyObj, characterObj);
 };
-Enemy.prototype.updateSprite = function() {
-    if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
+Enemy.prototype.updateSprites = function(enemyObj, characterObj) {
+    /*if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
         this.Properties.changeSpriteCounter = 0;
         this.nextSprite();
     }
     else {
         this.Properties.changeSpriteCounter++;
+    }*/
+    for (var i = 0; i < this.Properties.numberOfSprites; i++) {
+        enemyObj.position = this.getUpdatedPositionVariables(enemyObj);
+        enemyObj.texture = this.updateTexture(enemyObj);
+        this.checkForIntersect(enemyObj, characterObj);
     }
 };
 Enemy.prototype.nextSprite = function() {
