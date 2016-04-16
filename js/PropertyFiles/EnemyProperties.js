@@ -5,6 +5,7 @@ function EnemyProperties() {
     var props = {
         sprites : [],
         textures : [],
+        spriteProps : [],
         numberOfSprites : 0,
         numberStartingSprites : 1,
         spriteCount : 0,
