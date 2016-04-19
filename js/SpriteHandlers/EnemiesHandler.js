@@ -27,6 +27,6 @@ EnemiesHandler.prototype.removeEnemy = function() {
 
 };
 
-EnemiesHandler.prototype.addEnemiesToStage = function() {
+EnemiesHandler.prototype.addEnemiesToStage = function(stage) {
 
 };
