@@ -7,6 +7,7 @@ var GameVariables = (function GameVariables() {
         screenWidth : 1080,
         screenHeight : 720,
         enemies : 2,
+        gumballs : 1,
         minScrollSpeed : 5.5,
         maxScrollSpeed : 7,
         scrollAcceleration : 0.005,
@@ -34,6 +35,9 @@ var GameVariables = (function GameVariables() {
         },
         getEnemies : function getEnemies() {
             return constants.enemies;
+        },
+        getGumballs : function getGumballs() {
+            return constants.gumballs;
         },
         getMinScrollSpeed : function getMinScrollSpeed() {
             return constants.minScrollSpeed;
@@ -99,6 +103,9 @@ var GameVariables = (function GameVariables() {
         //setters
         setEnemies : function setEnemies(value) {
             constants.enemies = value;
+        },
+        setGumballs : function setGumballs(value) {
+            constants.gumballs = value;
         },
         setCurrentScrollSpeed : function setCurrentScrollSpeed(value) {
             constants.currentScrollSpeed = value;
