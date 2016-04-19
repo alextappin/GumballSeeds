@@ -12,6 +12,7 @@ function Scroller(stage) {
 }
 Scroller.prototype.initializePositionsAndScale = function() {
     this.Properties.character.setPositionAndScale(this.Properties.character);
+    this.Properties.enemies.setPositionAndScale();
     this.Properties.ground.setPositionAndScale(this.Properties.ground);
     this.Properties.powerBar.setPositionAndScale(this.Properties.powerBar);
     this.Properties.gumball.setPositionAndScale(this.Properties.gumball);
@@ -29,6 +30,7 @@ Scroller.prototype.addChildrenToStage = function(stage) {
     stage.addChild(this.Properties.powerBar);
     stage.addChild(this.Properties.textScore);
     stage.addChild(this.Properties.textLives);
+    this.Properties.enemies.addEnemiesToStage(stage);
     //this.createEnemies(GameVariables.getEnemies(), stage);
     stage.addChild(this.Properties.touchJump);
     stage.addChild(this.Properties.touchAttack);
