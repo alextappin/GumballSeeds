@@ -15,15 +15,15 @@ EnemiesHandler.prototype.constructEnemies = function() {
     }
 };
 
-EnemiesHandler.prototype.setPositionAndScale = function() {
-    for (var n = 0; n < this.enemies.length; n++) {
-        this.enemies[n].setPositionAndScale(this.enemies[n]);
+EnemiesHandler.prototype.setPositionAndScale = function(enemyHandler) {
+    for (var n = 0; n < enemyHandler.enemies.length; n++) {
+        enemyHandler.enemies[n].setPositionAndScale(enemyHandler.enemies[n]);
     }
 };
 
-EnemiesHandler.prototype.addEnemiesToStage = function(stage) {
-    for (var n = 0; n < this.enemies.length; n++) {
-        stage.addChild(this.enemies[n]);
+EnemiesHandler.prototype.addEnemiesToStage = function(enemyHandler, stage) {
+    for (var n = 0; n < enemyHandler.enemies.length; n++) {
+        stage.addChild(enemyHandler.enemies[n]);
     }
 };
 
@@ -34,16 +34,18 @@ EnemiesHandler.prototype.update = function(enemyHandler, characterObj, stage) {
         }
         //if there are not enough enemies, add another
         else {
-            this.addEnemy(1, stage);
+            this.addEnemy(1, stage, enemyHandler);
         }
         enemyHandler.enemies[n].update(enemyHandler.enemies[n], characterObj);
     }
 };
 
-EnemiesHandler.prototype.addEnemy = function(numberToAdd, stage) {
+EnemiesHandler.prototype.addEnemy = function(numberToAdd, stage, enemyHandler) {
     for (var n = 0; n < numberToAdd; n++) {
-        this.enemies.push(new Enemy);
-        stage.addChild(this.enemies[this.enemies.length - 1]);
+        var enemy = new Enemy();
+        enemy.setPositionAndScale(enemy);
+        enemyHandler.enemies.push(enemy);
+        stage.addChild(enemy);
     }
 };
 
