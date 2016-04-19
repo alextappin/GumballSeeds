@@ -12,7 +12,7 @@ function ScrollerProperties() {
         powerBar : new PowerBar(),
         touchJump : new TouchJump(),
         touchAttack : new TouchAttack(),
-        enemies : [],
+        enemies : new EnemiesHandler(),
         mapBuilder : {},
         textScore : new Text("score"),
         textLives : new Text("lives"),
