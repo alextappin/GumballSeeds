@@ -14,11 +14,8 @@ Gumball.prototype.constructGumball = function() {
     this.initiateGumballSprites();
 };
 Gumball.prototype.setPositionAndScale = function(obj) {
-    for (var i = 0; i < this.Properties.numberOfSprites; i++) {
-        obj.children[i].position =  GameVariables.getNewPoint(-100, this.Properties.startingY);
-        obj.children[i].scale = GameVariables.getNewPoint(.35,.35);
-    }
-    //no scale yet...
+        obj.position =  GameVariables.getNewPoint(-100, this.Properties.startingY);
+        obj.scale = GameVariables.getNewPoint(.35,.35);
 };
 Gumball.prototype.initiateGumballSprites = function() {
     this.Properties.textures.push(
