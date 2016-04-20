@@ -3,7 +3,7 @@
  */
 function GumballProperties() {
     var props = {
-        sprites : [],
+        sprite : {},
         textures : [],
         numberOfSprites : 0,
         numberStartingSprites : 1,
