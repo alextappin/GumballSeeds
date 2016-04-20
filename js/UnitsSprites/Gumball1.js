@@ -24,14 +24,8 @@ Gumball.prototype.initiateGumballSprites = function() {
         PIXI.Texture.fromFrame("gum2Blue"),
         PIXI.Texture.fromFrame("gum4Red")
     );
-    for (var i = 0; i < this.Properties.numberStartingSprites; i++) {
-        this.createSprite();
-    }
-};
-Gumball.prototype.createSprite = function() {
-    this.Properties.sprites.push(new PIXI.Sprite(this.Properties.textures[0]));
-    this.Properties.numberOfSprites++;
-    this.addChild(this.Properties.sprites[this.Properties.numberOfSprites-1]);
+    this.Properties.sprite = new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]);
+    this.addChild(this.Properties.sprite);
 };
 Gumball.prototype.setSpriteToCurrentTexture = function() {
     this.Properties.sprite.texture = this.Properties.textures[this.Properties.spriteCount];
