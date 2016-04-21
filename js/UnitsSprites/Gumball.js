@@ -14,11 +14,8 @@ Gumball.prototype.constructGumball = function() {
     this.initiateGumballSprites();
 };
 Gumball.prototype.setPositionAndScale = function(obj) {
-    for (var i = 0; i < this.Properties.numberOfSprites; i++) {
-        obj.children[i].position =  GameVariables.getNewPoint(-100, this.Properties.startingY);
-        obj.children[i].scale = GameVariables.getNewPoint(.35,.35);
-    }
-    //no scale yet...
+    obj.position =  GameVariables.getNewPoint(-100, this.Properties.startingY);
+    obj.scale = GameVariables.getNewPoint(.35,.35);
 };
 Gumball.prototype.initiateGumballSprites = function() {
     this.Properties.textures.push(
@@ -27,44 +24,47 @@ Gumball.prototype.initiateGumballSprites = function() {
         PIXI.Texture.fromFrame("gum2Blue"),
         PIXI.Texture.fromFrame("gum4Red")
     );
-    for (var i = 0; i < this.Properties.numberStartingSprites; i++) {
-        this.createSprite();
-    }
-};
-Gumball.prototype.createSprite = function() {
-    this.Properties.sprites.push(new PIXI.Sprite(this.Properties.textures[0]));
-    this.Properties.numberOfSprites++;
-    this.addChild(this.Properties.sprites[this.Properties.numberOfSprites-1]);
+    this.Properties.sprite = new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]);
+    this.addChild(this.Properties.sprite);
 };
 Gumball.prototype.setSpriteToCurrentTexture = function() {
     this.Properties.sprite.texture = this.Properties.textures[this.Properties.spriteCount];
 };
 Gumball.prototype.update = function(gumballObj, groundObj, characterObj) {
-    this.updateSprites(gumballObj, groundObj, characterObj);
+    //this.updateSprite();
+    this.moveSprite(gumballObj, groundObj, characterObj);
+    /*this.updateSprites(gumballObj, groundObj, characterObj);*/
 };
-Gumball.prototype.updateSprites = function(gumballObj, groundObj, characterObj) {
-    for (var i = 0; i < this.Properties.numberOfSprites; i++) {
-        if (gumballObj.children[i].position.x < (0-gumballObj.children[i].width)) {
-            gumballObj.children[i].position = this.getNewPosition(groundObj, this.Properties.startingX);
-            this.updateTexture(gumballObj.children[i]);
-        }
-        //check if the character and gumball are intersecting
-        else if(this.isIntersecting(gumballObj.children[i], characterObj)) {
-            ScoreHelper().pickupGumball();
-            gumballObj.children[i].position = this.getNewPosition(groundObj, this.Properties.startingX);
-            this.updateTexture(gumballObj.children[i]);
-        }
-        gumballObj.children[i].position.x -= groundObj.Properties.speed;
+Gumball.prototype.updateSprite = function() {
+    if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
+        this.Properties.changeSpriteCounter = 0;
+        this.nextSprite();
+    }
+    else {
+        this.Properties.changeSpriteCounter++;
     }
 };
-Gumball.prototype.updateTexture = function(gumball) {
+Gumball.prototype.moveSprite = function(gumballObj, groundObj, characterObj) {
+    if (gumballObj.position.x < (0-gumballObj.width)) {
+        gumballObj.position = this.getNewPosition(groundObj, this.Properties.startingX);
+        this.updateSprite(gumballObj);
+    }
+    //check if the character and gumball are intersecting
+    else if(this.isIntersecting(gumballObj, characterObj)) {
+        ScoreHelper().pickupGumball();
+        gumballObj.position = this.getNewPosition(groundObj, this.Properties.startingX);
+        this.updateTexture(gumballObj);
+    }
+    gumballObj.position.x -= groundObj.Properties.speed;
+};
+Gumball.prototype.nextSprite = function() {
     if (this.Properties.spriteCount == this.Properties.textures.length-1) {
         this.Properties.spriteCount = 0;
     }
     else {
         this.Properties.spriteCount++;
     }
-    gumball.texture = this.Properties.textures[this.Properties.spriteCount];
+    this.setSpriteToCurrentTexture();
 };
 Gumball.prototype.getNewPosition = function(groundObj, gumballX) {
     var groundHeight = groundObj.getHeightAtPositionX(gumballX);
