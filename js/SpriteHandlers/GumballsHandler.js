@@ -27,16 +27,15 @@ GumballsHandler.prototype.addGumballsToStage = function(gumballHandler, stage) {
     }
 };
 
-GumballsHandler.prototype.update = function(gumballHandler, characterObj, stage) {
+GumballsHandler.prototype.update = function(gumballHandler, groundObj, characterObj, stage) {
     for (var n = 0; n < GameVariables.getGumballs(); n++) {
         if (gumballHandler.gumballs[n]) {
-            gumballHandler.gumballs[n].update(gumballHandler.gumballs[n], characterObj);
+            gumballHandler.gumballs[n].update(gumballHandler.gumballs[n], groundObj, characterObj);
         }
         //if there are not enough gumballs, add another
         else {
             this.addGumball(1, stage, gumballHandler);
         }
-        gumballHandler.gumballs[n].update(gumballHandler.gumballs[n], characterObj);
     }
 };
 

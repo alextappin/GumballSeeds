@@ -53,7 +53,7 @@ Gumball.prototype.moveSprite = function(gumballObj, groundObj, characterObj) {
     else if(this.isIntersecting(gumballObj, characterObj)) {
         ScoreHelper().pickupGumball();
         gumballObj.position = this.getNewPosition(groundObj, this.Properties.startingX);
-        this.updateTexture(gumballObj);
+        this.updateSprite(gumballObj);
     }
     gumballObj.position.x -= groundObj.Properties.speed;
 };
