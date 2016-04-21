@@ -36,7 +36,6 @@ EnemiesHandler.prototype.update = function(enemyHandler, characterObj, stage) {
         else {
             this.addEnemy(1, stage, enemyHandler);
         }
-        enemyHandler.enemies[n].update(enemyHandler.enemies[n], characterObj);
     }
 };
 
