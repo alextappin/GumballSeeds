@@ -31,8 +31,8 @@ Gumball.prototype.setSpriteToCurrentTexture = function() {
     this.Properties.sprite.texture = this.Properties.textures[this.Properties.spriteCount];
 };
 Gumball.prototype.update = function(gumballObj, groundObj, characterObj) {
-    this.updateSprite();
-    //this.moveSprite(gumballObj, groundObj, characterObj);
+    //this.updateSprite();
+    this.moveSprite(gumballObj, groundObj, characterObj);
     /*this.updateSprites(gumballObj, groundObj, characterObj);*/
 };
 Gumball.prototype.updateSprite = function() {
@@ -44,20 +44,18 @@ Gumball.prototype.updateSprite = function() {
         this.Properties.changeSpriteCounter++;
     }
 };
-Gumball.prototype.updateSprites = function(gumballObj, groundObj, characterObj) {
-    for (var i = 0; i < this.Properties.numberOfSprites; i++) {
-        if (gumballObj.children[i].position.x < (0-gumballObj.children[i].width)) {
-            gumballObj.children[i].position = this.getNewPosition(groundObj, this.Properties.startingX);
-            this.updateTexture(gumballObj.children[i]);
-        }
-        //check if the character and gumball are intersecting
-        else if(this.isIntersecting(gumballObj.children[i], characterObj)) {
-            ScoreHelper().pickupGumball();
-            gumballObj.children[i].position = this.getNewPosition(groundObj, this.Properties.startingX);
-            this.updateTexture(gumballObj.children[i]);
-        }
-        gumballObj.children[i].position.x -= groundObj.Properties.speed;
+Gumball.prototype.moveSprite = function(gumballObj, groundObj, characterObj) {
+    if (gumballObj.position.x < (0-gumballObj.width)) {
+        gumballObj.position = this.getNewPosition(groundObj, this.Properties.startingX);
+        this.updateSprite(gumballObj);
     }
+    //check if the character and gumball are intersecting
+    else if(this.isIntersecting(gumballObj, characterObj)) {
+        ScoreHelper().pickupGumball();
+        gumballObj.position = this.getNewPosition(groundObj, this.Properties.startingX);
+        this.updateTexture(gumballObj);
+    }
+    gumballObj.position.x -= groundObj.Properties.speed;
 };
 Gumball.prototype.nextSprite = function() {
     if (this.Properties.spriteCount == this.Properties.textures.length-1) {
