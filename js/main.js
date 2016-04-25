@@ -5,7 +5,7 @@ function Main() {
     this.renderer = PIXI.autoDetectRenderer(MapGlobals.screenWidth, MapGlobals.screenHeight, {backgroundColor: 0x66FF99});
     document.body.appendChild(this.renderer.view);
     this.stage = new PIXI.Container(0x66FF99);
-    ScrollerGlobals = ScrollerGlobals.minScrollSpeed;
+    ScrollerGlobals.currentScrollSpeed = ScrollerGlobals.minScrollSpeed;
     this.loadSpriteSheet();
 }
 Main.prototype.update = function() {
