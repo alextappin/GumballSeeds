@@ -6,6 +6,13 @@ function PowerUpHelper() {
 
     powerUpHelper.startPowerUp = function() {
         console.log("startPowerUp");
+        GameVariables.setCurrentScrollSpeed(GameVariables.getCurrentScrollSpeed()*2);
+    };
+    powerUpHelper.continuePowerUp = function() {
+        console.log("power up ongoing");
+    };
+    powerUpHelper.endPowerUp = function() {
+        console.log("end Power Up");
     };
     powerUpHelper.incrementPowerUp = function() {
         if (GameVariables.getPowerBarScore() >= GameVariables.getMaxPowerBar()) {
