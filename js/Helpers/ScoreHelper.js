@@ -3,7 +3,7 @@ function ScoreHelper() {
     scoreHelpers.killEnemy = function(enemyPoints) {
         GameVariables.setCurrentScore(GameVariables.getCurrentScore() + enemyPoints);
         GameVariables.setKills(GameVariables.getKills() + 1);
-        GameVariables.setPowerBarScore(GameVariables.getPowerBarScore() < 6 ? GameVariables.getPowerBarScore() + 1 : 6);
+        PowerUpHelper().incrementPowerUp();
     };
     scoreHelpers.getHitByEnemy = function(enemyDamage) {
         GameVariables.setPowerBarScore(GameVariables.getPowerBarScore() > 0 ? GameVariables.getPowerBarScore() - 1 : 0);

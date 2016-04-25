@@ -5,14 +5,14 @@ function PowerUpHelper() {
     var powerUpHelper = {};
 
     powerUpHelper.startPowerUp = function() {
-
+        console.log("startPowerUp");
     };
-    powerUpHelper.checkForPowerUp = function() {
-        if (GameVariables.getPowerBarScore() == GameVariables.getMaxPowerBar()) {
+    powerUpHelper.incrementPowerUp = function() {
+        if (GameVariables.getPowerBarScore() >= GameVariables.getMaxPowerBar()) {
             powerUpHelper.startPowerUp();
         }
         else {
-
+            GameVariables.setPowerBarScore(GameVariables.getPowerBarScore() + 1);
         }
     };
     return powerUpHelper;
