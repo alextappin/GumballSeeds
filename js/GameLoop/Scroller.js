@@ -40,7 +40,15 @@ Scroller.prototype.update = function() {
     ScoreHelper().updateScore();
 };
 Scroller.prototype.updateViewport = function() {
-    GameVariables.getCurrentScrollSpeed() > GameVariables.getMaxScrollSpeed() ? GameVariables.setCurrentScrollSpeed(GameVariables.getMaxScrollSpeed()) : null;
+    if (GameVariables.getPowerUpActive()) {
+        //if the power up is continuing, call the continue powerUp from the powerUpHelper
+        PowerUpHelper().continuePowerUp(this.Properties.viewportX);
+    }
+    else {
+        if (GameVariables.getCurrentScrollSpeed() > GameVariables.getMaxScrollSpeed()) {
+            GameVariables.setCurrentScrollSpeed(GameVariables.getMaxScrollSpeed());
+        }
+    }
     this.Properties.viewportX = this.Properties.viewportX + GameVariables.getCurrentScrollSpeed();
 };
 Scroller.prototype.updateObjects = function() {
