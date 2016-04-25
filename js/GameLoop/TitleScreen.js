@@ -34,6 +34,8 @@ TitleScreen.prototype.update = function() {
     this.Properties.textScore.update(this.Properties.textScore);
 };
 TitleScreen.prototype.updateViewport = function() {
-    GameVariables.getCurrentScrollSpeed() > GameVariables.getMaxScrollSpeed() ? GameVariables.setCurrentScrollSpeed(GameVariables.getMaxScrollSpeed()) : null;
-    this.Properties.viewportX = this.Properties.viewportX + GameVariables.getCurrentScrollSpeed();
+    if (ScrollerGlobals.currentScrollSpeed > ScrollerGlobals.maxScrollSpeed) {
+        ScrollerGlobals.currentScrollSpeed = ScrollerGlobals.maxScrollSpeed;
+    }
+    this.Properties.viewportX = this.Properties.viewportX + ScrollerGlobals.currentScrollSpeed;
 };
