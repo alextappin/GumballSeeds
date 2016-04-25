@@ -24,7 +24,9 @@ var GameVariables = (function GameVariables() {
         loopScoreIncrementTime : 60,
         powerBarScore : 2,
         maxPowerBar : 6,
-        powerUpActive : false
+        powerUpActive : false,
+        powerUpStartingViewPort : 0,
+        powerUpDuration : 10000
     };
 
     return {
@@ -108,6 +110,12 @@ var GameVariables = (function GameVariables() {
         getPowerUpActive : function getPowerUpActive() {
             return constants.powerUpActive;
         },
+        getPowerUpStartViewPort : function getPowerUpStartViewPort() {
+            return constants.powerUpStartingViewPort;
+        },
+        getPowerUpDuration : function getPowerUpDuration() {
+            return constants.powerUpDuration;
+        },
         //setters
         setEnemies : function setEnemies(value) {
             constants.enemies = value;
@@ -150,6 +158,9 @@ var GameVariables = (function GameVariables() {
         },
         setPowerUpActive : function setPowerUpActive(bool) {
             constants.powerUpActive = bool;
+        },
+        setPowerUpStartViewPort : function setPowerUpStartViewPort(viewPort) {
+            constants.powerUpStartingViewPort = viewPort;
         }
     };
 })();
