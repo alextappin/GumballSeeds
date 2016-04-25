@@ -65,4 +65,5 @@ Main.prototype.saveAndRestartGameVariables = function() {
     GameVariables.setPowerBarScore(2);
     GameVariables.setPowerUpActive(false);
     GameVariables.setPowerUpStartViewPort(0);
+    GameVariables.setGroundSpeed(10);
 };
