@@ -41,8 +41,8 @@ Character.prototype.update = function(characterObj, groundObj) {
 };
 Character.prototype.updatePowerUp = function(characterObj, groundObj) {
     this.updateSprites();
+    this.powerUpMove(characterObj);
     this.characterGravity(characterObj, groundObj);
-    this.attackCharacter();
 };
 Character.prototype.updateSprites = function() {
     if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
@@ -101,6 +101,10 @@ Character.prototype.rise = function(characterObj) {
     this.startGravity();
     characterObj.position.y += this.Properties.velocityY;
 };
+Character.prototype.powerUpMove = function(characterObj) {
+    this.Properties.isAttacking = true;
+    characterObj.position = this.getNewPowerUpPosition(characterObj);
+};
 Character.prototype.isFalling = function() {
     //negative velocity is up... not rising ur falling. maybe >=
     return this.Properties.velocityY >= 0;
@@ -150,6 +154,9 @@ Character.prototype.stopAttacking = function() {
     this.removeChild(this.text);
 
     this.Properties.attackingTime = 0;
+};
+Character.prototype.getNewPowerUpPosition = function(characterObj) {
+
 };
 Character.prototype.listenForJumpTrigger = function() {
     var that = this;
