@@ -8,7 +8,7 @@ function CharacterProperties() {
         spriteCount : 0,
         airborn : true,
         startPosY : -100,
-        startPosX : GameVariables.getWidth() *.2,
+        startPosX : MapGlobals.screenWidth *.2,
         scaleX: .5,
         scaleY: .5,
         applyFallingGravity : false,
