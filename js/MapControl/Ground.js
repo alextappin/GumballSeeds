@@ -40,6 +40,9 @@ Ground.prototype.setSpriteToCurrentTexture = function() {
 Ground.prototype.update = function(obj) {
     this.updateSprites(obj);
 };
+Ground.prototype.updatePowerUp = function(obj) {
+    this.updateSprites(obj);
+};
 Ground.prototype.updateSprites = function(obj) {
     for (var i = 0; i < this.Properties.numberOfSprites; i++) {
         if (obj.children[i].position.x < (0-obj.children[i].width)) {
