@@ -6,9 +6,9 @@ function PowerUpHelper() {
 
     powerUpHelper.startPowerUp = function() {
         console.log("startPowerUp");
-        GameVariables.setPowerUpActive(true);
-        GameVariables.setCurrentScrollSpeed(GameVariables.getCurrentScrollSpeed()*2);
-        GameVariables.setGroundSpeed(GameVariables.getGroundSpeed()*2);
+        PowerUpGlobals.powerUpActive = true;
+        ScrollerGlobals.currentScrollSpeed *= PowerUpGlobals.powerUpSpeedMultiplier;
+        ScrollerGlobals.groundSpeed *= PowerUpGlobals.powerUpSpeedMultiplier;
     };
     powerUpHelper.continuePowerUp = function(viewPort) {
         if (GameVariables.getPowerUpStartViewPort() == 0) {
@@ -22,7 +22,7 @@ function PowerUpHelper() {
         }
     };
     powerUpHelper.endPowerUp = function() {
-        GameVariables.setPowerUpActive(false);
+        PowerUpGlobals.powerUpActive = false;
         GameVariables.setPowerUpStartViewPort(0);
         GameVariables.setPowerBarScore(2);
         GameVariables.setGroundSpeed(10);
