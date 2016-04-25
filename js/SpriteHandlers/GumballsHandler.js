@@ -39,6 +39,18 @@ GumballsHandler.prototype.update = function(gumballHandler, groundObj, character
     }
 };
 
+GumballsHandler.prototype.updatePowerUp = function(gumballHandler, groundObj, characterObj, stage) {
+    for (var n = 0; n < GameVariables.getGumballs(); n++) {
+        if (gumballHandler.gumballs[n]) {
+            gumballHandler.gumballs[n].updatePowerUp(gumballHandler.gumballs[n], groundObj, characterObj);
+        }
+        //if there are not enough gumballs, add another
+        else {
+            this.addGumball(1, stage, gumballHandler);
+        }
+    }
+};
+
 GumballsHandler.prototype.addGumball = function(numberToAdd, stage, gumballHandler) {
     for (var n = 0; n < numberToAdd; n++) {
         var gumball = new Gumball();
