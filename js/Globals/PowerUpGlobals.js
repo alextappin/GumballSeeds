@@ -7,7 +7,7 @@ var PowerUpGlobals = (function PowerUpGlobals() {
     constants.powerBarLevel = 2;
     constants.maxPowerBarLevel = 6;
     constants.powerUpActive = false;
-    constants.powerUpStartingViewPort = 0;
+    constants.powerUpStartingViewport = 0;
     constants.powerUpDuration = 10000;
 
     return constants;
