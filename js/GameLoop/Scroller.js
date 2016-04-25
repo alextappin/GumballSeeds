@@ -35,7 +35,7 @@ Scroller.prototype.addChildrenToStage = function(stage) {
     stage.addChild(this.Properties.touchAttack);
 };
 Scroller.prototype.update = function() {
-    if (GameVariables.getPowerUpActive()) {
+    if (PowerUpGlobals.powerUpActive) {
         this.updateViewportPowerUp();
         this.updateObectsPowerUp();
     }
@@ -46,16 +46,16 @@ Scroller.prototype.update = function() {
     ScoreHelper().updateScore();
 };
 Scroller.prototype.updateViewport = function() {
-    if (GameVariables.getPowerUpActive()) {
+    if (PowerUpGlobals.powerUpActive) {
         //if the power up is continuing, call the continue powerUp from the powerUpHelper
         PowerUpHelper().continuePowerUp(this.Properties.viewportX);
     }
     else {
-        if (GameVariables.getCurrentScrollSpeed() > GameVariables.getMaxScrollSpeed()) {
-            GameVariables.setCurrentScrollSpeed(GameVariables.getMaxScrollSpeed());
+        if (ScrollerGlobals.currentScrollSpeed > ScrollerGlobals.maxScrollSpeed) {
+            ScrollerGlobals.currentScrollSpeed = ScrollerGlobals.maxScrollSpeed;
         }
     }
-    this.Properties.viewportX = this.Properties.viewportX + GameVariables.getCurrentScrollSpeed();
+    this.Properties.viewportX = this.Properties.viewportX + ScrollerGlobals.currentScrollSpeed;
 };
 Scroller.prototype.updateObjects = function() {
     this.Properties.far.setViewportX(this.Properties.viewportX);
@@ -73,7 +73,7 @@ Scroller.prototype.updateObjects = function() {
 };
 Scroller.prototype.updateViewportPowerUp = function() {
     PowerUpHelper().continuePowerUp(this.Properties.viewportX);
-    this.Properties.viewportX = this.Properties.viewportX + GameVariables.getCurrentScrollSpeed();
+    this.Properties.viewportX = this.Properties.viewportX + ScrollerGlobals.currentScrollSpeed;
 };
 Scroller.prototype.updateObectsPowerUp = function() {
     this.Properties.far.setViewportX(this.Properties.viewportX);
