@@ -36,6 +36,10 @@ Scroller.prototype.addChildrenToStage = function(stage) {
 };
 Scroller.prototype.update = function() {
     if (GameVariables.getPowerUpActive()) {
+        this.updateViewportPowerUp();
+        this.updateObectsPowerUp();
+    }
+    else {
         this.updateViewport();
         this.updateObjects();
     }
@@ -67,8 +71,9 @@ Scroller.prototype.updateObjects = function() {
     this.Properties.touchJump.update(this.Properties.touchJump, this.Properties.character);
     this.Properties.touchAttack.update(this.Properties.touchAttack, this.Properties.character);
 };
-Scroller.prototype.updateViewPortPowerUp = function() {
-
+Scroller.prototype.updateViewportPowerUp = function() {
+    PowerUpHelper().continuePowerUp(this.Properties.viewportX);
+    this.Properties.viewportX = this.Properties.viewportX + GameVariables.getCurrentScrollSpeed();
 };
 Scroller.prototype.updateObectsPowerUp = function() {
     this.Properties.far.setViewportX(this.Properties.viewportX);
