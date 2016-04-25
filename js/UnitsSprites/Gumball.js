@@ -55,7 +55,7 @@ Gumball.prototype.moveSprite = function(gumballObj, groundObj, characterObj) {
         gumballObj.position = this.getNewPosition(groundObj, this.Properties.startingX);
         this.updateSprite(gumballObj);
     }
-    gumballObj.position.x -= groundObj.Properties.speed;
+    gumballObj.position.x -= GameVariables.getGroundSpeed();
 };
 Gumball.prototype.nextSprite = function() {
     if (this.Properties.spriteCount == this.Properties.textures.length-1) {
