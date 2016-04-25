@@ -62,4 +62,7 @@ Main.prototype.saveAndRestartGameVariables = function() {
     GameVariables.setKills(0);
     GameVariables.setCurrentScore(0);
     GameVariables.resetLoopCounter();
+    GameVariables.setPowerBarScore(2);
+    GameVariables.setPowerUpActive(false);
+    GameVariables.setPowerUpStartViewPort(0);
 };
