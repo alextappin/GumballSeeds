@@ -1,25 +1,25 @@
 function ScoreHelper() {
     var scoreHelpers = {};
     scoreHelpers.killEnemy = function(enemyPoints) {
-        GameVariables.setCurrentScore(GameVariables.getCurrentScore() + enemyPoints);
-        GameVariables.setKills(GameVariables.getKills() + 1);
+        ScoreGlobals.currentScore = ScoreGlobals.currentScore + enemyPoints;
+        ScoreGlobals.kills++;
         PowerUpHelper().incrementPowerUp();
     };
     scoreHelpers.getHitByEnemy = function(enemyDamage) {
-        GameVariables.setPowerBarScore(GameVariables.getPowerBarScore() > 0 ? GameVariables.getPowerBarScore() - 1 : 0);
+        PowerUpGlobals.powerBarLevel = (PowerUpGlobals.powerBarLevel > 0 ? PowerUpGlobals.powerBarLevel - 1 : 0);
     };
     scoreHelpers.runningScore = function() {
-        GameVariables.setCurrentScore(GameVariables.getCurrentScore() + 1);
+        ScoreGlobals.currentScore = ScoreGlobals.currentScore + ScoreGlobals.runningScore;
     };
     scoreHelpers.createNewEnemy = function() {
-        return GameVariables.getKills() % GameVariables.getNewEnemyCounter() === 0;
+        return ScoreGlobals.kills % BalanceGlobals.createNewEnemiesCounter === 0;
     };
     scoreHelpers.pickupGumball = function() {
-        GameVariables.setCurrentScore(GameVariables.getCurrentScore() + 1);
+        ScoreGlobals.currentScore = ScoreGlobals.currentScore + ScoreGlobals.pickupGumballScore;
     };
     scoreHelpers.updateScore = function() {
-        GameVariables.incrementLoopCounter();
-        if (GameVariables.getLoopCounter() % GameVariables.getLoopScoreIncrement() === 0) {
+        MapGlobals.loopCounter++;
+        if (MapGlobals.loopCounter % BalanceGlobals.loopScoreIncrementTime === 0) {
             scoreHelpers.runningScore();
         }
     };
