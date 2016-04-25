@@ -22,7 +22,8 @@ var GameVariables = (function GameVariables() {
         kills : 0,
         createNewEnemiesCounter : 5,
         loopScoreIncrementTime : 60,
-        powerBarScore : 2
+        powerBarScore : 2,
+        maxPowerBar : 6
     };
 
     return {
@@ -99,6 +100,9 @@ var GameVariables = (function GameVariables() {
         },
         getCharacterPositionX : function getCharacterPositionX() {
             return constants.screenWidth * .2
+        },
+        getMaxPowerBar : function getMaxPowerBar() {
+            return constants.maxPowerBar;
         },
         //setters
         setEnemies : function setEnemies(value) {
