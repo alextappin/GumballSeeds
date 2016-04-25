@@ -11,6 +11,7 @@ var GameVariables = (function GameVariables() {
         minScrollSpeed : 5.5,
         maxScrollSpeed : 7,
         scrollAcceleration : 0.005,
+        groundSpeed : 10,
         currentScrollSpeed : 20,
         offScreenOffsetX : -200,
         offScreenOffsetY : 200,
@@ -116,6 +117,9 @@ var GameVariables = (function GameVariables() {
         getPowerUpDuration : function getPowerUpDuration() {
             return constants.powerUpDuration;
         },
+        getGroundSpeed : function getGroundSpeed() {
+            return constants.groundSpeed;
+        },
         //setters
         setEnemies : function setEnemies(value) {
             constants.enemies = value;
@@ -161,6 +165,9 @@ var GameVariables = (function GameVariables() {
         },
         setPowerUpStartViewPort : function setPowerUpStartViewPort(viewPort) {
             constants.powerUpStartingViewPort = viewPort;
+        },
+        setGroundSpeed : function setGroundSpeed(speed) {
+            constants.groundSpeed = speed;
         }
     };
 })();

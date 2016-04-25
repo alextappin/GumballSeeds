@@ -55,13 +55,13 @@ Ground.prototype.updateSprites = function(obj) {
 
         }
         else {
-            obj.children[i].position.x -= this.Properties.speed;
+            obj.children[i].position.x -= GameVariables.getGroundSpeed();
         }
     }
 };
 Ground.prototype.calcuateNewPosition = function(obj, currentElement) {
     var lastElementChanged = currentElement - 1 < 0 ? obj.children.length-1 : currentElement - 1;
-    return (obj.children[lastElementChanged].position.x + obj.children[lastElementChanged].width - this.Properties.speed-1);
+    return (obj.children[lastElementChanged].position.x + obj.children[lastElementChanged].width - GameVariables.getGroundSpeed()-1);
 };
 Ground.prototype.getHeightAtPositionX = function(positionX) {
     for (var i = 0; i < this.Properties.sprites.length; i++) {
