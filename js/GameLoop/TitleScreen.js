@@ -37,5 +37,6 @@ TitleScreen.prototype.updateViewport = function() {
     if (ScrollerGlobals.currentScrollSpeed > ScrollerGlobals.maxScrollSpeed) {
         ScrollerGlobals.currentScrollSpeed = ScrollerGlobals.maxScrollSpeed;
     }
+
     this.Properties.viewportX = this.Properties.viewportX + ScrollerGlobals.currentScrollSpeed;
 };
