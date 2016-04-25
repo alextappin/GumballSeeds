@@ -36,6 +36,9 @@ PowerBar.prototype.setSpriteToCurrentTexture = function() {
 PowerBar.prototype.update = function(obj) {
     this.checkForUpdate();
 };
+PowerBar.prototype.updatePowerUp = function(obj) {
+    this.checkForUpdate();
+};
 PowerBar.prototype.checkForUpdate = function() {
     if (GameVariables.getPowerBarScore() != this.Properties.spriteCount) {
         this.Properties.spriteCount = GameVariables.getPowerBarScore();

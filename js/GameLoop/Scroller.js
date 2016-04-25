@@ -35,12 +35,26 @@ Scroller.prototype.addChildrenToStage = function(stage) {
     stage.addChild(this.Properties.touchAttack);
 };
 Scroller.prototype.update = function() {
-    this.updateViewport();
-    this.updateObjects();
+    if (GameVariables.getPowerUpActive()) {
+        this.updateViewportPowerUp();
+        this.updateObectsPowerUp();
+    }
+    else {
+        this.updateViewport();
+        this.updateObjects();
+    }
     ScoreHelper().updateScore();
 };
 Scroller.prototype.updateViewport = function() {
-    GameVariables.getCurrentScrollSpeed() > GameVariables.getMaxScrollSpeed() ? GameVariables.setCurrentScrollSpeed(GameVariables.getMaxScrollSpeed()) : null;
+    if (GameVariables.getPowerUpActive()) {
+        //if the power up is continuing, call the continue powerUp from the powerUpHelper
+        PowerUpHelper().continuePowerUp(this.Properties.viewportX);
+    }
+    else {
+        if (GameVariables.getCurrentScrollSpeed() > GameVariables.getMaxScrollSpeed()) {
+            GameVariables.setCurrentScrollSpeed(GameVariables.getMaxScrollSpeed());
+        }
+    }
     this.Properties.viewportX = this.Properties.viewportX + GameVariables.getCurrentScrollSpeed();
 };
 Scroller.prototype.updateObjects = function() {
@@ -52,6 +66,24 @@ Scroller.prototype.updateObjects = function() {
     this.Properties.gumballs.update(this.Properties.gumballs, this.Properties.ground, this.Properties.character, this.getStage());
     this.Properties.enemies.update(this.Properties.enemies, this.Properties.character, this.getStage());
     this.Properties.powerBar.update(this.Properties.powerBar);
+    this.Properties.textScore.update(this.Properties.textScore);
+    this.Properties.textLives.update(this.Properties.textLives);
+    this.Properties.touchJump.update(this.Properties.touchJump, this.Properties.character);
+    this.Properties.touchAttack.update(this.Properties.touchAttack, this.Properties.character);
+};
+Scroller.prototype.updateViewportPowerUp = function() {
+    PowerUpHelper().continuePowerUp(this.Properties.viewportX);
+    this.Properties.viewportX = this.Properties.viewportX + GameVariables.getCurrentScrollSpeed();
+};
+Scroller.prototype.updateObectsPowerUp = function() {
+    this.Properties.far.setViewportX(this.Properties.viewportX);
+    this.Properties.mid.setViewportX(this.Properties.viewportX);
+    this.Properties.mid2.setViewportX(this.Properties.viewportX);
+    this.Properties.ground.updatePowerUp(this.Properties.ground);
+    this.Properties.character.updatePowerUp(this.Properties.character, this.Properties.ground);
+    this.Properties.gumballs.updatePowerUp(this.Properties.gumballs, this.Properties.ground, this.Properties.character, this.getStage());
+    this.Properties.enemies.updatePowerUp(this.Properties.enemies, this.Properties.character, this.getStage());
+    this.Properties.powerBar.updatePowerUp(this.Properties.powerBar);
     this.Properties.textScore.update(this.Properties.textScore);
     this.Properties.textLives.update(this.Properties.textLives);
     this.Properties.touchJump.update(this.Properties.touchJump, this.Properties.character);

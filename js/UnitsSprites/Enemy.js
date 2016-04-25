@@ -43,6 +43,10 @@ Enemy.prototype.update = function(enemyObj, characterObj) {
     this.updateSprite();
     this.moveEnemy(enemyObj, characterObj);
 };
+Enemy.prototype.updatePowerUp = function(enemyObj, characterObj) {
+    this.updateSprite();
+    this.moveEnemyPowerUp(enemyObj, characterObj);
+};
 Enemy.prototype.updateSprite = function() {
     if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
         this.Properties.changeSpriteCounter = 0;
@@ -86,9 +90,39 @@ Enemy.prototype.moveEnemy = function(enemyObj, characterObj) {
         enemyObj.position.y = newObj.y;
     }
 };
+Enemy.prototype.moveEnemyPowerUp = function(enemyObj, characterObj) {
+    //Use the point object in the GameVariables class and set position.
+    var obj = this.getUpdatedPositionVariables(enemyObj.position.x, enemyObj.position.y);
+    enemyObj.position.x = obj.x;
+    enemyObj.position.y = obj.y;
+    if (this.isIntersecting(characterObj, enemyObj)) {
+        if (characterObj.Properties.isAttacking) {
+            ScoreHelper().killEnemy(this.Properties.pointsForKill);
+            if (ScoreHelper().createNewEnemy()) {
+                GameVariables.setEnemies(GameVariables.getEnemies()+1);
+            }
+        }
+        else {
+            GameVariables.setLives(GameVariables.getLives()-1);
+            ScoreHelper().getHitByEnemy(1);
+            if (GameVariables.getLives() < 0) {
+                characterObj.endGame();
+            }
+        }
+        this.updateVelocityPowerUp();
+        var newObj = this.getNewPositions();
+        enemyObj.position.x = newObj.x;
+        enemyObj.position.y = newObj.y;
+    }
+};
 Enemy.prototype.updateVelocity = function() {
     this.Properties.velocityX = GameVariables.getRandomNumber(4,10);
     this.Properties.velocityY =  GameVariables.getRandomNumber(1,3);
+    this.speedOrSlow();
+};
+Enemy.prototype.updateVelocityPowerUp = function() {
+    this.Properties.velocityX = GameVariables.getRandomNumber(20,22);
+    this.Properties.velocityY = GameVariables.getRandomNumber(1,3);
     this.speedOrSlow();
 };
 Enemy.prototype.getUpdatedPositionVariables = function(posX, posY) {

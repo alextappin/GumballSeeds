@@ -11,6 +11,7 @@ var GameVariables = (function GameVariables() {
         minScrollSpeed : 5.5,
         maxScrollSpeed : 7,
         scrollAcceleration : 0.005,
+        groundSpeed : 10,
         currentScrollSpeed : 20,
         offScreenOffsetX : -200,
         offScreenOffsetY : 200,
@@ -22,7 +23,11 @@ var GameVariables = (function GameVariables() {
         kills : 0,
         createNewEnemiesCounter : 5,
         loopScoreIncrementTime : 60,
-        powerBarScore : 2
+        powerBarScore : 2,
+        maxPowerBar : 6,
+        powerUpActive : false,
+        powerUpStartingViewPort : 0,
+        powerUpDuration : 10000
     };
 
     return {
@@ -100,6 +105,21 @@ var GameVariables = (function GameVariables() {
         getCharacterPositionX : function getCharacterPositionX() {
             return constants.screenWidth * .2
         },
+        getMaxPowerBar : function getMaxPowerBar() {
+            return constants.maxPowerBar;
+        },
+        getPowerUpActive : function getPowerUpActive() {
+            return constants.powerUpActive;
+        },
+        getPowerUpStartViewPort : function getPowerUpStartViewPort() {
+            return constants.powerUpStartingViewPort;
+        },
+        getPowerUpDuration : function getPowerUpDuration() {
+            return constants.powerUpDuration;
+        },
+        getGroundSpeed : function getGroundSpeed() {
+            return constants.groundSpeed;
+        },
         //setters
         setEnemies : function setEnemies(value) {
             constants.enemies = value;
@@ -139,6 +159,15 @@ var GameVariables = (function GameVariables() {
         },
         setPowerBarScore : function setPowerBarScore(score) {
             constants.powerBarScore = score;
+        },
+        setPowerUpActive : function setPowerUpActive(bool) {
+            constants.powerUpActive = bool;
+        },
+        setPowerUpStartViewPort : function setPowerUpStartViewPort(viewPort) {
+            constants.powerUpStartingViewPort = viewPort;
+        },
+        setGroundSpeed : function setGroundSpeed(speed) {
+            constants.groundSpeed = speed;
         }
     };
 })();

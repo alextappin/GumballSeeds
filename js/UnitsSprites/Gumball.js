@@ -35,6 +35,9 @@ Gumball.prototype.update = function(gumballObj, groundObj, characterObj) {
     this.moveSprite(gumballObj, groundObj, characterObj);
     /*this.updateSprites(gumballObj, groundObj, characterObj);*/
 };
+Gumball.prototype.updatePowerUp = function(gumballObj, groundObj, characterObj) {
+    this.moveSprite(gumballObj, groundObj, characterObj);
+};
 Gumball.prototype.updateSprite = function() {
     if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
         this.Properties.changeSpriteCounter = 0;
@@ -55,7 +58,7 @@ Gumball.prototype.moveSprite = function(gumballObj, groundObj, characterObj) {
         gumballObj.position = this.getNewPosition(groundObj, this.Properties.startingX);
         this.updateSprite(gumballObj);
     }
-    gumballObj.position.x -= groundObj.Properties.speed;
+    gumballObj.position.x -= GameVariables.getGroundSpeed();
 };
 Gumball.prototype.nextSprite = function() {
     if (this.Properties.spriteCount == this.Properties.textures.length-1) {

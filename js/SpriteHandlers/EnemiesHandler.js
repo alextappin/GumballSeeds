@@ -38,6 +38,17 @@ EnemiesHandler.prototype.update = function(enemyHandler, characterObj, stage) {
         }
     }
 };
+EnemiesHandler.prototype.updatePowerUp = function(enemyHandler, characterObj, stage) {
+    for (var n = 0; n < GameVariables.getEnemies(); n++) {
+        if (enemyHandler.enemies[n]) {
+            enemyHandler.enemies[n].updatePowerUp(enemyHandler.enemies[n], characterObj);
+        }
+        //if there are not enough enemies, add another
+        else {
+            this.addEnemy(1, stage, enemyHandler);
+        }
+    }
+};
 
 EnemiesHandler.prototype.addEnemy = function(numberToAdd, stage, enemyHandler) {
     for (var n = 0; n < numberToAdd; n++) {
