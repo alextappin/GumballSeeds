@@ -43,6 +43,10 @@ Enemy.prototype.update = function(enemyObj, characterObj) {
     this.updateSprite();
     this.moveEnemy(enemyObj, characterObj);
 };
+Enemy.prototype.updatePowerUp = function(enemyObj, characterObj) {
+    this.updateSprite();
+    this.moveEnemy(enemyObj, characterObj);
+};
 Enemy.prototype.updateSprite = function() {
     if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
         this.Properties.changeSpriteCounter = 0;
