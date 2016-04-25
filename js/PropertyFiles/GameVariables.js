@@ -27,7 +27,7 @@ var GameVariables = (function GameVariables() {
         maxPowerBar : 6,
         powerUpActive : false,
         powerUpStartingViewPort : 0,
-        powerUpDuration : 10000
+        powerUpDuration : 1000
     };
 
     return {
