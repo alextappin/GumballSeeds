@@ -35,17 +35,14 @@ Character.prototype.setSpriteToCurrentTexture = function() {
     this.Properties.sprite.texture = this.Properties.textures[this.Properties.spriteCount];
 };
 Character.prototype.update = function(characterObj, groundObj) {
-    //if the powerUp Is active!
-    if (GameVariables.getPowerUpActive()) {
-        this.updateSprites();
-        this.characterGravity(characterObj, groundObj);
-        this.attackCharacter();
-    }
-    else {
-        this.updateSprites();
-        this.characterGravity(characterObj, groundObj);
-        this.attackCharacter();
-    }
+    this.updateSprites();
+    this.characterGravity(characterObj, groundObj);
+    this.attackCharacter();
+};
+Character.prototype.updatePowerUp = function(characterObj, groundObj) {
+    this.updateSprites();
+    this.characterGravity(characterObj, groundObj);
+    this.attackCharacter();
 };
 Character.prototype.updateSprites = function() {
     if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
