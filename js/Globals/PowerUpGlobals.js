@@ -9,6 +9,7 @@ var PowerUpGlobals = (function PowerUpGlobals() {
     constants.powerUpActive = false;
     constants.powerUpStartingViewport = 0;
     constants.powerUpDuration = 10000;
+    constants.powerUpSpeedMultiplier = 2;
 
     return constants;
 })();
