@@ -7,19 +7,19 @@ function TextProperties(textType) {
         type : textType,
         setValues : function() {
             if (this.type == "score") {
-                this.text = "Score  " + GameVariables.getCurrentScore();
+                this.text = "Score  " + ScoreGlobals.score;
                 this.positionX = 10;
                 this.positionY = 10;
                 this.fill = "Green";
             }
             else if(this.type == "highscore") {
-                this.text = "HighScore  " + GameVariables.getHighScore();
-                this.positionX = (GameVariables.getWidth() - this.words.width) / 2;
-                this.positionY = (GameVariables.getHeight() / 2) + GameVariables.getHeight()*.1;
+                this.text = "HighScore  " + ScoreGlobals.highScore;
+                this.positionX = (MapGlobals.screenWidth - this.words.width) / 2;
+                this.positionY = (MapGlobals.screenHeight / 2) + MapGlobals.screenHeight*.1;
                 this.fill = "Yellow";
             }
             else if(this.type == "lives") {
-                this.text = "Lives  " + GameVariables.getLives();
+                this.text = "Lives  " + ScoreGlobals.lives;
                 this.positionX = 10;
                 this.positionY = 40;
                 this.fill = "Yellow";
