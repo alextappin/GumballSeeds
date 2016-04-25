@@ -8,4 +8,7 @@ var BalanceGlobals = (function BalanceGlobals() {
     constants.gumballs = 1;
     constants.createNewEnemiesCounter = 5;
     constants.loopScoreIncrementTime = 60;
+    constants.enemyPoints = 1;
+    constants.runningScore = 1;
+    constants.pickupGumballScore = 1;
 })();
