@@ -15,8 +15,8 @@ Enemy.prototype.constructEnemy = function() {
     this.initiateCharacterSprites();
 };
 Enemy.prototype.setPositionAndScale = function(obj) {
-    obj.position = GameVariables.getNewPoint(this.Properties.startPosX, this.Properties.startPosY);
-    obj.scale = GameVariables.getNewPoint(this.Properties.scaleX, this.Properties.scaleY);
+    obj.position = HelperFunctions.getNewPoint(this.Properties.startPosX, this.Properties.startPosY);
+    obj.scale = HelperFunctions.getNewPoint(this.Properties.scaleX, this.Properties.scaleY);
 };
 Enemy.prototype.initiateCharacterSprites = function() {
     this.Properties.textures.push(
@@ -66,7 +66,7 @@ Enemy.prototype.nextSprite = function() {
     this.setSpriteToCurrentTexture();
 };
 Enemy.prototype.moveEnemy = function(enemyObj, characterObj) {
-    //Use the point object in the GameVariables class and set position.
+    //Use the point object in the helperFunction class and set position.
     var obj = this.getUpdatedPositionVariables(enemyObj.position.x, enemyObj.position.y);
     enemyObj.position.x = obj.x;
     enemyObj.position.y = obj.y;
@@ -74,13 +74,12 @@ Enemy.prototype.moveEnemy = function(enemyObj, characterObj) {
         if (characterObj.Properties.isAttacking) {
             ScoreHelper().killEnemy(this.Properties.pointsForKill);
             if (ScoreHelper().createNewEnemy()) {
-                GameVariables.setEnemies(GameVariables.getEnemies()+1);
+                BalanceGlobals.enemies += 1;
             }
         }
         else {
-            GameVariables.setLives(GameVariables.getLives()-1);
             ScoreHelper().getHitByEnemy(1);
-            if (GameVariables.getLives() < 0) {
+            if (ScoreGlobals.lives < 0) {
                 characterObj.endGame();
             }
         }
@@ -91,7 +90,7 @@ Enemy.prototype.moveEnemy = function(enemyObj, characterObj) {
     }
 };
 Enemy.prototype.moveEnemyPowerUp = function(enemyObj, characterObj) {
-    //Use the point object in the GameVariables class and set position.
+    //Use the point object in the Helperfunctions class and set position.
     var obj = this.getUpdatedPositionVariables(enemyObj.position.x, enemyObj.position.y);
     enemyObj.position.x = obj.x;
     enemyObj.position.y = obj.y;
@@ -99,13 +98,12 @@ Enemy.prototype.moveEnemyPowerUp = function(enemyObj, characterObj) {
         if (characterObj.Properties.isAttacking) {
             ScoreHelper().killEnemy(this.Properties.pointsForKill);
             if (ScoreHelper().createNewEnemy()) {
-                GameVariables.setEnemies(GameVariables.getEnemies()+1);
+                ScoreGlobals.enemies += 1;
             }
         }
         else {
-            GameVariables.setLives(GameVariables.getLives()-1);
             ScoreHelper().getHitByEnemy(1);
-            if (GameVariables.getLives() < 0) {
+            if (ScoreGlobals.lives < 0) {
                 characterObj.endGame();
             }
         }
@@ -116,17 +114,17 @@ Enemy.prototype.moveEnemyPowerUp = function(enemyObj, characterObj) {
     }
 };
 Enemy.prototype.updateVelocity = function() {
-    this.Properties.velocityX = GameVariables.getRandomNumber(4,10);
-    this.Properties.velocityY =  GameVariables.getRandomNumber(1,3);
+    this.Properties.velocityX = HelperFunctions.getRandomNumber(4,10);
+    this.Properties.velocityY =  HelperFunctions.getRandomNumber(1,3);
     this.speedOrSlow();
 };
 Enemy.prototype.updateVelocityPowerUp = function() {
-    this.Properties.velocityX = GameVariables.getRandomNumber(20,22);
-    this.Properties.velocityY = GameVariables.getRandomNumber(1,3);
+    this.Properties.velocityX = HelperFunctions.getRandomNumber(20,22);
+    this.Properties.velocityY = HelperFunctions.getRandomNumber(1,3);
     this.speedOrSlow();
 };
 Enemy.prototype.getUpdatedPositionVariables = function(posX, posY) {
-    if (posX < GameVariables.getScreenOffsetX() || posY > GameVariables.getHeight() + GameVariables.getScreenOffsetY()) {
+    if (posX < ScrollerGlobals.offScreenOffsetX || posY > MapGlobals.screenHeight + ScrollerGlobals.offScreenOffsetY) {
         this.updateVelocity();
         return this.getNewPositions();
     }
@@ -143,13 +141,13 @@ Enemy.prototype.getUpdatedPositionVariables = function(posX, posY) {
 };
 Enemy.prototype.getNewPositions = function() {
     return {
-        x : GameVariables.getWidth()+100,
-        y :  GameVariables.getRandomNumber(0, 400)
+        x : MapGlobals.screenWidth + 100,
+        y :  HelperFunctions.getRandomNumber(0, 400)
     };
 };
 Enemy.prototype.speedOrSlow = function() {
-    this.Properties.changeVelocityX = GameVariables.getRandomNumber(1,2) == 1 ? this.Properties.velocityDecelerate : this.Properties.velocityAccelerate;
-    this.Properties.changeVelocityY = GameVariables.getRandomNumber(1,2) == 1 ? this.Properties.velocityDecelerate : this.Properties.velocityAccelerate;
+    this.Properties.changeVelocityX = HelperFunctions.getRandomNumber(1,2) == 1 ? this.Properties.velocityDecelerate : this.Properties.velocityAccelerate;
+    this.Properties.changeVelocityY = HelperFunctions.getRandomNumber(1,2) == 1 ? this.Properties.velocityDecelerate : this.Properties.velocityAccelerate;
 };
 Enemy.prototype.isIntersecting = function(rectangle1, rectangle2) {
     return !(rectangle2.position.x > (rectangle1.position.x + rectangle1.width) ||
