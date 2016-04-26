@@ -9,6 +9,8 @@ var ScrollerGlobals = (function ScrollerGlobals() {
     constants.currentScrollSpeed = 20;
     constants.scrollAcceleration = 0.005;
     constants.groundSpeed = 10;
+    constants.offScreenOffsetX = -200;
+    constants.offScreenOffsetY = 200;
 
     return constants;
 })();
