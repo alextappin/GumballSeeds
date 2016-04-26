@@ -30,5 +30,9 @@ var HelperFunctions = (function HelperFunction() {
         PowerUpGlobals.powerUpStartingViewport = 0;
     };
 
+    functions.getCharacterPositionX = function() {
+        return MapGlobals.screenWidth * .2;
+    };
+
     return functions;
 })();
