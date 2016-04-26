@@ -9,6 +9,7 @@ var MapGlobals = (function MapGlobals() {
     constants.screenHeight = 720;
     constants.screenToShow = "Title";
     constants.switchScreen = false;
+    constants.characterOffsetX = .2;
 
     return constants;
 })();

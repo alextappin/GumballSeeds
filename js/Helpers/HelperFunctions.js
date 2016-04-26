@@ -31,7 +31,7 @@ var HelperFunctions = (function HelperFunction() {
     };
 
     functions.getCharacterPositionX = function() {
-        return MapGlobals.screenWidth * .2;
+        return MapGlobals.screenWidth * MapGlobals.characterOffsetX;
     };
 
     return functions;
