@@ -7,6 +7,8 @@ function ScoreHelper() {
     };
     scoreHelpers.getHitByEnemy = function(enemyDamage) {
         PowerUpGlobals.powerBarLevel = (PowerUpGlobals.powerBarLevel > 0 ? PowerUpGlobals.powerBarLevel - 1 : 0);
+        ScoreGlobals.lives -= 1;
+
     };
     scoreHelpers.runningScore = function() {
         ScoreGlobals.currentScore = ScoreGlobals.currentScore + ScoreGlobals.runningScore;
