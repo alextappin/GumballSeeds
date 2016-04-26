@@ -54,5 +54,5 @@ Main.prototype.startAppropriateScreen = function() {
     }
 };
 Main.prototype.saveAndRestartGameVariables = function() {
-    HelperFunctions().resetGlobals();
+    HelperFunctions.resetGlobals();
 };
