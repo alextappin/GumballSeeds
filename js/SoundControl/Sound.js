@@ -23,6 +23,7 @@ function GameSounds() {
     function handleFileLoad() {
         if (counter == numSoundsToLoad) {
             MapGlobals.screenToShow = "Title";
+            MapGlobals.switchScreen = !MapGlobals.switchScreen;
         }
     }
 }
