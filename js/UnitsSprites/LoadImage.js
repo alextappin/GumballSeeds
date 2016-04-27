@@ -14,6 +14,7 @@ LoadImage.prototype.constructLoadImage = function() {
     this.initiateLoadImageSprites();
 };
 LoadImage.prototype.setPositionAndScale = function(obj) {
+    obj.scale = HelperFunctions.getNewPoint(.8,.8);
     obj.position =  HelperFunctions.getNewPoint((MapGlobals.screenWidth - obj.width)/2, (MapGlobals.screenHeight - obj.height)/2);
     //no scale yet...
 };
@@ -28,7 +29,7 @@ LoadImage.prototype.setSpriteToCurrentTexture = function() {
     this.Properties.sprite.texture = this.Properties.textures[this.Properties.spriteCount];
 };
 LoadImage.prototype.update = function(imageObj) {
-    this.updateSprites();
+    //this.updateSprites();
 };
 LoadImage.prototype.updateSprites = function() {
     if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
