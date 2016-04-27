@@ -10,7 +10,7 @@ function EnemiesHandler() {
 EnemiesHandler.constructor = EnemiesHandler;
 
 EnemiesHandler.prototype.constructEnemies = function() {
-    for (var n = 0; n < GameVariables.getEnemies(); n++) {
+    for (var n = 0; n < BalanceGlobals.enemies; n++) {
         this.enemies.push(new Enemy);
     }
 };
@@ -28,7 +28,7 @@ EnemiesHandler.prototype.addEnemiesToStage = function(enemyHandler, stage) {
 };
 
 EnemiesHandler.prototype.update = function(enemyHandler, characterObj, stage) {
-    for (var n = 0; n < GameVariables.getEnemies(); n++) {
+    for (var n = 0; n < BalanceGlobals.enemies; n++) {
         if (enemyHandler.enemies[n]) {
             enemyHandler.enemies[n].update(enemyHandler.enemies[n], characterObj);
         }
@@ -39,7 +39,7 @@ EnemiesHandler.prototype.update = function(enemyHandler, characterObj, stage) {
     }
 };
 EnemiesHandler.prototype.updatePowerUp = function(enemyHandler, characterObj, stage) {
-    for (var n = 0; n < GameVariables.getEnemies(); n++) {
+    for (var n = 0; n < BalanceGlobals.enemies; n++) {
         if (enemyHandler.enemies[n]) {
             enemyHandler.enemies[n].updatePowerUp(enemyHandler.enemies[n], characterObj);
         }

@@ -28,10 +28,10 @@ TouchAttack.prototype.update = function(jumpButtonObj, characterObj) {
 };
 
 TouchAttack.prototype.updatePosition = function(obj) {
-    obj.position.x = GameVariables.getWidth()/2;
+    obj.position.x = MapGlobals.screenWidth/2;
     obj.position.y = 0;
-    obj.width = GameVariables.getWidth()/2;
-    obj.height = GameVariables.getHeight();
+    obj.width = MapGlobals.screenWidth/2;
+    obj.height = MapGlobals.screenHeight;
 };
 
 TouchAttack.prototype.handleClickEvents = function(spriteToHandle, characterObj) {

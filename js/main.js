@@ -2,10 +2,10 @@
  * Created by ajt on 11/29/2015.
  */
 function Main() {
-    this.renderer = PIXI.autoDetectRenderer(GameVariables.getWidth(), GameVariables.getHeight(), {backgroundColor: 0x66FF99});
+    this.renderer = PIXI.autoDetectRenderer(MapGlobals.screenWidth, MapGlobals.screenHeight, {backgroundColor: 0x66FF99});
     document.body.appendChild(this.renderer.view);
     this.stage = new PIXI.Container(0x66FF99);
-    GameVariables.setCurrentScrollSpeed(GameVariables.getMinScrollSpeed());
+    ScrollerGlobals.currentScrollSpeed = ScrollerGlobals.minScrollSpeed;
     this.loadSpriteSheet();
 }
 Main.prototype.update = function() {
@@ -19,7 +19,7 @@ Main.prototype.loadSpriteSheet = function() {
         "../resources/enemy.json", "../resources/enemy.png","../resources/TitleScreen.json", "../resources/TitleSprites.png",
         "../resources/StartButton.json", "../resources/StartButton.png", "../resources/trans.json", "../resources/trans.png",
         "../resources/powerBar.json", "../resources/powerBar.png", "../resources/fgNew.json", "../resources/fgNew.png",
-        "../resources/Gumball.json", "../resources/Gumball.png", "../resources/gumballStem.json", "../resources/gumballStem.png"];
+        "../resources/Gumball.json", "../resources/Gumball.png", "../resources/gumballStem.json", "../resources/gumballStem.png"],
     loader = new PIXI.loaders.Loader();
     loader.add(assetsToLoad).load(this.spriteSheetLoaded.bind(this))
 };
@@ -28,42 +28,31 @@ Main.prototype.spriteSheetLoaded = function() {
     requestAnimationFrame(this.update.bind(this));
 };
 Main.prototype.gameStatesHandler = function() {
-    GameVariables.getSwitchScreen() ? this.purgeStage() : this.updatedSelectedScreen();
+    MapGlobals.switchScreen ? this.purgeStage() : this.updatedSelectedScreen();
 };
 Main.prototype.purgeStage = function() {
     this.saveAndRestartGameVariables();
     this.stage.destroy();
     this.stage = new PIXI.Container(0x66FF99);
     this.startAppropriateScreen();
-    GameVariables.toggleScreenChange();
+    MapGlobals.switchScreen = !MapGlobals.switchScreen;
 };
 Main.prototype.updatedSelectedScreen = function() {
-    if (GameVariables.getScreenToShow() == "Title") {
+    if (MapGlobals.screenToShow == "Title") {
         this.titleScreen.update();
     }
-    else if(GameVariables.getScreenToShow() == "Game") {
+    else if(MapGlobals.screenToShow == "Game") {
         this.scroller.update();
     }
 };
 Main.prototype.startAppropriateScreen = function() {
-    if (GameVariables.getScreenToShow() == "Title") {
+    if (MapGlobals.screenToShow == "Title") {
         this.titleScreen = new TitleScreen(this.stage);
     }
-    else if(GameVariables.getScreenToShow() == "Game") {
+    else if(MapGlobals.screenToShow == "Game") {
         this.scroller = new Scroller(this.stage);
     }
 };
 Main.prototype.saveAndRestartGameVariables = function() {
-    if (GameVariables.getCurrentScore() > GameVariables.getHighScore()) {
-        GameVariables.setHighScore(GameVariables.getCurrentScore());
-    }
-    GameVariables.setEnemies(2);
-    GameVariables.setLives(20);
-    GameVariables.setKills(0);
-    GameVariables.setCurrentScore(0);
-    GameVariables.resetLoopCounter();
-    GameVariables.setPowerBarScore(2);
-    GameVariables.setPowerUpActive(false);
-    GameVariables.setPowerUpStartViewPort(0);
-    GameVariables.setGroundSpeed(10);
+    HelperFunctions.resetGlobals();
 };

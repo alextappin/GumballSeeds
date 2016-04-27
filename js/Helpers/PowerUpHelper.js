@@ -6,15 +6,16 @@ function PowerUpHelper() {
 
     powerUpHelper.startPowerUp = function() {
         console.log("startPowerUp");
-        GameVariables.setPowerUpActive(true);
-        GameVariables.setCurrentScrollSpeed(GameVariables.getCurrentScrollSpeed()*2);
-        GameVariables.setGroundSpeed(GameVariables.getGroundSpeed()*2);
+        PowerUpGlobals.powerUpActive = true;
+        ScrollerGlobals.currentScrollSpeed *= PowerUpGlobals.powerUpSpeedMultiplier;
+        ScrollerGlobals.groundSpeed *= PowerUpGlobals.powerUpSpeedMultiplier;
     };
     powerUpHelper.continuePowerUp = function(viewPort) {
-        if (GameVariables.getPowerUpStartViewPort() == 0) {
-            GameVariables.setPowerUpStartViewPort(viewPort)
+        if (PowerUpGlobals.powerUpStartingViewport == 0) {
+            PowerUpGlobals.powerUpStartingViewport = viewPort;
         }
-        else if (GameVariables.getPowerUpStartViewPort() + GameVariables.getPowerUpDuration() < viewPort) {
+        //if the map has travelled more than the duration, end it
+        else if (PowerUpGlobals.powerUpStartingViewport + PowerUpGlobals.powerUpDuration < viewPort) {
             powerUpHelper.endPowerUp();
         }
         else {
@@ -22,20 +23,20 @@ function PowerUpHelper() {
         }
     };
     powerUpHelper.endPowerUp = function() {
-        GameVariables.setPowerUpActive(false);
-        GameVariables.setPowerUpStartViewPort(0);
-        GameVariables.setPowerBarScore(2);
-        GameVariables.setGroundSpeed(10);
+        PowerUpGlobals.powerUpActive = false;
+        PowerUpGlobals.powerUpStartingViewport = 0;
+        PowerUpGlobals.powerBarLevel = 2;
+        ScrollerGlobals.groundSpeed = 10;
         console.log("end Power Up");
     };
     powerUpHelper.incrementPowerUp = function() {
         //if powerUp is not active!
-        if (!GameVariables.getPowerUpActive()) {
-            if (GameVariables.getPowerBarScore() >= GameVariables.getMaxPowerBar()) {
+        if (!PowerUpGlobals.powerUpActive) {
+            if (PowerUpGlobals.powerBarLevel >= PowerUpGlobals.maxPowerBarLevel) {
                 powerUpHelper.startPowerUp();
             }
             else {
-                GameVariables.setPowerBarScore(GameVariables.getPowerBarScore() + 1);
+                PowerUpGlobals.powerBarLevel += 1;
             }
         }
     };

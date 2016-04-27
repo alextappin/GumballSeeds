@@ -10,7 +10,7 @@ function GumballsHandler() {
 GumballsHandler.constructor = GumballsHandler;
 
 GumballsHandler.prototype.constructGumballs = function() {
-    for (var n = 0; n < GameVariables.getGumballs(); n++) {
+    for (var n = 0; n < BalanceGlobals.gumballs; n++) {
         this.gumballs.push(new Gumball);
     }
 };
@@ -28,7 +28,7 @@ GumballsHandler.prototype.addGumballsToStage = function(gumballHandler, stage) {
 };
 
 GumballsHandler.prototype.update = function(gumballHandler, groundObj, characterObj, stage) {
-    for (var n = 0; n < GameVariables.getGumballs(); n++) {
+    for (var n = 0; n < BalanceGlobals.gumballs; n++) {
         if (gumballHandler.gumballs[n]) {
             gumballHandler.gumballs[n].update(gumballHandler.gumballs[n], groundObj, characterObj);
         }
@@ -40,7 +40,7 @@ GumballsHandler.prototype.update = function(gumballHandler, groundObj, character
 };
 
 GumballsHandler.prototype.updatePowerUp = function(gumballHandler, groundObj, characterObj, stage) {
-    for (var n = 0; n < GameVariables.getGumballs(); n++) {
+    for (var n = 0; n < BalanceGlobals.gumballs; n++) {
         if (gumballHandler.gumballs[n]) {
             gumballHandler.gumballs[n].updatePowerUp(gumballHandler.gumballs[n], groundObj, characterObj);
         }

@@ -14,8 +14,8 @@ Gumball.prototype.constructGumball = function() {
     this.initiateGumballSprites();
 };
 Gumball.prototype.setPositionAndScale = function(obj) {
-    obj.position =  GameVariables.getNewPoint(-100, this.Properties.startingY);
-    obj.scale = GameVariables.getNewPoint(.35,.35);
+    obj.position =  HelperFunctions.getNewPoint(-100, this.Properties.startingY);
+    obj.scale = HelperFunctions.getNewPoint(.35,.35);
 };
 Gumball.prototype.initiateGumballSprites = function() {
     this.Properties.textures.push(
@@ -58,7 +58,7 @@ Gumball.prototype.moveSprite = function(gumballObj, groundObj, characterObj) {
         gumballObj.position = this.getNewPosition(groundObj, this.Properties.startingX);
         this.updateSprite(gumballObj);
     }
-    gumballObj.position.x -= GameVariables.getGroundSpeed();
+    gumballObj.position.x -= ScrollerGlobals.groundSpeed;
 };
 Gumball.prototype.nextSprite = function() {
     if (this.Properties.spriteCount == this.Properties.textures.length-1) {
@@ -72,7 +72,7 @@ Gumball.prototype.nextSprite = function() {
 Gumball.prototype.getNewPosition = function(groundObj, gumballX) {
     var groundHeight = groundObj.getHeightAtPositionX(gumballX);
     if (groundHeight) {
-        return GameVariables.getNewPoint(gumballX, groundHeight-this.Properties.yGumballOffsetWithMap);
+        return HelperFunctions.getNewPoint(gumballX, groundHeight-this.Properties.yGumballOffsetWithMap);
     }
     //recursion. If there is a gap, check another X
     return this.getNewPosition(groundObj, gumballX + 500);

@@ -16,8 +16,8 @@ Character.prototype.constructCharacter = function() {
     this.listenForAttackTrigger();
 };
 Character.prototype.setPositionAndScale = function(obj) {
-    obj.position =  new GameVariables.getNewPoint(GameVariables.getCharacterPositionX(), this.Properties.startPosY);
-    obj.scale = new GameVariables.getNewPoint(this.Properties.scaleX, this.Properties.scaleY);
+    obj.position =  HelperFunctions.getNewPoint(HelperFunctions.getCharacterPositionX(), this.Properties.startPosY);
+    obj.scale = HelperFunctions.getNewPoint(this.Properties.scaleX, this.Properties.scaleY);
 };
 Character.prototype.initiateCharacterSprites = function() {
     this.Properties.textures.push(
@@ -112,8 +112,8 @@ Character.prototype.isFalling = function() {
 Character.prototype.endGame = function() {
     this.Properties.airborn = true;
     this.Properties.continueGame = false;
-    GameVariables.toggleScreenChange();
-    GameVariables.setScreenTitle();
+    MapGlobals.switchScreen = !MapGlobals.switchScreen;
+    MapGlobals.screenToShow = "Title";
 };
 Character.prototype.startGravity = function() {
     this.Properties.velocityY += this.Properties.gravity;
@@ -156,10 +156,10 @@ Character.prototype.stopAttacking = function() {
     this.Properties.attackingTime = 0;
 };
 Character.prototype.setNewPowerUpPosition = function(characterObj) {
-    if (characterObj.position.y < GameVariables.getHeight()/2 - characterObj.height) {
+    if (characterObj.position.y < MapGlobals.screenHeight/2 - characterObj.height) {
         this.Properties.powerUpPositionVelocity = 10;
     }
-    else if (characterObj.position.y > GameVariables.getHeight()/2 + characterObj.height) {
+    else if (characterObj.position.y > MapGlobals.screenHeight/2 + characterObj.height) {
         this.Properties.powerUpPositionVelocity = -15;
     }
     this.Properties.powerUpPositionVelocity += this.Properties.gravity;
