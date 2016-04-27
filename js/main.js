@@ -2,7 +2,7 @@
  * Created by ajt on 11/29/2015.
  */
 function Main() {
-    this.renderer = PIXI.autoDetectRenderer(MapGlobals.screenWidth, MapGlobals.screenHeight, {backgroundColor: 0x66FF99});
+    this.renderer = PIXI.autoDetectRenderer(MapGlobals.screenWidth, MapGlobals.screenHeight, {backgroundColor: 0x000000});
     document.body.appendChild(this.renderer.view);
     this.stage = new PIXI.Container(0x66FF99);
     ScrollerGlobals.currentScrollSpeed = ScrollerGlobals.minScrollSpeed;
