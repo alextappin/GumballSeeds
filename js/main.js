@@ -19,7 +19,8 @@ Main.prototype.loadSpriteSheet = function() {
         "../resources/enemy.json", "../resources/enemy.png","../resources/TitleScreen.json", "../resources/TitleSprites.png",
         "../resources/StartButton.json", "../resources/StartButton.png", "../resources/trans.json", "../resources/trans.png",
         "../resources/powerBar.json", "../resources/powerBar.png", "../resources/fgNew.json", "../resources/fgNew.png",
-        "../resources/Gumball.json", "../resources/Gumball.png", "../resources/gumballStem.json", "../resources/gumballStem.png"],
+        "../resources/Gumball.json", "../resources/Gumball.png", "../resources/gumballStem.json", "../resources/gumballStem.png",
+        "../resources/loadImage.json", "../resources/loadImage.png"],
     loader = new PIXI.loaders.Loader();
     loader.add(assetsToLoad).load(this.spriteSheetLoaded.bind(this))
 };
@@ -45,7 +46,7 @@ Main.prototype.updatedSelectedScreen = function() {
         this.titleScreen.update();
     }
     else if(MapGlobals.screenToShow == "Load") {
-
+        this.loadScreen.update();
     }
 };
 Main.prototype.startAppropriateScreen = function() {
@@ -56,7 +57,7 @@ Main.prototype.startAppropriateScreen = function() {
         this.titleScreen = new TitleScreen(this.stage);
     }
     else if(MapGlobals.screenToShow == "Load") {
-        this.scroller = new LoadScreen(this.stage);
+        this.loadScreen = new LoadScreen(this.stage);
     }
 };
 Main.prototype.saveAndRestartGameVariables = function() {
