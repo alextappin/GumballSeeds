@@ -3,13 +3,8 @@
  */
 function LoadScreenProperties() {
     var props = {
-        far : new Far(),
-        mid : new Mid(),
-        mid2 : new Mid2(),
-        titleBoard : new TitleBoard(),
-        startButton : new StartButton(),
-        textScore : new Text("highscore"),
-        viewportX : 0
+        loadImage : new LoadImage(),
+        textInstructions : new Text("highscore")
     };
 
     return props;
