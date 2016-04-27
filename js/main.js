@@ -52,6 +52,9 @@ Main.prototype.startAppropriateScreen = function() {
     else if(MapGlobals.screenToShow == "Game") {
         this.scroller = new Scroller(this.stage);
     }
+    else if(MapGlobals.screenToShow == "Load") {
+        this.scroller = new LoadScreen(this.stage);
+    }
 };
 Main.prototype.saveAndRestartGameVariables = function() {
     HelperFunctions.resetGlobals();
