@@ -11,4 +11,6 @@ var BalanceGlobals = (function BalanceGlobals() {
     constants.enemyPoints = 1;
     constants.runningScore = 1;
     constants.pickupGumballScore = 1;
+
+    return constants;
 })();
