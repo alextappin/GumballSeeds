@@ -38,22 +38,22 @@ Main.prototype.purgeStage = function() {
     MapGlobals.switchScreen = !MapGlobals.switchScreen;
 };
 Main.prototype.updatedSelectedScreen = function() {
-    if (MapGlobals.screenToShow == "Title") {
-        this.titleScreen.update();
-    }
-    else if(MapGlobals.screenToShow == "Game") {
+    if(MapGlobals.screenToShow == "Game") {
         this.scroller.update();
+    }
+    else if (MapGlobals.screenToShow == "Title") {
+        this.titleScreen.update();
     }
     else if(MapGlobals.screenToShow == "Load") {
 
     }
 };
 Main.prototype.startAppropriateScreen = function() {
-    if (MapGlobals.screenToShow == "Title") {
-        this.titleScreen = new TitleScreen(this.stage);
-    }
-    else if(MapGlobals.screenToShow == "Game") {
+    if(MapGlobals.screenToShow == "Game") {
         this.scroller = new Scroller(this.stage);
+    }
+    else if (MapGlobals.screenToShow == "Title") {
+        this.titleScreen = new TitleScreen(this.stage);
     }
     else if(MapGlobals.screenToShow == "Load") {
         this.scroller = new LoadScreen(this.stage);
