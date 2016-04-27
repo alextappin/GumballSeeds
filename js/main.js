@@ -44,6 +44,9 @@ Main.prototype.updatedSelectedScreen = function() {
     else if(MapGlobals.screenToShow == "Game") {
         this.scroller.update();
     }
+    else if(MapGlobals.screenToShow == "Load") {
+
+    }
 };
 Main.prototype.startAppropriateScreen = function() {
     if (MapGlobals.screenToShow == "Title") {
