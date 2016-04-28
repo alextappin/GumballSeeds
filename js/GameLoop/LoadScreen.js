@@ -17,8 +17,10 @@ LoadScreen.prototype.constructLoadScreen = function(stage) {
     //Add to stage the units
     stage.addChild(this.Properties.loadImage);
     stage.addChild(this.Properties.textInstructions);
+    stage.addChild(this.Properties.textInfo);
 };
 LoadScreen.prototype.update = function() {
     this.Properties.loadImage.update(this.Properties.loadImage);
     this.Properties.textInstructions.update(this.Properties.textInstructions);
+    this.Properties.textInfo.update(this.Properties.textInfo);
 };

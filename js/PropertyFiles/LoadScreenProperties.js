@@ -4,7 +4,8 @@
 function LoadScreenProperties() {
     var props = {
         loadImage : new LoadImage(),
-        textInstructions : new Text("highscore")
+        textInstructions : new Text("loadInstructions"),
+        textInfo : new Text ("loadInfo")
     };
 
     return props;
