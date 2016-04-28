@@ -5,9 +5,8 @@ function LoadImageProperties() {
     var props = {
         sprite : {},
         textures : [],
-        spriteCount : 0,
-        changeSpriteCounter : 0,
-        spriteSpeed : 40
+        alphaStart : 0.01,
+        alphaIncrement :.005
     };
 
     return props;

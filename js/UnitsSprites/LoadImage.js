@@ -16,36 +16,29 @@ LoadImage.prototype.constructLoadImage = function() {
 LoadImage.prototype.setPositionAndScale = function(obj) {
     obj.scale = HelperFunctions.getNewPoint(.8,.8);
     obj.position =  HelperFunctions.getNewPoint((MapGlobals.screenWidth - obj.width)/2, (MapGlobals.screenHeight - obj.height)/2);
+    obj.alpha = this.Properties.alphaStart;
     //no scale yet...
 };
 LoadImage.prototype.initiateLoadImageSprites = function() {
-    this.Properties.textures.push(
-        PIXI.Texture.fromFrame("loadScreen")
-    );
-    this.Properties.sprite = new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]);
+    this.Properties.sprite = new PIXI.Sprite(PIXI.Texture.fromFrame("loadScreen"));
     this.addChild(this.Properties.sprite);
 };
 LoadImage.prototype.setSpriteToCurrentTexture = function() {
     this.Properties.sprite.texture = this.Properties.textures[this.Properties.spriteCount];
 };
 LoadImage.prototype.update = function(imageObj) {
-    //this.updateSprites();
+    this.updateSprites(imageObj);
 };
-LoadImage.prototype.updateSprites = function() {
-    if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
-        this.Properties.changeSpriteCounter = 0;
-        this.nextSprite();
+LoadImage.prototype.updateSprites = function(imageObj) {
+    if (imageObj.alpha + this.Properties.alphaIncrement > 1) {
+        this.Properties.alphaIncrement = 0 - this.Properties.alphaIncrement;
     }
-    else {
-        this.Properties.changeSpriteCounter++;
+
+    imageObj.alpha += this.Properties.alphaIncrement;
+
+    if (MapGlobals.soundLoaded && imageObj.alpha < this.Properties.alphaStart) {
+        MapGlobals.screenToShow = "Title";
+        MapGlobals.switchScreen = !MapGlobals.switchScreen;
     }
-};
-LoadImage.prototype.nextSprite = function() {
-    if (this.Properties.spriteCount == 1) {
-        this.Properties.spriteCount = 0;
-    }
-    else {
-        this.Properties.spriteCount++;
-    }
-    this.setSpriteToCurrentTexture();
+
 };
