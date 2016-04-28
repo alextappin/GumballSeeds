@@ -10,6 +10,7 @@ var MapGlobals = (function MapGlobals() {
     constants.screenToShow = "Load";
     constants.switchScreen = false;
     constants.characterOffsetX = .2;
+    constants.soundLoaded = false;
 
     return constants;
 })();
