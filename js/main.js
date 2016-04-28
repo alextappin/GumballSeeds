@@ -2,7 +2,7 @@
  * Created by ajt on 11/29/2015.
  */
 function Main() {
-    this.renderer = PIXI.autoDetectRenderer(MapGlobals.screenWidth, MapGlobals.screenHeight, {backgroundColor: 0x66FF99});
+    this.renderer = PIXI.autoDetectRenderer(MapGlobals.screenWidth, MapGlobals.screenHeight, {backgroundColor: 0x000000});
     document.body.appendChild(this.renderer.view);
     this.stage = new PIXI.Container(0x66FF99);
     ScrollerGlobals.currentScrollSpeed = ScrollerGlobals.minScrollSpeed;
@@ -19,7 +19,8 @@ Main.prototype.loadSpriteSheet = function() {
         "../resources/enemy.json", "../resources/enemy.png","../resources/TitleScreen.json", "../resources/TitleSprites.png",
         "../resources/StartButton.json", "../resources/StartButton.png", "../resources/trans.json", "../resources/trans.png",
         "../resources/powerBar.json", "../resources/powerBar.png", "../resources/fgNew.json", "../resources/fgNew.png",
-        "../resources/Gumball.json", "../resources/Gumball.png", "../resources/gumballStem.json", "../resources/gumballStem.png"],
+        "../resources/Gumball.json", "../resources/Gumball.png", "../resources/gumballStem.json", "../resources/gumballStem.png",
+        "../resources/loadImage.json", "../resources/loadImage.png"],
     loader = new PIXI.loaders.Loader();
     loader.add(assetsToLoad).load(this.spriteSheetLoaded.bind(this))
 };
@@ -38,19 +39,25 @@ Main.prototype.purgeStage = function() {
     MapGlobals.switchScreen = !MapGlobals.switchScreen;
 };
 Main.prototype.updatedSelectedScreen = function() {
-    if (MapGlobals.screenToShow == "Title") {
+    if(MapGlobals.screenToShow == "Game") {
+        this.scroller.update();
+    }
+    else if (MapGlobals.screenToShow == "Title") {
         this.titleScreen.update();
     }
-    else if(MapGlobals.screenToShow == "Game") {
-        this.scroller.update();
+    else if(MapGlobals.screenToShow == "Load") {
+        this.loadScreen.update();
     }
 };
 Main.prototype.startAppropriateScreen = function() {
-    if (MapGlobals.screenToShow == "Title") {
+    if(MapGlobals.screenToShow == "Game") {
+        this.scroller = new Scroller(this.stage);
+    }
+    else if (MapGlobals.screenToShow == "Title") {
         this.titleScreen = new TitleScreen(this.stage);
     }
-    else if(MapGlobals.screenToShow == "Game") {
-        this.scroller = new Scroller(this.stage);
+    else if(MapGlobals.screenToShow == "Load") {
+        this.loadScreen = new LoadScreen(this.stage);
     }
 };
 Main.prototype.saveAndRestartGameVariables = function() {

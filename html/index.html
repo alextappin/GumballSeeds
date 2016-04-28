@@ -4,7 +4,6 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <script src="../lib/pixi.js"></script>
     <script src="../lib/soundjs-0.6.2.min.js"></script>
-    <script src="../js/PropertyFiles/GameVariables.js"></script>
     <script src="../js/PropertyFiles/CharacterProperties.js"></script>
     <script src="../js/PropertyFiles/EnemyProperties.js"></script>
     <script src="../js/PropertyFiles/ScrollerProperties.js"></script>
@@ -17,8 +16,9 @@
     <script src="../js/PropertyFiles/TextProperties.js"></script>
     <script src="../js/PropertyFiles/GroundProperties.js"></script>
     <script src="../js/PropertyFiles/GumballProperties.js"></script>
+    <script src="../js/PropertyFiles/LoadScreenProperties.js"></script>
+    <script src="../js/PropertyFiles/LoadImageProperties.js"></script>
     <script src="../js/Helpers/KeyboardControl.js"></script>
-    <script src="../js/Helpers/Sound.js"></script>
     <script src="../js/Helpers/ScoreHelper.js"></script>
     <script src="../js/Helpers/PowerUpHelper.js"></script>
     <script src="../js/Helpers/HelperFunctions.js"></script>
@@ -28,6 +28,7 @@
     <script src="../js/MapControl/Ground.js"></script>
     <script src="../js/GameLoop/Scroller.js"></script>
     <script src="../js/GameLoop/TitleScreen.js"></script>
+    <script src="../js/GameLoop/LoadScreen.js"></script>
     <script src="../js/UnitsSprites/Character.js"></script>
     <script src="../js/UnitsSprites/Enemy.js"></script>
     <script src="../js/UnitsSprites/TitleBoard.js"></script>
@@ -37,6 +38,7 @@
     <script src="../js/UnitsSprites/TouchAttackOverlay.js"></script>
     <script src="../js/UnitsSprites/Text.js"></script>
     <script src="../js/UnitsSprites/Gumball.js"></script>
+    <script src="../js/UnitsSprites/LoadImage.js"></script>
     <script src="../js/SpriteHandlers/EnemiesHandler.js"></script>
     <script src="../js/SpriteHandlers/GumballsHandler.js"></script>
     <script src="../js/Globals/BalanceGlobals.js"></script>
@@ -44,15 +46,14 @@
     <script src="../js/Globals/PowerUpGlobals.js"></script>
     <script src="../js/Globals/ScrollerGlobals.js"></script>
     <script src="../js/Globals/ScoreGlobals.js"></script>
+    <script src="../js/SoundControl/Sound.js"></script>
     <script src="../js/main.js"></script>
 </head>
 <body onload="init();">
 <script>
     function init() {
         //once the GameSounds loads, start pixi
-        GameSounds(startPixi);
-    }
-    function startPixi() {
+        GameSounds();
         main = new Main();
     }
 </script>

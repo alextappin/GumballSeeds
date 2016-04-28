@@ -1,7 +1,7 @@
 /**
  * Created by ajt on 3/26/2016.
  */
-function GameSounds(gameInitFunction) {
+function GameSounds() {
     var soundsProps = {
         titleSound : {
             id : "title",
@@ -22,7 +22,7 @@ function GameSounds(gameInitFunction) {
 
     function handleFileLoad() {
         if (counter == numSoundsToLoad) {
-            gameInitFunction();
+            MapGlobals.soundLoaded = true;
         }
     }
 }
