@@ -26,18 +26,20 @@ function TextProperties(textType) {
             }
             else if(this.type == "loadInstructions") {
                 //this.text = "Tap left side of the screen to jump \n Right side of the screen to Attack"
-                this.text = "Tap left side of the screen to jump \n Right side of the screen to Attack";
-                this.positionX = 10;
-                this.positionY = 40;
+                this.text = "Tap left side of the screen to jump Right side of the screen to Attack";
+                this.positionX = 0;
+                this.positionY = 0;
                 this.fill = "White";
+                this.font = "15px Arial";
                 this.wordWrap = true;
-                this.wordWrapWidth = MapGlobals.screenWidth/3;
+                this.wordWrapWidth = MapGlobals.screenWidth/4;
             }
             else if(this.type = "loadInfo") {
                 this.text = "Only five guardians called GUMBALL SEEDS can save the sweet gumball world from a dark and sour transformation led by KING SOUR and his minions of TWISTED SOURS, but first the GUMBALL SEED siblings must overcome their own sourness and reunite as a family to turn everything sour back to sweet!";
                 this.positionX = MapGlobals.screenWidth - MapGlobals.screenWidth/4;
-                this.positionY = 40;
-                this.fill = "Red";
+                this.positionY = 0;
+                this.fill = "White";
+                this.font = "15px Arial";
                 this.wordWrap = true;
                 this.wordWrapWidth = MapGlobals.screenWidth/4;
             }
@@ -52,7 +54,8 @@ function TextProperties(textType) {
             return {
                 fill : this.fill,
                 wordWrap : this.wordWrap,
-                wordWrapWidth : this.wordWrapWidth
+                wordWrapWidth : this.wordWrapWidth,
+                font: this.font
             }
 
         }
