@@ -19,9 +19,6 @@ Scroller.prototype.initializePositionsAndScale = function() {
     this.Properties.gumballs.setPositionAndScale(this.Properties.gumballs);
 };
 Scroller.prototype.constructScroller = function(stage) {
-    this.addChildrenToStage(stage);
-};
-Scroller.prototype.addChildrenToStage = function(stage) {
     stage.addChild(this.Properties.far);
     stage.addChild(this.Properties.mid);
     stage.addChild(this.Properties.mid2);
