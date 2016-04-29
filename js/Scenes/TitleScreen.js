@@ -34,8 +34,10 @@ TitleScreen.prototype.update = function() {
     this.Properties.textScore.update(this.Properties.textScore);
 };
 TitleScreen.prototype.updateViewport = function() {
-    if (ScrollerGlobals.currentScrollSpeed > ScrollerGlobals.maxScrollSpeed) {
-        ScrollerGlobals.currentScrollSpeed = ScrollerGlobals.maxScrollSpeed;
+    if (HelperFunctions().doPowerUp()) {
+        PowerUpHelper().continuePowerUp(this.Properties.viewportX);
+    } else if (HelperFunctions().scrollSpeedIsMaxed()) {
+        HelperFunctions().setScrollSpeedToMax();
     }
 
     this.Properties.viewportX = this.Properties.viewportX + ScrollerGlobals.currentScrollSpeed;
