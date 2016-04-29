@@ -82,6 +82,30 @@ function HelperFunctions() {
         return MapGlobals.screenWidth * MapGlobals.characterOffsetX;
     };
 
+    functions.powerUpOn = function() {
+        PowerUpGlobals.powerUpActive = true;
+    };
+
+    functions.powerUpOff = function() {
+        PowerUpGlobals.powerUpActive = false;
+    };
+
+    functions.resetAfterPowerUp = function() {
+        functions.powerUpOff();
+        PowerUpGlobals.powerUpStartingViewport = 0;
+        PowerUpGlobals.powerBarLevel = PowerUpGlobals.startPowerBarLevel;
+        ScrollerGlobals.groundSpeed = ScrollerGlobals.startGroundSpeed;
+    };
+
+    functions.powerUpScrollSpeed = function() {
+        ScrollerGlobals.currentScrollSpeed *= PowerUpGlobals.powerUpSpeedMultiplier;
+        ScrollerGlobals.groundSpeed *= PowerUpGlobals.powerUpSpeedMultiplier;
+    };
+
+    functions.handlePowerUpViewport = function() {
+
+    };
+
     functions.startTitleSound = function() {
         createjs.Sound.play(MapGlobals.titleString, {loop: 10, volume:.2});
     };
