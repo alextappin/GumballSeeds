@@ -13,6 +13,10 @@ function HelperFunctions() {
         return {x : x, y : y};
     };
 
+    functions.returnZero = function() {
+        return 0;
+    };
+
     functions.setScrollSpeedToMin = function (){
         ScrollerGlobals.currentScrollSpeed = ScrollerGlobals.minScrollSpeed;
     };
