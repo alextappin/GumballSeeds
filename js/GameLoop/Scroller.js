@@ -39,8 +39,7 @@ Scroller.prototype.update = function() {
     if (PowerUpGlobals.powerUpActive) {
         this.updateViewportPowerUp();
         this.updateObectsPowerUp();
-    }
-    else {
+    } else {
         this.updateViewport();
         this.updateObjects();
     }
@@ -49,8 +48,7 @@ Scroller.prototype.update = function() {
 Scroller.prototype.updateViewport = function() {
     if (HelperFunctions.doPowerUp()) {
         PowerUpHelper().continuePowerUp(this.Properties.viewportX);
-    }
-    else if (HelperFunctions.scrollSpeedIsMaxed()) {
+    } else if (HelperFunctions.scrollSpeedIsMaxed()) {
         HelperFunctions.setScrollSpeedToMax();
     }
     this.Properties.viewportX = this.Properties.viewportX + ScrollerGlobals.currentScrollSpeed;
