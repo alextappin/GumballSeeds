@@ -5,10 +5,8 @@ function Far() {
     var texture = PIXI.Texture.fromImage("../resources/bg1.png");
     PIXI.extras.TilingSprite.call(this, texture, MapGlobals.screenWidth, MapGlobals.screenHeight);
 
-    this.position.x=0;
-    this.position.y=0;
-    this.tilePosition.x = 0;
-    this.tilePosition.y = 0;
+    this.position = HelperFunctions().getNewPoint(HelperFunctions().returnZero(), HelperFunctions().returnZero());
+    this.tilePosition = HelperFunctions().getNewPoint(HelperFunctions().returnZero(), HelperFunctions().returnZero());
     this.viewportX = 0;
 }
 
