@@ -5,7 +5,7 @@ function Main() {
     this.renderer = PIXI.autoDetectRenderer(MapGlobals.screenWidth, MapGlobals.screenHeight, {backgroundColor: 0x000000});
     document.body.appendChild(this.renderer.view);
     this.stage = new PIXI.Container(0x66FF99);
-    ScrollerGlobals.currentScrollSpeed = ScrollerGlobals.minScrollSpeed;
+    HelperFunctions.setScrollSpeedToMin();
     this.loadSpriteSheet();
 }
 Main.prototype.loadSpriteSheet = function() {
@@ -29,34 +29,34 @@ Main.prototype.spriteSheetLoaded = function() {
     requestAnimationFrame(this.update.bind(this));
 };
 Main.prototype.gameStatesHandler = function() {
-    MapGlobals.switchScreen ? this.purgeStage() : this.updatedSelectedScreen();
+    if (HelperFunctions.doSwitchScreen()) {
+        this.purgeStage()
+    } else {
+        this.updatedSelectedScreen();
+    }
 };
 Main.prototype.purgeStage = function() {
     this.saveAndRestartGameVariables();
     this.stage.destroy();
     this.stage = new PIXI.Container(0x66FF99);
     this.startAppropriateScreen();
-    MapGlobals.switchScreen = !MapGlobals.switchScreen;
+    HelperFunctions.switchScreenToggle();
 };
 Main.prototype.updatedSelectedScreen = function() {
-    if(MapGlobals.screenToShow == "Game") {
+    if(HelperFunctions.screenIsGame()) {
         this.scroller.update();
-    }
-    else if (MapGlobals.screenToShow == "Title") {
+    } else if (HelperFunctions.screenIsTitle()) {
         this.titleScreen.update();
-    }
-    else if(MapGlobals.screenToShow == "Load") {
+    } else if(HelperFunctions.screenIsLoad()) {
         this.loadScreen.update();
     }
 };
 Main.prototype.startAppropriateScreen = function() {
-    if(MapGlobals.screenToShow == "Game") {
+    if(HelperFunctions.screenIsGame()) {
         this.scroller = new Scroller(this.stage);
-    }
-    else if (MapGlobals.screenToShow == "Title") {
+    } else if (HelperFunctions.screenIsTitle()) {
         this.titleScreen = new TitleScreen(this.stage);
-    }
-    else if(MapGlobals.screenToShow == "Load") {
+    } else if(HelperFunctions.screenIsLoad()) {
         this.loadScreen = new LoadScreen(this.stage);
     }
 };

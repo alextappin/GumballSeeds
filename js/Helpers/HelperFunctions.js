@@ -13,6 +13,42 @@ var HelperFunctions = (function HelperFunction() {
         return {x : x, y : y};
     };
 
+    functions.setScrollSpeedToMin = function () {
+        ScrollerGlobals.currentScrollSpeed = ScrollerGlobals.minScrollSpeed;
+    };
+
+    functions.doSwitchScreen = function() {
+        return MapGlobals.switchScreen;
+    };
+
+    functions.switchScreenToggle = function() {
+        MapGlobals.switchScreen = !MapGlobals.switchScreen;
+    };
+
+    functions.screenIsGame  = function() {
+        return MapGlobals.screenToShow == MapGlobals.gameString;
+    };
+
+    functions.screenIsTitle  = function() {
+        return MapGlobals.screenToShow == MapGlobals.titleString;
+    };
+
+    functions.screenIsLoad  = function() {
+        return MapGlobals.screenToShow == MapGlobals.loadString;
+    };
+
+    functions.switchToGame = function() {
+        MapGlobals.screenToShow = MapGlobals.gameString;
+    };
+
+    functions.switchToTitle = function() {
+        MapGlobals.screenToShow = MapGlobals.titleString;
+    };
+
+    functions.switchToLoad = function() {
+        MapGlobals.screenToShow = MapGlobals.loadString;
+    };
+
     functions.resetGlobals = function() {
         if (ScoreGlobals.currentScore > ScoreGlobals.highScore) {
             ScoreGlobals.highScore = ScoreGlobals.currentScore;
