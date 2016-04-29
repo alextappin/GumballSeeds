@@ -51,9 +51,9 @@ Scroller.prototype.updateViewport = function() {
     this.Properties.viewportX = this.Properties.viewportX + ScrollerGlobals.currentScrollSpeed;
 };
 Scroller.prototype.updateObjects = function() {
-    this.Properties.far.setViewportX(this.Properties.viewportX);
-    this.Properties.mid.setViewportX(this.Properties.viewportX);
-    this.Properties.mid2.setViewportX(this.Properties.viewportX);
+    this.Properties.far.update(this.Properties.viewportX);
+    this.Properties.mid.update(this.Properties.viewportX);
+    this.Properties.mid2.update(this.Properties.viewportX);
     this.Properties.ground.update(this.Properties.ground);
     this.Properties.character.update(this.Properties.character, this.Properties.ground);
     this.Properties.gumballs.update(this.Properties.gumballs, this.Properties.ground, this.Properties.character, this.getStage());
@@ -69,9 +69,9 @@ Scroller.prototype.updateViewportPowerUp = function() {
     this.Properties.viewportX = this.Properties.viewportX + ScrollerGlobals.currentScrollSpeed;
 };
 Scroller.prototype.updateObectsPowerUp = function() {
-    this.Properties.far.setViewportX(this.Properties.viewportX);
-    this.Properties.mid.setViewportX(this.Properties.viewportX);
-    this.Properties.mid2.setViewportX(this.Properties.viewportX);
+    this.Properties.far.update(this.Properties.viewportX);
+    this.Properties.mid.update(this.Properties.viewportX);
+    this.Properties.mid2.update(this.Properties.viewportX);
     this.Properties.ground.updatePowerUp(this.Properties.ground);
     this.Properties.character.updatePowerUp(this.Properties.character, this.Properties.ground);
     this.Properties.gumballs.updatePowerUp(this.Properties.gumballs, this.Properties.ground, this.Properties.character, this.getStage());

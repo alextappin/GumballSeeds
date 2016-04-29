@@ -14,6 +14,7 @@ var MapGlobals = (function MapGlobals() {
     constants.gameString = "Game";
     constants.loadString = "Load";
     constants.titleString = "Title";
+    constants.farDeltaX = 0.014;
 
     return constants;
 })();

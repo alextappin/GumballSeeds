@@ -26,9 +26,9 @@ TitleScreen.prototype.constructTitleScreen = function(stage) {
 };
 TitleScreen.prototype.update = function() {
     this.updateViewport();
-    this.Properties.far.setViewportX(this.Properties.viewportX);
-    this.Properties.mid.setViewportX(this.Properties.viewportX);
-    this.Properties.mid2.setViewportX(this.Properties.viewportX);
+    this.Properties.far.update(this.Properties.viewportX);
+    this.Properties.mid.update(this.Properties.viewportX);
+    this.Properties.mid2.update(this.Properties.viewportX);
     this.Properties.titleBoard.update(this.Properties.titleBoard);
     this.Properties.startButton.update(this.Properties.startButton);
     this.Properties.textScore.update(this.Properties.textScore);

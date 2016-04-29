@@ -18,7 +18,7 @@ Mid2.prototype = Object.create(PIXI.extras.TilingSprite.prototype);
 
 Mid2.DELTA_X = 0.29;
 
-Mid2.prototype.setViewportX = function(newViewportX) {
+Mid2.prototype.update = function(newViewportX) {
     var distanceTravelled = newViewportX - this.viewportX;
     this.viewportX = newViewportX;
     this.tilePosition.x -= (distanceTravelled * Mid2.DELTA_X);
