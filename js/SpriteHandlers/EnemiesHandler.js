@@ -31,10 +31,8 @@ EnemiesHandler.prototype.update = function(enemyHandler, characterObj, stage) {
     for (var n = 0; n < BalanceGlobals.enemies; n++) {
         if (enemyHandler.enemies[n]) {
             enemyHandler.enemies[n].update(enemyHandler.enemies[n], characterObj);
-        }
-        //if there are not enough enemies, add another
-        else {
-            this.addEnemy(1, stage, enemyHandler);
+        } else {
+            this.addEnemy(BalanceGlobals.enemiesToAdd, stage, enemyHandler); //if there are not enough enemies, add another
         }
     }
 };
@@ -42,10 +40,8 @@ EnemiesHandler.prototype.updatePowerUp = function(enemyHandler, characterObj, st
     for (var n = 0; n < BalanceGlobals.enemies; n++) {
         if (enemyHandler.enemies[n]) {
             enemyHandler.enemies[n].updatePowerUp(enemyHandler.enemies[n], characterObj);
-        }
-        //if there are not enough enemies, add another
-        else {
-            this.addEnemy(1, stage, enemyHandler);
+        } else {
+            this.addEnemy(BalanceGlobals.enemiesToAdd, stage, enemyHandler); //if there are not enough enemies, add another
         }
     }
 };
