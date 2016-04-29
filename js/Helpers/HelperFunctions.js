@@ -13,12 +13,24 @@ var HelperFunctions = (function HelperFunction() {
         return {x : x, y : y};
     };
 
-    functions.setScrollSpeedToMin = function () {
+    functions.setScrollSpeedToMin = function (){
         ScrollerGlobals.currentScrollSpeed = ScrollerGlobals.minScrollSpeed;
+    };
+
+    functions.setScrollSpeedToMax = function() {
+        ScrollerGlobals.currentScrollSpeed = ScrollerGlobals.maxScrollSpeed;
+    };
+
+    functions.scrollSpeedIsMaxed = function() {
+        return ScrollerGlobals.currentScrollSpeed > ScrollerGlobals.maxScrollSpeed;
     };
 
     functions.doSwitchScreen = function() {
         return MapGlobals.switchScreen;
+    };
+
+    functions.doPowerUp = function() {
+        return PowerUpGlobals.powerUpActive;
     };
 
     functions.switchScreenToggle = function() {
@@ -26,15 +38,15 @@ var HelperFunctions = (function HelperFunction() {
     };
 
     functions.screenIsGame  = function() {
-        return MapGlobals.screenToShow == MapGlobals.gameString;
+        return MapGlobals.screenToShow === MapGlobals.gameString;
     };
 
     functions.screenIsTitle  = function() {
-        return MapGlobals.screenToShow == MapGlobals.titleString;
+        return MapGlobals.screenToShow === MapGlobals.titleString;
     };
 
     functions.screenIsLoad  = function() {
-        return MapGlobals.screenToShow == MapGlobals.loadString;
+        return MapGlobals.screenToShow === MapGlobals.loadString;
     };
 
     functions.switchToGame = function() {
@@ -68,6 +80,14 @@ var HelperFunctions = (function HelperFunction() {
 
     functions.getCharacterPositionX = function() {
         return MapGlobals.screenWidth * MapGlobals.characterOffsetX;
+    };
+
+    functions.startTitleSound = function() {
+
+    };
+
+    functions.stopTitleSound = function() {
+        createjs.Sound.stop("title");
     };
 
     return functions;

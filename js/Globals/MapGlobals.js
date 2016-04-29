@@ -13,7 +13,7 @@ var MapGlobals = (function MapGlobals() {
     constants.soundLoaded = false;
     constants.gameString = "Game";
     constants.loadString = "Load";
-    constants.titleString = "title";
+    constants.titleString = "Title";
 
     return constants;
 })();

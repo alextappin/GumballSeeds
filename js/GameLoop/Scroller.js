@@ -8,7 +8,8 @@ function Scroller(stage) {
     this.getStage = function() {
         return stage;
     };
-    createjs.Sound.stop("title");
+
+    HelperFunctions.stopTitleSound();
 }
 Scroller.prototype.initializePositionsAndScale = function() {
     this.Properties.character.setPositionAndScale(this.Properties.character);
@@ -46,14 +47,11 @@ Scroller.prototype.update = function() {
     ScoreHelper().updateScore();
 };
 Scroller.prototype.updateViewport = function() {
-    if (PowerUpGlobals.powerUpActive) {
-        //if the power up is continuing, call the continue powerUp from the powerUpHelper
+    if (HelperFunctions.doPowerUp()) {
         PowerUpHelper().continuePowerUp(this.Properties.viewportX);
     }
-    else {
-        if (ScrollerGlobals.currentScrollSpeed > ScrollerGlobals.maxScrollSpeed) {
-            ScrollerGlobals.currentScrollSpeed = ScrollerGlobals.maxScrollSpeed;
-        }
+    else if (HelperFunctions.scrollSpeedIsMaxed()) {
+        HelperFunctions.setScrollSpeedToMax();
     }
     this.Properties.viewportX = this.Properties.viewportX + ScrollerGlobals.currentScrollSpeed;
 };
