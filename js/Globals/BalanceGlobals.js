@@ -13,6 +13,7 @@ var BalanceGlobals = (function BalanceGlobals() {
     constants.pickupGumballScore = 1;
     constants.enemyDamage = 1;
     constants.enemiesToAdd = 1;
+    constants.gumballsToAdd = 1;
 
     return constants;
 })();
