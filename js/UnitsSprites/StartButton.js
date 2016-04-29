@@ -14,7 +14,7 @@ StartButton.prototype.constructStartButton = function() {
     this.initiateStartButtonSprites();
 };
 StartButton.prototype.setPositionAndScale = function(obj) {
-    obj.position = HelperFunctions.getNewPoint((MapGlobals.screenWidth - obj.width)/2, (MapGlobals.screenHeight - obj.height)/2);
+    obj.position = HelperFunctions().getNewPoint((MapGlobals.screenWidth - obj.width)/2, (MapGlobals.screenHeight - obj.height)/2);
     //obj.scale is not being use YET
 };
 StartButton.prototype.initiateStartButtonSprites = function() {

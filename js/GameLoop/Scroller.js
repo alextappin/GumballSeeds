@@ -9,7 +9,7 @@ function Scroller(stage) {
         return stage;
     };
 
-    HelperFunctions.stopTitleSound();
+    HelperFunctions().stopTitleSound();
 }
 Scroller.prototype.initializePositionsAndScale = function() {
     this.Properties.character.setPositionAndScale(this.Properties.character);
@@ -46,10 +46,10 @@ Scroller.prototype.update = function() {
     ScoreHelper().updateScore();
 };
 Scroller.prototype.updateViewport = function() {
-    if (HelperFunctions.doPowerUp()) {
+    if (HelperFunctions().doPowerUp()) {
         PowerUpHelper().continuePowerUp(this.Properties.viewportX);
-    } else if (HelperFunctions.scrollSpeedIsMaxed()) {
-        HelperFunctions.setScrollSpeedToMax();
+    } else if (HelperFunctions().scrollSpeedIsMaxed()) {
+        HelperFunctions().setScrollSpeedToMax();
     }
     this.Properties.viewportX = this.Properties.viewportX + ScrollerGlobals.currentScrollSpeed;
 };

@@ -15,8 +15,8 @@ Ground.prototype.constructGround = function() {
 };
 Ground.prototype.setPositionAndScale = function(obj) {
     for (var i = 0; i < this.Properties.numberOfSprites; i++) {
-        obj.children[i].position =  HelperFunctions.getNewPoint(obj.children[i].width * i, this.Properties.positionY);
-        obj.children[i].scale = HelperFunctions.getNewPoint(1,1);
+        obj.children[i].position =  HelperFunctions().getNewPoint(obj.children[i].width * i, this.Properties.positionY);
+        obj.children[i].scale = HelperFunctions().getNewPoint(1,1);
     }
 };
 Ground.prototype.initiateGroundSprites = function() {

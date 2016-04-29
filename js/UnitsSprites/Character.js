@@ -16,8 +16,8 @@ Character.prototype.constructCharacter = function() {
     this.listenForAttackTrigger();
 };
 Character.prototype.setPositionAndScale = function(obj) {
-    obj.position =  HelperFunctions.getNewPoint(HelperFunctions.getCharacterPositionX(), this.Properties.startPosY);
-    obj.scale = HelperFunctions.getNewPoint(this.Properties.scaleX, this.Properties.scaleY);
+    obj.position =  HelperFunctions().getNewPoint(HelperFunctions().getCharacterPositionX(), this.Properties.startPosY);
+    obj.scale = HelperFunctions().getNewPoint(this.Properties.scaleX, this.Properties.scaleY);
 };
 Character.prototype.initiateCharacterSprites = function() {
     this.Properties.textures.push(

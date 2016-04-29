@@ -5,7 +5,7 @@ function Main() {
     this.renderer = PIXI.autoDetectRenderer(MapGlobals.screenWidth, MapGlobals.screenHeight, {backgroundColor: 0x000000});
     document.body.appendChild(this.renderer.view);
     this.stage = new PIXI.Container(0x66FF99);
-    HelperFunctions.setScrollSpeedToMin();
+    HelperFunctions().setScrollSpeedToMin();
     this.loadSpriteSheet();
 }
 Main.prototype.loadSpriteSheet = function() {
@@ -29,7 +29,7 @@ Main.prototype.spriteSheetLoaded = function() {
     requestAnimationFrame(this.update.bind(this));
 };
 Main.prototype.gameStatesHandler = function() {
-    if (HelperFunctions.doSwitchScreen()) {
+    if (HelperFunctions().doSwitchScreen()) {
         this.purgeStage()
     } else {
         this.updatedSelectedScreen();
@@ -40,26 +40,26 @@ Main.prototype.purgeStage = function() {
     this.stage.destroy();
     this.stage = new PIXI.Container(0x66FF99);
     this.startAppropriateScreen();
-    HelperFunctions.switchScreenToggle();
+    HelperFunctions().switchScreenToggle();
 };
 Main.prototype.updatedSelectedScreen = function() {
-    if(HelperFunctions.screenIsGame()) {
+    if(HelperFunctions().screenIsGame()) {
         this.scroller.update();
-    } else if (HelperFunctions.screenIsTitle()) {
+    } else if (HelperFunctions().screenIsTitle()) {
         this.titleScreen.update();
-    } else if(HelperFunctions.screenIsLoad()) {
+    } else if(HelperFunctions().screenIsLoad()) {
         this.loadScreen.update();
     }
 };
 Main.prototype.startAppropriateScreen = function() {
-    if(HelperFunctions.screenIsGame()) {
+    if(HelperFunctions().screenIsGame()) {
         this.scroller = new Scroller(this.stage);
-    } else if (HelperFunctions.screenIsTitle()) {
+    } else if (HelperFunctions().screenIsTitle()) {
         this.titleScreen = new TitleScreen(this.stage);
-    } else if(HelperFunctions.screenIsLoad()) {
+    } else if(HelperFunctions().screenIsLoad()) {
         this.loadScreen = new LoadScreen(this.stage);
     }
 };
 Main.prototype.saveAndRestartGameVariables = function() {
-    HelperFunctions.resetGlobals();
+    HelperFunctions().resetGlobals();
 };
