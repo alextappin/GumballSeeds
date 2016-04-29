@@ -1,7 +1,7 @@
 /**
  * Created by ajt on 4/25/2016.
  */
-var HelperFunctions = (function HelperFunction() {
+function HelperFunctions() {
     var functions = {};
 
     functions.getRandomNumber = function(startRange, endRange) {
@@ -91,4 +91,4 @@ var HelperFunctions = (function HelperFunction() {
     };
 
     return functions;
-})();
+}
