@@ -8,7 +8,7 @@ function TitleScreen(stage) {
     this.getStage = function() {
         return stage;
     };
-    createjs.Sound.play("title", {loop: 10, volume:.2});
+    HelperFunctions().startTitleSound();
 }
 
 TitleScreen.prototype.initializePositions = function() {

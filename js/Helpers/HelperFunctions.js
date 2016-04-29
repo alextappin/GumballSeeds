@@ -83,11 +83,11 @@ function HelperFunctions() {
     };
 
     functions.startTitleSound = function() {
-
+        createjs.Sound.play(MapGlobals.titleString, {loop: 10, volume:.2});
     };
 
     functions.stopTitleSound = function() {
-        createjs.Sound.stop("title");
+        createjs.Sound.stop(MapGlobals.titleString);
     };
 
     return functions;
