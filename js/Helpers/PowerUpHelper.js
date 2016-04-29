@@ -31,7 +31,7 @@ function PowerUpHelper() {
                 powerUpHelper.startPowerUp();
             }
             else {
-                PowerUpGlobals.powerBarLevel += 1;
+                PowerUpGlobals.powerBarLevel++;
             }
         }
     };
