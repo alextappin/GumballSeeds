@@ -14,6 +14,8 @@ var BalanceGlobals = (function BalanceGlobals() {
     constants.enemyDamage = 1;
     constants.enemiesToAdd = 1;
     constants.gumballsToAdd = 1;
+
+    //Character Specific
     constants.lives = 15;
 
     return constants;
