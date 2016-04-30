@@ -11,6 +11,9 @@ var MapGlobals = (function MapGlobals() {
     constants.switchScreen = false;
     constants.characterOffsetX = .2;
     constants.soundLoaded = false;
+    constants.gameString = "Game";
+    constants.loadString = "Load";
+    constants.titleString = "Title";
 
     return constants;
 })();

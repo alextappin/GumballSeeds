@@ -10,7 +10,6 @@ function GroundProperties() {
         numberStartingSprites : 4,
         spriteCount : 0,
         changeSpriteCounter : 0,
-        speed : 10,
         spriteWidth : -800,
         positionY : 550,
         yPositionMin : 530,

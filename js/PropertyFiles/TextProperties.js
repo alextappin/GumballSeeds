@@ -7,7 +7,7 @@ function TextProperties(textType) {
         type : textType,
         setValues : function() {
             if (this.type == "score") {
-                this.text = "Score  " + ScoreGlobals.score;
+                this.text = "Score  " + ScoreGlobals.currentScore;
                 this.positionX = 10;
                 this.positionY = 10;
                 this.fill = "Green";

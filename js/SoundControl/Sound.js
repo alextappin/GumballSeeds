@@ -4,7 +4,7 @@
 function GameSounds() {
     var soundsProps = {
         titleSound : {
-            id : "title",
+            id : MapGlobals.titleString,
             url : "../resources/GumballSeedsTheme2.mp3"
         }
     },

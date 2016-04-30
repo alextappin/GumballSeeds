@@ -14,8 +14,8 @@ LoadImage.prototype.constructLoadImage = function() {
     this.initiateLoadImageSprites();
 };
 LoadImage.prototype.setPositionAndScale = function(obj) {
-    obj.scale = HelperFunctions.getNewPoint(.8,.8);
-    obj.position =  HelperFunctions.getNewPoint((MapGlobals.screenWidth - obj.width)/2, (MapGlobals.screenHeight - obj.height)/2);
+    obj.scale = HelperFunctions().getNewPoint(.8,.8);
+    obj.position =  HelperFunctions().getNewPoint((MapGlobals.screenWidth - obj.width)/2, (MapGlobals.screenHeight - obj.height)/2);
     obj.alpha = this.Properties.alphaStart;
     //no scale yet...
 };

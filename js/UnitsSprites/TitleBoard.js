@@ -14,7 +14,7 @@ TitleBoard.prototype.constructTitleBoard = function() {
     this.initiateTitleBoardSprites();
 };
 TitleBoard.prototype.setPositionAndScale = function(obj) {
-    obj.position =  HelperFunctions.getNewPoint((MapGlobals.screenWidth - obj.width)/2, (MapGlobals.screenHeight - obj.height)/2);
+    obj.position =  HelperFunctions().getNewPoint((MapGlobals.screenWidth - obj.width)/2, (MapGlobals.screenHeight - obj.height)/2);
     //no scale yet...
 };
 TitleBoard.prototype.initiateTitleBoardSprites = function() {

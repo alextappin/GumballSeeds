@@ -4,6 +4,7 @@
 var PowerUpGlobals = (function PowerUpGlobals() {
     var constants = {};
 
+    constants.startPowerBarLevel = 2;
     constants.powerBarLevel = 2;
     constants.maxPowerBarLevel = 6;
     constants.powerUpActive = false;

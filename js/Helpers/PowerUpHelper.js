@@ -5,10 +5,8 @@ function PowerUpHelper() {
     var powerUpHelper = {};
 
     powerUpHelper.startPowerUp = function() {
-        console.log("startPowerUp");
-        PowerUpGlobals.powerUpActive = true;
-        ScrollerGlobals.currentScrollSpeed *= PowerUpGlobals.powerUpSpeedMultiplier;
-        ScrollerGlobals.groundSpeed *= PowerUpGlobals.powerUpSpeedMultiplier;
+        HelperFunctions().powerUpOn();
+        HelperFunctions().powerUpScrollSpeed();
     };
     powerUpHelper.continuePowerUp = function(viewPort) {
         if (PowerUpGlobals.powerUpStartingViewport == 0) {
@@ -23,10 +21,7 @@ function PowerUpHelper() {
         }
     };
     powerUpHelper.endPowerUp = function() {
-        PowerUpGlobals.powerUpActive = false;
-        PowerUpGlobals.powerUpStartingViewport = 0;
-        PowerUpGlobals.powerBarLevel = 2;
-        ScrollerGlobals.groundSpeed = 10;
+        HelperFunctions().resetAfterPowerUp();
         console.log("end Power Up");
     };
     powerUpHelper.incrementPowerUp = function() {
@@ -36,7 +31,7 @@ function PowerUpHelper() {
                 powerUpHelper.startPowerUp();
             }
             else {
-                PowerUpGlobals.powerBarLevel += 1;
+                PowerUpGlobals.powerBarLevel++;
             }
         }
     };

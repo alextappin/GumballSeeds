@@ -8,7 +8,8 @@ function Scroller(stage) {
     this.getStage = function() {
         return stage;
     };
-    createjs.Sound.stop("title");
+
+    HelperFunctions().stopTitleSound();
 }
 Scroller.prototype.initializePositionsAndScale = function() {
     this.Properties.character.setPositionAndScale(this.Properties.character);
@@ -18,9 +19,6 @@ Scroller.prototype.initializePositionsAndScale = function() {
     this.Properties.gumballs.setPositionAndScale(this.Properties.gumballs);
 };
 Scroller.prototype.constructScroller = function(stage) {
-    this.addChildrenToStage(stage);
-};
-Scroller.prototype.addChildrenToStage = function(stage) {
     stage.addChild(this.Properties.far);
     stage.addChild(this.Properties.mid);
     stage.addChild(this.Properties.mid2);
@@ -37,30 +35,25 @@ Scroller.prototype.addChildrenToStage = function(stage) {
 Scroller.prototype.update = function() {
     if (PowerUpGlobals.powerUpActive) {
         this.updateViewportPowerUp();
-        this.updateObectsPowerUp();
-    }
-    else {
+        this.updateObjectsPowerUp();
+    } else {
         this.updateViewport();
         this.updateObjects();
     }
     ScoreHelper().updateScore();
 };
 Scroller.prototype.updateViewport = function() {
-    if (PowerUpGlobals.powerUpActive) {
-        //if the power up is continuing, call the continue powerUp from the powerUpHelper
+    if (HelperFunctions().doPowerUp()) {
         PowerUpHelper().continuePowerUp(this.Properties.viewportX);
-    }
-    else {
-        if (ScrollerGlobals.currentScrollSpeed > ScrollerGlobals.maxScrollSpeed) {
-            ScrollerGlobals.currentScrollSpeed = ScrollerGlobals.maxScrollSpeed;
-        }
+    } else if (HelperFunctions().scrollSpeedIsMaxed()) {
+        HelperFunctions().setScrollSpeedToMax();
     }
     this.Properties.viewportX = this.Properties.viewportX + ScrollerGlobals.currentScrollSpeed;
 };
 Scroller.prototype.updateObjects = function() {
-    this.Properties.far.setViewportX(this.Properties.viewportX);
-    this.Properties.mid.setViewportX(this.Properties.viewportX);
-    this.Properties.mid2.setViewportX(this.Properties.viewportX);
+    this.Properties.far.update(this.Properties.viewportX);
+    this.Properties.mid.update(this.Properties.viewportX);
+    this.Properties.mid2.update(this.Properties.viewportX);
     this.Properties.ground.update(this.Properties.ground);
     this.Properties.character.update(this.Properties.character, this.Properties.ground);
     this.Properties.gumballs.update(this.Properties.gumballs, this.Properties.ground, this.Properties.character, this.getStage());
@@ -75,10 +68,10 @@ Scroller.prototype.updateViewportPowerUp = function() {
     PowerUpHelper().continuePowerUp(this.Properties.viewportX);
     this.Properties.viewportX = this.Properties.viewportX + ScrollerGlobals.currentScrollSpeed;
 };
-Scroller.prototype.updateObectsPowerUp = function() {
-    this.Properties.far.setViewportX(this.Properties.viewportX);
-    this.Properties.mid.setViewportX(this.Properties.viewportX);
-    this.Properties.mid2.setViewportX(this.Properties.viewportX);
+Scroller.prototype.updateObjectsPowerUp = function() {
+    this.Properties.far.update(this.Properties.viewportX);
+    this.Properties.mid.update(this.Properties.viewportX);
+    this.Properties.mid2.update(this.Properties.viewportX);
     this.Properties.ground.updatePowerUp(this.Properties.ground);
     this.Properties.character.updatePowerUp(this.Properties.character, this.Properties.ground);
     this.Properties.gumballs.updatePowerUp(this.Properties.gumballs, this.Properties.ground, this.Properties.character, this.getStage());

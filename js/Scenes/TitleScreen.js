@@ -8,7 +8,7 @@ function TitleScreen(stage) {
     this.getStage = function() {
         return stage;
     };
-    createjs.Sound.play("title", {loop: 10, volume:.2});
+    HelperFunctions().startTitleSound();
 }
 
 TitleScreen.prototype.initializePositions = function() {
@@ -26,16 +26,18 @@ TitleScreen.prototype.constructTitleScreen = function(stage) {
 };
 TitleScreen.prototype.update = function() {
     this.updateViewport();
-    this.Properties.far.setViewportX(this.Properties.viewportX);
-    this.Properties.mid.setViewportX(this.Properties.viewportX);
-    this.Properties.mid2.setViewportX(this.Properties.viewportX);
+    this.Properties.far.update(this.Properties.viewportX);
+    this.Properties.mid.update(this.Properties.viewportX);
+    this.Properties.mid2.update(this.Properties.viewportX);
     this.Properties.titleBoard.update(this.Properties.titleBoard);
     this.Properties.startButton.update(this.Properties.startButton);
     this.Properties.textScore.update(this.Properties.textScore);
 };
 TitleScreen.prototype.updateViewport = function() {
-    if (ScrollerGlobals.currentScrollSpeed > ScrollerGlobals.maxScrollSpeed) {
-        ScrollerGlobals.currentScrollSpeed = ScrollerGlobals.maxScrollSpeed;
+    if (HelperFunctions().doPowerUp()) {
+        PowerUpHelper().continuePowerUp(this.Properties.viewportX);
+    } else if (HelperFunctions().scrollSpeedIsMaxed()) {
+        HelperFunctions().setScrollSpeedToMax();
     }
 
     this.Properties.viewportX = this.Properties.viewportX + ScrollerGlobals.currentScrollSpeed;

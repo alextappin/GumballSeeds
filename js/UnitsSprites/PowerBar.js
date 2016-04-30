@@ -14,8 +14,8 @@ PowerBar.prototype.constructPowerBar = function() {
     this.initiatePowerBarSprites();
 };
 PowerBar.prototype.setPositionAndScale = function(obj) {
-    obj.scale = HelperFunctions.getNewPoint(.4,.4);
-    obj.position =  HelperFunctions.getNewPoint((MapGlobals.screenWidth - obj.width) /2, 0);
+    obj.scale = HelperFunctions().getNewPoint(.4,.4);
+    obj.position =  HelperFunctions().getNewPoint((MapGlobals.screenWidth - obj.width) /2, 0);
 };
 PowerBar.prototype.initiatePowerBarSprites = function() {
     this.Properties.textures.push(

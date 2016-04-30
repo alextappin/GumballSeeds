@@ -11,6 +11,13 @@ var BalanceGlobals = (function BalanceGlobals() {
     constants.enemyPoints = 1;
     constants.runningScore = 1;
     constants.pickupGumballScore = 1;
+    constants.enemyDamage = 1;
+    constants.enemiesToAdd = 1;
+    constants.gumballsToAdd = 1;
+    constants.continueGame = true;
+
+    //Character Specific
+    constants.isAttacking = false;
 
     return constants;
 })();

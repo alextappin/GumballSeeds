@@ -16,8 +16,8 @@ Character.prototype.constructCharacter = function() {
     this.listenForAttackTrigger();
 };
 Character.prototype.setPositionAndScale = function(obj) {
-    obj.position =  HelperFunctions.getNewPoint(HelperFunctions.getCharacterPositionX(), this.Properties.startPosY);
-    obj.scale = HelperFunctions.getNewPoint(this.Properties.scaleX, this.Properties.scaleY);
+    obj.position =  HelperFunctions().getNewPoint(ScalingGlobals.characterStartXScale, ScalingGlobals.characterStartYScale);
+    obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.characterScaleX, ScalingGlobals.characterScaleY);
 };
 Character.prototype.initiateCharacterSprites = function() {
     this.Properties.textures.push(
@@ -28,32 +28,32 @@ Character.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("sprite6"),
         PIXI.Texture.fromFrame("sprite4")
     );
-    this.Properties.sprite = new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]);
-    this.addChild(this.Properties.sprite);
+    //this.Properties.sprite = new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]);
+    this.addChild(new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]));
 };
-Character.prototype.setSpriteToCurrentTexture = function() {
-    this.Properties.sprite.texture = this.Properties.textures[this.Properties.spriteCount];
+Character.prototype.setSpriteToCurrentTexture = function(characterObj) {
+    characterObj.children[0].texture = this.Properties.textures[this.Properties.spriteCount];
 };
 Character.prototype.update = function(characterObj, groundObj) {
-    this.updateSprites();
+    this.updateSprites(characterObj);
     this.characterGravity(characterObj, groundObj);
     this.attackCharacter();
 };
 Character.prototype.updatePowerUp = function(characterObj, groundObj) {
-    this.updateSprites();
+    this.updateSprites(characterObj);
     this.powerUpMove(characterObj);
     //this.characterGravity(characterObj, groundObj);
 };
-Character.prototype.updateSprites = function() {
+Character.prototype.updateSprites = function(characterObj) {
     if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
         this.Properties.changeSpriteCounter = 0;
-        this.nextSprite();
+        this.nextSprite(characterObj);
     }
     else {
         this.Properties.changeSpriteCounter++;
     }
 };
-Character.prototype.nextSprite = function() {
+Character.prototype.nextSprite = function(characterObj) {
     //Set ternary
     //TODO dont use ==5 instead use the maximum number of textures the character has
     if (this.Properties.spriteCount == 5) {
@@ -62,21 +62,21 @@ Character.prototype.nextSprite = function() {
     else {
         this.Properties.spriteCount++;
     }
-    this.setSpriteToCurrentTexture();
+    this.setSpriteToCurrentTexture(characterObj);
 };
 Character.prototype.characterGravity = function(characterObj, groundObj) {
-    if (this.Properties.airborn) {
+    if (PhysicsGlobals.characterAirborn) {
         if (this.isFalling()) {
-            this.fall(characterObj,this.calculateMapToCharacterHeightOffset(groundObj.getHeightAtPositionX(this.calculateCharacterFrontX(characterObj))));
+            this.fall(characterObj,this.calculateMapToCharacterHeightOffset(characterObj, groundObj.getHeightAtPositionX(this.calculateCharacterFrontX(characterObj))));
         }
         else {
             this.rise(characterObj);
         }
     }
     //if there is no ground, notice ! sign, you will FALL
-    else if (!this.calculateMapToCharacterHeightOffset(groundObj.getHeightAtPositionX(this.calculateCharacterFrontX(characterObj)))) {
-        this.Properties.airborn = true;
-        this.fall(characterObj,this.calculateMapToCharacterHeightOffset(groundObj.getHeightAtPositionX(this.calculateCharacterFrontX(characterObj))));
+    else if (!this.calculateMapToCharacterHeightOffset(characterObj, groundObj.getHeightAtPositionX(this.calculateCharacterFrontX(characterObj)))) {
+        PhysicsGlobals.characterAirborn = true;
+        this.fall(characterObj,this.calculateMapToCharacterHeightOffset(characterObj, groundObj.getHeightAtPositionX(this.calculateCharacterFrontX(characterObj))));
     }
 };
 Character.prototype.fall = function(characterObj, groundHeight) {
@@ -84,76 +84,76 @@ Character.prototype.fall = function(characterObj, groundHeight) {
     //passed ground
     if(characterObj.position.y > groundHeight) {
         this.endGame();
-        characterObj.position.y += this.Properties.velocityY;
+        characterObj.position.y += PhysicsGlobals.characterVelocityY;
     }
     //landed
-    else if ((characterObj.position.y + this.Properties.velocityY) > groundHeight) {
+    else if ((characterObj.position.y + PhysicsGlobals.characterVelocityY) > groundHeight) {
         characterObj.position.y = groundHeight;
-        this.Properties.velocityY = 0;
-        this.Properties.airborn = false;
+        PhysicsGlobals.characterVelocityY = 0;
+        PhysicsGlobals.characterAirborn = false;
     }
     //falling
     else {
-        characterObj.position.y += this.Properties.velocityY;
+        characterObj.position.y += PhysicsGlobals.characterVelocityY;
     }
 };
 Character.prototype.rise = function(characterObj) {
     this.startGravity();
-    characterObj.position.y += this.Properties.velocityY;
+    characterObj.position.y += PhysicsGlobals.characterVelocityY;
 };
 Character.prototype.powerUpMove = function(characterObj) {
-    this.Properties.isAttacking = true;
+    BalanceGlobals.isAttacking = true;
     this.setNewPowerUpPosition(characterObj);
 };
 Character.prototype.isFalling = function() {
     //negative velocity is up... not rising ur falling. maybe >=
-    return this.Properties.velocityY >= 0;
+    return PhysicsGlobals.characterVelocityY >= 0;
 };
 Character.prototype.endGame = function() {
-    this.Properties.airborn = true;
-    this.Properties.continueGame = false;
-    MapGlobals.switchScreen = !MapGlobals.switchScreen;
-    MapGlobals.screenToShow = "Title";
+    PhysicsGlobals.airborn = true;
+    BalanceGlobals.continueGame = false;
+    HelperFunctions().switchScreenToggle();
+    HelperFunctions().switchToTitle();
 };
 Character.prototype.startGravity = function() {
-    this.Properties.velocityY += this.Properties.gravity;
+    PhysicsGlobals.characterVelocityY += PhysicsGlobals.characterGravity;
 };
 Character.prototype.startJumpAnimation = function() {
     //not airborn, then GO AIRBORN and set velocity
-    if (!this.Properties.airborn) {
-        this.Properties.airborn = true;
-        this.Properties.velocityY = this.Properties.jumpVelocity;
+    if (!PhysicsGlobals.characterAirborn) {
+        PhysicsGlobals.characterAirborn = true;
+        PhysicsGlobals.characterVelocityY = PhysicsGlobals.characterJumpVelocity;
     }
 };
 Character.prototype.calculateCharacterFrontX = function(characterObj) {
     return characterObj.position.x + characterObj.width/2;
 };
-Character.prototype.calculateMapToCharacterHeightOffset = function(groundY) {
+Character.prototype.calculateMapToCharacterHeightOffset = function(characterObj, groundY) {
     //if there is a height, return the offset, else null
-    return groundY ? groundY - this.Properties.sprite.height/2 + 10: undefined;
+    return groundY ? groundY - characterObj.children[0].height/2 + 10: undefined;
 };
 Character.prototype.attackCharacter = function() {
-    if (this.Properties.isAttacking) {
-        this.Properties.attackingTime -= 1;
-        if (this.Properties.attackingTime == 0) {
+    if (BalanceGlobals.isAttacking) {
+        PhysicsGlobals.attackingTime -= 1;
+        if (PhysicsGlobals.attackingTime == 0) {
             this.stopAttacking();
         }
     }
 };
 Character.prototype.startAttackAnimation = function() {
-    this.Properties.isAttacking = true;
+    BalanceGlobals.isAttacking = true;
     this.removeChild(this.text);
     this.text = new PIXI.Text("Attacking", {font:"40px Arial", fill:"#228869"});
     this.text.position.x = 20;
     this.addChild(this.text);
 
-    this.Properties.attackingTime = 20;
+    PhysicsGlobals.attackingTime = 20;
 };
 Character.prototype.stopAttacking = function() {
-    this.Properties.isAttacking = false;
+    BalanceGlobals.isAttacking = false;
     this.removeChild(this.text);
 
-    this.Properties.attackingTime = 0;
+    PhysicsGlobals.attackingTime = 0;
 };
 Character.prototype.setNewPowerUpPosition = function(characterObj) {
     if (characterObj.position.y < MapGlobals.screenHeight/2 - characterObj.height) {
@@ -162,7 +162,7 @@ Character.prototype.setNewPowerUpPosition = function(characterObj) {
     else if (characterObj.position.y > MapGlobals.screenHeight/2 + characterObj.height) {
         this.Properties.powerUpPositionVelocity = -15;
     }
-    this.Properties.powerUpPositionVelocity += this.Properties.gravity;
+    this.Properties.powerUpPositionVelocity += PhysicsGlobals.characterGravity;
     characterObj.position.y += this.Properties.powerUpPositionVelocity;
 };
 Character.prototype.listenForJumpTrigger = function() {
