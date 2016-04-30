@@ -3,23 +3,17 @@
  */
 function Mid() {
     var texture = PIXI.Texture.fromImage("../resources/test2.png");
-    PIXI.extras.TilingSprite.call(this, texture, 1080, 720);
+    PIXI.extras.TilingSprite.call(this, texture, MapGlobals.screenWidth, MapGlobals.screenHeight);
 
-    this.position.x = 0;
-    this.position.y = 0;
-    this.tilePosition.x = 0;
-    this.tilePosition.y = 0;
-
+    this.position = HelperFunctions().getNewPoint(0,0);
+    this.tilePosition = HelperFunctions().getNewPoint(0,0);
     this.viewportX = 0;
 }
 
 Mid.constructor = Mid;
 Mid.prototype = Object.create(PIXI.extras.TilingSprite.prototype);
 
-Mid.DELTA_X = 0.12;
-
-Mid.prototype.setViewportX = function(newViewportX) {
-    var distanceTravelled = newViewportX - this.viewportX;
+Mid.prototype.update = function(newViewportX) {
+    this.tilePosition.x -= ((newViewportX - this.viewportX) * ScrollerGlobals.midDeltaX); //distance traveled * change
     this.viewportX = newViewportX;
-    this.tilePosition.x -= (distanceTravelled * Mid.DELTA_X);
 };

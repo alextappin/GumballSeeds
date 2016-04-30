@@ -15,8 +15,8 @@ Ground.prototype.constructGround = function() {
 };
 Ground.prototype.setPositionAndScale = function(obj) {
     for (var i = 0; i < this.Properties.numberOfSprites; i++) {
-        obj.children[i].position =  GameVariables.getNewPoint(obj.children[i].width * i, this.Properties.positionY);
-        obj.children[i].scale = GameVariables.getNewPoint(1,1);
+        obj.children[i].position =  HelperFunctions().getNewPoint(obj.children[i].width * i, this.Properties.positionY);
+        obj.children[i].scale = HelperFunctions().getNewPoint(1,1);
     }
 };
 Ground.prototype.initiateGroundSprites = function() {
@@ -40,6 +40,9 @@ Ground.prototype.setSpriteToCurrentTexture = function() {
 Ground.prototype.update = function(obj) {
     this.updateSprites(obj);
 };
+Ground.prototype.updatePowerUp = function(obj) {
+    this.updateSprites(obj);
+};
 Ground.prototype.updateSprites = function(obj) {
     for (var i = 0; i < this.Properties.numberOfSprites; i++) {
         if (obj.children[i].position.x < (0-obj.children[i].width)) {
@@ -55,13 +58,13 @@ Ground.prototype.updateSprites = function(obj) {
 
         }
         else {
-            obj.children[i].position.x -= this.Properties.speed;
+            obj.children[i].position.x -= ScrollerGlobals.groundSpeed;
         }
     }
 };
 Ground.prototype.calcuateNewPosition = function(obj, currentElement) {
     var lastElementChanged = currentElement - 1 < 0 ? obj.children.length-1 : currentElement - 1;
-    return (obj.children[lastElementChanged].position.x + obj.children[lastElementChanged].width - this.Properties.speed-1);
+    return (obj.children[lastElementChanged].position.x + obj.children[lastElementChanged].width - ScrollerGlobals.groundSpeed-1);
 };
 Ground.prototype.getHeightAtPositionX = function(positionX) {
     for (var i = 0; i < this.Properties.sprites.length; i++) {

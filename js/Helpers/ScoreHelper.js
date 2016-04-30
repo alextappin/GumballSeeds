@@ -1,27 +1,35 @@
 function ScoreHelper() {
     var scoreHelpers = {};
+
     scoreHelpers.killEnemy = function(enemyPoints) {
-        GameVariables.setCurrentScore(GameVariables.getCurrentScore() + enemyPoints);
-        GameVariables.setKills(GameVariables.getKills() + 1);
-        GameVariables.setPowerBarScore(GameVariables.getPowerBarScore() < 6 ? GameVariables.getPowerBarScore() + 1 : 6);
+        ScoreGlobals.currentScore += enemyPoints;
+        ScoreGlobals.kills++;
+        PowerUpHelper().incrementPowerUp();
     };
-    scoreHelpers.getHitByEnemy = function(enemyDamage) {
-        GameVariables.setPowerBarScore(GameVariables.getPowerBarScore() > 0 ? GameVariables.getPowerBarScore() - 1 : 0);
+
+    scoreHelpers.getHitByEnemy = function() {
+        PowerUpGlobals.powerBarLevel = (PowerUpGlobals.powerBarLevel > HelperFunctions().returnZero() ? PowerUpGlobals.powerBarLevel - BalanceGlobals.enemyDamage : 0);
+        ScoreGlobals.lives -= BalanceGlobals.enemyDamage;
     };
+
     scoreHelpers.runningScore = function() {
-        GameVariables.setCurrentScore(GameVariables.getCurrentScore() + 1);
+        ScoreGlobals.currentScore = ScoreGlobals.currentScore + BalanceGlobals.runningScore;
     };
+
     scoreHelpers.createNewEnemy = function() {
-        return GameVariables.getKills() % GameVariables.getNewEnemyCounter() === 0;
+        return ScoreGlobals.kills % BalanceGlobals.createNewEnemiesCounter === HelperFunctions().returnZero();
     };
+
     scoreHelpers.pickupGumball = function() {
-        GameVariables.setCurrentScore(GameVariables.getCurrentScore() + 1);
+        ScoreGlobals.currentScore = ScoreGlobals.currentScore + BalanceGlobals.pickupGumballScore;
     };
+
     scoreHelpers.updateScore = function() {
-        GameVariables.incrementLoopCounter();
-        if (GameVariables.getLoopCounter() % GameVariables.getLoopScoreIncrement() === 0) {
+        MapGlobals.loopCounter++;
+        if (MapGlobals.loopCounter % BalanceGlobals.loopScoreIncrementTime === 0) {
             scoreHelpers.runningScore();
         }
     };
+
     return scoreHelpers;
 }

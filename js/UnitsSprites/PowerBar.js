@@ -14,8 +14,8 @@ PowerBar.prototype.constructPowerBar = function() {
     this.initiatePowerBarSprites();
 };
 PowerBar.prototype.setPositionAndScale = function(obj) {
-    obj.scale = GameVariables.getNewPoint(.4,.4);
-    obj.position =  GameVariables.getNewPoint((GameVariables.getWidth() - obj.width)/2, 0);
+    obj.scale = HelperFunctions().getNewPoint(.4,.4);
+    obj.position =  HelperFunctions().getNewPoint((MapGlobals.screenWidth - obj.width) /2, 0);
 };
 PowerBar.prototype.initiatePowerBarSprites = function() {
     this.Properties.textures.push(
@@ -36,9 +36,12 @@ PowerBar.prototype.setSpriteToCurrentTexture = function() {
 PowerBar.prototype.update = function(obj) {
     this.checkForUpdate();
 };
+PowerBar.prototype.updatePowerUp = function(obj) {
+    this.checkForUpdate();
+};
 PowerBar.prototype.checkForUpdate = function() {
-    if (GameVariables.getPowerBarScore() != this.Properties.spriteCount) {
-        this.Properties.spriteCount = GameVariables.getPowerBarScore();
+    if (PowerUpGlobals.powerBarLevel != this.Properties.spriteCount) {
+        this.Properties.spriteCount = PowerUpGlobals.powerBarLevel;
         this.setSpriteToCurrentTexture();
     }
 };

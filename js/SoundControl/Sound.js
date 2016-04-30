@@ -1,10 +1,10 @@
 /**
  * Created by ajt on 3/26/2016.
  */
-function GameSounds(gameInitFunction) {
+function GameSounds() {
     var soundsProps = {
         titleSound : {
-            id : "title",
+            id : MapGlobals.titleString,
             url : "../resources/GumballSeedsTheme2.mp3"
         }
     },
@@ -22,7 +22,7 @@ function GameSounds(gameInitFunction) {
 
     function handleFileLoad() {
         if (counter == numSoundsToLoad) {
-            gameInitFunction();
+            MapGlobals.soundLoaded = true;
         }
     }
 }

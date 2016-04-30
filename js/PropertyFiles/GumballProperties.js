@@ -3,14 +3,14 @@
  */
 function GumballProperties() {
     var props = {
-        sprites : [],
+        sprite : {},
         textures : [],
         numberOfSprites : 0,
         numberStartingSprites : 1,
         spriteCount : 0,
         changeSpriteCounter : 0,
-        spriteSpeed : 40,
-        startingX : GameVariables.getWidth()*1.5,
+        spriteSpeed : 0,
+        startingX : MapGlobals.screenWidth*1.5,
         startingY : 500,
         yGumballOffsetWithMap : 90
     };

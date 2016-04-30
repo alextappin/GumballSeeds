@@ -14,7 +14,7 @@ StartButton.prototype.constructStartButton = function() {
     this.initiateStartButtonSprites();
 };
 StartButton.prototype.setPositionAndScale = function(obj) {
-    obj.position = GameVariables.getNewPoint((GameVariables.getWidth() - obj.width)/2, (GameVariables.getHeight() - obj.height)/2);
+    obj.position = HelperFunctions().getNewPoint((MapGlobals.screenWidth - obj.width)/2, (MapGlobals.screenHeight - obj.height)/2);
     //obj.scale is not being use YET
 };
 StartButton.prototype.initiateStartButtonSprites = function() {
@@ -57,8 +57,8 @@ StartButton.prototype.handleClickEvents = function(spriteToHandle) {
     if (!spriteToHandle.interactive) {
         var spriteTimeout;
         function onButtonDown() {
-            GameVariables.toggleScreenChange();
-            GameVariables.setScreenGame();
+            MapGlobals.switchScreen = !MapGlobals.switchScreen;
+            MapGlobals.screenToShow = "Game";
             clearTimeout(spriteTimeout);
         }
         spriteToHandle.interactive = true;
