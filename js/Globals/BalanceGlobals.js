@@ -14,9 +14,11 @@ var BalanceGlobals = (function BalanceGlobals() {
     constants.enemyDamage = 1;
     constants.enemiesToAdd = 1;
     constants.gumballsToAdd = 1;
+    constants.continueGame = true;
 
     //Character Specific
     constants.lives = 15;
+    constants.isAttacking = false;
 
     return constants;
 })();

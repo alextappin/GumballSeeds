@@ -7,6 +7,8 @@ var PhysicsGlobals = (function PhysicsGlobals() {
     constants.attackingTime = 0;
     constants.gravity = .5;
     constants.jumpVelocity = -15;
+    constants.applyFallingGravity = false;
+    constants.airborn = true;
 
     return constants;
 })();

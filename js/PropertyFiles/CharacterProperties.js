@@ -1,17 +1,12 @@
 /**
  * Created by ajt on 3/10/2016.
+ * this file will have the sprite filtering and specifics
  */
 function CharacterProperties() {
     var props = {
         sprites : {},
         textures : [],
         spriteCount : 0,
-        airborn : true,
-        applyFallingGravity : false,
-        isMovingLeft : false,
-        isMovingRight : false,
-        isAttacking : false,
-        continueGame : true,
         changeSpriteCounter : 0,
         spriteSpeed : 8,
         powerUpPositionVelocity : -1,
