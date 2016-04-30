@@ -3,7 +3,7 @@
  */
 function Mid2() {
     var texture = PIXI.Texture.fromImage("../resources/bg3.png");
-    PIXI.extras.TilingSprite.call(this, texture, 1080, 720);
+    PIXI.extras.TilingSprite.call(this, texture, MapGlobals.screenWidth, MapGlobals.screenHeight);
 
     this.position = HelperFunctions().getNewPoint(0,0);
     this.tilePosition = HelperFunctions().getNewPoint(0,0);
