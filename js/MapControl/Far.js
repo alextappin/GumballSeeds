@@ -5,8 +5,8 @@ function Far() {
     var texture = PIXI.Texture.fromImage("../resources/bg1.png");
     PIXI.extras.TilingSprite.call(this, texture, MapGlobals.screenWidth, MapGlobals.screenHeight);
 
-    this.position = HelperFunctions().getNewPoint(HelperFunctions().returnZero(), HelperFunctions().returnZero());
-    this.tilePosition = HelperFunctions().getNewPoint(HelperFunctions().returnZero(), HelperFunctions().returnZero());
+    this.position = HelperFunctions().getNewPoint(0,0);
+    this.tilePosition = HelperFunctions().getNewPoint(0,0);
     this.viewportX = 0;
 }
 
@@ -14,6 +14,6 @@ Far.constructor = Far;
 Far.prototype = Object.create(PIXI.extras.TilingSprite.prototype);
 
 Far.prototype.update = function(newViewportX) {
-    this.viewportX = newViewportX;
     this.tilePosition.x -= ((newViewportX - this.viewportX) * ScrollerGlobals.farDeltaX); //distance traveled * change
+    this.viewportX = newViewportX;
 };
