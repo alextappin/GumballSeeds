@@ -82,10 +82,6 @@ function HelperFunctions() {
         PowerUpGlobals.powerUpStartingViewport = 0;
     };
 
-    functions.getCharacterPositionX = function() {
-        return MapGlobals.screenWidth * MapGlobals.characterOffsetX;
-    };
-
     functions.powerUpOn = function() {
         PowerUpGlobals.powerUpActive = true;
     };

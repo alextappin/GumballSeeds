@@ -5,10 +5,11 @@ var PhysicsGlobals = (function PhysicsGlobals() {
     var constants = {};
 
     constants.attackingTime = 0;
-    constants.gravity = .5;
-    constants.jumpVelocity = -15;
+    constants.characterGravity = .5;
+    constants.characterJumpVelocity = -15;
+    constants.characterVelocityY = 5;
     constants.applyFallingGravity = false;
-    constants.airborn = true;
+    constants.characterAirborn = true;
 
     return constants;
 })();
