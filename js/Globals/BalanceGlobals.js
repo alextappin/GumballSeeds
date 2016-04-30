@@ -6,7 +6,7 @@ var BalanceGlobals = (function BalanceGlobals() {
 
     constants.enemies = 2;
     constants.gumballs = 1;
-    constants.createNewEnemiesCounter = 5;
+    constants.createNewEnemiesCounter = 50;
     constants.loopScoreIncrementTime = 60;
     constants.enemyPoints = 1;
     constants.runningScore = 1;
