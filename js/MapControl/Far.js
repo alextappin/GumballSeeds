@@ -15,5 +15,5 @@ Far.prototype = Object.create(PIXI.extras.TilingSprite.prototype);
 
 Far.prototype.update = function(newViewportX) {
     this.viewportX = newViewportX;
-    this.tilePosition.x -= ((newViewportX - this.viewportX) * MapGlobals.farDeltaX); //distance traveled * change
+    this.tilePosition.x -= ((newViewportX - this.viewportX) * ScrollerGlobals.farDeltaX); //distance traveled * change
 };

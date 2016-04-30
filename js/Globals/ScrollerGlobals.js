@@ -12,6 +12,9 @@ var ScrollerGlobals = (function ScrollerGlobals() {
     constants.groundSpeed = 10;
     constants.offScreenOffsetX = -200;
     constants.offScreenOffsetY = 200;
+    constants.farDeltaX = 0.014;
+    constants.midDeltaX = 0.12;
+    constants.mid2DeltaX = 0.29;
 
     return constants;
 })();
