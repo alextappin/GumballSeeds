@@ -17,7 +17,6 @@ var BalanceGlobals = (function BalanceGlobals() {
     constants.continueGame = true;
 
     //Character Specific
-    constants.lives = 15;
     constants.isAttacking = false;
 
     return constants;

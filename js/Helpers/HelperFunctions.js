@@ -74,7 +74,7 @@ function HelperFunctions() {
         BalanceGlobals.gumballs = 1;
         ScoreGlobals.lives = 20;
         ScoreGlobals.kills = 0;
-        ScoreGlobals.score = 0;
+        ScoreGlobals.currescore = 0;
         MapGlobals.loopCounter = 0;
         ScrollerGlobals.groundSpeed = 10;
         PowerUpGlobals.powerBarLevel = 2;

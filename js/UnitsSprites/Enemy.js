@@ -71,7 +71,7 @@ Enemy.prototype.moveEnemy = function(enemyObj, characterObj) {
     enemyObj.position.x = obj.x;
     enemyObj.position.y = obj.y;
     if (this.isIntersecting(characterObj, enemyObj)) {
-        if (characterObj.Properties.isAttacking) {
+        if (BalanceGlobals.isAttacking) {
             ScoreHelper().killEnemy(this.Properties.pointsForKill);
             if (ScoreHelper().createNewEnemy()) {
                 BalanceGlobals.enemies += 1;
@@ -95,7 +95,7 @@ Enemy.prototype.moveEnemyPowerUp = function(enemyObj, characterObj) {
     enemyObj.position.x = obj.x;
     enemyObj.position.y = obj.y;
     if (this.isIntersecting(characterObj, enemyObj)) {
-        if (characterObj.Properties.isAttacking) {
+        if (BalanceGlobals.isAttacking) {
             ScoreHelper().killEnemy(this.Properties.pointsForKill);
             if (ScoreHelper().createNewEnemy()) {
                 ScoreGlobals.enemies += 1;

@@ -2,7 +2,7 @@ function ScoreHelper() {
     var scoreHelpers = {};
 
     scoreHelpers.killEnemy = function(enemyPoints) {
-        ScoreGlobals.currentScore = ScoreGlobals.currentScore + enemyPoints;
+        ScoreGlobals.currentScore += enemyPoints;
         ScoreGlobals.kills++;
         PowerUpHelper().incrementPowerUp();
     };
@@ -21,12 +21,12 @@ function ScoreHelper() {
     };
 
     scoreHelpers.pickupGumball = function() {
-        ScoreGlobals.currentScore = ScoreGlobals.currentScore + ScoreGlobals.pickupGumballScore;
+        ScoreGlobals.currentScore = ScoreGlobals.currentScore + BalanceGlobals.pickupGumballScore;
     };
 
     scoreHelpers.updateScore = function() {
         MapGlobals.loopCounter++;
-        if (MapGlobals.loopCounter % BalanceGlobals.loopScoreIncrementTime === HelperFunctions().returnZero()) {
+        if (MapGlobals.loopCounter % BalanceGlobals.loopScoreIncrementTime === 0) {
             scoreHelpers.runningScore();
         }
     };

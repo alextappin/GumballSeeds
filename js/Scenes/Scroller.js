@@ -35,7 +35,7 @@ Scroller.prototype.constructScroller = function(stage) {
 Scroller.prototype.update = function() {
     if (PowerUpGlobals.powerUpActive) {
         this.updateViewportPowerUp();
-        this.updateObectsPowerUp();
+        this.updateObjectsPowerUp();
     } else {
         this.updateViewport();
         this.updateObjects();
@@ -68,7 +68,7 @@ Scroller.prototype.updateViewportPowerUp = function() {
     PowerUpHelper().continuePowerUp(this.Properties.viewportX);
     this.Properties.viewportX = this.Properties.viewportX + ScrollerGlobals.currentScrollSpeed;
 };
-Scroller.prototype.updateObectsPowerUp = function() {
+Scroller.prototype.updateObjectsPowerUp = function() {
     this.Properties.far.update(this.Properties.viewportX);
     this.Properties.mid.update(this.Properties.viewportX);
     this.Properties.mid2.update(this.Properties.viewportX);

@@ -32,8 +32,7 @@ Character.prototype.initiateCharacterSprites = function() {
     this.addChild(new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]));
 };
 Character.prototype.setSpriteToCurrentTexture = function(characterObj) {
-    console.log(characterObj);
-    characterObj.texture = this.Properties.textures[this.Properties.spriteCount];
+    characterObj.children[0].texture = this.Properties.textures[this.Properties.spriteCount];
 };
 Character.prototype.update = function(characterObj, groundObj) {
     this.updateSprites(characterObj);
@@ -41,7 +40,7 @@ Character.prototype.update = function(characterObj, groundObj) {
     this.attackCharacter();
 };
 Character.prototype.updatePowerUp = function(characterObj, groundObj) {
-    this.updateSprites();
+    this.updateSprites(characterObj);
     this.powerUpMove(characterObj);
     //this.characterGravity(characterObj, groundObj);
 };
@@ -68,16 +67,16 @@ Character.prototype.nextSprite = function(characterObj) {
 Character.prototype.characterGravity = function(characterObj, groundObj) {
     if (PhysicsGlobals.characterAirborn) {
         if (this.isFalling()) {
-            this.fall(characterObj,this.calculateMapToCharacterHeightOffset(groundObj.getHeightAtPositionX(this.calculateCharacterFrontX(characterObj))));
+            this.fall(characterObj,this.calculateMapToCharacterHeightOffset(characterObj, groundObj.getHeightAtPositionX(this.calculateCharacterFrontX(characterObj))));
         }
         else {
             this.rise(characterObj);
         }
     }
     //if there is no ground, notice ! sign, you will FALL
-    else if (!this.calculateMapToCharacterHeightOffset(groundObj.getHeightAtPositionX(this.calculateCharacterFrontX(characterObj)))) {
+    else if (!this.calculateMapToCharacterHeightOffset(characterObj, groundObj.getHeightAtPositionX(this.calculateCharacterFrontX(characterObj)))) {
         PhysicsGlobals.characterAirborn = true;
-        this.fall(characterObj,this.calculateMapToCharacterHeightOffset(groundObj.getHeightAtPositionX(this.calculateCharacterFrontX(characterObj))));
+        this.fall(characterObj,this.calculateMapToCharacterHeightOffset(characterObj, groundObj.getHeightAtPositionX(this.calculateCharacterFrontX(characterObj))));
     }
 };
 Character.prototype.fall = function(characterObj, groundHeight) {
@@ -129,9 +128,9 @@ Character.prototype.startJumpAnimation = function() {
 Character.prototype.calculateCharacterFrontX = function(characterObj) {
     return characterObj.position.x + characterObj.width/2;
 };
-Character.prototype.calculateMapToCharacterHeightOffset = function(groundY) {
+Character.prototype.calculateMapToCharacterHeightOffset = function(characterObj, groundY) {
     //if there is a height, return the offset, else null
-    return groundY ? groundY - this.Properties.sprite.height/2 + 10: undefined;
+    return groundY ? groundY - characterObj.children[0].height/2 + 10: undefined;
 };
 Character.prototype.attackCharacter = function() {
     if (BalanceGlobals.isAttacking) {
