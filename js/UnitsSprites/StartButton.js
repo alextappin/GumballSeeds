@@ -44,13 +44,10 @@ StartButton.prototype.update = function(startButtonObj) {
 StartButton.prototype.updateOpacity = function(startButtonObj) {
     if (startButtonObj.alpha + this.Properties.alphaIncrement > 1) {
         this.Properties.alphaIncrement = 0 - this.Properties.alphaIncrement;
-    }
-    if (startButtonObj.alpha + this.Properties.alphaIncrement < 0.01) {
+    } else if (startButtonObj.alpha + this.Properties.alphaIncrement < 0.01) {
         this.Properties.alphaIncrement = 0 - this.Properties.alphaIncrement;
     }
-
     startButtonObj.alpha += this.Properties.alphaIncrement;
-    console.log(startButtonObj.alpha);
 };
 
 StartButton.prototype.updateSprites = function(startButtonObj) {
