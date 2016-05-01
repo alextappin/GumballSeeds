@@ -7,6 +7,7 @@ function TitleScreenProperties() {
         mid : new Mid(),
         mid2 : new Mid2(),
         titleBoard : new TitleBoard(),
+        titleWords : new TitleWords(),
         startButton : new StartButton(),
         textScore : new Text("highscore"),
         viewportX : 0
