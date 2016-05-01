@@ -13,7 +13,7 @@ var TimingGlobals = (function TimingGlobals() {
     constants.titleAlphaIncrement = .004;
     constants.titleBgAlphaIncrement = .004;
     constants.titleWordsAlphaIncrement = .003;
-    constants.titleStartAlphaIncrement = .0035;
+    constants.titleStartAlphaIncrement = .0045;
     constants.titleAlphaStart = 0.0;
     constants.titlePulseMinimumAlpha = .5;
 
