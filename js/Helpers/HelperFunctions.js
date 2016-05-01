@@ -126,6 +126,10 @@ function HelperFunctions() {
         return MapGlobals.screenHeight / height;
     };
 
+    functions.getHeightGivenConstant = function(constant, height) {
+        return (MapGlobals.screenHeight - height)/2 - (MapGlobals.screenHeight) * constant;
+    };
+
     functions.getRatioToScreenGivenConst = function(constant, height, width) {
         return (MapGlobals.screenHeight * MapGlobals.screenWidth * constant) / (height * width);
     };
