@@ -5,7 +5,7 @@ var MapGlobals = (function MapGlobals() {
     var constants = {};
 
     constants.loopCounter = 1;
-    constants.screenWidth = 1080;
+    constants.screenWidth = 1280;
     constants.screenHeight = 720;
     constants.screenToShow = "Load";
     constants.switchScreen = false;
