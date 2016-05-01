@@ -9,14 +9,9 @@ function Main() {
     this.loadSpriteSheet();
 }
 Main.prototype.loadSpriteSheet = function() {
-    var assetsToLoad = ["../resources/wall.json", "../resources/bg1.png",
-            "../resources/test2.png", "../resources/bg3.png", "../resources/characterSprites.json", "../resources/characterSprites.png",
-            "../resources/enemy.json", "../resources/enemy.png","../resources/TitleScreen.json", "../resources/TitleSprites.png",
-            "../resources/StartButton.json", "../resources/StartButton.png", "../resources/trans.json", "../resources/trans.png",
-            "../resources/powerBar.json", "../resources/powerBar.png", "../resources/fgNew.json", "../resources/fgNew.png",
-            "../resources/Gumball.json", "../resources/Gumball.png", "../resources/gumballStem.json", "../resources/gumballStem.png",
-            "../resources/loadImage.json", "../resources/loadImage.png",
-            "../updatedResources/titleImages.json", "../updatedResources/titleImages.png"],
+    var assetsToLoad = ["../resources/characterSprites.json", "../resources/enemy.json", "../resources/fgNew.json",
+        "../resources/gumballStem.json", "../resources/loadImage.json", "../resources/powerBar.json",
+        "../resources/StartButton.json", "../resources/trans.json", "../updatedResources/titleImages.json"],
         loader = new PIXI.loaders.Loader();
     loader.add(assetsToLoad).load(this.spriteSheetLoaded.bind(this))
 };
