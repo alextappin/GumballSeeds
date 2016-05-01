@@ -20,8 +20,8 @@ TitleScreen.prototype.initializePositions = function() {
 
 TitleScreen.prototype.constructTitleScreen = function(stage) {
     stage.addChild(this.Properties.titleBoard);
-    stage.addChild(this.Properties.titleWords);
-    stage.addChild(this.Properties.startButton);
+    //stage.addChild(this.Properties.titleWords);
+    //stage.addChild(this.Properties.startButton);
 };
 
 TitleScreen.prototype.update = function() {

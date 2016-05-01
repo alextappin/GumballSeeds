@@ -7,12 +7,12 @@ function TitleTimingHelper() {
     helpers.updateTitleObjects = function(bg, words, start) {
         if (TimingGlobals.startButtonFadeIn) {
             bg.update(bg);
-            words.update(words);
-            start.updateOpacity(start);
+            //words.update(words);
+            //start.updateOpacity(start);
 
         } else if (TimingGlobals.titleWordsFadeIn) {
             bg.update(bg);
-            words.update(words);
+            //words.update(words);
             if (words.alpha > TimingGlobals.startButtonAlphaCue) {
                 TimingGlobals.startButtonFadeIn = true;
             }
