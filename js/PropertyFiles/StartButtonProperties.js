@@ -3,13 +3,12 @@
  */
 function StartButtonProperties() {
     var props = {
-        sprite : {},
         spriteCount : 0,
         textures : [],
+        clickSpriteTextureStart : 1,
         changeSpriteCounter : 0,
-        spriteSpeed : 80,
-        locationX : 20,
-        locationY : 20
+        alphaStart : 0.01,
+        alphaIncrement :.01
     };
 
     return props;

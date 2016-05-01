@@ -61,6 +61,10 @@ function HelperFunctions() {
         MapGlobals.screenToShow = MapGlobals.titleString;
     };
 
+    functions.switchToStartAnimation = function() {
+        MapGlobals.screenToShow = MapGlobals.startAnimationString;
+    };
+
     functions.switchToLoad = function() {
         MapGlobals.screenToShow = MapGlobals.loadString;
     };
