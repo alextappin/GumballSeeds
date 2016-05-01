@@ -3,7 +3,6 @@
  */
 function TitleBoardProperties() {
     var props = {
-        sprite : {},
         textures : [],
         spriteCount : 0,
         changeSpriteCounter : 0,
