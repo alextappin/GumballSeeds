@@ -4,21 +4,6 @@
 function TitleTimingHelper() {
     var helpers = {};
 
-    helpers.startBgFadeIn = function() {
-
-    };
-
-    helpers.startTitleFadeIn = function() {
-
-    };
-
-    helpers.startStartFadeIn = function() {
-
-    };
-
-    helpers.continueBgOpacity = function(bg) {
-    };
-
     helpers.updateTitleObjects = function(bg, start) {
         if (!TimingGlobals.titleBackgoundFadeIn) {
             TimingGlobals.titleBackgoundFadeIn = true;
