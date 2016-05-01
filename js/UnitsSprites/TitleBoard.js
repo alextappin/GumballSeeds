@@ -40,6 +40,3 @@ TitleBoard.prototype.update = function(titleBoardObj) {
         titleBoardObj.alpha += this.Properties.alphaIncrement;
     }
 };
-
-TitleBoard.prototype.updateOpacity = function(titleBoardObj) {
-};

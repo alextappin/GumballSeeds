@@ -7,8 +7,8 @@ function StartButtonProperties() {
         textures : [],
         clickSpriteTextureStart : 1,
         changeSpriteCounter : 0,
-        alphaStart : 0.01,
-        alphaIncrement :.01
+        alphaStart : 0.0,
+        alphaIncrement :.003
     };
 
     return props;

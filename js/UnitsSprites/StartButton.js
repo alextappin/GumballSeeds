@@ -33,48 +33,16 @@ StartButton.prototype.initiateStartButtonSprites = function() {
 StartButton.prototype.setSpriteToCurrentTexture = function(startButtonObj) {
     startButtonObj.children[0].texture = this.Properties.textures[this.Properties.spriteCount];
 };
-StartButton.prototype.update = function(startButtonObj) {
-    if (TimingGlobals.titleBackgoundFadeIn && TimingGlobals.titleWordsFadeIn && TimingGlobals.startButtonFadeIn) {
-        this.updateStartOpacity(startButtonObj);
-    }
-    if (TimingGlobals.startButtonPressed) {
-        this.updateSprites(startButtonObj);
-    } else {
-        this.updateOpacity(startButtonObj);
-    }
-};
-StartButton.prototype.updateStartOpacity = function(startButtonObj) {
 
-};
 StartButton.prototype.updateOpacity = function(startButtonObj) {
     if (startButtonObj.alpha + this.Properties.alphaIncrement > 1) {
         this.Properties.alphaIncrement = 0 - this.Properties.alphaIncrement;
-    } else if (startButtonObj.alpha + this.Properties.alphaIncrement < 0.01) {
+    } else if (startButtonObj.alpha + this.Properties.alphaIncrement < this.Properties.alphaStart) {
         this.Properties.alphaIncrement = 0 - this.Properties.alphaIncrement;
     }
     startButtonObj.alpha += this.Properties.alphaIncrement;
 };
 
-StartButton.prototype.updateSprites = function(startButtonObj) {
-    if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
-        this.Properties.changeSpriteCounter = 0;
-        this.nextSprite(startButtonObj);
-    }
-    else {
-        this.Properties.changeSpriteCounter++;
-    }
-};
-StartButton.prototype.nextSprite = function(startButtonObj) {
-    //TODO ternary this
-    if (this.Properties.spriteCount == 0) {
-        this.Properties.spriteCount = 0;
-    }
-    else {
-        this.Properties.spriteCount++;
-    }
-    //just change the texture
-    this.setSpriteToCurrentTexture(startButtonObj);
-};
 StartButton.prototype.handleClickEvents = function(spriteToHandle) {
     if (!spriteToHandle.interactive) {
         var spriteTimeout;

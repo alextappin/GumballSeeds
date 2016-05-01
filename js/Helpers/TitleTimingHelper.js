@@ -7,14 +7,20 @@ function TitleTimingHelper() {
     helpers.updateTitleObjects = function(bg, start) {
         if (!TimingGlobals.titleBackgoundFadeIn) {
             TimingGlobals.titleBackgoundFadeIn = true;
-            bg.updateOpacity(bg);
+            bg.update(bg);
+            console.log('1');
         } else if (!TimingGlobals.startButtonFadeIn && bg.alpha > TimingGlobals.startButtonAlphaCue) {
             TimingGlobals.startButtonFadeIn = true;
             start.updateOpacity(start);
             bg.update(bg);
-        } else {
-            start.update(start);
+            console.log('2');
+        } else if (!TimingGlobals.startButtonFadeIn){
             bg.update(bg);
+            console.log('3');
+        } else {
+            start.updateOpacity(start);
+            bg.update(bg);
+            console.log('4');
         }
     };
 
