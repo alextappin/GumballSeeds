@@ -36,7 +36,7 @@ LoadImage.prototype.updateSprites = function(imageObj) {
 
     imageObj.alpha += this.Properties.alphaIncrement;
 
-    if (MapGlobals.soundLoaded && imageObj.alpha < this.Properties.alphaStart) { //once load screen is done doing its thing and sounds loaded.
+    if (MapGlobals.soundLoaded && imageObj.alpha < this.Properties.alphaStart) {
         HelperFunctions().switchToTitle();
         HelperFunctions().switchScreenToggle();
     }
