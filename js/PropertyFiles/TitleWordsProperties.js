@@ -3,7 +3,6 @@
  */
 function TitleWordsProperties() {
     var props = {
-        spriteCount : 0,
         textures : []
     };
 
