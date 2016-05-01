@@ -17,7 +17,7 @@ StartButton.prototype.setPositionAndScale = function(obj) {
     ScalingGlobals.startButton1Ratio = HelperFunctions().getRatioToScreenGivenConst(ScalingGlobals.startButton1Const, obj.height, obj.width);
     obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.startButton1Ratio,ScalingGlobals.startButton1Ratio);
     obj.position = HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(obj.width), HelperFunctions().getScreenPositionMiddleHeight(obj.height));
-    obj.alpha = this.Properties.alphaStart;
+    obj.alpha = TimingGlobals.titleAlphaStart;
 };
 StartButton.prototype.initiateStartButtonSprites = function() {
     this.Properties.textures.push(
@@ -35,12 +35,18 @@ StartButton.prototype.setSpriteToCurrentTexture = function(startButtonObj) {
 };
 
 StartButton.prototype.updateOpacity = function(startButtonObj) {
-    if (startButtonObj.alpha + this.Properties.alphaIncrement > 1) {
-        this.Properties.alphaIncrement = 0 - this.Properties.alphaIncrement;
-    } else if (startButtonObj.alpha + this.Properties.alphaIncrement < this.Properties.alphaStart) {
-        this.Properties.alphaIncrement = 0 - this.Properties.alphaIncrement;
+    if (this.Properties.alphaPulse) { //if it needs to pulse down
+        startButtonObj.alpha -= TimingGlobals.titleAlphaIncrement;
+        if (startButtonObj.alpha < TimingGlobals.titlePulseMinimumAlpha) {
+            this.Properties.alphaPulse = false;
+        }
+    } else { //pulse up to brightness
+        if (startButtonObj.alpha + TimingGlobals.titleAlphaIncrement > 1) {
+            this.Properties.alphaPulse = true;
+        } else {
+            startButtonObj.alpha += TimingGlobals.titleAlphaIncrement;
+        }
     }
-    startButtonObj.alpha += this.Properties.alphaIncrement;
 };
 
 StartButton.prototype.handleClickEvents = function(spriteToHandle) {
