@@ -34,9 +34,9 @@ TitleBoard.prototype.setSpriteToCurrentTexture = function(titleBoardObj) {
 };
 
 TitleBoard.prototype.update = function(titleBoardObj) {
-    if (titleBoardObj.alpha + TimingGlobals.titleAlphaIncrement > 1) {
+    if (titleBoardObj.alpha + TimingGlobals.titleBgAlphaIncrement > 1) {
         titleBoardObj.alpha = 1;
     } else {
-        titleBoardObj.alpha += TimingGlobals.titleAlphaIncrement;
+        titleBoardObj.alpha += TimingGlobals.titleBgAlphaIncrement;
     }
 };

@@ -30,9 +30,9 @@ TitleWords.prototype.initiateTitleWordsSprites = function() {
 };
 
 TitleWords.prototype.update = function(titleBoardObj) {
-    if (titleBoardObj.alpha + TimingGlobals.titleAlphaIncrement > 1) {
+    if (titleBoardObj.alpha + TimingGlobals.titleWordsAlphaIncrement > 1) {
         titleBoardObj.alpha = 1;
     } else {
-        titleBoardObj.alpha += TimingGlobals.titleAlphaIncrement;
+        titleBoardObj.alpha += TimingGlobals.titleWordsAlphaIncrement;
     }
 };

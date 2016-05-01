@@ -36,15 +36,15 @@ StartButton.prototype.setSpriteToCurrentTexture = function(startButtonObj) {
 
 StartButton.prototype.updateOpacity = function(startButtonObj) {
     if (this.Properties.alphaPulse) { //if it needs to pulse down
-        startButtonObj.alpha -= TimingGlobals.titleAlphaIncrement;
+        startButtonObj.alpha -= TimingGlobals.titleStartAlphaIncrement;
         if (startButtonObj.alpha < TimingGlobals.titlePulseMinimumAlpha) {
             this.Properties.alphaPulse = false;
         }
     } else { //pulse up to brightness
-        if (startButtonObj.alpha + TimingGlobals.titleAlphaIncrement > 1) {
+        if (startButtonObj.alpha + TimingGlobals.titleStartAlphaIncrement > 1) {
             this.Properties.alphaPulse = true;
         } else {
-            startButtonObj.alpha += TimingGlobals.titleAlphaIncrement;
+            startButtonObj.alpha += TimingGlobals.titleStartAlphaIncrement;
         }
     }
 };
