@@ -34,13 +34,18 @@ StartButton.prototype.setSpriteToCurrentTexture = function(startButtonObj) {
     startButtonObj.children[0].texture = this.Properties.textures[this.Properties.spriteCount];
 };
 StartButton.prototype.update = function(startButtonObj) {
+    if (TimingGlobals.titleBackgoundFadeIn && TimingGlobals.titleWordsFadeIn && TimingGlobals.startButtonFadeIn) {
+        this.updateStartOpacity(startButtonObj);
+    }
     if (TimingGlobals.startButtonPressed) {
         this.updateSprites(startButtonObj);
     } else {
         this.updateOpacity(startButtonObj);
     }
 };
+StartButton.prototype.updateStartOpacity = function(startButtonObj) {
 
+};
 StartButton.prototype.updateOpacity = function(startButtonObj) {
     if (startButtonObj.alpha + this.Properties.alphaIncrement > 1) {
         this.Properties.alphaIncrement = 0 - this.Properties.alphaIncrement;
