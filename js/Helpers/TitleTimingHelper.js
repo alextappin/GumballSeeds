@@ -17,11 +17,6 @@ function TitleTimingHelper() {
     };
 
     helpers.continueBgOpacity = function(bg) {
-        if (bg.alpha >= 1) {
-            bg.update(bg);
-        } else {
-            bg.updateOpacity(bg);
-        }
     };
 
     helpers.updateTitleObjects = function(bg, start) {
@@ -31,10 +26,10 @@ function TitleTimingHelper() {
         } else if (!TimingGlobals.startButtonFadeIn && bg.alpha > TimingGlobals.startButtonAlphaCue) {
             TimingGlobals.startButtonFadeIn = true;
             start.updateOpacity(start);
-            helpers.continueBgOpacity(bg);
+            bg.update(bg);
         } else {
             start.update(start);
-            helpers.continueBgOpacity(bg);
+            bg.update(bg);
         }
     };
 
