@@ -18,7 +18,7 @@ TitleWords.prototype.setPositionAndScale = function(obj) {
     ScalingGlobals.titleWordsScaleX = HelperFunctions().getCorrectScaleWidth(obj.width);
     ScalingGlobals.titleWordsScaleY = HelperFunctions().getCorrectScaleHeight(obj.height);
     obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.titleWordsScaleX,ScalingGlobals.titleWordsScaleY);
-    obj.position =  HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(obj.width), HelperFunctions().getScreenPositionMiddleHeight(obj.height) * ScalingGlobals.titleWordsPositionYScale);
+    obj.position =  HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(obj.width), HelperFunctions().getScreenPositionMiddleHeight(obj.height));
     obj.alpha = TimingGlobals.titleAlphaStart;
 };
 
@@ -26,11 +26,7 @@ TitleWords.prototype.initiateTitleWordsSprites = function() {
     this.Properties.textures.push(
         PIXI.Texture.fromFrame("title")
     );
-    this.addChild(new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]));
-};
-
-TitleWords.prototype.setSpriteToCurrentTexture = function(titleBoardObj) {
-    titleBoardObj.children[0].texture = this.Properties.textures[this.Properties.spriteCount];
+    this.addChild(new PIXI.Sprite(this.Properties.textures[0]));
 };
 
 TitleWords.prototype.update = function(titleBoardObj) {
