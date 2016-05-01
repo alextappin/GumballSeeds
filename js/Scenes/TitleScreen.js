@@ -14,14 +14,14 @@ function TitleScreen(stage) {
 
 TitleScreen.prototype.initializePositions = function() {
     this.Properties.titleBoard.setPositionAndScale(this.Properties.titleBoard);
-    //this.Properties.titleWords.setPositionAndScale(this.Properties.titleWords);
-    //this.Properties.startButton.setPositionAndScale(this.Properties.startButton);
+    this.Properties.titleWords.setPositionAndScale(this.Properties.titleWords);
+    this.Properties.startButton.setPositionAndScale(this.Properties.startButton);
 };
 
 TitleScreen.prototype.constructTitleScreen = function(stage) {
     stage.addChild(this.Properties.titleBoard);
-    //stage.addChild(this.Properties.titleWords);
-    //stage.addChild(this.Properties.startButton);
+    stage.addChild(this.Properties.titleWords);
+    stage.addChild(this.Properties.startButton);
 };
 
 TitleScreen.prototype.update = function() {
