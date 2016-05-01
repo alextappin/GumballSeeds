@@ -19,7 +19,7 @@ TitleBoard.prototype.setPositionAndScale = function(obj) {
     ScalingGlobals.titleScreenScaleY = HelperFunctions().getCorrectScaleHeight(obj.height);
     obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.titleScreenScaleX,ScalingGlobals.titleScreenScaleY);
     obj.position =  HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(obj.width), HelperFunctions().getScreenPositionMiddleHeight(obj.height));
-    obj.alpha = 1;
+    obj.alpha = TimingGlobals.titleAlphaStart;
 };
 
 TitleBoard.prototype.initiateTitleBoardSprites = function() {

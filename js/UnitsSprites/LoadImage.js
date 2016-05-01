@@ -20,7 +20,7 @@ LoadImage.prototype.setPositionAndScale = function(obj) {
     //no scale yet...
 };
 LoadImage.prototype.initiateLoadImageSprites = function() {
-    this.Properties.sprite = new PIXI.Sprite(PIXI.Texture.fromFrame("loadScreen"));
+    this.Properties.sprite = new PIXI.Sprite(PIXI.Texture.fromFrame("titleBG"));
     this.addChild(this.Properties.sprite);
 };
 LoadImage.prototype.setSpriteToCurrentTexture = function() {
