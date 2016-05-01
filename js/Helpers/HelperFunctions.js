@@ -122,5 +122,17 @@ function HelperFunctions() {
         return MapGlobals.screenHeight / height;
     };
 
+    functions.getRatioToScreenGivenConst = function(constant, height, width) {
+        return (MapGlobals.screenHeight * MapGlobals.screenWidth * constant) / (height * width);
+    };
+
+    functions.getScreenPositionMiddleWidth = function(width) {
+        return (MapGlobals.screenWidth - width)/2;
+    };
+
+    functions.getScreenPositionMiddleHeight = function(height) {
+        return (MapGlobals.screenHeight - height)/2;
+    };
+
     return functions;
 }

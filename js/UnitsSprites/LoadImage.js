@@ -36,7 +36,7 @@ LoadImage.prototype.updateSprites = function(imageObj) {
 
     imageObj.alpha += this.Properties.alphaIncrement;
 
-    if (MapGlobals.soundLoaded && imageObj.alpha < this.Properties.alphaStart) {
+    if (MapGlobals.soundLoaded || imageObj.alpha < this.Properties.alphaStart) {
         MapGlobals.screenToShow = "Title";
         MapGlobals.switchScreen = !MapGlobals.switchScreen;
     }

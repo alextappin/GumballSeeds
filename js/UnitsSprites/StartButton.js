@@ -14,13 +14,14 @@ StartButton.prototype.constructStartButton = function() {
     this.initiateStartButtonSprites();
 };
 StartButton.prototype.setPositionAndScale = function(obj) {
-    obj.position = HelperFunctions().getNewPoint((MapGlobals.screenWidth - obj.width)/2, (MapGlobals.screenHeight - obj.height)/2);
-    //obj.scale is not being use YET
+    ScalingGlobals.startButton1Ratio = HelperFunctions().getRatioToScreenGivenConst(ScalingGlobals.startButton1Const, obj.height, obj.width);
+    obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.startButton1Ratio,ScalingGlobals.startButton1Ratio);
+    obj.position = HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(obj.width), HelperFunctions().getScreenPositionMiddleHeight(obj.height));
 };
 StartButton.prototype.initiateStartButtonSprites = function() {
     this.Properties.textures.push(
-        PIXI.Texture.fromFrame("Start1"),
-        PIXI.Texture.fromFrame("Start2")
+        PIXI.Texture.fromFrame("startbutton1"),
+        PIXI.Texture.fromFrame("startbutton2")
     );
     this.Properties.sprite = new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]);
     this.handleClickEvents(this.Properties.sprite);
@@ -44,7 +45,7 @@ StartButton.prototype.updateSprites = function() {
 };
 StartButton.prototype.nextSprite = function() {
     //TODO ternary this
-    if (this.Properties.spriteCount == 1) {
+    if (this.Properties.spriteCount == 0) {
         this.Properties.spriteCount = 0;
     }
     else {

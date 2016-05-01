@@ -22,7 +22,7 @@ TitleScreen.prototype.constructTitleScreen = function(stage) {
     stage.addChild(this.Properties.mid2);
     stage.addChild(this.Properties.titleBoard);
     stage.addChild(this.Properties.startButton);
-    stage.addChild(this.Properties.textScore);
+    //stage.addChild(this.Properties.textScore);
 };
 TitleScreen.prototype.update = function() {
     this.updateViewport();
