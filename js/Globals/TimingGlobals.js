@@ -11,6 +11,9 @@ var TimingGlobals = (function TimingGlobals() {
     constants.titleWordsdAlphaCue = .7;
     constants.startButtonAlphaCue = .5;
 
+    constants.titleAlphaIncrement = .004;
+    constants.titleAlphaStart = 0.0;
+
     constants.startButtonPressed = false;
 
     return constants;
