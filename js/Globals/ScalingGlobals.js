@@ -9,5 +9,8 @@ var ScalingGlobals = (function ScalingGlobals() {
     constants.characterStartXScale = MapGlobals.screenWidth * .20;
     constants.characterStartYScale = MapGlobals.screenWidth * .20;
 
+    constants.titleScreenScaleX = 0;
+    constants.titleScreenScaleY = 0;
+
     return constants;
 })();

@@ -114,5 +114,13 @@ function HelperFunctions() {
         createjs.Sound.stop(MapGlobals.titleString);
     };
 
+    functions.getCorrectScaleWidth = function(width) {
+        return MapGlobals.screenWidth / width;
+    };
+
+    functions.getCorrectScaleHeight = function(height) {
+        return MapGlobals.screenHeight / height;
+    };
+
     return functions;
 }

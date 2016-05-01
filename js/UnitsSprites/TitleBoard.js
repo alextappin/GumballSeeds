@@ -14,38 +14,38 @@ TitleBoard.prototype.constructTitleBoard = function() {
     this.initiateTitleBoardSprites();
 };
 TitleBoard.prototype.setPositionAndScale = function(obj) {
+    ScalingGlobals.titleScreenScaleX = HelperFunctions().getCorrectScaleWidth(obj.width);
+    ScalingGlobals.titleScreenScaleY = HelperFunctions().getCorrectScaleHeight(obj.height);
+    obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.titleScreenScaleX,ScalingGlobals.titleScreenScaleY);
     obj.position =  HelperFunctions().getNewPoint((MapGlobals.screenWidth - obj.width)/2, (MapGlobals.screenHeight - obj.height)/2);
-    //no scale yet...
 };
 TitleBoard.prototype.initiateTitleBoardSprites = function() {
     this.Properties.textures.push(
-        PIXI.Texture.fromFrame("Title1"),
-        PIXI.Texture.fromFrame("Title2")
+        PIXI.Texture.fromFrame("titleBG")
     );
-    this.Properties.sprite = new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]);
-    this.addChild(this.Properties.sprite);
+    this.addChild(new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]));
 };
-TitleBoard.prototype.setSpriteToCurrentTexture = function() {
-    this.Properties.sprite.texture = this.Properties.textures[this.Properties.spriteCount];
+TitleBoard.prototype.setSpriteToCurrentTexture = function(titleBoardObj) {
+    titleBoardObj.children[0].texture = this.Properties.textures[this.Properties.spriteCount];
 };
 TitleBoard.prototype.update = function(titleBoardObj) {
-    this.updateSprites();
+    this.updateSprites(titleBoardObj);
 };
-TitleBoard.prototype.updateSprites = function() {
+TitleBoard.prototype.updateSprites = function(titleBoardObj) {
     if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
         this.Properties.changeSpriteCounter = 0;
-        this.nextSprite();
+        this.nextSprite(titleBoardObj);
     }
     else {
         this.Properties.changeSpriteCounter++;
     }
 };
-TitleBoard.prototype.nextSprite = function() {
-    if (this.Properties.spriteCount == 1) {
+TitleBoard.prototype.nextSprite = function(titleBoardObj) {
+    if (this.Properties.spriteCount == this.Properties.numberOfTextures - 1) {
         this.Properties.spriteCount = 0;
     }
     else {
         this.Properties.spriteCount++;
     }
-    this.setSpriteToCurrentTexture();
+    this.setSpriteToCurrentTexture(titleBoardObj);
 };
