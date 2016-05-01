@@ -15,6 +15,8 @@ var ScalingGlobals = (function ScalingGlobals() {
     constants.titleWordsScaleX = 0;
     constants.titleWordsScaleY = 0;
 
+    constants.titleWordsPositionYScale = .3;
+
     constants.startButton1Const = .01;
     constants.startButton1Ratio = 0;
 

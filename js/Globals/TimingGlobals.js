@@ -4,11 +4,10 @@
 var TimingGlobals = (function TimingGlobals() {
     var constants = {};
 
-    constants.titleBackgoundFadeIn = false;
     constants.titleWordsFadeIn = false;
     constants.startButtonFadeIn = false;
 
-    constants.titleWordsdAlphaCue = .7;
+    constants.titleWordsAlphaCue = .7;
     constants.startButtonAlphaCue = .5;
 
     constants.titleAlphaIncrement = .004;

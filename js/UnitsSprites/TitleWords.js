@@ -18,7 +18,7 @@ TitleWords.prototype.setPositionAndScale = function(obj) {
     ScalingGlobals.titleWordsScaleX = HelperFunctions().getCorrectScaleWidth(obj.width);
     ScalingGlobals.titleWordsScaleY = HelperFunctions().getCorrectScaleHeight(obj.height);
     obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.titleWordsScaleX,ScalingGlobals.titleWordsScaleY);
-    obj.position =  HelperFunctions().getNewPoint((MapGlobals.screenWidth - obj.width)/2, (MapGlobals.screenHeight - obj.height)/2);
+    obj.position =  HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(obj.width), HelperFunctions().getScreenPositionMiddleHeight(obj.height) * ScalingGlobals.titleWordsPositionYScale);
     obj.alpha = TimingGlobals.titleAlphaStart;
 };
 
