@@ -8,14 +8,14 @@ var TimingGlobals = (function TimingGlobals() {
     constants.startButtonFadeIn = false;
 
     constants.titleWordsAlphaCue = .5;
-    constants.startButtonAlphaCue = .7;
+    constants.startButtonAlphaCue = .25;
 
     constants.titleAlphaIncrement = .004;
     constants.titleBgAlphaIncrement = .004;
-    constants.titleWordsAlphaIncrement = .004;
-    constants.titleStartAlphaIncrement = .004;
+    constants.titleWordsAlphaIncrement = .003;
+    constants.titleStartAlphaIncrement = .0035;
     constants.titleAlphaStart = 0.0;
-    constants.titlePulseMinimumAlpha = .3;
+    constants.titlePulseMinimumAlpha = .5;
 
     constants.startButtonPressed = false;
 
