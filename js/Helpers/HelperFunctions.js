@@ -61,6 +61,10 @@ function HelperFunctions() {
         MapGlobals.screenToShow = MapGlobals.titleString;
     };
 
+    functions.switchToStartAnimation = function() {
+        MapGlobals.screenToShow = MapGlobals.startAnimationString;
+    };
+
     functions.switchToLoad = function() {
         MapGlobals.screenToShow = MapGlobals.loadString;
     };
@@ -112,6 +116,30 @@ function HelperFunctions() {
 
     functions.stopTitleSound = function() {
         createjs.Sound.stop(MapGlobals.titleString);
+    };
+
+    functions.getCorrectScaleWidth = function(width) {
+        return MapGlobals.screenWidth / width;
+    };
+
+    functions.getCorrectScaleHeight = function(height) {
+        return MapGlobals.screenHeight / height;
+    };
+
+    functions.getHeightGivenConstant = function(constant, height) {
+        return (MapGlobals.screenHeight - height)/2 - (MapGlobals.screenHeight) * constant;
+    };
+
+    functions.getRatioToScreenGivenConst = function(constant, height, width) {
+        return (MapGlobals.screenHeight * MapGlobals.screenWidth * constant) / (height * width);
+    };
+
+    functions.getScreenPositionMiddleWidth = function(width) {
+        return (MapGlobals.screenWidth - width)/2;
+    };
+
+    functions.getScreenPositionMiddleHeight = function(height) {
+        return (MapGlobals.screenHeight - height)/2;
     };
 
     return functions;

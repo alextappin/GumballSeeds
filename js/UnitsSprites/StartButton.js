@@ -14,51 +14,48 @@ StartButton.prototype.constructStartButton = function() {
     this.initiateStartButtonSprites();
 };
 StartButton.prototype.setPositionAndScale = function(obj) {
-    obj.position = HelperFunctions().getNewPoint((MapGlobals.screenWidth - obj.width)/2, (MapGlobals.screenHeight - obj.height)/2);
-    //obj.scale is not being use YET
+    ScalingGlobals.startButton1Ratio = HelperFunctions().getRatioToScreenGivenConst(ScalingGlobals.startButton1Const, obj.height, obj.width);
+    obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.startButton1Ratio,ScalingGlobals.startButton1Ratio);
+    obj.position = HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(obj.width), HelperFunctions().getHeightGivenConstant(ScalingGlobals.titleStartYOffset, obj.height));
+    obj.alpha = TimingGlobals.titleAlphaStart;
 };
 StartButton.prototype.initiateStartButtonSprites = function() {
     this.Properties.textures.push(
-        PIXI.Texture.fromFrame("Start1"),
-        PIXI.Texture.fromFrame("Start2")
+        PIXI.Texture.fromFrame("startbutton1"),
+        PIXI.Texture.fromFrame("startbutton2"),
+        PIXI.Texture.fromFrame("startbutton3"),
+        PIXI.Texture.fromFrame("startbutton4")
     );
-    this.Properties.sprite = new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]);
-    this.handleClickEvents(this.Properties.sprite);
-    //add the child once
-    this.addChild(this.Properties.sprite);
+    var sprite = new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]);
+    this.handleClickEvents(sprite);
+    this.addChild(sprite);
 };
-StartButton.prototype.setSpriteToCurrentTexture = function() {
-    this.Properties.sprite.texture = this.Properties.textures[this.Properties.spriteCount];
+StartButton.prototype.setSpriteToCurrentTexture = function(startButtonObj) {
+    startButtonObj.children[0].texture = this.Properties.textures[this.Properties.spriteCount];
 };
-StartButton.prototype.update = function(startButtonObj) {
-    this.updateSprites();
-};
-StartButton.prototype.updateSprites = function() {
-    if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
-        this.Properties.changeSpriteCounter = 0;
-        this.nextSprite();
+
+StartButton.prototype.updateOpacity = function(startButtonObj) {
+    if (this.Properties.alphaPulse) { //if it needs to pulse down
+        startButtonObj.alpha -= TimingGlobals.titleStartAlphaIncrement;
+        if (startButtonObj.alpha < TimingGlobals.titlePulseMinimumAlpha) {
+            this.Properties.alphaPulse = false;
+        }
+    } else { //pulse up to brightness
+        if (startButtonObj.alpha + TimingGlobals.titleStartAlphaIncrement > 1) {
+            this.Properties.alphaPulse = true;
+        } else {
+            startButtonObj.alpha += TimingGlobals.titleStartAlphaIncrement;
+        }
     }
-    else {
-        this.Properties.changeSpriteCounter++;
-    }
 };
-StartButton.prototype.nextSprite = function() {
-    //TODO ternary this
-    if (this.Properties.spriteCount == 1) {
-        this.Properties.spriteCount = 0;
-    }
-    else {
-        this.Properties.spriteCount++;
-    }
-    //just change the texture
-    this.setSpriteToCurrentTexture();
-};
+
 StartButton.prototype.handleClickEvents = function(spriteToHandle) {
     if (!spriteToHandle.interactive) {
         var spriteTimeout;
         function onButtonDown() {
-            MapGlobals.switchScreen = !MapGlobals.switchScreen;
-            MapGlobals.screenToShow = "Game";
+            HelperFunctions().switchScreenToggle();
+            TimingGlobals.startButtonPressed = true;
+            MapGlobals.screenToShow = MapGlobals.gameString;
             clearTimeout(spriteTimeout);
         }
         spriteToHandle.interactive = true;
