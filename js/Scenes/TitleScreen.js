@@ -22,23 +22,9 @@ TitleScreen.prototype.constructTitleScreen = function(stage) {
     stage.addChild(this.Properties.mid2);
     stage.addChild(this.Properties.titleBoard);
     stage.addChild(this.Properties.startButton);
-    //stage.addChild(this.Properties.textScore);
 };
 TitleScreen.prototype.update = function() {
-    this.updateViewport();
-    this.Properties.far.update(this.Properties.viewportX);
-    this.Properties.mid.update(this.Properties.viewportX);
-    this.Properties.mid2.update(this.Properties.viewportX);
     this.Properties.titleBoard.update(this.Properties.titleBoard);
     this.Properties.startButton.update(this.Properties.startButton);
     this.Properties.textScore.update(this.Properties.textScore);
-};
-TitleScreen.prototype.updateViewport = function() {
-    if (HelperFunctions().doPowerUp()) {
-        PowerUpHelper().continuePowerUp(this.Properties.viewportX);
-    } else if (HelperFunctions().scrollSpeedIsMaxed()) {
-        HelperFunctions().setScrollSpeedToMax();
-    }
-
-    this.Properties.viewportX = this.Properties.viewportX + ScrollerGlobals.currentScrollSpeed;
 };
