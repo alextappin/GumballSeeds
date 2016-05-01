@@ -11,8 +11,8 @@ function Main() {
 Main.prototype.loadSpriteSheet = function() {
     var assetsToLoad = ["../resources/wall.json", "../resources/bg1.png",
             "../resources/test2.png", "../resources/bg3.png", "../resources/characterSprites.json", "../resources/characterSprites.png",
-            "../resources/enemy.json", "../resources/enemy.png","../resources/TitleScreen.json", "../resources/TitleSprites.png",
-            "../resources/StartButton.json", "../resources/StartButton.png", "../resources/trans.json", "../resources/trans.png",
+            "../resources/enemy.json", "../resources/enemy.png",
+            "../resources/trans.json", "../resources/trans.png",
             "../resources/powerBar.json", "../resources/powerBar.png", "../resources/fgNew.json", "../resources/fgNew.png",
             "../resources/Gumball.json", "../resources/Gumball.png", "../resources/gumballStem.json", "../resources/gumballStem.png",
             "../resources/loadImage.json", "../resources/loadImage.png",
