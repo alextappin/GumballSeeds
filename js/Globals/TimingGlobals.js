@@ -7,10 +7,13 @@ var TimingGlobals = (function TimingGlobals() {
     constants.titleWordsFadeIn = false;
     constants.startButtonFadeIn = false;
 
-    constants.titleWordsAlphaCue = .7;
-    constants.startButtonAlphaCue = .5;
+    constants.titleWordsAlphaCue = .5;
+    constants.startButtonAlphaCue = .7;
 
     constants.titleAlphaIncrement = .004;
+    constants.titleBgAlphaIncrement = .004;
+    constants.titleWordsAlphaIncrement = .004;
+    constants.titleStartAlphaIncrement = .004;
     constants.titleAlphaStart = 0.0;
     constants.titlePulseMinimumAlpha = .3;
 
