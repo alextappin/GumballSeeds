@@ -8,8 +8,8 @@ var TimingGlobals = (function TimingGlobals() {
     constants.titleWordsFadeIn = false;
     constants.startButtonFadeIn = false;
 
-    constants.titleWordsBackgroundAlphaCueValue = .7;
-    constants.startButtonTitleWordsAlphaCueValue = .5;
+    constants.titleWordsdAlphaCue = .7;
+    constants.startButtonAlphaCue = .5;
 
     constants.startButtonPressed = false;
 

@@ -8,6 +8,7 @@ function TitleScreen(stage) {
     this.getStage = function() {
         return stage;
     };
+
     HelperFunctions().startTitleSound();
 }
 
@@ -22,6 +23,7 @@ TitleScreen.prototype.constructTitleScreen = function(stage) {
 };
 
 TitleScreen.prototype.update = function() {
-    this.Properties.titleBoard.update(this.Properties.titleBoard);
-    this.Properties.startButton.update(this.Properties.startButton);
+    TitleTimingHelper().updateTitleObjects(this.Properties.titleBoard, this.Properties.startButton);
+    /*this.Properties.titleBoard.update(this.Properties.titleBoard);
+    this.Properties.startButton.update(this.Properties.startButton);*/
 };

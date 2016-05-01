@@ -28,9 +28,15 @@ TitleBoard.prototype.initiateTitleBoardSprites = function() {
 TitleBoard.prototype.setSpriteToCurrentTexture = function(titleBoardObj) {
     titleBoardObj.children[0].texture = this.Properties.textures[this.Properties.spriteCount];
 };
+
 TitleBoard.prototype.update = function(titleBoardObj) {
     this.updateSprites(titleBoardObj);
 };
+
+TitleBoard.prototype.updateOpacity = function(titleBoardObj) {
+    this.updateSprites(titleBoardObj);
+};
+
 TitleBoard.prototype.updateSprites = function(titleBoardObj) {
     if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
         this.Properties.changeSpriteCounter = 0;
