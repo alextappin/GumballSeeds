@@ -7,7 +7,7 @@ function GroundProperties() {
         textures : [],
         //4 sprites for the ground. The textures of each will be changing
         numberOfSprites : 0,
-        numberStartingSprites : 4,
+        numberStartingSprites : 8,
         spriteCount : 0,
         changeSpriteCounter : 0,
         spriteWidth : -800,
