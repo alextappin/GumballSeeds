@@ -24,7 +24,7 @@ TitleBoard.prototype.setPositionAndScale = function(obj) {
 
 TitleBoard.prototype.initiateTitleBoardSprites = function() {
     this.Properties.textures.push(
-        PIXI.Texture.fromFrame("titleBG4096")
+        PIXI.Texture.fromFrame("Title1")
     );
     this.addChild(new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]));
 };
