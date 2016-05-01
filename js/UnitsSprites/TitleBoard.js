@@ -19,6 +19,7 @@ TitleBoard.prototype.setPositionAndScale = function(obj) {
     ScalingGlobals.titleScreenScaleY = HelperFunctions().getCorrectScaleHeight(obj.height);
     obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.titleScreenScaleX,ScalingGlobals.titleScreenScaleY);
     obj.position =  HelperFunctions().getNewPoint((MapGlobals.screenWidth - obj.width)/2, (MapGlobals.screenHeight - obj.height)/2);
+    obj.alpha = this.Properties.alphaStart;
 };
 
 TitleBoard.prototype.initiateTitleBoardSprites = function() {
@@ -33,6 +34,11 @@ TitleBoard.prototype.setSpriteToCurrentTexture = function(titleBoardObj) {
 };
 
 TitleBoard.prototype.update = function(titleBoardObj) {
+    if (titleBoardObj.alpha + this.Properties.alphaIncrement > 1) {
+        titleBoardObj.alpha = 1;
+    } else {
+        titleBoardObj.alpha += this.Properties.alphaIncrement;
+    }
 };
 
 TitleBoard.prototype.updateOpacity = function(titleBoardObj) {
