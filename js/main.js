@@ -17,7 +17,7 @@ Main.prototype.loadSpriteSheet = function() {
             "../resources/Gumball.json", "../resources/Gumball.png", "../resources/gumballStem.json", "../resources/gumballStem.png",
             "../resources/loadImage.json", "../resources/loadImage.png",
             "../updatedResources/titleImages.json", "../updatedResources/titleImages.png",
-            "../updatedResources/title777.json", "../updatedResources/title777t.png"],
+            "../updatedResources/test1.json", "../updatedResources/test1.png"],
         loader = new PIXI.loaders.Loader();
     loader.add(assetsToLoad).load(this.spriteSheetLoaded.bind(this))
 };
