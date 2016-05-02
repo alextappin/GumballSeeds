@@ -3,15 +3,15 @@
  */
 function StartAnimationHandler() {
     //array of gumball objects
-    this.gumballs = [];
+    this.animationSprites = [];
     this.constructSprites();
 }
 
 StartAnimationHandler.constructor = StartAnimationHandler;
 
 StartAnimationHandler.prototype.constructSprites = function() {
-    for (var n = 0; n < BalanceGlobals.gumballs; n++) {
-        this.gumballs.push(new Gumball);
+    for (var n = 0; n < MapGlobals.startAnimationSprites; n++) {
+        this.animationSprites.push(new StartAnimation);
     }
 };
 

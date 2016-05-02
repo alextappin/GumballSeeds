@@ -24,7 +24,8 @@ TitleBoard.prototype.setPositionAndScale = function(obj) {
 
 TitleBoard.prototype.initiateTitleBoardSprites = function() {
     this.Properties.textures.push(
-        PIXI.Texture.fromFrame("titleBG")
+        PIXI.Texture.fromFrame("titleBG"),
+        PIXI.Texture.fromFrame("startrainbowanimation3")
     );
     this.addChild(new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]));
 };
@@ -39,4 +40,8 @@ TitleBoard.prototype.update = function(titleBoardObj) {
     } else {
         titleBoardObj.alpha += TimingGlobals.titleBgAlphaIncrement;
     }
+};
+
+TitleBoard.prototype.switchToWhiteBackground = function(titleBoardObj) {
+    titleBoardObj.texture = this.Properties.textures[this.Properties.whiteBoardTextureNumber];
 };
