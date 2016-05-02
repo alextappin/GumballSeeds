@@ -48,7 +48,7 @@ StartButton.prototype.updateOpacity = function(startButtonObj) {
     }
 };
 
-StartButton.prototype.hideWords = function(startButtonObj) {
+StartButton.prototype.hideStart = function(startButtonObj) {
     startButtonObj.alpha = 0;
 };
 
