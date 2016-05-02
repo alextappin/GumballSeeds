@@ -4,6 +4,8 @@
 function StartAnimationProperties() {
     var props = {
         textures : [],
+        whiteSprite : 2,
+        coloredSpritesMax : 1,
         spriteCount : 0,
         changeSpriteCounter : 0,
         spriteSpeed : 40,

@@ -4,12 +4,12 @@
 function StartAnimationHandler() {
     //array of gumball objects
     this.gumballs = [];
-    this.constructGumballs();
+    this.constructSprites();
 }
 
 StartAnimationHandler.constructor = StartAnimationHandler;
 
-StartAnimationHandler.prototype.constructGumballs = function() {
+StartAnimationHandler.prototype.constructSprites = function() {
     for (var n = 0; n < BalanceGlobals.gumballs; n++) {
         this.gumballs.push(new Gumball);
     }
@@ -21,7 +21,7 @@ StartAnimationHandler.prototype.setPositionAndScale = function(gumballHandler) {
     }
 };
 
-StartAnimationHandler.prototype.addGumballsToStage = function(gumballHandler, stage) {
+StartAnimationHandler.prototype.addSpritesToStage = function(gumballHandler, stage) {
     for (var n = 0; n < gumballHandler.gumballs.length; n++) {
         stage.addChild(gumballHandler.gumballs[n]);
     }

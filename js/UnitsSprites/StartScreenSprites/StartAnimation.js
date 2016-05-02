@@ -24,7 +24,9 @@ StartAnimation.prototype.setPositionAndScale = function(obj) {
 
 StartAnimation.prototype.initiateStartAnimationSprites = function() {
     this.Properties.textures.push(
-        PIXI.Texture.fromFrame("titleBG")
+        PIXI.Texture.fromFrame("startrainbowanimation1"),
+        PIXI.Texture.fromFrame("startrainbowanimation2"),
+        PIXI.Texture.fromFrame("startrainbowanimation3")
     );
     this.addChild(new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]));
 };

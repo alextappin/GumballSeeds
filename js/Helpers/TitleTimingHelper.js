@@ -23,27 +23,9 @@ function TitleTimingHelper() {
             }
         }
 
-/*
-
-        if (!TimingGlobals.titleBackgoundFadeIn) {
-            TimingGlobals.titleBackgoundFadeIn = true;
-            bg.update(bg);
-            console.log('1');
-        } else if (!TimingGlobals.startButtonFadeIn && bg.alpha > TimingGlobals.titleWordsAlphaCue) {
-
-        } else if (!TimingGlobals.startButtonFadeIn && bg.alpha > TimingGlobals.startButtonAlphaCue) {
-            TimingGlobals.startButtonFadeIn = true;
-            start.updateOpacity(start);
-            bg.update(bg);
-            console.log('2');
-        } else if (!TimingGlobals.startButtonFadeIn){
-            bg.update(bg);
-            console.log('3');
-        } else {
-            start.updateOpacity(start);
-            bg.update(bg);
-            console.log('4');
-        }*/
+        if (TimingGlobals.startButtonPressed) {
+            //start the startAnimation
+        }
     };
 
     return helpers;
