@@ -10,7 +10,7 @@ function StartAnimationProperties() {
         changeSpriteCounter : 0,
         spriteSpeed : 5,
         numberOfTextures : 1,
-        moveSpeed : 35
+        moveSpeed : MapGlobals.screenWidth *.05 //5 percent of screen every frame
     };
 
     return props;
