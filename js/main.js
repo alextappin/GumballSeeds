@@ -11,7 +11,8 @@ function Main() {
 Main.prototype.loadSpriteSheet = function() {
     var assetsToLoad = ["../resources/characterSprites.json", "../resources/enemy.json", "../resources/fgNew.json",
         "../resources/gumballStem.json", "../resources/loadImage.json", "../resources/powerBar.json",
-        "../resources/StartButton.json", "../resources/trans.json", "../updatedResources/titleImages.json", "../updatedResources/spritesheet.json"],
+        "../resources/StartButton.json", "../resources/trans.json", "../updatedImages/startButtons.json",
+        "../updatedImages/title.json", "../updatedImages/titleBG.json"],
         loader = new PIXI.loaders.Loader();
     loader.add(assetsToLoad).load(this.spriteSheetLoaded.bind(this))
 };
