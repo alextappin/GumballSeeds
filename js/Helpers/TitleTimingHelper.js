@@ -33,6 +33,7 @@ function TitleTimingHelper() {
                 }
                 bg.switchToWhiteBackground(bg);
                 words.hideWords(words);
+                start.hideStart(start);
             }
             else {
                 bg.update(bg);

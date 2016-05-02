@@ -48,6 +48,10 @@ StartButton.prototype.updateOpacity = function(startButtonObj) {
     }
 };
 
+StartButton.prototype.hideWords = function(startButtonObj) {
+    startButtonObj.alpha = 0;
+};
+
 StartButton.prototype.handleClickEvents = function(spriteToHandle) {
     if (!spriteToHandle.interactive) {
         var spriteTimeout;
