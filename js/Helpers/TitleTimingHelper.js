@@ -4,7 +4,7 @@
 function TitleTimingHelper() {
     var helpers = {};
 
-    helpers.updateTitleObjects = function(bg, words, start) {
+    helpers.updateTitleObjects = function(bg, words, start, startAnimation) {
         if (TimingGlobals.startButtonFadeIn) {
             bg.update(bg);
             words.update(words);
@@ -23,27 +23,22 @@ function TitleTimingHelper() {
             }
         }
 
-/*
-
-        if (!TimingGlobals.titleBackgoundFadeIn) {
-            TimingGlobals.titleBackgoundFadeIn = true;
-            bg.update(bg);
-            console.log('1');
-        } else if (!TimingGlobals.startButtonFadeIn && bg.alpha > TimingGlobals.titleWordsAlphaCue) {
-
-        } else if (!TimingGlobals.startButtonFadeIn && bg.alpha > TimingGlobals.startButtonAlphaCue) {
-            TimingGlobals.startButtonFadeIn = true;
-            start.updateOpacity(start);
-            bg.update(bg);
-            console.log('2');
-        } else if (!TimingGlobals.startButtonFadeIn){
-            bg.update(bg);
-            console.log('3');
-        } else {
-            start.updateOpacity(start);
-            bg.update(bg);
-            console.log('4');
-        }*/
+        if (TimingGlobals.startButtonPressed) { //start the startAnimation for button being pressed
+            startAnimation.update(startAnimation);
+            if (startAnimation.position.x >= 0) {
+                if (startAnimation.position.x >= startAnimation.width) { //switch to the game screen
+                    HelperFunctions().switchScreenToggle();
+                    MapGlobals.screenToShow = MapGlobals.gameString;
+                    TimingGlobals.startButtonPressed = false;
+                }
+                bg.switchToWhiteBackground(bg);
+                words.hideWords(words);
+                start.hideStart(start);
+            }
+            else {
+                bg.update(bg);
+            }
+        }
     };
 
     return helpers;

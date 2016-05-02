@@ -1,4 +1,4 @@
-#Gumball Seeds
+#Gumball Seeds (C)
 #####A game created in HTML5 and mainly Javascriptfor Alex Tappin's Senior Project 
 #Play [Here] (http://alextappin.github.io/GumballSeeds/) 
 ###Contributors
@@ -20,3 +20,5 @@ The University I am attending is [Oregon Institute of Technology.](http://www.oi
 * Researched technologies for developing applications using Html5, Javascript, CSS for cross-platform apps
     * Installed [Pixi.js](http://www.pixijs.com/)
     * Looked into [Intel XDK](https://software.intel.com/en-us/intel-xdk) and [Crosswalk](https://crosswalk-project.org/)
+    
+##GUMBALL SEEDS is (C) Ovi Nedelcu

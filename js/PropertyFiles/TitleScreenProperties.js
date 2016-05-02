@@ -10,6 +10,7 @@ function TitleScreenProperties() {
         titleWords : new TitleWords(),
         startButton : new StartButton(),
         textScore : new Text("highscore"),
+        startAnimation : new StartAnimation(),
         viewportX : 0
     };
 

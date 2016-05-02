@@ -7,7 +7,8 @@ function TitleBoardProperties() {
         spriteCount : 0,
         changeSpriteCounter : 0,
         spriteSpeed : 40,
-        numberOfTextures : 1
+        numberOfTextures : 2,
+        whiteBoardTextureNumber : 1
     };
 
     return props;

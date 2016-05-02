@@ -23,6 +23,9 @@ var ScalingGlobals = (function ScalingGlobals() {
     constants.startButton2Const = .1;
     constants.startButton2Ratio = 0;
 
+    constants.startAnimationConst = 1;
+    constants.startAnimationRatio = 0;
+
 
     return constants;
 })();
