@@ -8,8 +8,9 @@ function StartAnimationProperties() {
         coloredSpritesMax : 1,
         spriteCount : 0,
         changeSpriteCounter : 0,
-        spriteSpeed : 40,
-        numberOfTextures : 1
+        spriteSpeed : 5,
+        numberOfTextures : 1,
+        moveSpeed : 35
     };
 
     return props;

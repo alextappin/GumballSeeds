@@ -15,45 +15,45 @@ StartAnimationHandler.prototype.constructSprites = function() {
     }
 };
 
-StartAnimationHandler.prototype.setPositionAndScale = function(gumballHandler) {
-    for (var n = 0; n < gumballHandler.gumballs.length; n++) {
-        gumballHandler.gumballs[n].setPositionAndScale(gumballHandler.gumballs[n]);
+StartAnimationHandler.prototype.setPositionAndScale = function(StartAnimationHandler) {
+    for (var n = 0; n < 1; n++) {
+        StartAnimationHandler.animationSprites[n].setPositionAndScale(StartAnimationHandler.animationSprites[n]);
     }
 };
 
-StartAnimationHandler.prototype.addSpritesToStage = function(gumballHandler, stage) {
-    for (var n = 0; n < gumballHandler.gumballs.length; n++) {
-        stage.addChild(gumballHandler.gumballs[n]);
+StartAnimationHandler.prototype.addSpritesToStage = function(StartAnimationHandler, stage) {
+    for (var n = 0; n < StartAnimationHandler.animationSprites.length; n++) {
+        stage.addChild(StartAnimationHandler.animationSprites[n]);
     }
 };
 
-StartAnimationHandler.prototype.update = function(gumballHandler, groundObj, characterObj, stage) {
-    for (var n = 0; n < BalanceGlobals.gumballs; n++) {
-        if (gumballHandler.gumballs[n]) {
-            gumballHandler.gumballs[n].update(gumballHandler.gumballs[n], groundObj, characterObj);
+StartAnimationHandler.prototype.update = function(StartAnimationHandler, groundObj, characterObj, stage) {
+    for (var n = 0; n < BalanceGlobals.animationSprites; n++) {
+        if (StartAnimationHandler.animationSprites[n]) {
+            StartAnimationHandler.animationSprites[n].update(StartAnimationHandler.animationSprites[n], groundObj, characterObj);
         } else {
-            this.addGumball(BalanceGlobals.gumballsToAdd, stage, gumballHandler); //if there are not enough gumballs, add another
+            this.addGumball(BalanceGlobals.animationSpritesToAdd, stage, StartAnimationHandler); //if there are not enough animationSprites, add another
         }
     }
 };
 
-StartAnimationHandler.prototype.updatePowerUp = function(gumballHandler, groundObj, characterObj, stage) {
-    for (var n = 0; n < BalanceGlobals.gumballs; n++) {
-        if (gumballHandler.gumballs[n]) {
-            gumballHandler.gumballs[n].updatePowerUp(gumballHandler.gumballs[n], groundObj, characterObj);
+StartAnimationHandler.prototype.updatePowerUp = function(StartAnimationHandler, groundObj, characterObj, stage) {
+    for (var n = 0; n < BalanceGlobals.animationSprites; n++) {
+        if (StartAnimationHandler.animationSprites[n]) {
+            StartAnimationHandler.animationSprites[n].updatePowerUp(StartAnimationHandler.animationSprites[n], groundObj, characterObj);
         }
-        //if there are not enough gumballs, add another
+        //if there are not enough animationSprites, add another
         else {
-            this.addGumball(BalanceGlobals.gumballsToAdd, stage, gumballHandler);
+            this.addGumball(BalanceGlobals.animationSpritesToAdd, stage, StartAnimationHandler);
         }
     }
 };
 
-StartAnimationHandler.prototype.addGumball = function(numberToAdd, stage, gumballHandler) {
+StartAnimationHandler.prototype.addGumball = function(numberToAdd, stage, StartAnimationHandler) {
     for (var n = 0; n < numberToAdd; n++) {
         var gumball = new Gumball();
         gumball.setPositionAndScale(gumball);
-        gumballHandler.gumballs.push(gumball);
+        StartAnimationHandler.animationSprites.push(gumball);
         stage.addChild(gumball);
     }
 };

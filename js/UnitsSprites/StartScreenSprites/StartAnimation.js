@@ -15,18 +15,16 @@ StartAnimation.prototype.constructStartAnimation = function() {
 };
 
 StartAnimation.prototype.setPositionAndScale = function(obj) {
-    ScalingGlobals.titleScreenScaleX = HelperFunctions().getCorrectScaleWidth(obj.width);
-    ScalingGlobals.titleScreenScaleY = HelperFunctions().getCorrectScaleHeight(obj.height);
-    obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.titleScreenScaleX,ScalingGlobals.titleScreenScaleY);
-    obj.position =  HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(obj.width), HelperFunctions().getScreenPositionMiddleHeight(obj.height));
-    obj.alpha = TimingGlobals.titleAlphaStart;
+    ScalingGlobals.startAnimationRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height);
+    obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.startAnimationRatio,ScalingGlobals.startAnimationRatio);
+    obj.position =  HelperFunctions().getNewPoint((0-obj.width), HelperFunctions().getScreenPositionMiddleHeight(obj.height));
+    obj.alpha = 1;
 };
 
 StartAnimation.prototype.initiateStartAnimationSprites = function() {
     this.Properties.textures.push(
         PIXI.Texture.fromFrame("startrainbowanimation1"),
-        PIXI.Texture.fromFrame("startrainbowanimation2"),
-        PIXI.Texture.fromFrame("startrainbowanimation3")
+        PIXI.Texture.fromFrame("startrainbowanimation2")
     );
     this.addChild(new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]));
 };
@@ -35,10 +33,27 @@ StartAnimation.prototype.setSpriteToCurrentTexture = function(titleBoardObj) {
     titleBoardObj.children[0].texture = this.Properties.textures[this.Properties.spriteCount];
 };
 
-StartAnimation.prototype.update = function(titleBoardObj) {
-    if (titleBoardObj.alpha + TimingGlobals.titleBgAlphaIncrement > 1) {
-        titleBoardObj.alpha = 1;
-    } else {
-        titleBoardObj.alpha += TimingGlobals.titleBgAlphaIncrement;
+StartAnimation.prototype.update = function(startAnimationObj) {
+    this.updateTextures(startAnimationObj);
+};
+
+StartAnimation.prototype.updateTextures = function(startAnimationObj) {
+    startAnimationObj.position.x += this.Properties.moveSpeed;
+    if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
+        this.Properties.changeSpriteCounter = 0;
+        this.nextSprite(startAnimationObj);
     }
+    else {
+        this.Properties.changeSpriteCounter++;
+    }
+};
+
+StartAnimation.prototype.nextSprite = function(startAnimationObj) {
+    if (this.Properties.spriteCount == this.Properties.textures.length - 1) {
+        this.Properties.spriteCount = 0;
+    }
+    else {
+        this.Properties.spriteCount++;
+    }
+    this.setSpriteToCurrentTexture(startAnimationObj);
 };

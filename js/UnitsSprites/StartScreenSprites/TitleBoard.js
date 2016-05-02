@@ -43,5 +43,5 @@ TitleBoard.prototype.update = function(titleBoardObj) {
 };
 
 TitleBoard.prototype.switchToWhiteBackground = function(titleBoardObj) {
-    titleBoardObj.texture = this.Properties.textures[this.Properties.whiteBoardTextureNumber];
+    titleBoardObj.children[0].texture = this.Properties.textures[this.Properties.whiteBoardTextureNumber];
 };

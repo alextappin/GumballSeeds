@@ -142,5 +142,9 @@ function HelperFunctions() {
         return (MapGlobals.screenHeight - height)/2;
     };
 
+    functions.getScreenRatioUsingHeight = function(height) {
+        return MapGlobals.screenHeight / height;
+    };
+
     return functions;
 }
