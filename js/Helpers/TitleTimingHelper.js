@@ -4,7 +4,7 @@
 function TitleTimingHelper() {
     var helpers = {};
 
-    helpers.updateTitleObjects = function(bg, words, start) {
+    helpers.updateTitleObjects = function(bg, words, start, startAnimation) {
         if (TimingGlobals.startButtonFadeIn) {
             bg.update(bg);
             words.update(words);
@@ -23,8 +23,20 @@ function TitleTimingHelper() {
             }
         }
 
-        if (TimingGlobals.startButtonPressed) {
-            //start the startAnimation
+        if (TimingGlobals.startButtonPressed) { //start the startAnimation for button being pressed
+            startAnimation.update(startAnimation);
+            if (startAnimation.position.x >= 0) {
+                if (startAnimation.position.x >= startAnimation.width) { //switch to the game screen
+                    HelperFunctions().switchScreenToggle();
+                    MapGlobals.screenToShow = MapGlobals.gameString;
+                    TimingGlobals.startButtonPressed = false;
+                }
+                bg.switchToWhiteBackground(bg);
+                words.hideWords(words);
+            }
+            else {
+                bg.update(bg);
+            }
         }
     };
 

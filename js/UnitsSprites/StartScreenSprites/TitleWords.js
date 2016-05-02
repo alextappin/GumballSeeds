@@ -29,10 +29,14 @@ TitleWords.prototype.initiateTitleWordsSprites = function() {
     this.addChild(new PIXI.Sprite(this.Properties.textures[0]));
 };
 
-TitleWords.prototype.update = function(titleBoardObj) {
-    if (titleBoardObj.alpha + TimingGlobals.titleWordsAlphaIncrement > 1) {
-        titleBoardObj.alpha = 1;
+TitleWords.prototype.update = function(titleWordsObj) {
+    if (titleWordsObj.alpha + TimingGlobals.titleWordsAlphaIncrement > 1) {
+        titleWordsObj.alpha = 1;
     } else {
-        titleBoardObj.alpha += TimingGlobals.titleWordsAlphaIncrement;
+        titleWordsObj.alpha += TimingGlobals.titleWordsAlphaIncrement;
     }
+};
+
+TitleWords.prototype.hideWords = function(titleWordsObj) {
+    titleWordsObj.alpha = 0;
 };

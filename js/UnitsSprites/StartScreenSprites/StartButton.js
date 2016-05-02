@@ -52,9 +52,7 @@ StartButton.prototype.handleClickEvents = function(spriteToHandle) {
     if (!spriteToHandle.interactive) {
         var spriteTimeout;
         function onButtonDown() {
-            HelperFunctions().switchScreenToggle();
             TimingGlobals.startButtonPressed = true;
-            MapGlobals.screenToShow = MapGlobals.gameString;
             clearTimeout(spriteTimeout);
         }
         spriteToHandle.interactive = true;
