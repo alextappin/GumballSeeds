@@ -23,8 +23,7 @@ StartButton.prototype.initiateStartButtonSprites = function() {
     this.Properties.textures.push(
         PIXI.Texture.fromFrame("startbutton1"),
         PIXI.Texture.fromFrame("startbutton2"),
-        PIXI.Texture.fromFrame("startbutton3"),
-        PIXI.Texture.fromFrame("startbutton4")
+        PIXI.Texture.fromFrame("startbutton3")
     );
     var sprite = new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]);
     this.handleClickEvents(sprite);

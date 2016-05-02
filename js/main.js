@@ -11,7 +11,13 @@ function Main() {
 Main.prototype.loadSpriteSheet = function() {
     var assetsToLoad = ["../resources/characterSprites.json", "../resources/enemy.json", "../resources/fgNew.json",
         "../resources/gumballStem.json", "../resources/loadImage.json", "../resources/powerBar.json",
-        "../resources/StartButton.json", "../resources/trans.json", "../updatedResources/titleImages.json", "../updatedResources/spritesheet.json"],
+        "../resources/StartButton.json", "../resources/trans.json",
+
+        "../updatedImages/titleScreen/startButtons.json", "../updatedImages/titleScreen/startrainbowanimations.json",
+        "../updatedImages/titleScreen/title.json", "../updatedImages/titleScreen/titleBG.json", "../updateImages/titleScreen/start rainbow animation1.json","../updateImages/titleScreen/start rainbow animation2.json",
+            "../updateImages/titleScreen/start rainbow animation3.json","../updateImages/titleScreen/start rainbow animation4.json",
+            "../updateImages/titleScreen/start rainbow animation5.json", "../updateImages/titleScreen/start rainbow animation6.json",
+            "../updateImages/titleScreen/start rainbow animation7.json", "../updateImages/map/gumballs.json"],
         loader = new PIXI.loaders.Loader();
     loader.add(assetsToLoad).load(this.spriteSheetLoaded.bind(this))
 };
