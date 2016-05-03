@@ -41,7 +41,7 @@ var ScrollerGlobals = (function ScrollerGlobals() {
     constants.hill2bY = MapGlobals.screenHeight*.42;
 
     constants.haze11Y = MapGlobals.screenHeight*.3;
-    constants.haze14Y = MapGlobals.screenHeight*.2;
+    constants.haze14Y = MapGlobals.screenHeight*.55;
     constants.mid2DeltaX = 0.29;
 
     return constants;
