@@ -35,8 +35,8 @@ var ScrollerGlobals = (function ScrollerGlobals() {
     constants.cloudRandomYEnd = MapGlobals.screenHeight/2;
     constants.cloudScaleConst = 6;
 
-    constants.hill1Y = MapGlobals.screenHeight*.6; // 60% down the screen put the hill1
-
+    constants.hill1aY = MapGlobals.screenHeight*.55; // 60% down the screen put the hill1
+    constants.hill1bY = MapGlobals.screenHeight*.685;
     constants.mid2DeltaX = 0.29;
 
     return constants;

@@ -14,7 +14,7 @@ Hill1b10.prototype = Object.create(PIXI.Container.prototype);
 
 Hill1b10.prototype.setPositionAndScale = function(obj) {
     var scale = HelperFunctions().getCorrectScaleWidth(obj.width);
-    obj.position = HelperFunctions().getNewPoint(MapGlobals.screenWidth, ScrollerGlobals.hill1Y);
+    obj.position = HelperFunctions().getNewPoint(MapGlobals.screenWidth, ScrollerGlobals.hill1bY);
     obj.scale = HelperFunctions().getNewPoint(scale, scale);
 };
 
@@ -22,7 +22,7 @@ Hill1b10.prototype.update = function(obj, newViewportX) {
     if (obj.position.x < 0 - obj.width) { //if its all the way off the left side of the screen, get new position
         this.getNewPosition(obj);
     }
-    obj.position.x -= ((newViewportX - obj.viewportX) * ScrollerGlobals.deltaX9); //distance traveled * change
+    obj.position.x -= ((newViewportX - obj.viewportX) * ScrollerGlobals.deltaX10); //distance traveled * change
     obj.viewportX = newViewportX;
 };
 
