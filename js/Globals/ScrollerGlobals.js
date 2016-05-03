@@ -23,7 +23,7 @@ var ScrollerGlobals = (function ScrollerGlobals() {
     constants.deltaXhill1 = 0.124;
     constants.deltaX11 = 0.134;
     constants.deltaXhill2 = 0.144;
-    constants.deltaX14 = 0.184;
+    constants.deltaX14Haze = 0.684;
     constants.deltaXhill3 = 0.204;
 
     constants.cloudRandomYStart = 1;

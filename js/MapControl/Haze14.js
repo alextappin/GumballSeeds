@@ -16,6 +16,6 @@ Haze14.constructor = Haze14;
 Haze14.prototype = Object.create(PIXI.extras.TilingSprite.prototype);
 
 Haze14.prototype.update = function(newViewportX) {
-    this.tilePosition.x -= ((newViewportX - this.viewportX) * ScrollerGlobals.deltaX14); //distance traveled * change
+    this.tilePosition.x -= ((newViewportX - this.viewportX) * ScrollerGlobals.deltaX14Haze); //distance traveled * change
     this.viewportX = newViewportX;
 };
