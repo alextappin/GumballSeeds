@@ -24,9 +24,7 @@ function TitleTimingHelper() {
         }
 
         if (TimingGlobals.startButtonPressed) { //start the startAnimation for button being pressed
-            if (TimingGlobals.startAnimation) {
-                startAnimation.update(startAnimation);
-            }
+            startAnimation.update(startAnimation);
             start.updateClickedStartTextures(start);
             if (startAnimation.position.x >= 0) {
                 if (startAnimation.position.x >= startAnimation.width) { //switch to the game screen

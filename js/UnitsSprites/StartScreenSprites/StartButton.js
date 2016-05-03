@@ -58,10 +58,6 @@ StartButton.prototype.updateClickedStartTextures = function(startButtonObj) {
         } else {
             this.Properties.changeSpriteCounter++;
         }
-
-        if (this.Properties.spriteCount == this.Properties.textures.length-1) { //if the last sprite has been displated... start the gumball animation
-            TimingGlobals.startAnimation = true;
-        }
     }
     else {
         startButtonObj.alpha = 0;
