@@ -23,10 +23,6 @@ var ScalingGlobals = (function ScalingGlobals() {
     constants.startButtonsPercentOfScreen = [.04,.13,.2,.3]; //array of percentages of screen size
     constants.startButtonRatios = [0,0,0]; //array of ratios for buttons
 
-    constants.startButton2Const = .04;
-    constants.startButton2Ratio = 0;
-
-    constants.startAnimationConst = 1;
     constants.startAnimationRatio = 0;
 
 
