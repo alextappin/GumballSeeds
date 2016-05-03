@@ -3,9 +3,8 @@
  */
 function ScrollerProperties() {
     var props = {
-        far : new Far(),
-        mid : new Mid(),
-        mid2 : new Mid2(),
+        bgSky1 : new BgSky1(),
+
         ground : new Ground(),
         character : new Character(),
         gumballs : new GumballsHandler(),

@@ -2,9 +2,11 @@
  * Created by ajt on 5/2/2016.
  */
 function BgSky1() {
-    var texture = PIXI.Texture.fromImage("../resources/bg1.png");
-    PIXI.extras.TilingSprite.call(this, texture, MapGlobals.screenWidth, MapGlobals.screenHeight);
+    var texture = PIXI.Texture.fromFrame("1 BGsky");
+    PIXI.extras.TilingSprite.call(this, texture, texture.width, texture.height);
 
+    var scale = HelperFunctions().getCorrectScaleWidth(this.width);
+    this.scale = HelperFunctions().getNewPoint(scale ,scale);
     this.position = HelperFunctions().getNewPoint(0,0);
     this.tilePosition = HelperFunctions().getNewPoint(0,0);
     this.viewportX = 0;
