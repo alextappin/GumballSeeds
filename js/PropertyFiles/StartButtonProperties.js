@@ -7,6 +7,8 @@ function StartButtonProperties() {
         textures : [],
         clickSpriteTextureStart : 1,
         changeSpriteCounter : 0,
+        spriteSpeed : 1,
+        currentTexture : 0,
         alphaPulse : false
     };
 

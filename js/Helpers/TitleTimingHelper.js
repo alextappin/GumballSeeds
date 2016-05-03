@@ -24,16 +24,19 @@ function TitleTimingHelper() {
         }
 
         if (TimingGlobals.startButtonPressed) { //start the startAnimation for button being pressed
-            startAnimation.update(startAnimation);
+            if (TimingGlobals.startAnimation) {
+                startAnimation.update(startAnimation);
+            }
+            start.updateClickedStartTextures(start);
             if (startAnimation.position.x >= 0) {
                 if (startAnimation.position.x >= startAnimation.width) { //switch to the game screen
                     HelperFunctions().switchScreenToggle();
                     MapGlobals.screenToShow = MapGlobals.gameString;
                     TimingGlobals.startButtonPressed = false;
+                    TimingGlobals.startAnimation = false;
                 }
                 bg.switchToWhiteBackground(bg);
                 words.hideWords(words);
-                start.hideStart(start);
             }
             else {
                 bg.update(bg);
