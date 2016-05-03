@@ -14,7 +14,7 @@ Hill1b10.prototype = Object.create(PIXI.Container.prototype);
 
 Hill1b10.prototype.setPositionAndScale = function(obj) {
     var scale = HelperFunctions().getCorrectScaleWidth(obj.width);
-    obj.position = HelperFunctions().getNewPoint(MapGlobals.screenWidth-1, ScrollerGlobals.hill1bY);
+    obj.position = HelperFunctions().getNewPoint(MapGlobals.screenWidth, ScrollerGlobals.hill1bY);
     obj.scale = HelperFunctions().getNewPoint(scale, scale);
 };
 
@@ -27,5 +27,5 @@ Hill1b10.prototype.update = function(obj, newViewportX) {
 };
 
 Hill1b10.prototype.getNewPosition = function(obj) {
-    obj.position.x = (MapGlobals.screenWidth - 1);
+    obj.position.x = (MapGlobals.screenWidth);
 };
