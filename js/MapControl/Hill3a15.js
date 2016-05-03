@@ -14,7 +14,7 @@ Hill3a15.prototype = Object.create(PIXI.Container.prototype);
 
 Hill3a15.prototype.setPositionAndScale = function(obj) {
     var scale = HelperFunctions().getCorrectScaleWidth(obj.width);
-    obj.position = HelperFunctions().getNewPoint(0, ScrollerGlobals.hill3aY);
+    obj.position = HelperFunctions().getNewPoint(1, ScrollerGlobals.hill3aY);
     obj.scale = HelperFunctions().getNewPoint(scale, scale);
 };
 
