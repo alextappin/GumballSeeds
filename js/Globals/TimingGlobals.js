@@ -18,7 +18,6 @@ var TimingGlobals = (function TimingGlobals() {
     constants.titlePulseMinimumAlpha = .5;
 
     constants.startButtonPressed = false;
-    constants.startAnimation = false;
 
     return constants;
 })();

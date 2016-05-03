@@ -17,7 +17,7 @@ StartAnimation.prototype.constructStartAnimation = function() {
 StartAnimation.prototype.setPositionAndScale = function(obj) {
     ScalingGlobals.startAnimationRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height);
     obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.startAnimationRatio,ScalingGlobals.startAnimationRatio);
-    obj.position =  HelperFunctions().getNewPoint((0-obj.width), HelperFunctions().getScreenPositionMiddleHeight(obj.height));
+    obj.position =  HelperFunctions().getNewPoint((0-obj.width*2), HelperFunctions().getScreenPositionMiddleHeight(obj.height));
     obj.alpha = 1;
 };
 
