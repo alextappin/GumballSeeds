@@ -14,7 +14,7 @@ StartButton.prototype.constructStartButton = function() {
     this.initiateStartButtonSprites();
 };
 StartButton.prototype.setPositionAndScale = function(obj) {
-    ScalingGlobals.startButton1Ratio = HelperFunctions().getRatioToScreenGivenConst(ScalingGlobals.startButton1Const, obj.height, obj.width);
+    ScalingGlobals.startButton1Ratio = HelperFunctions().getScreenRatioUsingHeight(obj.height,ScalingGlobals.startButton1PercentOfScreen);
     obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.startButton1Ratio,ScalingGlobals.startButton1Ratio);
     obj.position = HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(obj.width), HelperFunctions().getHeightGivenConstant(ScalingGlobals.titleStartYOffset, obj.height));
     obj.alpha = TimingGlobals.titleAlphaStart;

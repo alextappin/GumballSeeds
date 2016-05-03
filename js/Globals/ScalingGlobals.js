@@ -17,10 +17,10 @@ var ScalingGlobals = (function ScalingGlobals() {
 
     constants.titleStartYOffset = -.035;
 
-    constants.startButton1Const = .01;
+    constants.startButton1PercentOfScreen = .04; //4% of screen height
     constants.startButton1Ratio = 0;
 
-    constants.startButton2Const = .1;
+    constants.startButton2Const = .04;
     constants.startButton2Ratio = 0;
 
     constants.startAnimationConst = 1;
