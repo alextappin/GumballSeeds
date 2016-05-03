@@ -21,7 +21,7 @@ var ScrollerGlobals = (function ScrollerGlobals() {
     constants.deltaX7 = 0.074;
     constants.deltaX8 = 0.084;
     constants.deltaX9 = 0.094;
-    constants.deltaX10 = 0.14;
+    constants.deltaX10 = 0.094;
     constants.deltaX11 = 0.114;
     constants.deltaX12 = 0.124;
     constants.deltaX13 = 0.134;
@@ -34,6 +34,8 @@ var ScrollerGlobals = (function ScrollerGlobals() {
     constants.cloudRandomYStart = 1;
     constants.cloudRandomYEnd = MapGlobals.screenHeight/2;
     constants.cloudScaleConst = 6;
+
+    constants.hill1Y = MapGlobals.screenHeight*.6; // 60% down the screen put the hill1
 
     constants.mid2DeltaX = 0.29;
 
