@@ -14,10 +14,10 @@ Main.prototype.loadSpriteSheet = function() {
         "../resources/StartButton.json", "../resources/trans.json",
 
         "../updatedImages/titleScreen/startButtons.json", "../updatedImages/titleScreen/startrainbowanimations.json",
-        "../updatedImages/titleScreen/title.json", "../updatedImages/titleScreen/titleBG.json", "../updatedImages/titleScreen/start raninbow animation1.json","../updatedImages/titleScreen/start raninbow animation2.json",
-            "../updatedImages/titleScreen/start raninbow animation3.json","../updatedImages/titleScreen/start raninbow animation4.json",
-            "../updatedImages/titleScreen/start raninbow animation5.json", "../updatedImages/titleScreen/start raninbow animation6.json",
-            "../updatedImages/titleScreen/start raninbow animation7.json", "../updatedImages/map/gumballs.json"],
+        "../updatedImages/titleScreen/titleWords.json", "../updatedImages/titleScreen/titleBG.json", "../updatedImages/map/gumballs.json",
+        "../updatedImages/map/skyhaze1.json", "../updatedImages/map/clouds.json", "../updatedImages/map/gumballMachine.json",
+        "../updatedImages/map/hill1.json", "../updatedImages/map/hazes.json", "../updatedImages/map/hill2.json",
+        "../updatedImages/map/hill3.json"],
         loader = new PIXI.loaders.Loader();
     loader.add(assetsToLoad).load(this.spriteSheetLoaded.bind(this))
 };
