@@ -5,7 +5,9 @@ function ScrollerProperties() {
     var props = {
         bgSky1 : new BgSky1(),
         haze4 : new Haze4(),
-
+        cloud5 : new Cloud5(),
+        cloud6 : new Cloud6(),
+        cloud7 : new Cloud7(),
         ground : new Ground(),
         character : new Character(),
         gumballs : new GumballsHandler(),

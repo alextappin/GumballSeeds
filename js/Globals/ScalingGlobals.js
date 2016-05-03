@@ -25,6 +25,8 @@ var ScalingGlobals = (function ScalingGlobals() {
 
     constants.startAnimationRatio = 0;
 
+    constants.cloudsPercentOfScreen = [0.05,0.10,0.15];
+
 
     return constants;
 })();

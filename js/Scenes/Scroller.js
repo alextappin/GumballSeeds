@@ -12,6 +12,9 @@ function Scroller(stage) {
     HelperFunctions().stopTitleSound();
 }
 Scroller.prototype.initializePositionsAndScale = function() {
+    this.Properties.cloud5.setPositionAndScale(this.Properties.cloud5);
+    this.Properties.cloud6.setPositionAndScale(this.Properties.cloud6);
+    this.Properties.cloud7.setPositionAndScale(this.Properties.cloud7);
     this.Properties.character.setPositionAndScale(this.Properties.character);
     this.Properties.enemies.setPositionAndScale(this.Properties.enemies);
     this.Properties.ground.setPositionAndScale(this.Properties.ground);
@@ -21,7 +24,10 @@ Scroller.prototype.initializePositionsAndScale = function() {
 Scroller.prototype.constructScroller = function(stage) {
     stage.addChild(this.Properties.bgSky1);
     stage.addChild(this.Properties.haze4);
-    /*stage.addChild(this.Properties.);
+    stage.addChild(this.Properties.cloud5);
+    stage.addChild(this.Properties.cloud6);
+    stage.addChild(this.Properties.cloud7);
+    /*;
     stage.addChild(this.Properties.);
     stage.addChild(this.Properties.);
     stage.addChild(this.Properties.);
@@ -60,8 +66,11 @@ Scroller.prototype.updateViewport = function() {
 Scroller.prototype.updateObjects = function() {
     this.Properties.bgSky1.update(this.Properties.viewportX);
     this.Properties.haze4.update(this.Properties.viewportX);
+    this.Properties.cloud5.update(this.Properties.cloud5, this.Properties.viewportX);
+    this.Properties.cloud6.update(this.Properties.cloud6, this.Properties.viewportX);
+    this.Properties.cloud7.update(this.Properties.cloud7, this.Properties.viewportX);
 /*
-    this.Properties..update(this.Properties.viewportX);
+
     this.Properties..update(this.Properties.viewportX);
     this.Properties..update(this.Properties.viewportX);
     this.Properties..update(this.Properties.viewportX);
