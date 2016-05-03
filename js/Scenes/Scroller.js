@@ -38,6 +38,8 @@ Scroller.prototype.constructScroller = function(stage) {
     stage.addChild(this.Properties.hill2a12);
     stage.addChild(this.Properties.hill2b13);
     stage.addChild(this.Properties.haze14);
+    stage.addChild(this.Properties.hill3a15);
+    stage.addChild(this.Properties.hill3b16);
     /*;
     stage.addChild(this.Properties.);
     stage.addChild(this.Properties.);
@@ -87,6 +89,8 @@ Scroller.prototype.updateObjects = function() {
     this.Properties.hill2a12.update(this.Properties.hill2a12, this.Properties.viewportX);
     this.Properties.hill2b13.update(this.Properties.hill2b13, this.Properties.viewportX);
     this.Properties.haze11.update(this.Properties.viewportX);
+    this.Properties.hill3a15.update(this.Properties.hill3a15, this.Properties.viewportX);
+    this.Properties.hill3b16.update(this.Properties.hill3b16, this.Properties.viewportX);
     /*
 
         this.Properties..update(this.Properties.viewportX);
