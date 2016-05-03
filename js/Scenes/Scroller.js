@@ -27,6 +27,7 @@ Scroller.prototype.constructScroller = function(stage) {
     stage.addChild(this.Properties.cloud5);
     stage.addChild(this.Properties.cloud6);
     stage.addChild(this.Properties.cloud7);
+    stage.addChild(this.Properties.gumballMachine8);
     /*;
     stage.addChild(this.Properties.);
     stage.addChild(this.Properties.);
@@ -69,6 +70,7 @@ Scroller.prototype.updateObjects = function() {
     this.Properties.cloud5.update(this.Properties.cloud5, this.Properties.viewportX);
     this.Properties.cloud6.update(this.Properties.cloud6, this.Properties.viewportX);
     this.Properties.cloud7.update(this.Properties.cloud7, this.Properties.viewportX);
+    this.Properties.gumballMachine8.update(this.Properties.viewportX);
 /*
 
     this.Properties..update(this.Properties.viewportX);

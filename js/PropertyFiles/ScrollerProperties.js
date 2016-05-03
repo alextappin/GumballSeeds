@@ -8,6 +8,7 @@ function ScrollerProperties() {
         cloud5 : new Cloud5(),
         cloud6 : new Cloud6(),
         cloud7 : new Cloud7(),
+        gumballMachine8 : new GumballMachine8(),
         ground : new Ground(),
         character : new Character(),
         gumballs : new GumballsHandler(),
