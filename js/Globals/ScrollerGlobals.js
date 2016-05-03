@@ -31,7 +31,7 @@ var ScrollerGlobals = (function ScrollerGlobals() {
     constants.deltaX17 = 0.174;
     constants.deltaX18 = 0.184;
 
-    constants.cloudRandomYStart = 0;
+    constants.cloudRandomYStart = 1;
     constants.cloudRandomYEnd = MapGlobals.screenHeight/2;
     constants.cloudScaleStart = .02;
     constants.cloudScaleEnd = .2;
