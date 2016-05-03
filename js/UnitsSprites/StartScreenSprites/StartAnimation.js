@@ -17,7 +17,7 @@ StartAnimation.prototype.constructStartAnimation = function() {
 StartAnimation.prototype.setPositionAndScale = function(obj) {
     ScalingGlobals.startAnimationRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height);
     obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.startAnimationRatio,ScalingGlobals.startAnimationRatio);
-    obj.position =  HelperFunctions().getNewPoint((0-obj.width*1.5), HelperFunctions().getScreenPositionMiddleHeight(obj.height));
+    obj.position =  HelperFunctions().getNewPoint((0-obj.width*this.Properties.xPositionConstant), HelperFunctions().getScreenPositionMiddleHeight(obj.height)); //put the animation far to the left so a delay happens when animating it.
     obj.alpha = 1;
 };
 
