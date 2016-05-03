@@ -3,7 +3,7 @@
  */
 function Cloud5() {
     PIXI.Container.call(this);
-    var texture = PIXI.Texture.fromFrame("5 cloud1");
+    var texture = PIXI.Texture.fromFrame("6 cloud2");
     var sprite = new PIXI.Sprite(texture);
     this.addChild(sprite);
     this.viewportX = 0;
@@ -13,9 +13,8 @@ Cloud5.constructor = Cloud5;
 Cloud5.prototype = Object.create(PIXI.Container.prototype);
 
 Cloud5.prototype.setPositionAndScale = function(obj) {
-    var scale = HelperFunctions().getScreenRatioUsingHeight(obj.height,ScalingGlobals.cloudsPercentOfScreen[0]); //access array and grab correct ratios out of array
-    obj.scale = HelperFunctions().getNewPoint(scale ,scale);
     obj.position = HelperFunctions().getNewPoint(MapGlobals.screenWidth/2, HelperFunctions().getRandomNumber(ScrollerGlobals.cloudRandomYStart, ScrollerGlobals.cloudRandomYEnd));
+    this.setScale(obj);
 };
 
 Cloud5.prototype.update = function(obj, newViewportX) {
@@ -28,7 +27,11 @@ Cloud5.prototype.update = function(obj, newViewportX) {
 
 Cloud5.prototype.getNewPositionsAndScale = function(obj) {
     var randY = HelperFunctions().getRandomNumber(ScrollerGlobals.cloudRandomYStart, ScrollerGlobals.cloudRandomYEnd);
-    var randScale = HelperFunctions().getRandomDecimalNumber(ScrollerGlobals.cloudScaleStart, ScrollerGlobals.cloudScaleEnd);
     obj.position = HelperFunctions().getNewPoint(MapGlobals.screenWidth + obj.width, randY);
-    obj.scale = HelperFunctions().getNewPoint(randScale ,randScale);
+    this.setScale(obj);
+};
+
+Cloud5.prototype.setScale = function(obj) {
+    var scale = HelperFunctions().calculateCloudScale(obj.position.y);
+    obj.scale = HelperFunctions().getNewPoint(scale,scale);
 };

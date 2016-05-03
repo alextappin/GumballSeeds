@@ -32,6 +32,6 @@ Cloud7.prototype.getNewPositionsAndScale = function(obj) {
 };
 
 Cloud7.prototype.setScale = function(obj) {
-    var scale = obj.position.y / MapGlobals.screenHeight;
-    obj.scale = HelperFunctions().getNewPoint(scale ,scale);
+    var scale = HelperFunctions().calculateCloudScale(obj.position.y);
+    obj.scale = HelperFunctions().getNewPoint(scale,scale);
 };

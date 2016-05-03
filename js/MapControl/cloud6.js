@@ -13,9 +13,8 @@ Cloud6.constructor = Cloud6;
 Cloud6.prototype = Object.create(PIXI.Container.prototype);
 
 Cloud6.prototype.setPositionAndScale = function(obj) {
-    var scale = HelperFunctions().getScreenRatioUsingHeight(obj.height,ScalingGlobals.cloudsPercentOfScreen[1]); //access array and grab correct ratios out of array
-    obj.scale = HelperFunctions().getNewPoint(scale ,scale);
     obj.position = HelperFunctions().getNewPoint(MapGlobals.screenWidth/4, HelperFunctions().getRandomNumber(ScrollerGlobals.cloudRandomYStart, ScrollerGlobals.cloudRandomYEnd));
+    this.setScale(obj);
 };
 
 Cloud6.prototype.update = function(obj, newViewportX) {
@@ -28,7 +27,11 @@ Cloud6.prototype.update = function(obj, newViewportX) {
 
 Cloud6.prototype.getNewPositionsAndScale = function(obj) {
     var randY = HelperFunctions().getRandomNumber(ScrollerGlobals.cloudRandomYStart, ScrollerGlobals.cloudRandomYEnd);
-    var randScale = HelperFunctions().getRandomDecimalNumber(ScrollerGlobals.cloudScaleStart, ScrollerGlobals.cloudScaleEnd);
     obj.position = HelperFunctions().getNewPoint(MapGlobals.screenWidth + obj.width, randY);
-    obj.scale = HelperFunctions().getNewPoint(randScale ,randScale);
+    this.setScale(obj);
+};
+
+Cloud6.prototype.setScale = function(obj) {
+    var scale = HelperFunctions().calculateCloudScale(obj.position.y);
+    obj.scale = HelperFunctions().getNewPoint(scale,scale);
 };
