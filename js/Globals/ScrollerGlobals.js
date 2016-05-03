@@ -12,8 +12,26 @@ var ScrollerGlobals = (function ScrollerGlobals() {
     constants.groundSpeed = 10;
     constants.offScreenOffsetX = -200;
     constants.offScreenOffsetY = 200;
-    constants.farDeltaX = 0.014;
-    constants.midDeltaX = 0.12;
+    constants.deltaX1 = 0.014;
+    constants.deltaX2 = 0.024;
+    constants.deltaX3 = 0.034;
+    constants.deltaX4 = 0.044;
+    constants.deltaX5 = 0.054;
+    constants.deltaX6 = 0.064;
+    constants.deltaX7 = 0.074;
+    constants.deltaX8 = 0.084;
+    constants.deltaX9 = 0.094;
+    constants.deltaX10 = 0.14;
+    constants.deltaX11 = 0.114;
+    constants.deltaX12 = 0.124;
+    constants.deltaX13 = 0.134;
+    constants.deltaX14 = 0.144;
+    constants.deltaX15 = 0.154;
+    constants.deltaX16 = 0.164;
+    constants.deltaX17 = 0.174;
+    constants.deltaX18 = 0.184;
+
+
     constants.mid2DeltaX = 0.29;
 
     return constants;

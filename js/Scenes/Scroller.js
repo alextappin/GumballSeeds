@@ -19,6 +19,8 @@ Scroller.prototype.initializePositionsAndScale = function() {
     this.Properties.gumballs.setPositionAndScale(this.Properties.gumballs);
 };
 Scroller.prototype.constructScroller = function(stage) {
+    stage.addChild(this.Properties.bgSky1);
+    stage.addChild(this.Properties.haze4);
     /*stage.addChild(this.Properties.);
     stage.addChild(this.Properties.);
     stage.addChild(this.Properties.);
@@ -26,7 +28,7 @@ Scroller.prototype.constructScroller = function(stage) {
     stage.addChild(this.Properties.);
     stage.addChild(this.Properties.);
     stage.addChild(this.Properties.);*/
-    stage.addChild(this.Properties.bgSky1);
+
     stage.addChild(this.Properties.ground);
     stage.addChild(this.Properties.character);
     this.Properties.enemies.addEnemiesToStage(this.Properties.enemies, stage);
@@ -56,6 +58,8 @@ Scroller.prototype.updateViewport = function() {
     this.Properties.viewportX = this.Properties.viewportX + ScrollerGlobals.currentScrollSpeed;
 };
 Scroller.prototype.updateObjects = function() {
+    this.Properties.bgSky1.update(this.Properties.viewportX);
+    this.Properties.haze4.update(this.Properties.viewportX);
 /*
     this.Properties..update(this.Properties.viewportX);
     this.Properties..update(this.Properties.viewportX);
@@ -65,8 +69,6 @@ Scroller.prototype.updateObjects = function() {
     this.Properties..update(this.Properties.viewportX);
     this.Properties..update(this.Properties.viewportX);
     this.Properties..update(this.Properties.viewportX);*/
-
-    this.Properties.bgSky1.update(this.Properties.viewportX);
 
     this.Properties.ground.update(this.Properties.ground);
     this.Properties.character.update(this.Properties.character, this.Properties.ground);
