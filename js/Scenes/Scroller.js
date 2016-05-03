@@ -19,6 +19,8 @@ Scroller.prototype.initializePositionsAndScale = function() {
     this.Properties.hill1b10.setPositionAndScale(this.Properties.hill1b10);
     this.Properties.hill2a12.setPositionAndScale(this.Properties.hill2a12);
     this.Properties.hill2b13.setPositionAndScale(this.Properties.hill2b13);
+    this.Properties.hill3a15.setPositionAndScale(this.Properties.hill3a15);
+    this.Properties.hill3b16.setPositionAndScale(this.Properties.hill3b16);
     this.Properties.character.setPositionAndScale(this.Properties.character);
     this.Properties.enemies.setPositionAndScale(this.Properties.enemies);
     this.Properties.ground.setPositionAndScale(this.Properties.ground);
