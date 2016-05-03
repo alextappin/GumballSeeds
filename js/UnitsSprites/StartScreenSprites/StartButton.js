@@ -14,8 +14,8 @@ StartButton.prototype.constructStartButton = function() {
     this.initiateStartButtonSprites();
 };
 StartButton.prototype.setPositionAndScale = function(obj) {
-    ScalingGlobals.startButton1Ratio = HelperFunctions().getScreenRatioUsingHeight(obj.height,ScalingGlobals.startButton1PercentOfScreen);
-    obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.startButton1Ratio,ScalingGlobals.startButton1Ratio);
+    ScalingGlobals.startButtonRatios[this.Properties.spriteCount] = HelperFunctions().getScreenRatioUsingHeight(obj.height,ScalingGlobals.startButtonsPercentOfScreen[this.Properties.spriteCount]); //access array and grab correct ratios out of array
+    obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.startButtonRatios[this.Properties.spriteCount],ScalingGlobals.startButtonRatios[this.Properties.spriteCount]);
     obj.position = HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(obj.width), HelperFunctions().getHeightGivenConstant(ScalingGlobals.titleStartYOffset, obj.height));
     obj.alpha = TimingGlobals.titleAlphaStart;
 };
@@ -23,7 +23,8 @@ StartButton.prototype.initiateStartButtonSprites = function() {
     this.Properties.textures.push(
         PIXI.Texture.fromFrame("startbutton1"),
         PIXI.Texture.fromFrame("startbutton2"),
-        PIXI.Texture.fromFrame("startbutton3")
+        PIXI.Texture.fromFrame("startbutton3"),
+        PIXI.Texture.fromFrame("startbutton4")
     );
     var sprite = new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]);
     this.handleClickEvents(sprite);
@@ -46,6 +47,33 @@ StartButton.prototype.updateOpacity = function(startButtonObj) {
             startButtonObj.alpha += TimingGlobals.titleStartAlphaIncrement;
         }
     }
+};
+
+StartButton.prototype.updateClickedStartTextures = function(startButtonObj) {
+    if (this.Properties.spriteCount < this.Properties.textures.length - 1) {
+        if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
+            this.Properties.spriteCount++;
+            this.Properties.changeSpriteCounter = 0;
+            this.nextClickedStartSprite(startButtonObj);
+        } else {
+            this.Properties.changeSpriteCounter++;
+        }
+
+        if (this.Properties.spriteCount == this.Properties.textures.length-1) { //if the last sprite has been displated... start the gumball animation
+            TimingGlobals.startAnimation = true;
+        }
+    }
+    else {
+        startButtonObj.alpha = 0;
+    }
+};
+
+StartButton.prototype.nextClickedStartSprite = function(startButtonObj) {
+    startButtonObj.children[0].texture = this.Properties.textures[this.Properties.spriteCount];
+    ScalingGlobals.startButtonRatios[this.Properties.spriteCount] = HelperFunctions().getScreenRatioUsingHeight(startButtonObj.height,ScalingGlobals.startButtonsPercentOfScreen[this.Properties.spriteCount]); //access array and grab correct ratios out of array
+    startButtonObj.scale = HelperFunctions().getNewPoint(ScalingGlobals.startButtonRatios[this.Properties.spriteCount],ScalingGlobals.startButtonRatios[this.Properties.spriteCount]);
+    startButtonObj.position = HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(startButtonObj.width), HelperFunctions().getHeightGivenConstant(ScalingGlobals.titleStartYOffset, startButtonObj.height));
+    startButtonObj.alpha = 1;
 };
 
 StartButton.prototype.hideStart = function(startButtonObj) {
