@@ -12,6 +12,8 @@ function ScrollerProperties() {
         hill1a9 : new Hill1a9(),
         hill1b10 : new Hill1b10(),
         haze11 : new Haze11(),
+        hill2a12 : new Hill2a12(),
+        hill2b13 : new Hill2b13(),
         ground : new Ground(),
         character : new Character(),
         gumballs : new GumballsHandler(),
