@@ -25,11 +25,11 @@ var ScrollerGlobals = (function ScrollerGlobals() {
     constants.deltaX11 = 0.114;
     constants.deltaX12 = 0.124;
     constants.deltaX13 = 0.124;
-    constants.deltaX14 = 0.144;
-    constants.deltaX15 = 0.154;
-    constants.deltaX16 = 0.164;
-    constants.deltaX17 = 0.174;
-    constants.deltaX18 = 0.184;
+    constants.deltaX14 = 0.134;
+    constants.deltaX15 = 0.144;
+    constants.deltaX16 = 0.154;
+    constants.deltaX17 = 0.164;
+    constants.deltaX18 = 0.174;
 
     constants.cloudRandomYStart = 1;
     constants.cloudRandomYEnd = MapGlobals.screenHeight/2;
@@ -41,6 +41,7 @@ var ScrollerGlobals = (function ScrollerGlobals() {
     constants.hill2bY = MapGlobals.screenHeight*.42;
 
     constants.haze11Y = MapGlobals.screenHeight*.3;
+    constants.haze14Y = MapGlobals.screenHeight*.2;
     constants.mid2DeltaX = 0.29;
 
     return constants;
