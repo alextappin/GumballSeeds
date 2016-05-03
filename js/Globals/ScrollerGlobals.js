@@ -37,6 +37,8 @@ var ScrollerGlobals = (function ScrollerGlobals() {
 
     constants.hill1aY = MapGlobals.screenHeight*.55; // 60% down the screen put the hill1
     constants.hill1bY = MapGlobals.screenHeight*.685;
+    constants.hill2aY = MapGlobals.screenHeight*.20; // 60% down the screen put the hill1
+    constants.hill2bY = MapGlobals.screenHeight*.20;
 
     constants.haze11Y = MapGlobals.screenHeight*.3;
     constants.mid2DeltaX = 0.29;
