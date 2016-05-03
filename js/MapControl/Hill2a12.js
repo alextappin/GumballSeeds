@@ -22,7 +22,7 @@ Hill2a12.prototype.update = function(obj, newViewportX) {
     if (obj.position.x <= 0 - obj.width) { //if its all the way off the left side of the screen, get new position
         this.getNewPosition(obj);
     }
-    obj.position.x -= ((newViewportX - obj.viewportX) * ScrollerGlobals.deltaX12); //distance traveled * change
+    obj.position.x -= ((newViewportX - obj.viewportX) * ScrollerGlobals.deltaXhill2); //distance traveled * change
     obj.viewportX = newViewportX;
 };
 
