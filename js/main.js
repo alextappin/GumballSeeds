@@ -14,7 +14,7 @@ Main.prototype.loadSpriteSheet = function() {
         "../resources/StartButton.json", "../resources/trans.json",
 
         "../updatedImages/titleScreen/startButtons.json", "../updatedImages/titleScreen/startrainbowanimations.json",
-        "../updatedImages/titleScreen/title.json", "../updatedImages/titleScreen/titleBG.json", "../updatedImages/map/gumballs.json",
+        "../updatedImages/titleScreen/title.json", "../updatedImages/titleScreen/titleWords.json", "../updatedImages/titleScreen/titleBG.json", "../updatedImages/map/gumballs.json",
         "../updatedImages/map/skyhaze1.json", "../updatedImages/map/clouds.json"],
         loader = new PIXI.loaders.Loader();
     loader.add(assetsToLoad).load(this.spriteSheetLoaded.bind(this))
