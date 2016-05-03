@@ -154,5 +154,10 @@ function HelperFunctions() {
             return MapGlobals.screenHeight / height;
         }
     };
+
+    functions.calculateCloudScale = function(posY) {
+        return (1-(posY / MapGlobals.screenHeight))/ScrollerGlobals.cloudScaleConst;
+    };
+
     return functions;
 }
