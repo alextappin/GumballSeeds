@@ -33,6 +33,8 @@ var ScrollerGlobals = (function ScrollerGlobals() {
 
     constants.cloudRandomYStart = 0;
     constants.cloudRandomYEnd = MapGlobals.screenHeight/2;
+    constants.cloudScaleStart = .02;
+    constants.cloudScaleEnd = .2;
 
     constants.mid2DeltaX = 0.29;
 
