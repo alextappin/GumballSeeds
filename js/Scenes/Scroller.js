@@ -12,6 +12,15 @@ function Scroller(stage) {
     HelperFunctions().stopTitleSound();
 }
 Scroller.prototype.initializePositionsAndScale = function() {
+    this.Properties.cloud5.setPositionAndScale(this.Properties.cloud5);
+    this.Properties.cloud6.setPositionAndScale(this.Properties.cloud6);
+    this.Properties.cloud7.setPositionAndScale(this.Properties.cloud7);
+    this.Properties.hill1a9.setPositionAndScale(this.Properties.hill1a9);
+    this.Properties.hill1b10.setPositionAndScale(this.Properties.hill1b10);
+    this.Properties.hill2a12.setPositionAndScale(this.Properties.hill2a12);
+    this.Properties.hill2b13.setPositionAndScale(this.Properties.hill2b13);
+    this.Properties.hill3a15.setPositionAndScale(this.Properties.hill3a15);
+    this.Properties.hill3b16.setPositionAndScale(this.Properties.hill3b16);
     this.Properties.character.setPositionAndScale(this.Properties.character);
     this.Properties.enemies.setPositionAndScale(this.Properties.enemies);
     this.Properties.ground.setPositionAndScale(this.Properties.ground);
@@ -19,9 +28,28 @@ Scroller.prototype.initializePositionsAndScale = function() {
     this.Properties.gumballs.setPositionAndScale(this.Properties.gumballs);
 };
 Scroller.prototype.constructScroller = function(stage) {
-    stage.addChild(this.Properties.far);
-    stage.addChild(this.Properties.mid);
-    stage.addChild(this.Properties.mid2);
+    stage.addChild(this.Properties.bgSky1);
+    stage.addChild(this.Properties.haze4);
+    stage.addChild(this.Properties.cloud5);
+    stage.addChild(this.Properties.cloud6);
+    stage.addChild(this.Properties.cloud7);
+    stage.addChild(this.Properties.gumballMachine8);
+    stage.addChild(this.Properties.hill1a9);
+    stage.addChild(this.Properties.hill1b10);
+    stage.addChild(this.Properties.haze11);
+    stage.addChild(this.Properties.hill2a12);
+    stage.addChild(this.Properties.hill2b13);
+    stage.addChild(this.Properties.haze14);
+    stage.addChild(this.Properties.hill3a15);
+    stage.addChild(this.Properties.hill3b16);
+    /*;
+    stage.addChild(this.Properties.);
+    stage.addChild(this.Properties.);
+    stage.addChild(this.Properties.);
+    stage.addChild(this.Properties.);
+    stage.addChild(this.Properties.);
+    stage.addChild(this.Properties.);*/
+
     stage.addChild(this.Properties.ground);
     stage.addChild(this.Properties.character);
     this.Properties.enemies.addEnemiesToStage(this.Properties.enemies, stage);
@@ -51,9 +79,30 @@ Scroller.prototype.updateViewport = function() {
     this.Properties.viewportX = this.Properties.viewportX + ScrollerGlobals.currentScrollSpeed;
 };
 Scroller.prototype.updateObjects = function() {
-    this.Properties.far.update(this.Properties.viewportX);
-    this.Properties.mid.update(this.Properties.viewportX);
-    this.Properties.mid2.update(this.Properties.viewportX);
+    this.Properties.bgSky1.update(this.Properties.viewportX);
+    this.Properties.haze4.update(this.Properties.viewportX);
+    this.Properties.cloud5.update(this.Properties.cloud5, this.Properties.viewportX);
+    this.Properties.cloud6.update(this.Properties.cloud6, this.Properties.viewportX);
+    this.Properties.cloud7.update(this.Properties.cloud7, this.Properties.viewportX);
+    this.Properties.gumballMachine8.update(this.Properties.viewportX);
+    this.Properties.hill1a9.update(this.Properties.hill1a9, this.Properties.viewportX);
+    this.Properties.hill1b10.update(this.Properties.hill1b10, this.Properties.viewportX);
+    this.Properties.haze11.update(this.Properties.viewportX);
+    this.Properties.hill2a12.update(this.Properties.hill2a12, this.Properties.viewportX);
+    this.Properties.hill2b13.update(this.Properties.hill2b13, this.Properties.viewportX);
+    this.Properties.haze11.update(this.Properties.viewportX);
+    this.Properties.hill3a15.update(this.Properties.hill3a15, this.Properties.viewportX);
+    this.Properties.hill3b16.update(this.Properties.hill3b16, this.Properties.viewportX);
+    /*
+
+        this.Properties..update(this.Properties.viewportX);
+        this.Properties..update(this.Properties.viewportX);
+        this.Properties..update(this.Properties.viewportX);
+        this.Properties..update(this.Properties.viewportX);
+        this.Properties..update(this.Properties.viewportX);
+        this.Properties..update(this.Properties.viewportX);
+        this.Properties..update(this.Properties.viewportX);*/
+
     this.Properties.ground.update(this.Properties.ground);
     this.Properties.character.update(this.Properties.character, this.Properties.ground);
     this.Properties.gumballs.update(this.Properties.gumballs, this.Properties.ground, this.Properties.character, this.getStage());
@@ -69,9 +118,6 @@ Scroller.prototype.updateViewportPowerUp = function() {
     this.Properties.viewportX = this.Properties.viewportX + ScrollerGlobals.currentScrollSpeed;
 };
 Scroller.prototype.updateObjectsPowerUp = function() {
-    this.Properties.far.update(this.Properties.viewportX);
-    this.Properties.mid.update(this.Properties.viewportX);
-    this.Properties.mid2.update(this.Properties.viewportX);
     this.Properties.ground.updatePowerUp(this.Properties.ground);
     this.Properties.character.updatePowerUp(this.Properties.character, this.Properties.ground);
     this.Properties.gumballs.updatePowerUp(this.Properties.gumballs, this.Properties.ground, this.Properties.character, this.getStage());

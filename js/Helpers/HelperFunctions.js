@@ -9,6 +9,11 @@ function HelperFunctions() {
         return Math.floor((Math.random() * endRange) + startRange);
     };
 
+    functions.getRandomDecimalNumber = function(startRange, endRange) {
+        //Will return a random number from startRange to endRange (decimal)
+        return (Math.random() * endRange) + startRange;
+    };
+
     functions.getNewPoint = function(x, y) {
         return {x : x, y : y};
     };
@@ -149,5 +154,10 @@ function HelperFunctions() {
             return MapGlobals.screenHeight / height;
         }
     };
+
+    functions.calculateCloudScale = function(posY) {
+        return (1-(posY / MapGlobals.screenHeight))/ScrollerGlobals.cloudScaleConst;
+    };
+
     return functions;
 }
