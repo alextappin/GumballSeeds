@@ -13,7 +13,7 @@ Main.prototype.loadSpriteSheet = function() {
         "../resources/gumballStem.json", "../resources/loadImage.json", "../resources/powerBar.json",
         "../resources/StartButton.json", "../resources/trans.json",
 
-        "../updatedImages/titleScreen/startButtons.json", "../updatedImages/titleScreen/startrainbowanimations.json",
+        "../updatedImages/titleScreen/startButtons.json", "../updatedImages/titleScreen/startrainbowanimations.json","../updatedImages/titleScreen/startrainbowanimationwhite.json",
         "../updatedImages/titleScreen/titleWords.json", "../updatedImages/titleScreen/titleBG.json", "../updatedImages/map/gumballs.json",
         "../updatedImages/map/skyhaze1.json", "../updatedImages/map/clouds.json", "../updatedImages/map/gumballMachine.json",
         "../updatedImages/map/hill1.json", "../updatedImages/map/hill2.json", "../updatedImages/map/hazes.json",
