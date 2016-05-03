@@ -16,6 +16,6 @@ GumballMachine8.constructor = GumballMachine8;
 GumballMachine8.prototype = Object.create(PIXI.extras.TilingSprite.prototype);
 
 GumballMachine8.prototype.update = function(newViewportX) {
-    this.tilePosition.x -= ((newViewportX - this.viewportX) * ScrollerGlobals.deltaX1); //distance traveled * change
+    this.tilePosition.x -= ((newViewportX - this.viewportX) * ScrollerGlobals.deltaX8); //distance traveled * change
     this.viewportX = newViewportX;
 };
