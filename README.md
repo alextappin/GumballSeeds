@@ -12,7 +12,7 @@ The University I am attending is [Oregon Institute of Technology.](http://www.oi
    * **z** : *Build Number* Includes *hotfixes* and other *bug fixes*
 
 ##v0.1.0
-* Basic map is completed.
+* Basic map is completed. test
 * Background, middleground and foreground is in place.
 
 ##v0.0.0
