@@ -91,8 +91,8 @@ Scroller.prototype.updateObjects = function() {
     this.Properties.hill2a12.update(this.Properties.hill2a12, this.Properties.viewportX);
     this.Properties.hill2b13.update(this.Properties.hill2b13, this.Properties.viewportX);
     this.Properties.haze14.update(this.Properties.viewportX);
-    this.Properties.hill3a15.update(this.Properties.hill3a15, this.Properties.viewportX);
-    this.Properties.hill3b16.update(this.Properties.hill3b16, this.Properties.viewportX);
+    this.Properties.hill3a15.update(this.Properties.hill3a15, this.Properties.viewportX, this.Properties.hill3b16);
+    this.Properties.hill3b16.update(this.Properties.hill3b16, this.Properties.viewportX, this.Properties.hill3a15);
     /*
 
         this.Properties..update(this.Properties.viewportX);

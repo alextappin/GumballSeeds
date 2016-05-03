@@ -18,14 +18,14 @@ Hill3a15.prototype.setPositionAndScale = function(obj) {
     obj.scale = HelperFunctions().getNewPoint(scale, scale);
 };
 
-Hill3a15.prototype.update = function(obj, newViewportX) {
+Hill3a15.prototype.update = function(obj, newViewportX, bObj) {
     if (obj.position.x <= 0 - obj.width) { //if its all the way off the left side of the screen, get new position
-        this.getNewPosition(obj);
+        this.getNewPosition(obj, bObj);
     }
     obj.position.x -= ((newViewportX - obj.viewportX) * ScrollerGlobals.deltaXhill3); //distance traveled * change
     obj.viewportX = newViewportX;
 };
 
-Hill3a15.prototype.getNewPosition = function(obj) {
-    obj.position.x = (MapGlobals.screenWidth);
+Hill3a15.prototype.getNewPosition = function(obj, bObj) {
+    obj.position.x = (bObj.position.x + bObj.width);
 };
