@@ -27,5 +27,5 @@ Hill2b13.prototype.update = function(obj, newViewportX) {
 };
 
 Hill2b13.prototype.getNewPosition = function(obj) {
-    obj.position.x = (MapGlobals.screenWidth);
+    obj.position.x = (MapGlobals.screenWidth - 1);
 };
