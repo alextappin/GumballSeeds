@@ -16,6 +16,7 @@ var MapGlobals = (function MapGlobals() {
     constants.titleString = "Title";
     constants.startAnimationString = "StartAnimation";
     constants.startAnimationSprites = 2;
+    constants.groundSlices = 3;
 
     return constants;
 })();
