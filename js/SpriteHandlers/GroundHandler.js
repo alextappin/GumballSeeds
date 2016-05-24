@@ -3,15 +3,28 @@
  */
 function GroundHandler() {
     //array of gumball objects
-    this.ground = [];
+    this.groundObjects = {
+        startA : [],
+        startB : [],
+        groundA : [],
+        groundB : [],
+        endA : [],
+        endB : []
+    };
+
     this.constructGround();
 }
 
 GroundHandler.constructor = GroundHandler;
 
 GroundHandler.prototype.constructGround = function() {
-    for (var n = 0; n < BalanceGlobals.ground; n++) {
-        this.ground.push(new Ground());
+    for (var n = 0; n < MapGlobals.groundSlices; n++) {
+        this.groundObjects.startA.push(new Ground('17 ground1start'));
+        this.groundObjects.startB.push(new Ground('17 ground1start b'));
+        this.groundObjects.groundA.push(new Ground('17 ground1a'));
+        this.groundObjects.groundB.push(new Ground('17 ground1b'));
+        this.groundObjects.endA.push(new Ground('17 ground1end'));
+        this.groundObjects.endB.push(new Ground('17 ground1end b'));
     }
 };
 
