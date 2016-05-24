@@ -1,16 +1,17 @@
 /**
  * Created by ajt on 4/10/2016.
  */
-function Ground() {
+function Ground(groundType) {
     PIXI.Container.call(this);
-    this.constructGround();
+    this.constructGround(groundType);
 }
 
 Ground.constructor = Ground;
 Ground.prototype = Object.create(PIXI.Container.prototype);
 
-Ground.prototype.constructGround = function() {
+Ground.prototype.constructGround = function(groundType) {
     this.Properties = new GroundProperties();
+    this.Properties.type = groundType;
     this.initiateGroundSprites();
 };
 Ground.prototype.setPositionAndScale = function(obj) {
