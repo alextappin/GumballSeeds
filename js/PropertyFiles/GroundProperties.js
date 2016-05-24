@@ -5,6 +5,7 @@ function GroundProperties() {
     var props = {
         sprites : [],
         textures : [],
+        type : 'default',
         //4 sprites for the ground. The textures of each will be changing
         numberOfSprites : 0,
         numberStartingSprites : 8,
