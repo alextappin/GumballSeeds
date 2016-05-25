@@ -27,6 +27,12 @@ var ScalingGlobals = (function ScalingGlobals() {
 
     constants.cloudsPercentOfScreen = [0.05,0.10,0.15];
 
+    constants.groundMainRatio = 0;
+    constants.groundEndStartRatio = 0;
+
+    constants.groundMainPercentOfScreen = .05;
+    constants.groundEndStartPercentOfScreen = .1;
+
 
     return constants;
 })();

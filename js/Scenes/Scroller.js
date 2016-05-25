@@ -49,8 +49,7 @@ Scroller.prototype.constructScroller = function(stage) {
     stage.addChild(this.Properties.);
     stage.addChild(this.Properties.);
     stage.addChild(this.Properties.);*/
-
-    stage.addChild(this.Properties.ground);
+    this.Properties.ground.addGroundToStage(this.Properties.ground, stage);
     stage.addChild(this.Properties.character);
     this.Properties.enemies.addEnemiesToStage(this.Properties.enemies, stage);
     this.Properties.gumballs.addGumballsToStage(this.Properties.gumballs, stage);

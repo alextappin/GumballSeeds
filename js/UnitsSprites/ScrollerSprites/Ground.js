@@ -12,45 +12,36 @@ Ground.prototype = Object.create(PIXI.Container.prototype);
 Ground.prototype.constructGround = function(groundType) {
     this.Properties = new GroundProperties();
     this.Properties.type = groundType;
-    this.initiateGroundSprites();
+    this.initiateGroundSprite();
 };
+
 Ground.prototype.setPositionAndScale = function(obj) {
-    if (this.Properties.type == MapGlobals.groundA || this.Properties.type == MapGlobals.groundB) {
-        //one of the main ground slices
+    if (this.Properties.type != MapGlobals.groundA || this.Properties.type != MapGlobals.groundB) {
+        //end or start pieces. #pragma since this happens more often...
+        ScalingGlobals.groundEndStartRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height,ScalingGlobals.groundEndStartPercentOfScreen); //access array and grab correct ratios out of array
+        obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.groundEndStartRatio,ScalingGlobals.groundEndStartRatio);
+        obj.visible = false;
 
     } else {
-        //end or start pieces
-
+        //one of the main ground slices
+        ScalingGlobals.groundMainRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height,ScalingGlobals.groundMainPercentOfScreen); //access array and grab correct ratios out of array
+        obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.groundMainRatio,ScalingGlobals.groundMainRatio);
+        obj.visible = false;
     }
+};
 
-    obj.position =  HelperFunctions().getNewPoint(obj.width * i, this.Properties.positionY);
-    obj.scale = HelperFunctions().getNewPoint(1,1);
+Ground.prototype.initiateGroundSprite = function() {
+    this.addChild(new PIXI.Sprite(PIXI.Texture.fromFrame(this.Properties.type)));
+};
 
-};
-Ground.prototype.initiateGroundSprites = function() {
-    this.Properties.textures.push(
-        PIXI.Texture.fromFrame("fg5New")
-    );
-    //will have around 4 sprites for the ground. The ground will be moving. In the future, it may be better to have 2...
-    for (var i = 0; i < this.Properties.numberStartingSprites; i++) {
-        this.createSprite();
-    }
-
-};
-Ground.prototype.createSprite = function() {
-    this.Properties.sprites.push(new PIXI.Sprite(this.Properties.textures[0]));
-    this.Properties.numberOfSprites++;
-    this.addChild(this.Properties.sprites[this.Properties.numberOfSprites-1]);
-};
-Ground.prototype.setSpriteToCurrentTexture = function() {
-    this.Properties.sprite.texture = this.Properties.textures[this.Properties.spriteCount];
-};
 Ground.prototype.update = function(obj) {
     this.updateSprites(obj);
 };
+
 Ground.prototype.updatePowerUp = function(obj) {
     this.updateSprites(obj);
 };
+
 Ground.prototype.updateSprites = function(obj) {
     for (var i = 0; i < this.Properties.numberOfSprites; i++) {
         if (obj.children[i].position.x < (0-obj.children[i].width)) {

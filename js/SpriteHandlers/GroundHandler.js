@@ -11,7 +11,16 @@ function GroundHandler() {
         endA : [],
         endB : []
     };
+    this.groundInUse = {
+        startA : [],
+        startB : [],
+        groundA : [],
+        groundB : [],
+        endA : [],
+        endB : []
+    };
 
+    this.groundStructure = [];
     this.constructGround();
 }
 
@@ -29,19 +38,43 @@ GroundHandler.prototype.constructGround = function() {
 };
 
 GroundHandler.prototype.setPositionAndScale = function(GroundHandler) {
-    for (var n = 0; n < GroundHandler.ground.length; n++) {
-        GroundHandler.ground[n].setPositionAndScale(GroundHandler.ground[n]);
+    for (var n = 0; n < MapGlobals.groundSlices; n++) {
+        GroundHandler.groundObjects.startA[n].setPositionAndScale(GroundHandler.groundObjects.startA[n]);
+        GroundHandler.groundObjects.startB[n].setPositionAndScale(GroundHandler.groundObjects.startB[n]);
+        GroundHandler.groundObjects.groundA[n].setPositionAndScale(GroundHandler.groundObjects.groundA[n]);
+        GroundHandler.groundObjects.groundB[n].setPositionAndScale(GroundHandler.groundObjects.groundB[n]);
+        GroundHandler.groundObjects.endA[n].setPositionAndScale(GroundHandler.groundObjects.endA[n]);
+        GroundHandler.groundObjects.endB[n].setPositionAndScale(GroundHandler.groundObjects.endB[n]);
     }
 };
 
-GroundHandler.prototype.addWallsToStage = function(GroundHandler, stage) {
-    for (var n = 0; n < GroundHandler.ground.length; n++) {
-        stage.addChild(GroundHandler.ground[n]);
+GroundHandler.prototype.addGroundToStage = function(GroundHandler, stage) {
+    for (var n = 0; n < MapGlobals.groundSlices; n++) {
+        stage.addChild(GroundHandler.groundObjects.startA[n]);
+        stage.addChild(GroundHandler.groundObjects.startB[n]);
+        stage.addChild(GroundHandler.groundObjects.groundA[n]);
+        stage.addChild(GroundHandler.groundObjects.groundB[n]);
+        stage.addChild(GroundHandler.groundObjects.endA[n]);
+        stage.addChild(GroundHandler.groundObjects.endB[n]);
     }
+
+    this.groundStructure.push(
+        GroundHandler.groundObjects.groundA.pop(),
+        GroundHandler.groundObjects.groundB.pop(),
+        GroundHandler.groundObjects.groundA.pop(),
+        GroundHandler.groundObjects.groundB.pop()
+    );
+
 };
 
 GroundHandler.prototype.update = function(GroundHandler, groundObj, characterObj, stage) {
-    for (var n = 0; n < BalanceGlobals.ground; n++) {
+    for (var n = 0; n < MapGlobals.groundSlices; n++) {
+
+    }
+
+
+
+    for ( n = 0; n < BalanceGlobals.ground; n++) {
         if (GroundHandler.ground[n]) {
             GroundHandler.ground[n].update(GroundHandler.ground[n], groundObj, characterObj);
         } else {
