@@ -19,12 +19,12 @@ GroundHandler.constructor = GroundHandler;
 
 GroundHandler.prototype.constructGround = function() {
     for (var n = 0; n < MapGlobals.groundSlices; n++) {
-        this.groundObjects.startA.push(new Ground('17 ground1start'));
-        this.groundObjects.startB.push(new Ground('17 ground1start b'));
-        this.groundObjects.groundA.push(new Ground('17 ground1a'));
-        this.groundObjects.groundB.push(new Ground('17 ground1b'));
-        this.groundObjects.endA.push(new Ground('17 ground1end'));
-        this.groundObjects.endB.push(new Ground('17 ground1end b'));
+        this.groundObjects.startA.push(new Ground(MapGlobals.groundStartA));
+        this.groundObjects.startB.push(new Ground(MapGlobals.groundStartB));
+        this.groundObjects.groundA.push(new Ground(MapGlobals.groundA));
+        this.groundObjects.groundB.push(new Ground(MapGlobals.groundB));
+        this.groundObjects.endA.push(new Ground(MapGlobals.groundEndA));
+        this.groundObjects.endB.push(new Ground(MapGlobals.groundEndB));
     }
 };
 

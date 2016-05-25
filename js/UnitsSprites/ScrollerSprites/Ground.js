@@ -15,10 +15,17 @@ Ground.prototype.constructGround = function(groundType) {
     this.initiateGroundSprites();
 };
 Ground.prototype.setPositionAndScale = function(obj) {
-    for (var i = 0; i < this.Properties.numberOfSprites; i++) {
-        obj.children[i].position =  HelperFunctions().getNewPoint(obj.children[i].width * i, this.Properties.positionY);
-        obj.children[i].scale = HelperFunctions().getNewPoint(1,1);
+    if (this.Properties.type == MapGlobals.groundA || this.Properties.type == MapGlobals.groundB) {
+        //one of the main ground slices
+
+    } else {
+        //end or start pieces
+
     }
+
+    obj.position =  HelperFunctions().getNewPoint(obj.width * i, this.Properties.positionY);
+    obj.scale = HelperFunctions().getNewPoint(1,1);
+
 };
 Ground.prototype.initiateGroundSprites = function() {
     this.Properties.textures.push(
