@@ -11,16 +11,8 @@ function GroundHandler() {
         endA : [],
         endB : []
     };
-    this.groundInUse = {
-        startA : [],
-        startB : [],
-        groundA : [],
-        groundB : [],
-        endA : [],
-        endB : []
-    };
-
     this.groundStructure = [];
+
     this.constructGround();
 }
 
