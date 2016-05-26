@@ -27,11 +27,24 @@ Character.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("gbs run2"),
         PIXI.Texture.fromFrame("gbs run3")
     );
+    this.Properties.jumpTextures.push(
+        PIXI.Texture.fromFrame("gbs j1"),
+        PIXI.Texture.fromFrame("gbs j2"),
+        PIXI.Texture.fromFrame("gbs j3"),
+        PIXI.Texture.fromFrame("gbs j4"),
+        PIXI.Texture.fromFrame("gbs j5"),
+        PIXI.Texture.fromFrame("gbs j6"),
+        PIXI.Texture.fromFrame("gbs j7")
+    );
     //this.Properties.sprite = new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]);
     this.addChild(new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]));
 };
 Character.prototype.setSpriteToCurrentTexture = function(characterObj) {
-    characterObj.children[0].texture = this.Properties.textures[this.Properties.spriteCount];
+    if (PhysicsGlobals.characterAirborn) {
+        characterObj.children[0].texture = this.Properties.jumpTextures[this.Properties.jumpSpriteCount];
+    } else {
+        characterObj.children[0].texture = this.Properties.textures[this.Properties.spriteCount];
+    }
 };
 Character.prototype.update = function(characterObj, groundObj) {
     this.updateSprites(characterObj);
@@ -55,11 +68,19 @@ Character.prototype.updateSprites = function(characterObj) {
 Character.prototype.nextSprite = function(characterObj) {
     //Set ternary
     //TODO dont use ==5 instead use the maximum number of textures the character has
-    if (this.Properties.spriteCount == this.Properties.textures.length-1) {
-        this.Properties.spriteCount = 0;
-    }
-    else {
-        this.Properties.spriteCount++;
+    if (PhysicsGlobals.characterAirborn) {
+        if (this.Properties.jumpSpriteCount >= this.Properties.jumpTextures.length - 1) {
+        }
+        else {
+            this.Properties.jumpSpriteCount++;
+        }
+    } else {
+        if (this.Properties.spriteCount >= this.Properties.textures.length - 1) {
+            this.Properties.spriteCount = 0;
+        }
+        else {
+            this.Properties.spriteCount++;
+        }
     }
     this.setSpriteToCurrentTexture(characterObj);
 };
@@ -90,6 +111,7 @@ Character.prototype.fall = function(characterObj, groundHeight) {
         characterObj.position.y = groundHeight - characterObj.height/2 - 10;
         PhysicsGlobals.characterVelocityY = 0;
         PhysicsGlobals.characterAirborn = false;
+        this.Properties.jumpSpriteCount = 0;
     }
     //falling
     else {
