@@ -25,8 +25,7 @@ Ground.prototype.setPositionAndScale = function(obj) {
         ScalingGlobals.groundMainRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height,ScalingGlobals.groundMainPercentOfScreen); //access array and grab correct ratios out of array
         obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.groundMainRatio,ScalingGlobals.groundMainRatio);
     }
-    obj.position = 0;
-    obj.visible = false;
+    obj.position = HelperFunctions().getNewPoint(0, 0);
 };
 
 Ground.prototype.initiateGroundSprite = function() {
@@ -42,6 +41,7 @@ Ground.prototype.updatePowerUp = function(obj) {
 };
 
 Ground.prototype.updateSprites = function(obj) {
+    obj.position.x -= ScrollerGlobals.groundSpeed;/*
     for (var i = 0; i < this.Properties.numberOfSprites; i++) {
         if (obj.children[i].position.x < (0-obj.children[i].width)) {
             if (this.doGapAndHeight()) {
@@ -58,7 +58,7 @@ Ground.prototype.updateSprites = function(obj) {
         else {
             obj.children[i].position.x -= ScrollerGlobals.groundSpeed;
         }
-    }
+    }*/
 };
 Ground.prototype.calcuateNewPosition = function(obj, currentElement) {
     var lastElementChanged = currentElement - 1 < 0 ? obj.children.length-1 : currentElement - 1;

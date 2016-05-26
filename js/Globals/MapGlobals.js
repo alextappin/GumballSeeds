@@ -23,6 +23,7 @@ var MapGlobals = (function MapGlobals() {
     constants.groundB = "17 ground1b";
     constants.groundEndA = "17 ground1end";
     constants.groundEndB = "17 ground1end b";
+    constants.groundY = .7; //30% of screen height...
 
     return constants;
 })();
