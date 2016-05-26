@@ -17,7 +17,7 @@ Main.prototype.loadSpriteSheet = function() {
         "../updatedImages/titleScreen/titleWords.json", "../updatedImages/titleScreen/titleBG.json", "../updatedImages/map/gumballs.json",
         "../updatedImages/map/skyhaze1.json", "../updatedImages/map/clouds.json", "../updatedImages/map/gumballMachine.json",
         "../updatedImages/map/hill1.json", "../updatedImages/map/hill2.json", "../updatedImages/map/hazes.json",
-        "../updatedImages/map/hill3.json", "../updatedImages/map/ground17.json"],
+        "../updatedImages/map/hill3.json", "../updatedImages/map/ground17.json", "../updatedImages/character/characterRun.json"],
         loader = new PIXI.loaders.Loader();
     loader.add(assetsToLoad).load(this.spriteSheetLoaded.bind(this))
 };
