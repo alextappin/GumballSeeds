@@ -102,7 +102,7 @@ Scroller.prototype.updateObjects = function() {
         this.Properties..update(this.Properties.viewportX);
         this.Properties..update(this.Properties.viewportX);*/
 
-    this.Properties.ground.update(this.Properties.ground);
+    this.Properties.ground.update(this.Properties.ground, this.getStage());
     this.Properties.character.update(this.Properties.character, this.Properties.ground);
     this.Properties.gumballs.update(this.Properties.gumballs, this.Properties.ground, this.Properties.character, this.getStage());
     this.Properties.enemies.update(this.Properties.enemies, this.Properties.character, this.getStage());

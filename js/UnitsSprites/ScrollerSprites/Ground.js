@@ -16,7 +16,7 @@ Ground.prototype.constructGround = function(groundType) {
 };
 
 Ground.prototype.setPositionAndScale = function(obj) {
-    if (this.Properties.type != MapGlobals.groundA || this.Properties.type != MapGlobals.groundB) {
+    if (obj.Properties.type != MapGlobals.groundA && obj.Properties.type != MapGlobals.groundB) {
         //end or start pieces. #pragma since this happens more often...
         ScalingGlobals.groundEndStartRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height,ScalingGlobals.groundEndStartPercentOfScreen); //access array and grab correct ratios out of array
         obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.groundEndStartRatio,ScalingGlobals.groundEndStartRatio);

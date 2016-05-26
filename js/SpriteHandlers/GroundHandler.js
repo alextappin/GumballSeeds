@@ -62,7 +62,6 @@ GroundHandler.prototype.setupStartGround = function(groundHandler) {
             this.getNewPosition(groundHandler, n),
             MapGlobals.groundY * MapGlobals.screenHeight
         );
-        console.log(groundHandler.groundStructure[n].position);
     }
 };
 
@@ -74,30 +73,58 @@ GroundHandler.prototype.getNewPosition = function(groundHandler, index) {
     }
 };
 
-GroundHandler.prototype.update = function(groundHandler, groundObj, characterObj, stage) {
-
-    this.handleOffScreen(groundHandler);
+GroundHandler.prototype.update = function(groundHandler, stage) {
+    this.handleOffScreen(groundHandler, stage);
     for (var n = 0; n < groundHandler.groundStructure.length; n++) {
         groundHandler.groundStructure[n].update(groundHandler.groundStructure[n]);
     }
-
-    /*for (var n = 0; n < MapGlobals.groundSlices; n++) {
-
-    }
-
-
-
-    for ( n = 0; n < BalanceGlobals.ground; n++) {
-        if (GroundHandler.ground[n]) {
-            GroundHandler.ground[n].update(GroundHandler.ground[n], groundObj, characterObj);
-        } else {
-            this.addWall(BalanceGlobals.groundToAdd, stage, GroundHandler); //if there are not enough ground, add another
-        }
-    }*/
 };
 
-GroundHandler.prototype.handleOffScreen = function(groundHandler) {
+GroundHandler.prototype.handleOffScreen = function(groundHandler, stage) {
+    if (groundHandler.groundStructure[0].position.x < 0 - groundHandler.groundStructure[0].width) {
+        this.returnPiece(groundHandler.groundStructure.shift(), groundHandler, stage);
+        this.addNewGround(groundHandler, stage)
+    }
+};
 
+GroundHandler.prototype.addNewGround = function(groundHandler, stage) {
+    groundHandler.groundStructure.push(this.getNextPieceType(groundHandler));
+    groundHandler.groundStructure[groundHandler.groundStructure.length - 1].position =
+        HelperFunctions().getNewPoint(
+            this.getNewPosition(
+                groundHandler,
+                groundHandler.groundStructure.length - 1
+            ),
+            MapGlobals.groundY * MapGlobals.screenHeight
+        );
+    stage.addChild(groundHandler.groundStructure[groundHandler.groundStructure.length - 1]);
+};
+
+GroundHandler.prototype.getNextPieceType = function(groundHandler) {
+    if (groundHandler.groundObjects.groundA.length >= groundHandler.groundObjects.groundB.length) {
+        return groundHandler.groundObjects.groundA.pop();
+    } else {
+        return groundHandler.groundObjects.groundB.pop();
+    }
+};
+
+GroundHandler.prototype.returnPiece = function(piece, groundHandler, stage) {
+    //pushed the piece to the correct pooooool
+    stage.removeChild(piece);
+    switch(piece.Properties.type) {
+        case MapGlobals.groundA: groundHandler.groundObjects.groundA.push(piece);
+            break;
+        case MapGlobals.groundB: groundHandler.groundObjects.groundB.push(piece);
+            break;
+        case MapGlobals.groundStartA: groundHandler.groundObjects.startA.push(piece);
+            break;
+        case MapGlobals.groundStartB: groundHandler.groundObjects.startB.push(piece);
+            break;
+        case MapGlobals.groundEndA: groundHandler.groundObjects.endA.push(piece);
+            break;
+        case MapGlobals.groundEndB: groundHandler.groundObjects.endB.push(piece);
+            break;
+    }
 };
 
 GroundHandler.prototype.updatePowerUp = function(GroundHandler, groundObj, characterObj, stage) {

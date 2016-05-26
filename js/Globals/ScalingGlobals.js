@@ -30,7 +30,7 @@ var ScalingGlobals = (function ScalingGlobals() {
     constants.groundMainRatio = 0;
     constants.groundEndStartRatio = 0;
 
-    constants.groundMainPercentOfScreen = .05;
+    constants.groundMainPercentOfScreen = .15;
     constants.groundEndStartPercentOfScreen = .1;
 
 
