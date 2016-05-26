@@ -33,6 +33,8 @@ var ScalingGlobals = (function ScalingGlobals() {
     constants.groundMainPercentOfScreen = .15;
     constants.groundEndStartPercentOfScreen = .1;
 
+    constants.characterRatio = 0;
+    constants.chracterPercentOfScreen = .2;
 
     return constants;
 })();

@@ -16,17 +16,16 @@ Character.prototype.constructCharacter = function() {
     this.listenForAttackTrigger();
 };
 Character.prototype.setPositionAndScale = function(obj) {
+    ScalingGlobals.characterRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height,ScalingGlobals.chracterPercentOfScreen); //access array and grab correct ratios out of array
+    obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.characterRatio,ScalingGlobals.characterRatio);
     obj.position =  HelperFunctions().getNewPoint(ScalingGlobals.characterStartXScale, ScalingGlobals.characterStartYScale);
-    obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.characterScaleX, ScalingGlobals.characterScaleY);
+    //obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.characterScaleX, ScalingGlobals.characterScaleY);
 };
 Character.prototype.initiateCharacterSprites = function() {
     this.Properties.textures.push(
-        PIXI.Texture.fromFrame("sprite1"),
-        PIXI.Texture.fromFrame("sprite2"),
-        PIXI.Texture.fromFrame("sprite3"),
-        PIXI.Texture.fromFrame("sprite5"),
-        PIXI.Texture.fromFrame("sprite6"),
-        PIXI.Texture.fromFrame("sprite4")
+        PIXI.Texture.fromFrame("gbs run1"),
+        PIXI.Texture.fromFrame("gbs run2"),
+        PIXI.Texture.fromFrame("gbs run3")
     );
     //this.Properties.sprite = new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]);
     this.addChild(new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]));
@@ -56,7 +55,7 @@ Character.prototype.updateSprites = function(characterObj) {
 Character.prototype.nextSprite = function(characterObj) {
     //Set ternary
     //TODO dont use ==5 instead use the maximum number of textures the character has
-    if (this.Properties.spriteCount == 5) {
+    if (this.Properties.spriteCount == this.Properties.textures.length-1) {
         this.Properties.spriteCount = 0;
     }
     else {
@@ -67,7 +66,7 @@ Character.prototype.nextSprite = function(characterObj) {
 Character.prototype.characterGravity = function(characterObj, groundObj) {
     if (PhysicsGlobals.characterAirborn) {
         if (this.isFalling()) {
-            this.fall(characterObj, groundObj.getHeightAtPositionX(this.calculateCharacterFrontX(characterObj), groundObj));
+            this.fall(characterObj, groundObj.getHeightAtPositionX(characterObj.position.x, groundObj));
         }
         else {
             this.rise(characterObj);
@@ -82,13 +81,13 @@ Character.prototype.characterGravity = function(characterObj, groundObj) {
 Character.prototype.fall = function(characterObj, groundHeight) {
     this.startGravity();
     //passed ground
-    if(characterObj.position.y > groundHeight) {
+    if((characterObj.position.y + characterObj.height/2 - 10) > groundHeight) {
         //this.endGame();
         characterObj.position.y += PhysicsGlobals.characterVelocityY;
     }
     //landed
-    else if ((characterObj.position.y + PhysicsGlobals.characterVelocityY) > groundHeight) {
-        characterObj.position.y = groundHeight;
+    else if ((characterObj.position.y + characterObj.height/2 - 10 + PhysicsGlobals.characterVelocityY) > groundHeight) {
+        characterObj.position.y = groundHeight - characterObj.height/2 - 10;
         PhysicsGlobals.characterVelocityY = 0;
         PhysicsGlobals.characterAirborn = false;
     }
@@ -130,7 +129,8 @@ Character.prototype.calculateCharacterFrontX = function(characterObj) {
 };
 Character.prototype.calculateMapToCharacterHeightOffset = function(characterObj, groundY) {
     //if there is a height, return the offset, else null
-    return groundY ? groundY - characterObj.children[0].height/2 + 10: undefined;
+    return groundY - 80;
+    /*return groundY ? groundY - characterObj.children[0].height/2 + 10: undefined;*/
 };
 Character.prototype.attackCharacter = function() {
     if (BalanceGlobals.isAttacking) {

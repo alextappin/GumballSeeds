@@ -8,7 +8,7 @@ function CharacterProperties() {
         textures : [],
         spriteCount : 0,
         changeSpriteCounter : 0,
-        spriteSpeed : 8,
+        spriteSpeed : 7,
         powerUpPositionVelocity : -1,
         spaceBar : new KeyboardControl(32),
         ctrlButton : new KeyboardControl(17),
