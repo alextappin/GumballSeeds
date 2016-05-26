@@ -67,23 +67,23 @@ Character.prototype.nextSprite = function(characterObj) {
 Character.prototype.characterGravity = function(characterObj, groundObj) {
     if (PhysicsGlobals.characterAirborn) {
         if (this.isFalling()) {
-            this.fall(characterObj,this.calculateMapToCharacterHeightOffset(characterObj, groundObj.getHeightAtPositionX(this.calculateCharacterFrontX(characterObj))));
+            this.fall(characterObj, groundObj.getHeightAtPositionX(this.calculateCharacterFrontX(characterObj), groundObj));
         }
         else {
             this.rise(characterObj);
         }
     }
     //if there is no ground, notice ! sign, you will FALL
-    else if (!this.calculateMapToCharacterHeightOffset(characterObj, groundObj.getHeightAtPositionX(this.calculateCharacterFrontX(characterObj)))) {
+    else if (!this.calculateMapToCharacterHeightOffset(characterObj, groundObj.getHeightAtPositionX(this.calculateCharacterFrontX(characterObj), groundObj))) {
         PhysicsGlobals.characterAirborn = true;
-        this.fall(characterObj,this.calculateMapToCharacterHeightOffset(characterObj, groundObj.getHeightAtPositionX(this.calculateCharacterFrontX(characterObj))));
+        this.fall(characterObj,groundObj.getHeightAtPositionX(this.calculateCharacterFrontX(characterObj), groundObj));
     }
 };
 Character.prototype.fall = function(characterObj, groundHeight) {
     this.startGravity();
     //passed ground
     if(characterObj.position.y > groundHeight) {
-        this.endGame();
+        //this.endGame();
         characterObj.position.y += PhysicsGlobals.characterVelocityY;
     }
     //landed

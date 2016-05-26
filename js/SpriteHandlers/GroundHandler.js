@@ -57,6 +57,7 @@ GroundHandler.prototype.setupStartGround = function(groundHandler) {
         groundHandler.groundObjects.groundA.pop(),
         groundHandler.groundObjects.groundB.pop()
     );
+
     for (var n = 0; n < groundHandler.groundStructure.length; n++) {
         groundHandler.groundStructure[n].position = HelperFunctions().getNewPoint(
             this.getNewPosition(groundHandler, n),
@@ -67,17 +68,17 @@ GroundHandler.prototype.setupStartGround = function(groundHandler) {
 
 GroundHandler.prototype.getNewPosition = function(groundHandler, index) {
     if (index > 0) {
-        return groundHandler.groundStructure[index-1].width + groundHandler.groundStructure[index-1].position.x;
+        return groundHandler.groundStructure[index-1].width + groundHandler.groundStructure[index-1].position.x - ScrollerGlobals.groundSpeed;
     } else {
         return 0;
     }
 };
 
 GroundHandler.prototype.update = function(groundHandler, stage) {
-    this.handleOffScreen(groundHandler, stage);
     for (var n = 0; n < groundHandler.groundStructure.length; n++) {
         groundHandler.groundStructure[n].update(groundHandler.groundStructure[n]);
     }
+    this.handleOffScreen(groundHandler, stage);
 };
 
 GroundHandler.prototype.handleOffScreen = function(groundHandler, stage) {
@@ -97,7 +98,7 @@ GroundHandler.prototype.addNewGround = function(groundHandler, stage) {
             ),
             MapGlobals.groundY * MapGlobals.screenHeight
         );
-    stage.addChild(groundHandler.groundStructure[groundHandler.groundStructure.length - 1]);
+    stage.addChildAt(groundHandler.groundStructure[groundHandler.groundStructure.length - 1], MapGlobals.addGroundChildConst);
 };
 
 GroundHandler.prototype.getNextPieceType = function(groundHandler) {
@@ -127,23 +128,11 @@ GroundHandler.prototype.returnPiece = function(piece, groundHandler, stage) {
     }
 };
 
-GroundHandler.prototype.updatePowerUp = function(GroundHandler, groundObj, characterObj, stage) {
-    for (var n = 0; n < BalanceGlobals.ground; n++) {
-        if (GroundHandler.ground[n]) {
-            GroundHandler.ground[n].updatePowerUp(GroundHandler.ground[n], groundObj, characterObj);
-        }
-        //if there are not enough ground, add another
-        else {
-            this.addWall(BalanceGlobals.groundToAdd, stage, GroundHandler);
+GroundHandler.prototype.getHeightAtPositionX = function(posX, groundHandler) {
+    for (var n = 0; n < groundHandler.groundStructure.length; n++) {
+        if (groundHandler.groundStructure[n].position.x + groundHandler.groundStructure[n].width > posX) {
+            return groundHandler.groundStructure[n].position.y;
         }
     }
-};
-
-GroundHandler.prototype.addWall = function(numberToAdd, stage, GroundHandler) {
-    for (var n = 0; n < numberToAdd; n++) {
-        var ground = new Ground();
-        ground.setPositionAndScale(ground);
-        GroundHandler.ground.push(ground);
-        stage.addChild(ground);
-    }
+    return 0;
 };

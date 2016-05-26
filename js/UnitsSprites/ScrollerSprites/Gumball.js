@@ -70,9 +70,9 @@ Gumball.prototype.nextSprite = function() {
     this.setSpriteToCurrentTexture();
 };
 Gumball.prototype.getNewPosition = function(groundObj, gumballX) {
-    var groundHeight = groundObj.getHeightAtPositionX(gumballX);
+    var groundHeight = groundObj.getHeightAtPositionX(gumballX, groundObj);
     if (groundHeight) {
-        return HelperFunctions().getNewPoint(gumballX, groundHeight-this.Properties.yGumballOffsetWithMap);
+        return HelperFunctions().getNewPoint(gumballX, groundHeight - 20);
     }
     //recursion. If there is a gap, check another X
     return this.getNewPosition(groundObj, gumballX + 500);
