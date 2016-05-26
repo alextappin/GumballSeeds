@@ -40,23 +40,35 @@ GroundHandler.prototype.setPositionAndScale = function(GroundHandler) {
     }
 };
 
-GroundHandler.prototype.addGroundToStage = function(GroundHandler, stage) {
-    for (var n = 0; n < MapGlobals.groundSlices; n++) {
-        stage.addChild(GroundHandler.groundObjects.startA[n]);
-        stage.addChild(GroundHandler.groundObjects.startB[n]);
-        stage.addChild(GroundHandler.groundObjects.groundA[n]);
-        stage.addChild(GroundHandler.groundObjects.groundB[n]);
-        stage.addChild(GroundHandler.groundObjects.endA[n]);
-        stage.addChild(GroundHandler.groundObjects.endB[n]);
+GroundHandler.prototype.addGroundToStage = function(groundHandler, stage) {
+    this.setupStartGround(groundHandler);
+
+    for (var n = 0; n < groundHandler.groundStructure.length; n++) {
+        stage.addChild(groundHandler.groundStructure[n]);
     }
 
-    this.groundStructure.push(
-        GroundHandler.groundObjects.groundA.pop(),
-        GroundHandler.groundObjects.groundB.pop(),
-        GroundHandler.groundObjects.groundA.pop(),
-        GroundHandler.groundObjects.groundB.pop()
-    );
+};
 
+GroundHandler.prototype.setupStartGround = function(groundHandler) {
+    //starting groundStructure will just be A B A B
+    groundHandler.groundStructure.push(
+        groundHandler.groundObjects.groundA.pop(),
+        groundHandler.groundObjects.groundB.pop(),
+        groundHandler.groundObjects.groundA.pop(),
+        groundHandler.groundObjects.groundB.pop()
+    );
+    for (var n = 0; n < groundHandler.groundStructure.length; n++) {
+        groundHandler.groundStructure[n].position = GroundHandler.getNewPosition(groundHandler, n);
+    }
+};
+
+GroundHandler.prototype.getNewPosition = function(groundHandler, index) {
+    index--;
+    if (index >= 0) {
+        return value + groundHandler.groundObjects[index].width + groundHandler.groundObjects[index].position;
+    } else {
+        return 0;
+    }
 };
 
 GroundHandler.prototype.update = function(GroundHandler, groundObj, characterObj, stage) {

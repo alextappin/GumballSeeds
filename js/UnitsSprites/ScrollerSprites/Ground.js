@@ -20,14 +20,13 @@ Ground.prototype.setPositionAndScale = function(obj) {
         //end or start pieces. #pragma since this happens more often...
         ScalingGlobals.groundEndStartRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height,ScalingGlobals.groundEndStartPercentOfScreen); //access array and grab correct ratios out of array
         obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.groundEndStartRatio,ScalingGlobals.groundEndStartRatio);
-        obj.visible = false;
-
     } else {
         //one of the main ground slices
         ScalingGlobals.groundMainRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height,ScalingGlobals.groundMainPercentOfScreen); //access array and grab correct ratios out of array
         obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.groundMainRatio,ScalingGlobals.groundMainRatio);
-        obj.visible = false;
     }
+    obj.position = 0;
+    obj.visible = false;
 };
 
 Ground.prototype.initiateGroundSprite = function() {
