@@ -72,7 +72,7 @@ Gumball.prototype.nextSprite = function() {
 Gumball.prototype.getNewPosition = function(groundObj, gumballX) {
     var groundHeight = groundObj.getHeightAtPositionX(gumballX, groundObj);
     if (groundHeight) {
-        return HelperFunctions().getNewPoint(gumballX, groundHeight - 20);
+        return HelperFunctions().getNewPoint(gumballX, groundHeight);
     }
     //recursion. If there is a gap, check another X
     return this.getNewPosition(groundObj, gumballX + 500);

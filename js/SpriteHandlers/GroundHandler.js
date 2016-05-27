@@ -131,7 +131,7 @@ GroundHandler.prototype.returnPiece = function(piece, groundHandler, stage) {
 GroundHandler.prototype.getHeightAtPositionX = function(posX, groundHandler) {
     for (var n = 0; n < groundHandler.groundStructure.length; n++) {
         if (groundHandler.groundStructure[n].position.x + groundHandler.groundStructure[n].width > posX) {
-            return groundHandler.groundStructure[n].position.y;
+            return groundHandler.groundStructure[n].position.y - groundHandler.groundStructure[n].height/1.5;// TODO: this1.5 is placeholder...
         }
     }
     return 0;
