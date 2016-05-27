@@ -30,6 +30,7 @@ Character.prototype.initiateCharacterSprites = function() {
     );
     this.Properties.jumpTextures.push(
         PIXI.Texture.fromFrame("gbs j1"),
+        PIXI.Texture.fromFrame("gbs j1"),
         PIXI.Texture.fromFrame("gbs j2"),
         PIXI.Texture.fromFrame("gbs j3"),
         PIXI.Texture.fromFrame("gbs j4"),
@@ -38,6 +39,7 @@ Character.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("gbs j7")
     );
     this.Properties.attackTextures.push(
+        PIXI.Texture.fromFrame("gbs a1"),
         PIXI.Texture.fromFrame("gbs a1"),
         PIXI.Texture.fromFrame("gbs a2"),
         PIXI.Texture.fromFrame("gbs a1")
@@ -111,7 +113,7 @@ Character.prototype.fallCharacter = function(characterObj, groundObj) {
         characterObj.position.y = groundHeight;
         PhysicsGlobals.characterVelocityY = 0;
         PhysicsGlobals.characterAirborn = false;
-        this.Properties.currentTextures = this.Properties.runTextures;
+        this.setCurrentTextures();
     } else {
         HelperFunctions().endGame();
         characterObj.position.y += PhysicsGlobals.characterVelocityY;
@@ -126,7 +128,8 @@ Character.prototype.riseCharacter = function(characterObj) {
 Character.prototype.attackCharacter = function() {
     if (BalanceGlobals.isAttacking) {
         this.Properties.attackCounter++;
-        if (this.Properties.attackCounter >= BalanceGlobals.attackTime) { //attack updates over
+        var counter = PhysicsGlobals.characterAirborn ? BalanceGlobals.jumpAttackTime : BalanceGlobals.attackTime;
+        if (this.Properties.attackCounter >= counter) { //attack updates over
             BalanceGlobals.isAttacking = false;
             this.setCurrentTextures(); //default
             this.Properties.attackCounter = 0;
@@ -145,7 +148,11 @@ Character.prototype.startJumpAnimation = function() {
 Character.prototype.startAttackAnimation = function() {
     if (!BalanceGlobals.isAttacking) {
         BalanceGlobals.isAttacking = true;
-        this.setCurrentTextures(TimingGlobals.characterAttackTime, this.Properties.attackTextures);
+        if (PhysicsGlobals.characterAirborn) {
+            this.setCurrentTextures(TimingGlobals.characterAttackTime, this.Properties.jumpAttackTextures);
+        } else {
+            this.setCurrentTextures(TimingGlobals.characterAttackTime, this.Properties.attackTextures);
+        }
     }
 };
 
@@ -153,7 +160,7 @@ Character.prototype.setCurrentTextures = function(speed, textures) {
     if (textures) {
         this.Properties.currentTextures = textures;
         this.Properties.spriteSpeed = speed;
-        this.Properties.spriteCount = -1; //the setTexture will be one behind since it was already called for this loop
+        this.Properties.spriteCount = 0; //the setTexture will be one behind since it was already called for this loop
         this.Properties.changeSpriteCounter = 0;
     } else {
         this.Properties.currentTextures = this.Properties.runTextures; //default is run...
