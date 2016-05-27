@@ -37,6 +37,16 @@ Character.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("gbs j6"),
         PIXI.Texture.fromFrame("gbs j7")
     );
+    this.Properties.attackTextures.push(
+        PIXI.Texture.fromFrame("gbs a1"),
+        PIXI.Texture.fromFrame("gbs a2")
+    );
+    this.Properties.jumpAttackTextures.push(
+        PIXI.Texture.fromFrame("gbs ja1"),
+        PIXI.Texture.fromFrame("gbs ja2"),
+        PIXI.Texture.fromFrame("gbs ja3"),
+        PIXI.Texture.fromFrame("gbs ja4")
+    );
 
     this.setCurrentTextures();
     this.addChild(new PIXI.Sprite(this.Properties.currentTextures[this.Properties.spriteCount]));

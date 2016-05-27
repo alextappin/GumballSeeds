@@ -9,6 +9,7 @@ function CharacterProperties() {
         runTextures : [],
         jumpTextures : [],
         attackTextures : [],
+        jumpAttackTextures : [],
         stopJumpAnimation : false,
         spriteCount : 0,
         jumpSpriteCount : 0,
