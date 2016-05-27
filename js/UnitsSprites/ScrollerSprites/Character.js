@@ -63,7 +63,7 @@ Character.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("gbs ja2"),
         PIXI.Texture.fromFrame("gbs ja3"),
         PIXI.Texture.fromFrame("gbs ja4"),
-        PIXI.Texture.fromFrame("gbs ja1")
+        PIXI.Texture.fromFrame("gbs j7")
     );
 
     this.setCurrentTextures();
