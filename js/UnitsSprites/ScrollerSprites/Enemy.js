@@ -16,12 +16,12 @@ Enemy.prototype.constructEnemy = function() {
 };
 Enemy.prototype.setPositionAndScale = function(obj) {
     obj.position = HelperFunctions().getNewPoint(this.Properties.startPosX, this.Properties.startPosY);
-    obj.scale = HelperFunctions().getNewPoint(this.Properties.scaleX, this.Properties.scaleY);
+    obj.scale = HelperFunctions().getNewPoint(this.Properties.scaleX/3.5, this.Properties.scaleY/3.5);
 };
 Enemy.prototype.initiateCharacterSprites = function() {
     this.Properties.textures.push(
-        PIXI.Texture.fromFrame("BadGuy1Tran"),
-        PIXI.Texture.fromFrame("BadGuy2Tran")
+        PIXI.Texture.fromFrame("ts flying2"),
+        PIXI.Texture.fromFrame("ts flying2")
     );
     //add them to the array
     this.Properties.sprite = new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]);
