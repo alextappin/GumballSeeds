@@ -159,5 +159,12 @@ function HelperFunctions() {
         return (1-(posY / MapGlobals.screenHeight))/ScrollerGlobals.cloudScaleConst;
     };
 
+    functions.endGame = function() {
+        PhysicsGlobals.airborn = true;
+        BalanceGlobals.continueGame = false;
+        HelperFunctions().switchScreenToggle();
+        HelperFunctions().switchToTitle();
+    };
+
     return functions;
 }

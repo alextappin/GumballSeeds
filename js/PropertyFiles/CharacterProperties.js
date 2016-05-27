@@ -15,6 +15,7 @@ function CharacterProperties() {
         changeSpriteCounter : 0,
         spriteSpeed : 7,
         currentTextures : [],
+        attackCounter : 0,
         powerUpPositionVelocity : -1,
         spaceBar : new KeyboardControl(32),
         ctrlButton : new KeyboardControl(17),

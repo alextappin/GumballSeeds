@@ -53,7 +53,8 @@ Character.prototype.update = function(characterObj, groundObj) {
 
 Character.prototype.updatePowerUp = function(characterObj, groundObj) {
     this.updateSprites(characterObj);
-    this.powerUpMove(characterObj);
+    this.gravityCharacter(characterObj, groundObj);
+    this.attackCharacter();
 };
 
 Character.prototype.updateSprites = function(characterObj) {
@@ -100,7 +101,7 @@ Character.prototype.fallCharacter = function(characterObj, groundObj) {
         PhysicsGlobals.characterAirborn = false;
         this.Properties.currentTextures = this.Properties.runTextures;
     } else {
-        //this.endGame();
+        HelperFunctions().endGame();
         characterObj.position.y += PhysicsGlobals.characterVelocityY;
     }
 };
@@ -110,71 +111,42 @@ Character.prototype.riseCharacter = function(characterObj) {
     characterObj.position.y += PhysicsGlobals.characterVelocityY;
 };
 
-Character.prototype.powerUpMove = function(characterObj) {
-    BalanceGlobals.isAttacking = true;
-    this.setNewPowerUpPosition(characterObj);
-};
-
-Character.prototype.endGame = function() {
-    PhysicsGlobals.airborn = true;
-    BalanceGlobals.continueGame = false;
-    HelperFunctions().switchScreenToggle();
-    HelperFunctions().switchToTitle();
-};
-
-Character.prototype.startJumpAnimation = function() {
-    //not airborn, then GO AIRBORN and set velocity
-    if (!PhysicsGlobals.characterAirborn) {
-        PhysicsGlobals.characterAirborn = true;
-        PhysicsGlobals.characterVelocityY = PhysicsGlobals.characterJumpVelocity;
-    }
-};
-
-Character.prototype.calculateCharacterFrontX = function(characterObj) {
-    return characterObj.position.x + characterObj.width/2;
-};
-
-Character.prototype.calculateMapToCharacterHeightOffset = function(characterObj, groundY) {
-    //if there is a height, return the offset, else null
-    return groundY;
-    /*return groundY ? groundY - characterObj.children[0].height/2 + 10: undefined;*/
-};
-
 Character.prototype.attackCharacter = function() {
     if (BalanceGlobals.isAttacking) {
-        PhysicsGlobals.attackingTime -= 1;
-        if (PhysicsGlobals.attackingTime == 0) {
-            this.stopAttacking();
+        this.Properties.attackCounter++;
+        if (this.Properties.attackCounter >= BalanceGlobals.attackTime) { //attack updates over
+            BalanceGlobals.isAttacking = false;
+            this.setCurrentTextures(); //default
+            this.Properties.attackCounter = 0;
         }
     }
 };
 
+Character.prototype.startJumpAnimation = function() {
+    if (!PhysicsGlobals.characterAirborn) {
+        PhysicsGlobals.characterAirborn = true;
+        PhysicsGlobals.characterVelocityY = PhysicsGlobals.characterJumpVelocity;
+        this.setCurrentTextures(TimingGlobals.characterJumpTime, this.Properties.jumpTextures);
+    }
+};
+
 Character.prototype.startAttackAnimation = function() {
-    BalanceGlobals.isAttacking = true;
-    this.removeChild(this.text);
-    this.text = new PIXI.Text("Attacking", {font:"40px Arial", fill:"#228869"});
-    this.text.position.x = 20;
-    this.addChild(this.text);
-
-    PhysicsGlobals.attackingTime = 20;
+    if (!BalanceGlobals.isAttacking) {
+        BalanceGlobals.isAttacking = true;
+        this.setCurrentTextures(TimingGlobals.characterAttackTime, this.Properties.attackTextures);
+    }
 };
 
-Character.prototype.stopAttacking = function() {
-    BalanceGlobals.isAttacking = false;
-    this.removeChild(this.text);
-
-    PhysicsGlobals.attackingTime = 0;
-};
-
-Character.prototype.setNewPowerUpPosition = function(characterObj) {
-    if (characterObj.position.y < MapGlobals.screenHeight/2 - characterObj.height) {
-        this.Properties.powerUpPositionVelocity = 10;
+Character.prototype.setCurrentTextures = function(speed, textures) {
+    if (textures) {
+        this.Properties.currentTextures = textures;
+        this.Properties.spriteSpeed = speed;
+    } else {
+        this.Properties.currentTextures = this.Properties.runTextures; //default is run...
+        this.Properties.spriteSpeed = TimingGlobals.characterRunTime;
     }
-    else if (characterObj.position.y > MapGlobals.screenHeight/2 + characterObj.height) {
-        this.Properties.powerUpPositionVelocity = -15;
-    }
-    this.Properties.powerUpPositionVelocity += PhysicsGlobals.characterGravity;
-    characterObj.position.y += this.Properties.powerUpPositionVelocity;
+
+    this.Properties.spriteCount = 0;
 };
 
 Character.prototype.listenForJumpTrigger = function() {
