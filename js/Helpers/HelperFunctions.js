@@ -124,7 +124,7 @@ function HelperFunctions() {
     };
 
     functions.startGameSound = function() {
-        createjs.Sound.start(MapGlobals.gameString);
+        createjs.Sound.play(MapGlobals.gameString, {loop: 10, volume:1});
     };
 
     functions.getCorrectScaleWidth = function(width) {

@@ -9,10 +9,10 @@ function GameSounds() {
         },
         gameSound : {
             id : MapGlobals.gameString,
-            url : "../resources/GUMBALL SEEDS GAMEPLAY 01 5.16.16.wav"
+            url : "../resources/GameplaySong.mp3"
         }
     },
-        numSoundsToLoad = 1,
+        numSoundsToLoad = 2,
         counter = 0;
     createjs.Sound.addEventListener("fileload", handleFileLoad);
 
