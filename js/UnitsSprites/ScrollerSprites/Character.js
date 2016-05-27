@@ -144,6 +144,11 @@ Character.prototype.attackCharacter = function() {
     if (BalanceGlobals.isAttacking) {
         this.Properties.attackCounter++;
         var counter = PhysicsGlobals.characterAirborn ? BalanceGlobals.jumpAttackTime : BalanceGlobals.attackTime;
+/*        if (PhysicsGlobals.characterAirborn) { //jump attacking
+            if (this.Properties.attackCounter >= BalanceGlobals.attackTime) {
+                BalanceGlobals.isAttacking = false;
+            }
+        }*/
         if (this.Properties.attackCounter >= counter) { //attack updates over
             BalanceGlobals.isAttacking = false;
             this.setCurrentTextures(); //default
