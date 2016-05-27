@@ -123,6 +123,10 @@ function HelperFunctions() {
         createjs.Sound.stop(MapGlobals.titleString);
     };
 
+    functions.startGameSound = function() {
+        createjs.Sound.start(MapGlobals.gameString);
+    };
+
     functions.getCorrectScaleWidth = function(width) {
         return MapGlobals.screenWidth / width;
     };

@@ -10,6 +10,7 @@ function Scroller(stage) {
     };
 
     HelperFunctions().stopTitleSound();
+    HelperFunctions().startGameSound();
 }
 Scroller.prototype.initializePositionsAndScale = function() {
     this.Properties.cloud5.setPositionAndScale(this.Properties.cloud5);

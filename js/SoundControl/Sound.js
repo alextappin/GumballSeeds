@@ -6,6 +6,10 @@ function GameSounds() {
         titleSound : {
             id : MapGlobals.titleString,
             url : "../resources/GumballSeedsTheme2.mp3"
+        },
+        gameSound : {
+            id : MapGlobals.gameString,
+            url : "../resources/GUMBALL SEEDS GAMEPLAY 01 5.16.16.wav"
         }
     },
         numSoundsToLoad = 1,
