@@ -6,7 +6,9 @@ function CharacterProperties() {
     var props = {
         sprites : {},
         textures : [],
+        runTextures : [],
         jumpTextures : [],
+        attackTextures : [],
         stopJumpAnimation : false,
         spriteCount : 0,
         jumpSpriteCount : 0,
