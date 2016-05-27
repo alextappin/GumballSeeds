@@ -6,18 +6,22 @@ var TimingGlobals = (function TimingGlobals() {
 
     constants.titleWordsFadeIn = false;
     constants.startButtonFadeIn = false;
-
     constants.titleWordsAlphaCue = .5;
     constants.startButtonAlphaCue = .25;
-
     constants.titleAlphaIncrement = .004;
     constants.titleBgAlphaIncrement = .004;
     constants.titleWordsAlphaIncrement = .003;
     constants.titleStartAlphaIncrement = .0045;
     constants.titleAlphaStart = 0.00001;
     constants.titlePulseMinimumAlpha = .5;
-
     constants.startButtonPressed = false;
+
+    constants.characterRunTime = 8;
+    constants.characterJumpTime = 6;
+    constants.characterAttackTime = 10;
+    constants.characterHitTime = 10;
+    constants.characterDieTime = 10;
+    constants.characterSuperTime = 5;
 
     return constants;
 })();

@@ -36,7 +36,6 @@ Character.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("gbs j6"),
         PIXI.Texture.fromFrame("gbs j7")
     );
-    //this.Properties.sprite = new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]);
     this.addChild(new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]));
 };
 Character.prototype.setSpriteToCurrentTexture = function(characterObj) {
