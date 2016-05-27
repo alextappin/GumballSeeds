@@ -16,7 +16,7 @@ var TimingGlobals = (function TimingGlobals() {
     constants.titlePulseMinimumAlpha = .5;
     constants.startButtonPressed = false;
 
-    constants.characterRunTime = 8;
+    constants.characterRunTime = 7;
     constants.characterJumpTime = 6;
     constants.characterAttackTime = 10;
     constants.characterHitTime = 10;

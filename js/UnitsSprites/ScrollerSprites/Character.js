@@ -38,7 +38,8 @@ Character.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("gbs j7")
     );
 
-    this.addChild(new PIXI.Sprite(this.Properties.runTextures[this.Properties.spriteCount]));
+    this.setCurrentTextures();
+    this.addChild(new PIXI.Sprite(this.Properties.currentTextures[this.Properties.spriteCount]));
 };
 
 Character.prototype.setSpriteToCurrentTexture = function(characterObj) {
@@ -93,9 +94,9 @@ Character.prototype.fallCharacter = function(characterObj, groundObj) {
     var groundHeight = groundObj.getHeightAtPositionX(characterObj.position.x, groundObj); // get the groundHeight
     PhysicsGlobals.characterVelocityY += PhysicsGlobals.characterGravity;
 
-    if (characterObj.position.x < groundHeight) { //keep falling
+    if (characterObj.position.y < groundHeight) { //keep falling
         characterObj.position.y += PhysicsGlobals.characterVelocityY;
-    } else if (characterObj.position.y + PhysicsGlobals.characterVelocityY < groundHeight) {
+    } else if (characterObj.position.y + PhysicsGlobals.characterVelocityY > groundHeight) {
         characterObj.position.y = groundHeight;
         PhysicsGlobals.characterVelocityY = 0;
         PhysicsGlobals.characterAirborn = false;
@@ -147,6 +148,7 @@ Character.prototype.setCurrentTextures = function(speed, textures) {
     }
 
     this.Properties.spriteCount = 0;
+    this.Properties.changeSpriteCounter = 0;
 };
 
 Character.prototype.listenForJumpTrigger = function() {
