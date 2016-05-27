@@ -38,6 +38,19 @@ Character.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("gbs j6"),
         PIXI.Texture.fromFrame("gbs j7")
     );
+    this.Properties.jumpHighTextures.push(
+        PIXI.Texture.fromFrame("gbs j1"),
+        PIXI.Texture.fromFrame("gbs j2"),
+        PIXI.Texture.fromFrame("gbs j3"),
+        PIXI.Texture.fromFrame("gbs j4"),
+        PIXI.Texture.fromFrame("gbs j5"),
+        PIXI.Texture.fromFrame("gbs j3"),
+        PIXI.Texture.fromFrame("gbs j4"),
+        PIXI.Texture.fromFrame("gbs j4"),
+        PIXI.Texture.fromFrame("gbs j5"),
+        PIXI.Texture.fromFrame("gbs j6"),
+        PIXI.Texture.fromFrame("gbs j7")
+    );
     this.Properties.attackTextures.push(
         PIXI.Texture.fromFrame("gbs a1"),
         PIXI.Texture.fromFrame("gbs a1"),
@@ -46,9 +59,11 @@ Character.prototype.initiateCharacterSprites = function() {
     );
     this.Properties.jumpAttackTextures.push(
         PIXI.Texture.fromFrame("gbs ja1"),
+        PIXI.Texture.fromFrame("gbs ja1"),
         PIXI.Texture.fromFrame("gbs ja2"),
         PIXI.Texture.fromFrame("gbs ja3"),
-        PIXI.Texture.fromFrame("gbs ja4")
+        PIXI.Texture.fromFrame("gbs ja4"),
+        PIXI.Texture.fromFrame("gbs ja1")
     );
 
     this.setCurrentTextures();
@@ -142,17 +157,33 @@ Character.prototype.startJumpAnimation = function() {
         PhysicsGlobals.characterAirborn = true;
         PhysicsGlobals.characterVelocityY = PhysicsGlobals.characterJumpVelocity;
         this.setCurrentTextures(TimingGlobals.characterJumpTime, this.Properties.jumpTextures);
+    } else if (this.Properties.spriteCount < 2) {
+        this.startJumpHighAnimation();
     }
+};
+
+Character.prototype.startJumpHighAnimation = function() {
+    PhysicsGlobals.characterAirborn = true;
+    PhysicsGlobals.characterVelocityY = PhysicsGlobals.characterJumpHighVelocity;
+    this.setCurrentTextures(TimingGlobals.characterJumpTime, this.Properties.jumpHighTextures);
 };
 
 Character.prototype.startAttackAnimation = function() {
     if (!BalanceGlobals.isAttacking) {
-        BalanceGlobals.isAttacking = true;
         if (PhysicsGlobals.characterAirborn) {
-            this.setCurrentTextures(TimingGlobals.characterAttackTime, this.Properties.jumpAttackTextures);
+            BalanceGlobals.isAttacking = false;
         } else {
             this.setCurrentTextures(TimingGlobals.characterAttackTime, this.Properties.attackTextures);
+            BalanceGlobals.isAttacking = true;
         }
+    }
+};
+
+Character.prototype.startJumpAttackAnimation = function() {
+    if (!PhysicsGlobals.characterAirborn && this.Properties.spriteCount < 2) {
+        PhysicsGlobals.characterAirborn = true;
+        PhysicsGlobals.characterVelocityY = PhysicsGlobals.characterJumpAttackVelocity;
+        this.setCurrentTextures(TimingGlobals.characterJumpAttackTime, this.Properties.jumpAttackTextures);
     }
 };
 
@@ -183,6 +214,8 @@ Character.prototype.listenForAttackTrigger = function() {
     this.Properties.ctrlButton.press = function () {
         if (BalanceGlobals.isAttacking == false) {
             that.startAttackAnimation();
+        } else {
+            that.startJumpAttackAnimation();
         }
     }
 };

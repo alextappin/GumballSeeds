@@ -8,6 +8,7 @@ function CharacterProperties() {
         textures : [],
         runTextures : [],
         jumpTextures : [],
+        jumpHighTextures : [],
         attackTextures : [],
         jumpAttackTextures : [],
         stopJumpAnimation : false,

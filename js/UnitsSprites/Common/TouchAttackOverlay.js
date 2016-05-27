@@ -39,7 +39,11 @@ TouchAttack.prototype.handleClickEvents = function(spriteToHandle, characterObj)
         var spriteTimeout;
         function onButtonDown() {
             if(characterObj){
-                characterObj.startAttackAnimation()
+                if (BalanceGlobals.isAttacking == false) {
+                    characterObj.startAttackAnimation();
+                } else {
+                    characterObj.startJumpAttackAnimation();
+                }
             }
 
             clearTimeout(spriteTimeout);

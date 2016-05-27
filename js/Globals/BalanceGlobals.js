@@ -18,8 +18,8 @@ var BalanceGlobals = (function BalanceGlobals() {
 
     //Character Specific
     constants.isAttacking = false;
-    constants.attackTime = 22;
-    constants.jumpAttackTime = 40;
+    constants.attackTime = 27;
+    constants.jumpAttackTime = 45;
 
     return constants;
 })();
