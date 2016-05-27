@@ -15,12 +15,14 @@ Character.prototype.constructCharacter = function() {
     this.listenForJumpTrigger();
     this.listenForAttackTrigger();
 };
+
 Character.prototype.setPositionAndScale = function(obj) {
     ScalingGlobals.characterRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height,ScalingGlobals.chracterPercentOfScreen); //access array and grab correct ratios out of array
     obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.characterRatio,ScalingGlobals.characterRatio);
     obj.position =  HelperFunctions().getNewPoint(ScalingGlobals.characterStartXScale, ScalingGlobals.characterStartYScale);
     //obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.characterScaleX, ScalingGlobals.characterScaleY);
 };
+
 Character.prototype.initiateCharacterSprites = function() {
     this.Properties.textures.push(
         PIXI.Texture.fromFrame("gbs run1"),
@@ -38,51 +40,42 @@ Character.prototype.initiateCharacterSprites = function() {
     );
     this.addChild(new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]));
 };
+
 Character.prototype.setSpriteToCurrentTexture = function(characterObj) {
-    if (PhysicsGlobals.characterAirborn) {
-        characterObj.children[0].texture = this.Properties.jumpTextures[this.Properties.jumpSpriteCount];
-    } else {
-        characterObj.children[0].texture = this.Properties.textures[this.Properties.spriteCount];
-    }
+    characterObj.children[0].texture = this.Properties.currentTextures[this.Properties.spriteCount];
 };
+
 Character.prototype.update = function(characterObj, groundObj) {
     this.updateSprites(characterObj);
     this.characterGravity(characterObj, groundObj);
     this.attackCharacter();
 };
+
 Character.prototype.updatePowerUp = function(characterObj, groundObj) {
     this.updateSprites(characterObj);
     this.powerUpMove(characterObj);
     //this.characterGravity(characterObj, groundObj);
 };
+
 Character.prototype.updateSprites = function(characterObj) {
     if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
         this.Properties.changeSpriteCounter = 0;
         this.nextSprite(characterObj);
-    }
-    else {
+    } else {
         this.Properties.changeSpriteCounter++;
     }
 };
+
 Character.prototype.nextSprite = function(characterObj) {
-    //Set ternary
-    //TODO dont use ==5 instead use the maximum number of textures the character has
-    if (PhysicsGlobals.characterAirborn) {
-        if (this.Properties.jumpSpriteCount >= this.Properties.jumpTextures.length - 1) {
-        }
-        else {
-            this.Properties.jumpSpriteCount++;
-        }
+    if (this.Properties.spriteCount == this.Properties.currentTextures.length - 1) {
+        this.Properties.spriteCount = 0;
     } else {
-        if (this.Properties.spriteCount >= this.Properties.textures.length - 1) {
-            this.Properties.spriteCount = 0;
-        }
-        else {
-            this.Properties.spriteCount++;
-        }
+        this.Properties.spriteCount++;
     }
+
     this.setSpriteToCurrentTexture(characterObj);
 };
+
 Character.prototype.characterGravity = function(characterObj, groundObj) {
     if (PhysicsGlobals.characterAirborn) {
         if (this.isFalling()) {
@@ -98,6 +91,7 @@ Character.prototype.characterGravity = function(characterObj, groundObj) {
         this.fall(characterObj,groundObj.getHeightAtPositionX(this.calculateCharacterFrontX(characterObj), groundObj));
     }
 };
+
 Character.prototype.fall = function(characterObj, groundHeight) {
     this.startGravity();
     //passed ground
@@ -117,27 +111,33 @@ Character.prototype.fall = function(characterObj, groundHeight) {
         characterObj.position.y += PhysicsGlobals.characterVelocityY;
     }
 };
+
 Character.prototype.rise = function(characterObj) {
     this.startGravity();
     characterObj.position.y += PhysicsGlobals.characterVelocityY;
 };
+
 Character.prototype.powerUpMove = function(characterObj) {
     BalanceGlobals.isAttacking = true;
     this.setNewPowerUpPosition(characterObj);
 };
+
 Character.prototype.isFalling = function() {
     //negative velocity is up... not rising ur falling. maybe >=
     return PhysicsGlobals.characterVelocityY >= 0;
 };
+
 Character.prototype.endGame = function() {
     PhysicsGlobals.airborn = true;
     BalanceGlobals.continueGame = false;
     HelperFunctions().switchScreenToggle();
     HelperFunctions().switchToTitle();
 };
+
 Character.prototype.startGravity = function() {
     PhysicsGlobals.characterVelocityY += PhysicsGlobals.characterGravity;
 };
+
 Character.prototype.startJumpAnimation = function() {
     //not airborn, then GO AIRBORN and set velocity
     if (!PhysicsGlobals.characterAirborn) {
@@ -145,14 +145,17 @@ Character.prototype.startJumpAnimation = function() {
         PhysicsGlobals.characterVelocityY = PhysicsGlobals.characterJumpVelocity;
     }
 };
+
 Character.prototype.calculateCharacterFrontX = function(characterObj) {
     return characterObj.position.x + characterObj.width/2;
 };
+
 Character.prototype.calculateMapToCharacterHeightOffset = function(characterObj, groundY) {
     //if there is a height, return the offset, else null
     return groundY - 80;
     /*return groundY ? groundY - characterObj.children[0].height/2 + 10: undefined;*/
 };
+
 Character.prototype.attackCharacter = function() {
     if (BalanceGlobals.isAttacking) {
         PhysicsGlobals.attackingTime -= 1;
@@ -161,6 +164,7 @@ Character.prototype.attackCharacter = function() {
         }
     }
 };
+
 Character.prototype.startAttackAnimation = function() {
     BalanceGlobals.isAttacking = true;
     this.removeChild(this.text);
@@ -170,12 +174,14 @@ Character.prototype.startAttackAnimation = function() {
 
     PhysicsGlobals.attackingTime = 20;
 };
+
 Character.prototype.stopAttacking = function() {
     BalanceGlobals.isAttacking = false;
     this.removeChild(this.text);
 
     PhysicsGlobals.attackingTime = 0;
 };
+
 Character.prototype.setNewPowerUpPosition = function(characterObj) {
     if (characterObj.position.y < MapGlobals.screenHeight/2 - characterObj.height) {
         this.Properties.powerUpPositionVelocity = 10;
@@ -186,12 +192,14 @@ Character.prototype.setNewPowerUpPosition = function(characterObj) {
     this.Properties.powerUpPositionVelocity += PhysicsGlobals.characterGravity;
     characterObj.position.y += this.Properties.powerUpPositionVelocity;
 };
+
 Character.prototype.listenForJumpTrigger = function() {
     var that = this;
     this.Properties.spaceBar.press = function () {
         that.startJumpAnimation();
     }
 };
+
 Character.prototype.listenForAttackTrigger = function() {
     var that = this;
     this.Properties.ctrlButton.press = function () {

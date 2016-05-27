@@ -12,6 +12,7 @@ function CharacterProperties() {
         jumpSpriteCount : 0,
         changeSpriteCounter : 0,
         spriteSpeed : 7,
+        currentTextures : [],
         powerUpPositionVelocity : -1,
         spaceBar : new KeyboardControl(32),
         ctrlButton : new KeyboardControl(17),
