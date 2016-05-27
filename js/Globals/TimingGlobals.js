@@ -18,7 +18,7 @@ var TimingGlobals = (function TimingGlobals() {
 
     constants.characterRunTime = 7;
     constants.characterJumpTime = 6;
-    constants.characterAttackTime = 10;
+    constants.characterAttackTime = 6;
     constants.characterHitTime = 10;
     constants.characterDieTime = 10;
     constants.characterSuperTime = 5;

@@ -39,7 +39,8 @@ Character.prototype.initiateCharacterSprites = function() {
     );
     this.Properties.attackTextures.push(
         PIXI.Texture.fromFrame("gbs a1"),
-        PIXI.Texture.fromFrame("gbs a2")
+        PIXI.Texture.fromFrame("gbs a2"),
+        PIXI.Texture.fromFrame("gbs a1")
     );
     this.Properties.jumpAttackTextures.push(
         PIXI.Texture.fromFrame("gbs ja1"),
@@ -152,13 +153,15 @@ Character.prototype.setCurrentTextures = function(speed, textures) {
     if (textures) {
         this.Properties.currentTextures = textures;
         this.Properties.spriteSpeed = speed;
+        this.Properties.spriteCount = -1; //the setTexture will be one behind since it was already called for this loop
+        this.Properties.changeSpriteCounter = 0;
     } else {
         this.Properties.currentTextures = this.Properties.runTextures; //default is run...
         this.Properties.spriteSpeed = TimingGlobals.characterRunTime;
+        this.Properties.spriteCount = 0;
+        this.Properties.changeSpriteCounter = 0;
     }
 
-    this.Properties.spriteCount = 0;
-    this.Properties.changeSpriteCounter = 0;
 };
 
 Character.prototype.listenForJumpTrigger = function() {
@@ -171,7 +174,7 @@ Character.prototype.listenForJumpTrigger = function() {
 Character.prototype.listenForAttackTrigger = function() {
     var that = this;
     this.Properties.ctrlButton.press = function () {
-        if (!that.Properties.isAttacking) {
+        if (BalanceGlobals.isAttacking == false) {
             that.startAttackAnimation();
         }
     }
