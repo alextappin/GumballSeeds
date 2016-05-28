@@ -54,6 +54,8 @@ GroundHandler.prototype.setupStartGround = function(groundHandler) {
         groundHandler.groundObjects.groundA.pop(),
         groundHandler.groundObjects.groundB.pop(),
         groundHandler.groundObjects.groundA.pop(),
+        groundHandler.groundObjects.groundB.pop(),
+        groundHandler.groundObjects.groundA.pop(),
         groundHandler.groundObjects.groundB.pop()
     );
 

@@ -17,7 +17,7 @@ var MapGlobals = (function MapGlobals() {
     constants.startAnimationString = "StartAnimation";
     constants.startAnimationSprites = 2;
     constants.groundSlices = 3;
-    constants.gumballsPerColor = 3;
+    constants.gumballsPerColor = 2;
     constants.groundStartA = "17 ground1start";
     constants.groundStartB = "17 ground1start b";
     constants.groundA = "17 ground1a";
@@ -36,6 +36,6 @@ var MapGlobals = (function MapGlobals() {
         "6 orangegb",
         "7 redgb"
     ];
-    constants.gumballSpaceConst = 10;
+    constants.gumballSpaceConst = 5;
     return constants;
 })();

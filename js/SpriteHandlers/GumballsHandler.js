@@ -106,7 +106,7 @@ GumballsHandler.prototype.addNewGumball = function(gumballHandler, groundObj, st
     );
 
     stage.addChildAt(
-        gumballHandler.gumballStructure[gumballHandler.gumballStructure-1],
+        gumballHandler.gumballStructure[gumballHandler.gumballStructure.length-1],
         MapGlobals.addGumballChildConst
     );
 };
