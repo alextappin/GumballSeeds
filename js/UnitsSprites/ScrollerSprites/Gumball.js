@@ -32,6 +32,7 @@ Gumball.prototype.update = function(gumballObj) {
 Gumball.prototype.updatePowerUp = function(gumballObj) {
     gumballObj.position.x -= ScrollerGlobals.groundSpeed;
 };
+
 Gumball.prototype.getNewPosition = function(groundObj, gumballX) {
     var groundHeight = groundObj.getHeightAtPositionX(gumballX, groundObj);
     if (groundHeight) {
@@ -39,10 +40,4 @@ Gumball.prototype.getNewPosition = function(groundObj, gumballX) {
     }
     //recursion. If there is a gap, check another X
     return this.getNewPosition(groundObj, gumballX + 500);
-};
-Gumball.prototype.isIntersecting = function(rectangle1, rectangle2) {
-    return !(rectangle2.position.x > (rectangle1.position.x + rectangle1.width) ||
-    (rectangle2.position.x + rectangle2.width) < rectangle1.x ||
-    rectangle2.position.y > (rectangle1.position.y + rectangle1.height) ||
-    (rectangle2.position.y + rectangle2.height) < rectangle1.position.y);
 };
