@@ -161,6 +161,7 @@ Character.prototype.attackCharacter = function() {
 Character.prototype.startJumpAnimation = function() {
     if (!PhysicsGlobals.characterAirborn) {
         PhysicsGlobals.characterAirborn = true;
+        PhysicsGlobals.isAttacking = false;
         PhysicsGlobals.characterVelocityY = PhysicsGlobals.characterJumpVelocity;
         this.setCurrentTextures(TimingGlobals.characterJumpTime, this.Properties.jumpTextures);
     } else if (this.Properties.spriteCount < 2 && !PhysicsGlobals.characterHighJumping) {
@@ -171,6 +172,7 @@ Character.prototype.startJumpAnimation = function() {
 Character.prototype.startJumpHighAnimation = function() {
     PhysicsGlobals.characterAirborn = true;
     PhysicsGlobals.characterHighJumping = true;
+    PhysicsGlobals.isAttacking = false;
     PhysicsGlobals.characterVelocityY = PhysicsGlobals.characterJumpHighVelocity;
     this.setCurrentTextures(TimingGlobals.characterJumpTime, this.Properties.jumpHighTextures);
 };
