@@ -80,7 +80,7 @@ Enemy.prototype.moveEnemy = function(enemyObj, characterObj) {
         else {
             ScoreHelper().getHitByEnemy(1);
             if (ScoreGlobals.lives < 0) {
-                characterObj.endGame();
+                HelperFunctions().endGame();
             }
         }
         this.updateVelocity();
