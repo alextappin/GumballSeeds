@@ -93,15 +93,6 @@ Scroller.prototype.updateObjects = function() {
     this.Properties.haze14.update(this.Properties.viewportX);
     this.Properties.hill3a15.update(this.Properties.hill3a15, this.Properties.viewportX, this.Properties.hill3b16);
     this.Properties.hill3b16.update(this.Properties.hill3b16, this.Properties.viewportX, this.Properties.hill3a15);
-    /*
-
-        this.Properties..update(this.Properties.viewportX);
-        this.Properties..update(this.Properties.viewportX);
-        this.Properties..update(this.Properties.viewportX);
-        this.Properties..update(this.Properties.viewportX);
-        this.Properties..update(this.Properties.viewportX);
-        this.Properties..update(this.Properties.viewportX);
-        this.Properties..update(this.Properties.viewportX);*/
 
     this.Properties.ground.update(this.Properties.ground, this.getStage());
     this.Properties.character.update(this.Properties.character, this.Properties.ground);
@@ -118,13 +109,25 @@ Scroller.prototype.updateViewportPowerUp = function() {
     this.Properties.viewportX = this.Properties.viewportX + ScrollerGlobals.currentScrollSpeed;
 };
 Scroller.prototype.updateObjectsPowerUp = function() {
-    this.Properties.ground.updatePowerUp(this.Properties.ground);
-    this.Properties.character.updatePowerUp(this.Properties.character, this.Properties.ground);
-    this.Properties.gumballs.updatePowerUp(this.Properties.gumballs, this.Properties.ground, this.Properties.character, this.getStage());
-    this.Properties.enemies.updatePowerUp(this.Properties.enemies, this.Properties.character, this.getStage());
-    this.Properties.powerBar.updatePowerUp(this.Properties.powerBar);
-    this.Properties.textScore.update(this.Properties.textScore);
-    this.Properties.textLives.update(this.Properties.textLives);
-    this.Properties.touchJump.update(this.Properties.touchJump, this.Properties.character);
-    this.Properties.touchAttack.update(this.Properties.touchAttack, this.Properties.character);
+    if (PowerUpGlobals.characterDonePoweringUp) {
+        this.Properties.ground.updatePowerUp(this.Properties.ground);
+        this.Properties.character.updatePowerUpStart(this.Properties.character, this.Properties.ground);
+        this.Properties.gumballs.updatePowerUp(this.Properties.gumballs, this.Properties.ground, this.Properties.character, this.getStage());
+        this.Properties.enemies.updatePowerUp(this.Properties.enemies, this.Properties.character, this.getStage());
+        this.Properties.powerBar.updatePowerUp(this.Properties.powerBar);
+        this.Properties.textScore.update(this.Properties.textScore);
+        this.Properties.textLives.update(this.Properties.textLives);
+        this.Properties.touchJump.update(this.Properties.touchJump, this.Properties.character);
+        this.Properties.touchAttack.update(this.Properties.touchAttack, this.Properties.character);
+    } else {
+        this.Properties.ground.updatePowerUp(this.Properties.ground);
+        this.Properties.character.updatePowerUp(this.Properties.character, this.Properties.ground);
+        this.Properties.gumballs.updatePowerUp(this.Properties.gumballs, this.Properties.ground, this.Properties.character, this.getStage());
+        this.Properties.enemies.updatePowerUp(this.Properties.enemies, this.Properties.character, this.getStage());
+        this.Properties.powerBar.updatePowerUp(this.Properties.powerBar);
+        this.Properties.textScore.update(this.Properties.textScore);
+        this.Properties.textLives.update(this.Properties.textLives);
+        this.Properties.touchJump.update(this.Properties.touchJump, this.Properties.character);
+        this.Properties.touchAttack.update(this.Properties.touchAttack, this.Properties.character);
+    }
 };

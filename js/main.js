@@ -25,7 +25,9 @@ Main.prototype.loadSpriteSheet = function() {
         "../updatedImages/super/rainbow7.json","../updatedImages/super/rainbow8.json","../updatedImages/super/rainbow9.json",
         "../updatedImages/super/rainbow10.json","../updatedImages/super/rainbow11.json","../updatedImages/super/rainbow12.json",
         "../updatedImages/super/rainbow13.json","../updatedImages/super/rainbow14.json","../updatedImages/super/rainbow15.json",
-        "../updatedImages/super/superGumball1.json", "../updatedImages/character/characterSuper1.json", "../updatedImages/character/characterSuper2.json"
+        "../updatedImages/super/superGumball1.json", "../updatedImages/character/characterSuper1.json", "../updatedImages/character/characterSuper2.json",
+        "../updatedImages/super/super1.json", "../updatedImages/super/super2.json", "../updatedImages/super/super3.json",
+        "../updatedImages/super/super4.json", "../updatedImages/super/super5.json"
     ],
         loader = new PIXI.loaders.Loader();
     loader.add(assetsToLoad).load(this.spriteSheetLoaded.bind(this))
