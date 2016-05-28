@@ -19,7 +19,14 @@ Main.prototype.loadSpriteSheet = function() {
         "../updatedImages/map/hill1.json", "../updatedImages/map/hill2.json", "../updatedImages/map/hazes.json",
         "../updatedImages/map/hill3.json", "../updatedImages/map/ground17.json", "../updatedImages/character/characterRun.json",
         "../updatedImages/character/characterJump.json", "../updatedImages/character/characterAttack.json",
-        "../updatedImages/enemy/enemyFly.json", "../updatedImages/gumballs/gumballs.json"],
+        "../updatedImages/enemy/enemyFly.json", "../updatedImages/gumballs/gumballs.json",
+        "../updatedImages/super/rainbow1.json","../updatedImages/super/rainbow2.json","../updatedImages/super/rainbow3.json",
+        "../updatedImages/super/rainbow4.json","../updatedImages/super/rainbow5.json","../updatedImages/super/rainbow6.json",
+        "../updatedImages/super/rainbow7.json","../updatedImages/super/rainbow8.json","../updatedImages/super/rainbow9.json",
+        "../updatedImages/super/rainbow10.json","../updatedImages/super/rainbow11.json","../updatedImages/super/rainbow12.json",
+        "../updatedImages/super/rainbow13.json","../updatedImages/super/rainbow14.json","../updatedImages/super/rainbow15.json",
+        "../updatedImages/super/superGumball1.json", "../updatedImages/character/characterSuper1.json", "../updatedImages/character/characterSuper2.json"
+    ],
         loader = new PIXI.loaders.Loader();
     loader.add(assetsToLoad).load(this.spriteSheetLoaded.bind(this))
 };
