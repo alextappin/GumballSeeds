@@ -10,8 +10,10 @@ function GumballsHandler() {
 GumballsHandler.constructor = GumballsHandler;
 
 GumballsHandler.prototype.constructGumballs = function() {
-    for (var n = 0; n < BalanceGlobals.gumballs; n++) {
-        this.gumballs.push(new Gumball);
+    for (var n = 0; n < BalanceGlobals.gumballsPerColor; n++) { //there will be 3 of each color in the array...
+        for (var i = 0; i < MapGlobals.gumballs.length; i++) {
+            this.gumballs.push(new Gumball(i));
+        }
     }
 };
 
