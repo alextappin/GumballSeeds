@@ -36,5 +36,6 @@ var MapGlobals = (function MapGlobals() {
         "6 orangegb",
         "7 redgb"
     ];
+    constants.gumballSpaceConst = 10;
     return constants;
 })();

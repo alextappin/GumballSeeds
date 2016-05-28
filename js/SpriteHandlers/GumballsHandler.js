@@ -44,14 +44,20 @@ GumballsHandler.prototype.setupStartGumballs = function(gumballHandler) {
     }
 };
 
-GumballsHandler.prototype.getNewPosition = function(gumballHandler, index, ground) {
-    var groundHeight = groundObj.getHeightAtPositionX(gumballX, groundObj);
+GumballsHandler.prototype.getNewPosition = function(gumballHandler, index, groundObj, recurseAdd) {
+    var newGumballX = gumballHandler.gumballStructure[index-1].position.x + this.calculateRandomSpace(),
+        groundHeight = groundObj.getHeightAtPositionX(newGumballX, groundObj);
+
     if (groundHeight) {
-        return HelperFunctions().getNewPoint(gumballX, groundHeight);
+        return HelperFunctions().getNewPoint(newGumballX, groundHeight);
     }
     //recursion. If there is a gap, check another X
-    return this.getNewPosition(groundObj, gumballX + 500);
+    return this.getNewPosition(gumballHandler, index, groundObj, MapGlobals.screenWidth / MapGlobals.gumballSpaceConst);
+};
 
+GumballsHandler.prototype.calculateRandomSpace = function() {
+    //1/10 of the screen width * a random number between 1 and 15. Example (1280/10) * 5 = 640 unit space
+    return (MapGlobals.screenWidth / gumballSpaceConst) * (HelperFunctions().getRandomNumber(1, 15))
 };
 
 GumballsHandler.prototype.update = function(gumballHandler, groundObj, characterObj, stage) {
@@ -92,7 +98,11 @@ GumballsHandler.prototype.addNewGumball = function(gumballHandler, groundObj, st
         gumballHandler.gumballs.pop()
     );
 
-    gumballHandler.gumballStructure[gumballHandler.gumballStructure-1].position = this.getNewPosition(gumballHandler);
+    gumballHandler.gumballStructure[gumballHandler.gumballStructure-1].position = this.getNewPosition(
+        gumballHandler,
+        gumballHandler.gumballStructure.length-1,
+        groundObj
+    );
 
     stage.addChildAt(
         gumballHandler.gumballStructure[gumballHandler.gumballStructure-1],
