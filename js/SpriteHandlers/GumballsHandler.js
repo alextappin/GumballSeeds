@@ -50,15 +50,31 @@ GumballsHandler.prototype.getNewPosition = function(gumballHandler, index, groun
         groundHeight = groundObj.getHeightAtPositionX(newGumballX, groundObj);
 
     if (groundHeight) {
-        return HelperFunctions().getNewPoint(newGumballX, groundHeight);
+        return HelperFunctions().getNewPoint(
+            newGumballX,
+            groundHeight + (MapGlobals.screenHeight * MapGlobals.gumballHeightConst)
+        );
     }
     //recursion. If there is a gap, check another X
-    return this.getNewPosition(gumballHandler, index, groundObj, MapGlobals.screenWidth / MapGlobals.gumballSpaceConst);
+    if (groundObj.groundStructure[groundObj.groundStructure.length - 1].position.x > newGumballX) {
+        return this.getNewPosition(
+            gumballHandler,
+            index,
+            groundObj,
+            MapGlobals.screenWidth / MapGlobals.gumballSpaceConst
+        );
+    } else { //the new position is past the last ground...
+        return HelperFunctions().getNewPoint(
+            groundObj.groundStructure[groundObj.groundStructure.length - 1].position.x,
+            groundObj.groundStructure[groundObj.groundStructure.length - 1].position.y
+        );
+
+    }
 };
 
 GumballsHandler.prototype.calculateRandomSpace = function() {
-    //1/10 of the screen width * a random number between 1 and 15. Example (1280/10) * 5 = 640 unit space
-    return (MapGlobals.screenWidth / MapGlobals.gumballSpaceConst) * (HelperFunctions().getRandomNumber(1, 15))
+    //1/x of the screen width * a random number between 1 and 15. Example (1280/x) * 5 =  6400/x unit space
+    return (MapGlobals.screenWidth / MapGlobals.gumballSpaceConst) * (HelperFunctions().getRandomNumber(4, 10))
 };
 
 GumballsHandler.prototype.update = function(gumballHandler, groundObj, characterObj, stage) {
@@ -67,6 +83,7 @@ GumballsHandler.prototype.update = function(gumballHandler, groundObj, character
     }
 
     this.handleOffScreen(gumballHandler, groundObj, stage);
+    this.checkForCharacterCollision(gumballHandler, characterObj, groundObj, stage);
 };
 
 GumballsHandler.prototype.updatePowerUp = function(gumballHandler, groundObj, characterObj, stage) {
@@ -102,7 +119,8 @@ GumballsHandler.prototype.addNewGumball = function(gumballHandler, groundObj, st
     gumballHandler.gumballStructure[gumballHandler.gumballStructure.length-1].position = this.getNewPosition(
         gumballHandler,
         gumballHandler.gumballStructure.length-1,
-        groundObj
+        groundObj,
+        0
     );
 
     stage.addChildAt(
