@@ -113,7 +113,6 @@ Character.prototype.initiateCharacterSprites = function() {
 
 Character.prototype.setSpriteToCurrentTexture = function(characterObj) {
     characterObj.children[characterObj.children.length-1].texture = this.Properties.currentTextures[this.Properties.spriteCount];
-    console.log(characterObj.children.length);
     //characterObj.children[0].texture = this.Properties.rainbowSuperTextures[this.Properties.spriteCount];
 };
 
@@ -254,25 +253,57 @@ Character.prototype.updatePowerUpStart = function(characterObj, groundObj) {
     //if character is airborn, wait until on floor... then GO
     if (characterObj.Properties.currentTextures != this.Properties.superStartTextures) {
         this.setCurrentTextures(TimingGlobals.characterPowerUpTime, this.Properties.superStartTextures);
-        //scale the entire character to the screen...
-        ScalingGlobals.characterSuperRatio = characterObj.scale.x;
-        var sprite = new PIXI.Sprite(this.Properties.rainbowSuperTextures[this.Properties.spriteCount]);
-        ScalingGlobals.rainbowSuperRatio = HelperFunctions().getScreenRatioUsingHeight(sprite.height, ScalingGlobals.rainbowSuperPercentOfScreen);
-        characterObj.scale = HelperFunctions().getNewPoint(ScalingGlobals.rainbowSuperRatio, ScalingGlobals.rainbowSuperRatio);
-        characterObj.position = HelperFunctions().getNewPoint(0,0);
-
-        ScalingGlobals.characterSuperRatio = characterObj.scale.x;
-
-        this.addChildAt(sprite, 0);
-        characterObj.children[1].scale = HelperFunctions().getNewPoint(ScalingGlobals.characterSuperRatio, ScalingGlobals.characterSuperRatio);
-        characterObj.children[1].position.x += 800;
-        characterObj.children[1].position.y += 1000;
-        //characterObj.children[1].scale = HelperFunctions().getNewPoint(ScalingGlobals.characterRatio, ScalingGlobals.characterRatio);
+        this.setupSuper(characterObj);
     } else {
         this.updateSprites(characterObj);
         this.updatePowerSprite(characterObj);
         this.startPowerJump(characterObj);
     }
+};
+
+Character.prototype.setupSuper = function(characterObj) {
+    ScalingGlobals.characterSuperPosition = characterObj.position;
+
+    this.addChildAt(new PIXI.Sprite(this.Properties.rainbowSuperTextures[this.Properties.spriteCount]), 0); //add the rainbow thing to the back of the character container.
+
+    ScalingGlobals.characterObjSuperScale = HelperFunctions().getScreenRatioUsingHeight(
+        characterObj.children[0].height,
+        ScalingGlobals.characterObjSuperPercentOfScreen
+    );
+
+    ScalingGlobals.rainbowSuperRatio = HelperFunctions().getScreenRatioUsingHeight(
+        MapGlobals.screenHeight,
+        ScalingGlobals.rainbowSuperPercentOfScreen
+    );
+
+    ScalingGlobals.characterSuperRatio = HelperFunctions().getScreenRatioUsingHeight(
+        MapGlobals.screenHeight,
+        ScalingGlobals.characterSuperPercentOfScreen
+    );
+
+    characterObj.scale = HelperFunctions().getNewPoint(
+        ScalingGlobals.characterObjSuperScale,
+        ScalingGlobals.characterObjSuperScale
+    );
+
+    characterObj.children[0].scale = HelperFunctions().getNewPoint(
+        ScalingGlobals.rainbowSuperRatio,
+        ScalingGlobals.rainbowSuperRatio
+    );
+
+    characterObj.children[1].scale = HelperFunctions().getNewPoint(
+        ScalingGlobals.characterSuperRatio,
+        ScalingGlobals.characterSuperRatio
+    );
+
+    characterObj.position = HelperFunctions().getNewPoint(0,0);
+
+    //the ratio between the old screen and new. if its 2x then it will be 360p...
+    ScalingGlobals.superScreenSize = ScalingGlobals.characterSuperPercentOfScreen / ScalingGlobals.characterObjSuperScale;
+    characterObj.children[1].position =  HelperFunctions().getNewPoint(
+        ScalingGlobals.characterSuperPosition.x/ScalingGlobals.characterSuperRatio*ScalingGlobals.superScreenSize,
+        ScalingGlobals.characterSuperPosition.y/ScalingGlobals.characterSuperRatio*ScalingGlobals.superScreenSize
+    );
 };
 
 Character.prototype.updatePowerSprite = function(characterObj) {

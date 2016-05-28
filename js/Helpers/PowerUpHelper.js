@@ -17,7 +17,7 @@ function PowerUpHelper() {
             powerUpHelper.endPowerUp();
         }
         else {
-            console.log("power up ongoing");
+            /*console.log("power up ongoing");*/
         }
     };
     powerUpHelper.endPowerUp = function() {
