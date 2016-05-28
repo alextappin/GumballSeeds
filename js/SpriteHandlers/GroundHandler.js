@@ -78,6 +78,7 @@ GroundHandler.prototype.update = function(groundHandler, stage) {
     for (var n = 0; n < groundHandler.groundStructure.length; n++) {
         groundHandler.groundStructure[n].update(groundHandler.groundStructure[n]);
     }
+
     this.handleOffScreen(groundHandler, stage);
 };
 

@@ -3,6 +3,7 @@
  */
 function GumballsHandler() {
     this.gumballs = []; //array of gumball objects pool
+    this.gumballStructure = [];
     this.constructGumballs();
 }
 
@@ -23,19 +24,42 @@ GumballsHandler.prototype.setPositionAndScale = function(gumballHandler) {
 };
 
 GumballsHandler.prototype.addGumballsToStage = function(gumballHandler, stage) {
+    this.setupStartGumballs(gumballHandler);
     for (var n = 0; n < gumballHandler.gumballs.length; n++) {
         stage.addChild(gumballHandler.gumballs[n]);
     }
 };
 
-GumballsHandler.prototype.update = function(gumballHandler, groundObj, characterObj, stage) {
-    for (var n = 0; n < BalanceGlobals.gumballs; n++) {
-        if (gumballHandler.gumballs[n]) {
-            gumballHandler.gumballs[n].update(gumballHandler.gumballs[n], groundObj, characterObj);
-        } else {
-            this.addGumball(BalanceGlobals.gumballsToAdd, stage, gumballHandler); //if there are not enough gumballs, add another
-        }
+GumballsHandler.prototype.setupStartGumballs = function(gumballHandler) {
+    HelperFunctions().shuffleArray(gumballHandler.gumballs); //shuffle the array of gumball objects...
+
+    gumballHandler.gumballStructure.push( //3 gumballs at a time... maximum
+        gumballHandler.gumballs.pop(),
+        gumballHandler.gumballs.pop(),
+        gumballHandler.gumballs.pop()
+    );
+
+    for (var n = 0; n < gumballHandler.gumballStructure.length; n++) {
+        gumballHandler.gumballStructure[n].position = HelperFunctions().getNewPoint(0,0);
     }
+};
+
+GumballsHandler.prototype.getNewPosition = function(gumballHandler, index, ground) {
+    var groundHeight = groundObj.getHeightAtPositionX(gumballX, groundObj);
+    if (groundHeight) {
+        return HelperFunctions().getNewPoint(gumballX, groundHeight);
+    }
+    //recursion. If there is a gap, check another X
+    return this.getNewPosition(groundObj, gumballX + 500);
+
+};
+
+GumballsHandler.prototype.update = function(gumballHandler, groundObj, characterObj, stage) {
+    for (var n = 0; n < gumballHandler.gumballStructure.length; n++) {
+        gumballHandler.gumballStructure[n].update(gumballHandler.gumballStructure[n]);
+    }
+
+    this.handleOffScreen(gumballHandler, groundObj, stage);
 };
 
 GumballsHandler.prototype.updatePowerUp = function(gumballHandler, groundObj, characterObj, stage) {
@@ -50,11 +74,28 @@ GumballsHandler.prototype.updatePowerUp = function(gumballHandler, groundObj, ch
     }
 };
 
-GumballsHandler.prototype.addGumball = function(numberToAdd, stage, gumballHandler) {
-    for (var n = 0; n < numberToAdd; n++) {
-        var gumball = new Gumball();
-        gumball.setPositionAndScale(gumball);
-        gumballHandler.gumballs.push(gumball);
-        stage.addChild(gumball);
+GumballsHandler.prototype.handleOffScreen = function(gumballHandler, groundObj, stage) {
+    if (gumballHandler.gumballStructure[0].position.x < 0 - gumballHandler.gumballStructure[0].width) {
+        this.returnPiece(gumballHandler.gumballStructure.shift(), gumballHandler, stage);
+        this.addNewGumball(gumballHandler, groundObj, stage);
     }
+};
+
+GumballsHandler.prototype.returnPiece = function(piece, gumballHandler, stage) {
+    stage.removeChild(piece);
+    gumballHandler.gumballs.push(piece);
+    HelperFunctions().shuffleArray(gumballHandler.gumballs);
+};
+
+GumballsHandler.prototype.addNewGumball = function(gumballHandler, groundObj, stage) {
+    gumballHandler.gumballStructure.push(
+        gumballHandler.gumballs.pop()
+    );
+
+    gumballHandler.gumballStructure[gumballHandler.gumballStructure-1].position = this.getNewPosition(gumballHandler);
+
+    stage.addChildAt(
+        gumballHandler.gumballStructure[gumballHandler.gumballStructure-1],
+        MapGlobals.addGumballChildConst
+    );
 };
