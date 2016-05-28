@@ -67,6 +67,7 @@ Character.prototype.initiateCharacterSprites = function() {
     );
     this.Properties.superStartTextures.push(
         PIXI.Texture.fromFrame("gbs super1"),
+        PIXI.Texture.fromFrame("gbs super1"),
         PIXI.Texture.fromFrame("gbs super2"),
         PIXI.Texture.fromFrame("gbs super3"),
         PIXI.Texture.fromFrame("gbs super4"),
@@ -74,13 +75,16 @@ Character.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("gbs super6"),
         PIXI.Texture.fromFrame("rainbowband gumballstart")
     );
-    this.Properties.rainbowSuperTextures.push(
+    this.Properties.superPowerupTextures.push(
+        PIXI.Texture.fromFrame("1 super powerup"),
         PIXI.Texture.fromFrame("1 super powerup"),
         PIXI.Texture.fromFrame("2 super powerup"),
         PIXI.Texture.fromFrame("3 super powerup"),
         PIXI.Texture.fromFrame("4 super powerup"),
         PIXI.Texture.fromFrame("5 super powerup"),
-        PIXI.Texture.fromFrame("rainbowband 1start"),
+        PIXI.Texture.fromFrame("rainbowband 1start")
+    );
+    this.Properties.rainbowSuperTextures.push(
         PIXI.Texture.fromFrame("rainbowband 2straight"),
         PIXI.Texture.fromFrame("rainbowband 3straight"),
         PIXI.Texture.fromFrame("rainbowband down1a"),
@@ -89,12 +93,24 @@ Character.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("rainbowband down2b"),
         PIXI.Texture.fromFrame("rainbowband down3a"),
         PIXI.Texture.fromFrame("rainbowband down3b"),
+        PIXI.Texture.fromFrame("rainbowband down3a"),
+        PIXI.Texture.fromFrame("rainbowband down2b"),
+        PIXI.Texture.fromFrame("rainbowband down2a"),
+        PIXI.Texture.fromFrame("rainbowband down1b"),
+        PIXI.Texture.fromFrame("rainbowband down1a"),
+        PIXI.Texture.fromFrame("rainbowband 2straight"),
+        PIXI.Texture.fromFrame("rainbowband 3straight"),
         PIXI.Texture.fromFrame("rainbowband up1a"),
         PIXI.Texture.fromFrame("rainbowband up1b"),
         PIXI.Texture.fromFrame("rainbowband up2a"),
         PIXI.Texture.fromFrame("rainbowband up2b"),
         PIXI.Texture.fromFrame("rainbowband up3a"),
-        PIXI.Texture.fromFrame("rainbowband up3b")
+        PIXI.Texture.fromFrame("rainbowband up3b"),
+        PIXI.Texture.fromFrame("rainbowband up3a"),
+        PIXI.Texture.fromFrame("rainbowband up2b"),
+        PIXI.Texture.fromFrame("rainbowband up2a"),
+        PIXI.Texture.fromFrame("rainbowband up1b"),
+        PIXI.Texture.fromFrame("rainbowband up1a")
     );
 
     this.setCurrentTextures();
@@ -253,6 +269,7 @@ Character.prototype.updatePowerUpStart = function(characterObj, groundObj) {
     //if character is airborn, wait until on floor... then GO
     if (characterObj.Properties.currentTextures != this.Properties.superStartTextures) {
         this.setCurrentTextures(TimingGlobals.characterPowerUpTime, this.Properties.superStartTextures);
+        this.setCurrentSuperTextures(TimingGlobals.rainbowChargeTime, this.Properties.superPowerupTextures);
         this.setupSuper(characterObj);
     } else {
         this.updateSprites(characterObj);
@@ -264,7 +281,7 @@ Character.prototype.updatePowerUpStart = function(characterObj, groundObj) {
 Character.prototype.setupSuper = function(characterObj) {
     ScalingGlobals.characterSuperPosition = characterObj.position;
 
-    this.addChildAt(new PIXI.Sprite(this.Properties.rainbowSuperTextures[this.Properties.spriteCount]), 0); //add the rainbow thing to the back of the character container.
+    this.addChildAt(new PIXI.Sprite(this.Properties.currentSuperTextures[this.Properties.spriteCount]), 0); //add the rainbow thing to the back of the character container.
 
     ScalingGlobals.characterObjSuperScale = HelperFunctions().getScreenRatioUsingHeight(
         characterObj.children[0].height,
@@ -316,9 +333,12 @@ Character.prototype.updatePowerSprite = function(characterObj) {
 };
 
 Character.prototype.nextSpriteSuper = function(characterObj) {
-    if (this.Properties.superSpriteCount == this.Properties.rainbowSuperTextures.length - 1) {
+    if (this.Properties.superSpriteCount == this.Properties.currentSuperTextures.length - 1) {
         this.Properties.superSpriteCount = 0;
-        //PowerUpGlobals.characterDonePoweringUp = true;
+        if (PowerUpGlobals.characterDonePoweringUp == false) {
+            PowerUpGlobals.characterDonePoweringUp = true;
+            this.setCurrentSuperTextures(TimingGlobals.rainbowChargeTime, this.Properties.rainbowSuperTextures);
+        }
     } else {
         this.Properties.superSpriteCount++;
     }
@@ -327,8 +347,7 @@ Character.prototype.nextSpriteSuper = function(characterObj) {
 };
 
 Character.prototype.setSuperSpriteToCurrentTexture = function(characterObj) {
-    //characterObj.children[0].texture = this.Properties.currentTextures[this.Properties.spriteCount];
-    characterObj.children[0].texture = this.Properties.rainbowSuperTextures[this.Properties.superSpriteCount];
+    characterObj.children[0].texture = this.Properties.currentSuperTextures[this.Properties.superSpriteCount];
 };
 
 Character.prototype.updatePowerUp = function(characterObj, groundObj) {
@@ -341,8 +360,12 @@ Character.prototype.startPowerJump = function(characterObj) {
 
 };
 
-
-
+Character.prototype.setCurrentSuperTextures = function(speed, textures) {
+    this.Properties.currentSuperTextures = textures;
+    this.Properties.superSpriteSpeed = speed;
+    this.Properties.superSpriteCount = 0;
+    this.Properties.superChangeSpriteCounter = 0;
+};
 
 
 Character.prototype.listenForJumpTrigger = function() {
