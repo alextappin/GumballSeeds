@@ -14,15 +14,19 @@ Gumball.prototype.constructGumball = function() {
     this.initiateGumballSprites();
 };
 Gumball.prototype.setPositionAndScale = function(obj) {
-    obj.position =  HelperFunctions().getNewPoint(-100, this.Properties.startingY);
-    obj.scale = HelperFunctions().getNewPoint(.35,.35);
+    ScalingGlobals.gumballRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height, ScalingGlobals.gumballPercentOfScreen);
+    obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.gumballRatio, ScalingGlobals.gumballRatio);
+    obj.position =  HelperFunctions().getNewPoint(0 - obj.width, 0);
 };
 Gumball.prototype.initiateGumballSprites = function() {
     this.Properties.textures.push(
-        PIXI.Texture.fromFrame("gum1Blue"),
-        PIXI.Texture.fromFrame("gum3Red"),
-        PIXI.Texture.fromFrame("gum2Blue"),
-        PIXI.Texture.fromFrame("gum4Red")
+        PIXI.Texture.fromFrame("1 violetgb"),
+        PIXI.Texture.fromFrame("2 purplegb"),
+        PIXI.Texture.fromFrame("3 bluegb"),
+        PIXI.Texture.fromFrame("4 greengb"),
+        PIXI.Texture.fromFrame("5 yellowgb"),
+        PIXI.Texture.fromFrame("6 orangegb"),
+        PIXI.Texture.fromFrame("7 redgb")
     );
     this.Properties.sprite = new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]);
     this.addChild(this.Properties.sprite);
