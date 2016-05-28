@@ -68,7 +68,6 @@ GumballsHandler.prototype.getNewPosition = function(gumballHandler, index, groun
             groundObj.groundStructure[groundObj.groundStructure.length - 1].position.x,
             groundObj.groundStructure[groundObj.groundStructure.length - 1].position.y
         );
-
     }
 };
 
@@ -83,7 +82,7 @@ GumballsHandler.prototype.update = function(gumballHandler, groundObj, character
     }
 
     this.handleOffScreen(gumballHandler, groundObj, stage);
-    this.checkForCharacterCollision(gumballHandler, characterObj, groundObj, stage);
+    this.characterGrab(gumballHandler, characterObj, groundObj, stage);
 };
 
 GumballsHandler.prototype.updatePowerUp = function(gumballHandler, groundObj, characterObj, stage) {
@@ -106,6 +105,7 @@ GumballsHandler.prototype.handleOffScreen = function(gumballHandler, groundObj, 
 };
 
 GumballsHandler.prototype.returnPiece = function(piece, gumballHandler, stage) {
+    console.log(piece);
     stage.removeChild(piece);
     gumballHandler.gumballs.push(piece);
     HelperFunctions().shuffleArray(gumballHandler.gumballs);
@@ -127,4 +127,16 @@ GumballsHandler.prototype.addNewGumball = function(gumballHandler, groundObj, st
         gumballHandler.gumballStructure[gumballHandler.gumballStructure.length-1],
         MapGlobals.addGumballChildConst
     );
+};
+
+GumballsHandler.prototype.characterGrab = function(gumballHandler, characterObj, groundObj, stage) {
+    if (HelperFunctions().isIntersecting(gumballHandler.gumballStructure[0], characterObj)) {
+        this.characterPickedUp(gumballHandler, groundObj, stage);
+    }
+};
+
+GumballsHandler.prototype.characterPickedUp = function(gumballHandler, groundObj, stage) {
+    ScoreHelper().pickupGumball();
+    this.returnPiece(gumballHandler.gumballStructure.shift(), gumballHandler, stage);
+    this.addNewGumball(gumballHandler, groundObj, stage);
 };
