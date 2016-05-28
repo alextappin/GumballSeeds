@@ -1,39 +1,34 @@
 /**
  * Created by ajt on 3/12/2016.
  */
-function Gumball() {
+function Gumball(gumballColor) {
     PIXI.Container.call(this);
-    this.constructGumball();
+    this.constructGumball(gumballColor);
 }
 
 Gumball.constructor = Gumball;
 Gumball.prototype = Object.create(PIXI.Container.prototype);
 
-Gumball.prototype.constructGumball = function() {
+Gumball.prototype.constructGumball = function(gumballColor) {
     this.Properties = new GumballProperties();
+    this.Properties.color = MapGlobals.gumballs[gumballColor];
     this.initiateGumballSprites();
 };
+
 Gumball.prototype.setPositionAndScale = function(obj) {
     ScalingGlobals.gumballRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height, ScalingGlobals.gumballPercentOfScreen);
     obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.gumballRatio, ScalingGlobals.gumballRatio);
     obj.position =  HelperFunctions().getNewPoint(0 - obj.width, 0);
 };
+
 Gumball.prototype.initiateGumballSprites = function() {
-    this.Properties.textures.push(
-        PIXI.Texture.fromFrame("1 violetgb"),
-        PIXI.Texture.fromFrame("2 purplegb"),
-        PIXI.Texture.fromFrame("3 bluegb"),
-        PIXI.Texture.fromFrame("4 greengb"),
-        PIXI.Texture.fromFrame("5 yellowgb"),
-        PIXI.Texture.fromFrame("6 orangegb"),
-        PIXI.Texture.fromFrame("7 redgb")
-    );
-    this.Properties.sprite = new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]);
-    this.addChild(this.Properties.sprite);
+    this.addChild(new PIXI.Sprite(PIXI.Texture.fromFrame(this.Properties.color)));
 };
+
 Gumball.prototype.setSpriteToCurrentTexture = function() {
     this.Properties.sprite.texture = this.Properties.textures[this.Properties.spriteCount];
 };
+
 Gumball.prototype.update = function(gumballObj, groundObj, characterObj) {
     //this.updateSprite();
     this.moveSprite(gumballObj, groundObj, characterObj);
