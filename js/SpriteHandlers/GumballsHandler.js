@@ -86,15 +86,12 @@ GumballsHandler.prototype.update = function(gumballHandler, groundObj, character
 };
 
 GumballsHandler.prototype.updatePowerUp = function(gumballHandler, groundObj, characterObj, stage) {
-    for (var n = 0; n < BalanceGlobals.gumballs; n++) {
-        if (gumballHandler.gumballs[n]) {
-            gumballHandler.gumballs[n].updatePowerUp(gumballHandler.gumballs[n], groundObj, characterObj);
-        }
-        //if there are not enough gumballs, add another
-        else {
-            this.addGumball(BalanceGlobals.gumballsToAdd, stage, gumballHandler);
-        }
+    for (var n = 0; n < gumballHandler.gumballStructure.length; n++) {
+        gumballHandler.gumballStructure[n].update(gumballHandler.gumballStructure[n]);
     }
+
+    this.handleOffScreen(gumballHandler, groundObj, stage);
+    this.characterGrab(gumballHandler, characterObj, groundObj, stage);
 };
 
 GumballsHandler.prototype.handleOffScreen = function(gumballHandler, groundObj, stage) {
