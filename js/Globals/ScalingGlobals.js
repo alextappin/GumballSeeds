@@ -37,7 +37,7 @@ var ScalingGlobals = (function ScalingGlobals() {
     constants.characterPercentOfScreen = .2;
 
     constants.gumballRatio = 0;
-    constants.gumballPercentOfScreen = .2;
+    constants.gumballPercentOfScreen = .15;
 
     return constants;
 })();

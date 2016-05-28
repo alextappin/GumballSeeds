@@ -18,7 +18,7 @@ Gumball.prototype.constructGumball = function(gumballColor) {
 Gumball.prototype.setPositionAndScale = function(obj) {
     ScalingGlobals.gumballRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height, ScalingGlobals.gumballPercentOfScreen);
     obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.gumballRatio, ScalingGlobals.gumballRatio);
-    obj.position =  HelperFunctions().getNewPoint(0 - obj.width, 0);
+    obj.position =  HelperFunctions().getNewPoint(MapGlobals.screenWidth+obj.width, 0);
 };
 
 Gumball.prototype.initiateGumballSprites = function() {
@@ -31,13 +31,4 @@ Gumball.prototype.update = function(gumballObj) {
 
 Gumball.prototype.updatePowerUp = function(gumballObj) {
     gumballObj.position.x -= ScrollerGlobals.groundSpeed;
-};
-
-Gumball.prototype.getNewPosition = function(groundObj, gumballX) {
-    var groundHeight = groundObj.getHeightAtPositionX(gumballX, groundObj);
-    if (groundHeight) {
-        return HelperFunctions().getNewPoint(gumballX, groundHeight);
-    }
-    //recursion. If there is a gap, check another X
-    return this.getNewPosition(groundObj, gumballX + 500);
 };

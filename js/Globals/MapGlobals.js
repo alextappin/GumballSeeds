@@ -26,7 +26,7 @@ var MapGlobals = (function MapGlobals() {
     constants.groundEndB = "17 ground1end b";
     constants.groundY = .86; //10% of screen height...
     constants.addGroundChildConst = 16;
-    constants.addGumballChildConst = 17;
+    constants.addGumballChildConst = 20;
     constants.gumballs = [
         "1 violetgb",
         "2 purplegb",
