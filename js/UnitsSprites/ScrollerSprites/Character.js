@@ -128,6 +128,7 @@ Character.prototype.fallCharacter = function(characterObj, groundObj) {
         characterObj.position.y = groundHeight;
         PhysicsGlobals.characterVelocityY = 0;
         PhysicsGlobals.characterAirborn = false;
+        PhysicsGlobals.characterHighJumping = false;
         this.setCurrentTextures();
     } else {
         HelperFunctions().endGame();
@@ -162,13 +163,14 @@ Character.prototype.startJumpAnimation = function() {
         PhysicsGlobals.characterAirborn = true;
         PhysicsGlobals.characterVelocityY = PhysicsGlobals.characterJumpVelocity;
         this.setCurrentTextures(TimingGlobals.characterJumpTime, this.Properties.jumpTextures);
-    } else if (this.Properties.spriteCount < 2) {
+    } else if (this.Properties.spriteCount < 2 && !PhysicsGlobals.characterHighJumping) {
         this.startJumpHighAnimation();
     }
 };
 
 Character.prototype.startJumpHighAnimation = function() {
     PhysicsGlobals.characterAirborn = true;
+    PhysicsGlobals.characterHighJumping = true;
     PhysicsGlobals.characterVelocityY = PhysicsGlobals.characterJumpHighVelocity;
     this.setCurrentTextures(TimingGlobals.characterJumpTime, this.Properties.jumpHighTextures);
 };

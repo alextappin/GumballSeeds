@@ -12,6 +12,7 @@ var PhysicsGlobals = (function PhysicsGlobals() {
     constants.characterVelocityY = 5;
     constants.applyFallingGravity = false;
     constants.characterAirborn = true;
+    constants.characterHighJumping = false;
 
     return constants;
 })();
