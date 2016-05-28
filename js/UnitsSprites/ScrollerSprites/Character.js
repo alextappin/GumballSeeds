@@ -114,16 +114,6 @@ Character.prototype.initiateCharacterSprites = function() {
     );
 
     this.setCurrentTextures();
-    /*var testSprite = new PIXI.Sprite(this.Properties.rainbowSuperTextures[2]);
-    console.log(testSprite);
-    testSprite.position.x -= 1300;
-    testSprite.position.y -= 700;
-    this.scale = HelperFunctions().getNewPoint(ScalingGlobals.characterRatio +.2, ScalingGlobals.characterRatio +.2);
-    this.addChild(testSprite);
-    this.addChild(new PIXI.Sprite(this.Properties.currentTextures[this.Properties.spriteCount]));
-    this.children[1].scale.x = .5;
-    this.children[1].scale.y = .5;
-    this.children[1].position.x += 400;*/
     this.addChild(new PIXI.Sprite(this.Properties.currentTextures[this.Properties.spriteCount]));
 };
 
@@ -197,11 +187,7 @@ Character.prototype.attackCharacter = function() {
     if (BalanceGlobals.isAttacking) {
         this.Properties.attackCounter++;
         var counter = PhysicsGlobals.characterAirborn ? BalanceGlobals.jumpAttackTime : BalanceGlobals.attackTime;
-/*        if (PhysicsGlobals.characterAirborn) { //jump attacking
-            if (this.Properties.attackCounter >= BalanceGlobals.attackTime) {
-                BalanceGlobals.isAttacking = false;
-            }
-        }*/
+
         if (this.Properties.attackCounter >= counter) { //attack updates over
             BalanceGlobals.isAttacking = false;
             this.setCurrentTextures(); //default
@@ -263,7 +249,7 @@ Character.prototype.setCurrentTextures = function(speed, textures) {
 
 };
 
-//POWERUP STUFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+//POWERUP STUFF
 
 Character.prototype.updatePowerUpStart = function(characterObj, groundObj) {
     //if character is airborn, wait until on floor... then GO
