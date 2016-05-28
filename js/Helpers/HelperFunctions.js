@@ -97,6 +97,7 @@ function HelperFunctions() {
 
     functions.powerUpOff = function() {
         PowerUpGlobals.powerUpActive = false;
+        PowerUpGlobals.characterDonePoweringUp = false;
     };
 
     functions.resetAfterPowerUp = function() {

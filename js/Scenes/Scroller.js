@@ -120,10 +120,10 @@ Scroller.prototype.updateObjectsPowerUp = function() {
         this.Properties.touchJump.update(this.Properties.touchJump, this.Properties.character);
         this.Properties.touchAttack.update(this.Properties.touchAttack, this.Properties.character);
     } else {
-        this.Properties.ground.updatePowerUp(this.Properties.ground);
-        this.Properties.character.updatePowerUp(this.Properties.character, this.Properties.ground);
-        this.Properties.gumballs.updatePowerUp(this.Properties.gumballs, this.Properties.ground, this.Properties.character, this.getStage());
-        this.Properties.enemies.updatePowerUp(this.Properties.enemies, this.Properties.character, this.getStage());
+        this.Properties.ground.updatePowerUp(this.Properties.ground, this.getStage());
+        this.Properties.character.updatePowerUpStart(this.Properties.character, this.Properties.ground);
+        //this.Properties.gumballs.updatePowerUp(this.Properties.gumballs, this.Properties.ground, this.Properties.character, this.getStage());
+        //this.Properties.enemies.updatePowerUp(this.Properties.enemies, this.Properties.character, this.getStage());
         this.Properties.powerBar.updatePowerUp(this.Properties.powerBar);
         this.Properties.textScore.update(this.Properties.textScore);
         this.Properties.textLives.update(this.Properties.textLives);

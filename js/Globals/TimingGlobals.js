@@ -23,7 +23,7 @@ var TimingGlobals = (function TimingGlobals() {
     constants.characterHitTime = 10;
     constants.characterDieTime = 10;
     constants.characterSuperTime = 5;
-    constants.characterPowerUpTime = 10;
+    constants.characterPowerUpTime = 7;
 
     return constants;
 })();

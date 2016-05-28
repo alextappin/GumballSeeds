@@ -112,7 +112,8 @@ Character.prototype.initiateCharacterSprites = function() {
 };
 
 Character.prototype.setSpriteToCurrentTexture = function(characterObj) {
-    characterObj.children[0].texture = this.Properties.currentTextures[this.Properties.spriteCount];
+    characterObj.children[characterObj.children.length-1].texture = this.Properties.currentTextures[this.Properties.spriteCount];
+    console.log(characterObj.children.length);
     //characterObj.children[0].texture = this.Properties.rainbowSuperTextures[this.Properties.spriteCount];
 };
 
@@ -254,13 +255,19 @@ Character.prototype.updatePowerUpStart = function(characterObj, groundObj) {
     if (characterObj.Properties.currentTextures != this.Properties.superStartTextures) {
         this.setCurrentTextures(TimingGlobals.characterPowerUpTime, this.Properties.superStartTextures);
         //scale the entire character to the screen...
-        ScalingGlobals.characterSuperRatio = HelperFunctions().getScreenRatioUsingHeight(characterObj.height, ScalingGlobals.characterSuperPercentOfScreen);
-        characterObj.scale = HelperFunctions().getNewPoint(ScalingGlobals.characterRatio, ScalingGlobals.characterRatio);
-
+        ScalingGlobals.characterSuperRatio = characterObj.scale.x;
         var sprite = new PIXI.Sprite(this.Properties.rainbowSuperTextures[this.Properties.spriteCount]);
-        characterObj.scale = HelperFunctions().getNewPoint(ScalingGlobals.characterRatio +.2, ScalingGlobals.characterRatio +.2);
-        this.addChild(sprite);
+        ScalingGlobals.rainbowSuperRatio = HelperFunctions().getScreenRatioUsingHeight(sprite.height, ScalingGlobals.rainbowSuperPercentOfScreen);
+        characterObj.scale = HelperFunctions().getNewPoint(ScalingGlobals.rainbowSuperRatio, ScalingGlobals.rainbowSuperRatio);
+        characterObj.position = HelperFunctions().getNewPoint(0,0);
 
+        ScalingGlobals.characterSuperRatio = characterObj.scale.x;
+
+        this.addChildAt(sprite, 0);
+        characterObj.children[1].scale = HelperFunctions().getNewPoint(ScalingGlobals.characterSuperRatio, ScalingGlobals.characterSuperRatio);
+        characterObj.children[1].position.x += 800;
+        characterObj.children[1].position.y += 1000;
+        //characterObj.children[1].scale = HelperFunctions().getNewPoint(ScalingGlobals.characterRatio, ScalingGlobals.characterRatio);
     } else {
         this.updateSprites(characterObj);
         this.updatePowerSprite(characterObj);
@@ -278,13 +285,19 @@ Character.prototype.updatePowerSprite = function(characterObj) {
 };
 
 Character.prototype.nextSpriteSuper = function(characterObj) {
-    if (this.Properties.superSpriteCount == this.Properties.currentSuperTextures.length - 1) {
+    if (this.Properties.superSpriteCount == this.Properties.rainbowSuperTextures.length - 1) {
         this.Properties.superSpriteCount = 0;
+        //PowerUpGlobals.characterDonePoweringUp = true;
     } else {
         this.Properties.superSpriteCount++;
     }
 
-    this.setSpriteToCurrentTexture(characterObj);
+    this.setSuperSpriteToCurrentTexture(characterObj);
+};
+
+Character.prototype.setSuperSpriteToCurrentTexture = function(characterObj) {
+    //characterObj.children[0].texture = this.Properties.currentTextures[this.Properties.spriteCount];
+    characterObj.children[0].texture = this.Properties.rainbowSuperTextures[this.Properties.superSpriteCount];
 };
 
 Character.prototype.updatePowerUp = function(characterObj, groundObj) {
