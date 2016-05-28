@@ -105,7 +105,6 @@ GumballsHandler.prototype.handleOffScreen = function(gumballHandler, groundObj, 
 };
 
 GumballsHandler.prototype.returnPiece = function(piece, gumballHandler, stage) {
-    console.log(piece);
     stage.removeChild(piece);
     gumballHandler.gumballs.push(piece);
     HelperFunctions().shuffleArray(gumballHandler.gumballs);
