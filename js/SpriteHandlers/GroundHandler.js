@@ -46,7 +46,6 @@ GroundHandler.prototype.addGroundToStage = function(groundHandler, stage) {
     for (var n = 0; n < groundHandler.groundStructure.length; n++) {
         stage.addChild(groundHandler.groundStructure[n]);
     }
-
 };
 
 GroundHandler.prototype.setupStartGround = function(groundHandler) {

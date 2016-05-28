@@ -10,7 +10,7 @@ function GumballsHandler() {
 GumballsHandler.constructor = GumballsHandler;
 
 GumballsHandler.prototype.constructGumballs = function() {
-    for (var n = 0; n < BalanceGlobals.gumballsPerColor; n++) { //there will be 3 of each color in the array...
+    for (var n = 0; n < MapGlobals.gumballsPerColor; n++) { //there will be 3 of each color in the array...
         for (var i = 0; i < MapGlobals.gumballs.length; i++) {
             this.gumballs.push(new Gumball(i));
         }
@@ -25,8 +25,9 @@ GumballsHandler.prototype.setPositionAndScale = function(gumballHandler) {
 
 GumballsHandler.prototype.addGumballsToStage = function(gumballHandler, stage) {
     this.setupStartGumballs(gumballHandler);
-    for (var n = 0; n < gumballHandler.gumballs.length; n++) {
-        stage.addChild(gumballHandler.gumballs[n]);
+
+    for (var n = 0; n < gumballHandler.gumballStructure.length; n++) {
+        stage.addChild(gumballHandler.gumballStructure[n]);
     }
 };
 
@@ -45,7 +46,7 @@ GumballsHandler.prototype.setupStartGumballs = function(gumballHandler) {
 };
 
 GumballsHandler.prototype.getNewPosition = function(gumballHandler, index, groundObj, recurseAdd) {
-    var newGumballX = gumballHandler.gumballStructure[index-1].position.x + this.calculateRandomSpace(),
+    var newGumballX = gumballHandler.gumballStructure[index-1].position.x + this.calculateRandomSpace() + recurseAdd,
         groundHeight = groundObj.getHeightAtPositionX(newGumballX, groundObj);
 
     if (groundHeight) {
@@ -57,7 +58,7 @@ GumballsHandler.prototype.getNewPosition = function(gumballHandler, index, groun
 
 GumballsHandler.prototype.calculateRandomSpace = function() {
     //1/10 of the screen width * a random number between 1 and 15. Example (1280/10) * 5 = 640 unit space
-    return (MapGlobals.screenWidth / gumballSpaceConst) * (HelperFunctions().getRandomNumber(1, 15))
+    return (MapGlobals.screenWidth / MapGlobals.gumballSpaceConst) * (HelperFunctions().getRandomNumber(1, 15))
 };
 
 GumballsHandler.prototype.update = function(gumballHandler, groundObj, characterObj, stage) {
@@ -98,7 +99,7 @@ GumballsHandler.prototype.addNewGumball = function(gumballHandler, groundObj, st
         gumballHandler.gumballs.pop()
     );
 
-    gumballHandler.gumballStructure[gumballHandler.gumballStructure-1].position = this.getNewPosition(
+    gumballHandler.gumballStructure[gumballHandler.gumballStructure.length-1].position = this.getNewPosition(
         gumballHandler,
         gumballHandler.gumballStructure.length-1,
         groundObj
