@@ -338,8 +338,8 @@ Character.prototype.setSuperSpriteToCurrentTexture = function(characterObj) {
 
 Character.prototype.updatePowerUp = function(characterObj, groundObj) {
     this.updateSprites(characterObj);
-    this.gravityCharacter(characterObj, groundObj);
-    this.attackCharacter();
+    //this.gravityCharacter(characterObj, groundObj);
+    //this.attackCharacter();
 };
 
 Character.prototype.startPowerJump = function(characterObj) {
