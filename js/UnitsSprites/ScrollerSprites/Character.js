@@ -122,22 +122,6 @@ Character.prototype.update = function(characterObj, groundObj) {
     this.attackCharacter();
 };
 
-Character.prototype.updatePowerUpStart = function(characterObj, groundObj) {
-    if (characterObj.Properties.currentTextures != this.Properties.superStartTextures) {
-        this.setCurrentTextures(TimingGlobals.characterPowerUpTime, this.Properties.superStartTextures)
-    } else {
-        this.updateSprites(characterObj);
-        this.startPowerJump(characterObj);
-        this.updatePowerSprite(characterObj);
-    }
-};
-
-Character.prototype.updatePowerUp = function(characterObj, groundObj) {
-    this.updateSprites(characterObj);
-    this.gravityCharacter(characterObj, groundObj);
-    this.attackCharacter();
-};
-
 Character.prototype.updateSprites = function(characterObj) {
     if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
         this.Properties.changeSpriteCounter = 0;
@@ -263,9 +247,59 @@ Character.prototype.setCurrentTextures = function(speed, textures) {
 
 };
 
+//POWERUP STUFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+Character.prototype.updatePowerUpStart = function(characterObj, groundObj) {
+    //if character is airborn, wait until on floor... then GO
+    if (characterObj.Properties.currentTextures != this.Properties.superStartTextures) {
+        this.setCurrentTextures(TimingGlobals.characterPowerUpTime, this.Properties.superStartTextures);
+        //scale the entire character to the screen...
+        ScalingGlobals.characterSuperRatio = HelperFunctions().getScreenRatioUsingHeight(characterObj.height, ScalingGlobals.characterSuperPercentOfScreen);
+        characterObj.scale = HelperFunctions().getNewPoint(ScalingGlobals.characterRatio, ScalingGlobals.characterRatio);
+
+        var sprite = new PIXI.Sprite(this.Properties.rainbowSuperTextures[this.Properties.spriteCount]);
+        characterObj.scale = HelperFunctions().getNewPoint(ScalingGlobals.characterRatio +.2, ScalingGlobals.characterRatio +.2);
+        this.addChild(sprite);
+
+    } else {
+        this.updateSprites(characterObj);
+        this.updatePowerSprite(characterObj);
+        this.startPowerJump(characterObj);
+    }
+};
+
+Character.prototype.updatePowerSprite = function(characterObj) {
+    if (this.Properties.superChangeSpriteCounter == this.Properties.superSpriteSpeed) {
+        this.Properties.superChangeSpriteCounter = 0;
+        this.nextSpriteSuper(characterObj);
+    } else {
+        this.Properties.superChangeSpriteCounter++;
+    }
+};
+
+Character.prototype.nextSpriteSuper = function(characterObj) {
+    if (this.Properties.superSpriteCount == this.Properties.currentSuperTextures.length - 1) {
+        this.Properties.superSpriteCount = 0;
+    } else {
+        this.Properties.superSpriteCount++;
+    }
+
+    this.setSpriteToCurrentTexture(characterObj);
+};
+
+Character.prototype.updatePowerUp = function(characterObj, groundObj) {
+    this.updateSprites(characterObj);
+    this.gravityCharacter(characterObj, groundObj);
+    this.attackCharacter();
+};
+
 Character.prototype.startPowerJump = function(characterObj) {
 
 };
+
+
+
+
 
 Character.prototype.listenForJumpTrigger = function() {
     var that = this;
