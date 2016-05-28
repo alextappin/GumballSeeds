@@ -259,7 +259,7 @@ Character.prototype.updatePowerUpStart = function(characterObj, groundObj) {
         this.setupSuper(characterObj);
     } else {
         this.updateSprites(characterObj);
-        this.updatePowerSprite(characterObj);
+        this.updateSuperSprite(characterObj);
         this.startPowerJump(characterObj);
     }
 };
@@ -309,16 +309,16 @@ Character.prototype.setupSuper = function(characterObj) {
     );
 };
 
-Character.prototype.updatePowerSprite = function(characterObj) {
+Character.prototype.updateSuperSprite = function(characterObj) {
     if (this.Properties.superChangeSpriteCounter == this.Properties.superSpriteSpeed) {
         this.Properties.superChangeSpriteCounter = 0;
-        this.nextSpriteSuper(characterObj);
+        this.nextSuperSprite(characterObj);
     } else {
         this.Properties.superChangeSpriteCounter++;
     }
 };
 
-Character.prototype.nextSpriteSuper = function(characterObj) {
+Character.prototype.nextSuperSprite = function(characterObj) {
     if (this.Properties.superSpriteCount == this.Properties.currentSuperTextures.length - 1) {
         this.Properties.superSpriteCount = 0;
         if (PowerUpGlobals.characterDonePoweringUp == false) {
@@ -343,7 +343,11 @@ Character.prototype.updatePowerUp = function(characterObj, groundObj) {
 };
 
 Character.prototype.startPowerJump = function(characterObj) {
-
+    if (characterObj.Properties.spriteCount >= 3) {
+        if (characterObj.children[1].position.y > MapGlobals.screenHeight / 2) {
+            characterObj.children[1].position.y -= 5;
+        }
+    }
 };
 
 Character.prototype.setCurrentSuperTextures = function(speed, textures) {

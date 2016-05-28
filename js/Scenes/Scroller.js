@@ -111,7 +111,7 @@ Scroller.prototype.updateViewportPowerUp = function() {
 Scroller.prototype.updateObjectsPowerUp = function() {
     if (PowerUpGlobals.characterDonePoweringUp) {
         this.Properties.ground.updatePowerUp(this.Properties.ground, this.getStage());
-        this.Properties.character.updatePowerUpStart(this.Properties.character, this.Properties.ground);
+        this.Properties.character.updatePowerUp(this.Properties.character, this.Properties.ground);
         this.Properties.gumballs.updatePowerUp(this.Properties.gumballs, this.Properties.ground, this.Properties.character, this.getStage());
         this.Properties.enemies.updatePowerUp(this.Properties.enemies, this.Properties.character, this.getStage());
         this.Properties.powerBar.updatePowerUp(this.Properties.powerBar);
