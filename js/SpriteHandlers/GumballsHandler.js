@@ -41,7 +41,10 @@ GumballsHandler.prototype.setupStartGumballs = function(gumballHandler) {
     );
 
     for (var n = 0; n < gumballHandler.gumballStructure.length; n++) {
-        gumballHandler.gumballStructure[n].position = HelperFunctions().getNewPoint(0,0);
+        gumballHandler.gumballStructure[n].position = HelperFunctions().getNewPoint(
+            0-gumballHandler.gumballStructure[n].width,
+            0
+        );
     }
 };
 
