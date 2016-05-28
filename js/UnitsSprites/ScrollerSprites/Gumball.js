@@ -25,48 +25,12 @@ Gumball.prototype.initiateGumballSprites = function() {
     this.addChild(new PIXI.Sprite(PIXI.Texture.fromFrame(this.Properties.color)));
 };
 
-Gumball.prototype.setSpriteToCurrentTexture = function() {
-    this.Properties.sprite.texture = this.Properties.textures[this.Properties.spriteCount];
-};
-
-Gumball.prototype.update = function(gumballObj, groundObj, characterObj) {
-    //this.updateSprite();
-    this.moveSprite(gumballObj, groundObj, characterObj);
-    /*this.updateSprites(gumballObj, groundObj, characterObj);*/
-};
-Gumball.prototype.updatePowerUp = function(gumballObj, groundObj, characterObj) {
-    this.moveSprite(gumballObj, groundObj, characterObj);
-};
-Gumball.prototype.updateSprite = function() {
-    if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
-        this.Properties.changeSpriteCounter = 0;
-        this.nextSprite();
-    }
-    else {
-        this.Properties.changeSpriteCounter++;
-    }
-};
-Gumball.prototype.moveSprite = function(gumballObj, groundObj, characterObj) {
-    if (gumballObj.position.x < (0-gumballObj.width)) {
-        gumballObj.position = this.getNewPosition(groundObj, this.Properties.startingX);
-        this.updateSprite(gumballObj);
-    }
-    //check if the character and gumball are intersecting
-    else if(this.isIntersecting(gumballObj, characterObj)) {
-        ScoreHelper().pickupGumball();
-        gumballObj.position = this.getNewPosition(groundObj, this.Properties.startingX);
-        this.updateSprite(gumballObj);
-    }
+Gumball.prototype.update = function(gumballObj) {
     gumballObj.position.x -= ScrollerGlobals.groundSpeed;
 };
-Gumball.prototype.nextSprite = function() {
-    if (this.Properties.spriteCount == this.Properties.textures.length-1) {
-        this.Properties.spriteCount = 0;
-    }
-    else {
-        this.Properties.spriteCount++;
-    }
-    this.setSpriteToCurrentTexture();
+
+Gumball.prototype.updatePowerUp = function(gumballObj) {
+    gumballObj.position.x -= ScrollerGlobals.groundSpeed;
 };
 Gumball.prototype.getNewPosition = function(groundObj, gumballX) {
     var groundHeight = groundObj.getHeightAtPositionX(gumballX, groundObj);

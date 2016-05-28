@@ -2,8 +2,7 @@
  * Created by ajt on 4/18/2016.
  */
 function GumballsHandler() {
-    //array of gumball objects
-    this.gumballs = [];
+    this.gumballs = []; //array of gumball objects pool
     this.constructGumballs();
 }
 
