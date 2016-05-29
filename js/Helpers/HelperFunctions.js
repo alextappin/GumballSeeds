@@ -128,12 +128,11 @@ function HelperFunctions() {
     };
 
     functions.startGameSound = function() {
-        createjs.Sound.play(MapGlobals.gameString, {loop: 10, volume:1});
+        createjs.Sound.play(MapGlobals.gameString, {loop: 10, volume:.5});
     };
 
     functions.startBassSound = function() {
-        createjs.Sound.play("Bass", {loop: 0, volume:1, delay: 1400});
-        console.log("here");
+        createjs.Sound.play("Bass", {loop: 0, volume:1, delay: 100});
     };
 
     functions.getCorrectScaleWidth = function(width) {
