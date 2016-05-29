@@ -10,7 +10,7 @@ function GumballProperties() {
         spriteCount : 0,
         changeSpriteCounter : 0,
         spriteSpeed : 0,
-        startingX : MapGlobals.screenWidth*1.5,
+        startingX : MainGlobals.ScreenWidth*1.5,
         startingY : 500,
         yGumballOffsetWithMap : 90
     };

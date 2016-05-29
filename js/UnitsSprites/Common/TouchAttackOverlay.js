@@ -28,10 +28,10 @@ TouchAttack.prototype.update = function(jumpButtonObj, characterObj) {
 };
 
 TouchAttack.prototype.updatePosition = function(obj) {
-    obj.position.x = MapGlobals.screenWidth/2;
+    obj.position.x = MainGlobals.ScreenWidth/2;
     obj.position.y = 0;
-    obj.width = MapGlobals.screenWidth/2;
-    obj.height = MapGlobals.screenHeight;
+    obj.width = MainGlobals.ScreenWidth/2;
+    obj.height = MainGlobals.ScreenHeight;
 };
 
 TouchAttack.prototype.handleClickEvents = function(spriteToHandle, characterObj) {
@@ -39,7 +39,7 @@ TouchAttack.prototype.handleClickEvents = function(spriteToHandle, characterObj)
         var spriteTimeout;
         function onButtonDown() {
             if(characterObj){
-                if (BalanceGlobals.isAttacking == false) {
+                if (MainGlobals.Balance.isAttacking == false) {
                     characterObj.startAttackAnimation();
                 } else {
                     characterObj.startJumpAttackAnimation();

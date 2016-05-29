@@ -71,10 +71,10 @@ Enemy.prototype.moveEnemy = function(enemyObj, characterObj) {
     enemyObj.position.x = obj.x;
     enemyObj.position.y = obj.y;
     if (this.isIntersecting(characterObj, enemyObj)) {
-        if (BalanceGlobals.isAttacking) {
+        if (MainGlobals.Balance.isAttacking) {
             ScoreHelper().killEnemy(this.Properties.pointsForKill);
             if (ScoreHelper().createNewEnemy()) {
-                BalanceGlobals.enemies += 1;
+                MainGlobals.Balance.enemies += 1;
             }
         }
         else {
@@ -95,7 +95,7 @@ Enemy.prototype.moveEnemyPowerUp = function(enemyObj, characterObj) {
     enemyObj.position.x = obj.x;
     enemyObj.position.y = obj.y;
     if (this.isIntersecting(characterObj, enemyObj)) {
-        if (BalanceGlobals.isAttacking) {
+        if (MainGlobals.Balance.isAttacking) {
             ScoreHelper().killEnemy(this.Properties.pointsForKill);
             if (ScoreHelper().createNewEnemy()) {
                 ScoreGlobals.enemies += 1;
@@ -124,7 +124,7 @@ Enemy.prototype.updateVelocityPowerUp = function() {
     this.speedOrSlow();
 };
 Enemy.prototype.getUpdatedPositionVariables = function(posX, posY) {
-    if (posX < ScrollerGlobals.offScreenOffsetX || posY > MapGlobals.screenHeight + ScrollerGlobals.offScreenOffsetY) {
+    if (posX < ScrollerGlobals.offScreenOffsetX || posY > MainGlobals.ScreenHeight + ScrollerGlobals.offScreenOffsetY) {
         this.updateVelocity();
         return this.getNewPositions();
     }
@@ -141,7 +141,7 @@ Enemy.prototype.getUpdatedPositionVariables = function(posX, posY) {
 };
 Enemy.prototype.getNewPositions = function() {
     return {
-        x : MapGlobals.screenWidth + 100,
+        x : MainGlobals.ScreenWidth + 100,
         y :  HelperFunctions().getRandomNumber(0, 400)
     };
 };

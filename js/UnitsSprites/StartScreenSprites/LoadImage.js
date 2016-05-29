@@ -17,7 +17,7 @@ LoadImage.prototype.constructLoadImage = function() {
 };
 LoadImage.prototype.setPositionAndScale = function(obj) {
     obj.scale = HelperFunctions().getNewPoint(.8,.8);
-    obj.position =  HelperFunctions().getNewPoint((MapGlobals.screenWidth - obj.width)/2, (MapGlobals.screenHeight - obj.height)/2);
+    obj.position =  HelperFunctions().getNewPoint((MainGlobals.ScreenWidth - obj.width)/2, (MainGlobals.ScreenHeight - obj.height)/2);
     obj.alpha = this.Properties.alphaStart;
     //no scale yet...
 };
@@ -105,7 +105,7 @@ LoadImage.prototype.updateSprites = function(imageObj) {
 
         imageObj.alpha += this.Properties.alphaIncrement;
 
-        if (MapGlobals.soundLoaded && imageObj.alpha < this.Properties.alphaStart) {
+        if (MainGlobals.Map.soundLoaded && imageObj.alpha < this.Properties.alphaStart) {
             HelperFunctions().switchToTitle();
             HelperFunctions().switchScreenToggle();
         }

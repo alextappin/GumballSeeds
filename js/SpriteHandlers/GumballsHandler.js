@@ -10,8 +10,8 @@ function GumballsHandler() {
 GumballsHandler.constructor = GumballsHandler;
 
 GumballsHandler.prototype.constructGumballs = function() {
-    for (var n = 0; n < MapGlobals.gumballsPerColor; n++) { //there will be 3 of each color in the array...
-        for (var i = 0; i < MapGlobals.gumballs.length; i++) {
+    for (var n = 0; n < MainGlobals.Map.gumballsPerColor; n++) { //there will be 3 of each color in the array...
+        for (var i = 0; i < MainGlobals.Map.gumballs.length; i++) {
             this.gumballs.push(new Gumball(i));
         }
     }
@@ -55,7 +55,7 @@ GumballsHandler.prototype.getNewPosition = function(gumballHandler, index, groun
     if (groundHeight) {
         return HelperFunctions().getNewPoint(
             newGumballX,
-            groundHeight + (MapGlobals.screenHeight * MapGlobals.gumballHeightConst)
+            groundHeight + (MainGlobals.ScreenHeight * MainGlobals.Map.gumballHeightConst)
         );
     }
     //recursion. If there is a gap, check another X
@@ -64,7 +64,7 @@ GumballsHandler.prototype.getNewPosition = function(gumballHandler, index, groun
             gumballHandler,
             index,
             groundObj,
-            MapGlobals.screenWidth / MapGlobals.gumballSpaceConst
+            MainGlobals.ScreenWidth / MainGlobals.Map.gumballSpaceConst
         );
     } else { //the new position is past the last ground...
         return HelperFunctions().getNewPoint(
@@ -76,7 +76,7 @@ GumballsHandler.prototype.getNewPosition = function(gumballHandler, index, groun
 
 GumballsHandler.prototype.calculateRandomSpace = function() {
     //1/x of the screen width * a random number between 1 and 15. Example (1280/x) * 5 =  6400/x unit space
-    return (MapGlobals.screenWidth / MapGlobals.gumballSpaceConst) * (HelperFunctions().getRandomNumber(4, 10))
+    return (MainGlobals.ScreenWidth / MainGlobals.Map.gumballSpaceConst) * (HelperFunctions().getRandomNumber(4, 10))
 };
 
 GumballsHandler.prototype.update = function(gumballHandler, groundObj, characterObj, stage) {
@@ -124,7 +124,7 @@ GumballsHandler.prototype.addNewGumball = function(gumballHandler, groundObj, st
 
     stage.addChildAt(
         gumballHandler.gumballStructure[gumballHandler.gumballStructure.length-1],
-        MapGlobals.addGumballChildConst
+        MainGlobals.Map.addGumballChildConst
     );
 };
 

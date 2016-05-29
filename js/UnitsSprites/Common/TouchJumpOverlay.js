@@ -40,8 +40,8 @@ TouchJump.prototype.updateSprites = function(characterObj) {
 TouchJump.prototype.updatePosition = function(obj) {
     obj.position.x = 0;
     obj.position.y = 0;
-    obj.width = MapGlobals.screenWidth/2;
-    obj.height = MapGlobals.screenHeight;
+    obj.width = MainGlobals.ScreenWidth/2;
+    obj.height = MainGlobals.ScreenHeight;
 };
 
 TouchJump.prototype.handleClickEvents = function(spriteToHandle, characterObj) {

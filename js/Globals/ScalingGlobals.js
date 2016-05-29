@@ -6,8 +6,8 @@ function ScalingGlobals() {
 
     constants.characterScaleX = .5;
     constants.characterScaleY = .5;
-    constants.characterStartXScale = MapGlobals.screenWidth * .18;
-    constants.characterStartYScale = MapGlobals.screenWidth * .18;
+    constants.characterStartXScale = MainGlobals.ScreenWidth * .18;
+    constants.characterStartYScale = MainGlobals.ScreenWidth * .18;
 
     constants.titleScreenScaleX = 0;
     constants.titleScreenScaleY = 0;

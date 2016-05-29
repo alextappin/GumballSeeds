@@ -27,5 +27,5 @@ Hill1a9.prototype.update = function(obj, newViewportX) {
 };
 
 Hill1a9.prototype.getNewPosition = function(obj) {
-    obj.position.x = (MapGlobals.screenWidth - 1);
+    obj.position.x = (MainGlobals.ScreenWidth - 1);
 };

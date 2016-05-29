@@ -10,7 +10,7 @@ function EnemiesHandler() {
 EnemiesHandler.constructor = EnemiesHandler;
 
 EnemiesHandler.prototype.constructEnemies = function() {
-    for (var n = 0; n < BalanceGlobals.enemies; n++) {
+    for (var n = 0; n < MainGlobals.Balance.enemies; n++) {
         this.enemies.push(new Enemy);
     }
 };
@@ -28,20 +28,20 @@ EnemiesHandler.prototype.addEnemiesToStage = function(enemyHandler, stage) {
 };
 
 EnemiesHandler.prototype.update = function(enemyHandler, characterObj, stage) {
-    for (var n = 0; n < BalanceGlobals.enemies; n++) {
+    for (var n = 0; n < MainGlobals.Balance.enemies; n++) {
         if (enemyHandler.enemies[n]) {
             enemyHandler.enemies[n].update(enemyHandler.enemies[n], characterObj);
         } else {
-            this.addEnemy(BalanceGlobals.enemiesToAdd, stage, enemyHandler); //if there are not enough enemies, add another
+            this.addEnemy(MainGlobals.Balance.enemiesToAdd, stage, enemyHandler); //if there are not enough enemies, add another
         }
     }
 };
 EnemiesHandler.prototype.updatePowerUp = function(enemyHandler, characterObj, stage) {
-    for (var n = 0; n < BalanceGlobals.enemies; n++) {
+    for (var n = 0; n < MainGlobals.Balance.enemies; n++) {
         if (enemyHandler.enemies[n]) {
             enemyHandler.enemies[n].updatePowerUp(enemyHandler.enemies[n], characterObj);
         } else {
-            this.addEnemy(BalanceGlobals.enemiesToAdd, stage, enemyHandler); //if there are not enough enemies, add another
+            this.addEnemy(MainGlobals.Balance.enemiesToAdd, stage, enemyHandler); //if there are not enough enemies, add another
         }
     }
 };

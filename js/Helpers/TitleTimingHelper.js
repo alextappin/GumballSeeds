@@ -29,7 +29,7 @@ function TitleTimingHelper() {
             if (startAnimation.position.x >= 0) {
                 if (startAnimation.position.x >= startAnimation.width) { //switch to the game screen
                     HelperFunctions().switchScreenToggle();
-                    MapGlobals.screenToShow = MapGlobals.gameString;
+                    MainGlobals.Map.screenToShow = MainGlobals.Map.gameString;
                     TimingGlobals.startButtonPressed = false;
                     TimingGlobals.startAnimation = false;
                 }

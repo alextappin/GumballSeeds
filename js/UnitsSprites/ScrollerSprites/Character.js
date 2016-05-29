@@ -138,48 +138,48 @@ Character.prototype.nextSprite = function(characterObj) {
 };
 
 Character.prototype.gravityCharacter = function(characterObj, groundObj) {
-    if (PhysicsGlobals.characterAirborn) {
-        if (PhysicsGlobals.characterVelocityY >= 0) { //falling
+    if (MainGlobals.Physics.characterAirborn) {
+        if (MainGlobals.Physics.characterVelocityY >= 0) { //falling
             this.fallCharacter(characterObj, groundObj);
         } else {
             this.riseCharacter(characterObj);
         }
     } else if(!groundObj.getHeightAtPositionX(characterObj.position.x, groundObj)) { //falling onto block
-        PhysicsGlobals.characterAirborn = true;
+        MainGlobals.Physics.characterAirborn = true;
         this.fallCharacter(characterObj, groundObj)
     }
 };
 
 Character.prototype.fallCharacter = function(characterObj, groundObj) {
     var groundHeight = groundObj.getHeightAtPositionX(characterObj.position.x, groundObj); // get the groundHeight
-    PhysicsGlobals.characterVelocityY += PhysicsGlobals.characterGravity;
+    MainGlobals.Physics.characterVelocityY += MainGlobals.Physics.characterGravity;
 
     if (characterObj.position.y < groundHeight) { //keep falling
-        characterObj.position.y += PhysicsGlobals.characterVelocityY;
-    } else if (characterObj.position.y + PhysicsGlobals.characterVelocityY > groundHeight) {
+        characterObj.position.y += MainGlobals.Physics.characterVelocityY;
+    } else if (characterObj.position.y + MainGlobals.Physics.characterVelocityY > groundHeight) {
         characterObj.position.y = groundHeight;
-        PhysicsGlobals.characterVelocityY = 0;
-        PhysicsGlobals.characterAirborn = false;
-        PhysicsGlobals.characterHighJumping = false;
+        MainGlobals.Physics.characterVelocityY = 0;
+        MainGlobals.Physics.characterAirborn = false;
+        MainGlobals.Physics.characterHighJumping = false;
         this.setCurrentTextures();
     } else {
         HelperFunctions().endGame();
-        characterObj.position.y += PhysicsGlobals.characterVelocityY;
+        characterObj.position.y += MainGlobals.Physics.characterVelocityY;
     }
 };
 
 Character.prototype.riseCharacter = function(characterObj) {
-    PhysicsGlobals.characterVelocityY += PhysicsGlobals.characterGravity;
-    characterObj.position.y += PhysicsGlobals.characterVelocityY;
+    MainGlobals.Physics.characterVelocityY += MainGlobals.Physics.characterGravity;
+    characterObj.position.y += MainGlobals.Physics.characterVelocityY;
 };
 
 Character.prototype.attackCharacter = function() {
-    if (BalanceGlobals.isAttacking) {
+    if (MainGlobals.Balance.isAttacking) {
         this.Properties.attackCounter++;
-        var counter = PhysicsGlobals.characterAirborn ? BalanceGlobals.jumpAttackTime : BalanceGlobals.attackTime;
+        var counter = MainGlobals.Physics.characterAirborn ? MainGlobals.Balance.jumpAttackTime : MainGlobals.Balance.attackTime;
 
         if (this.Properties.attackCounter >= counter) { //attack updates over
-            BalanceGlobals.isAttacking = false;
+            MainGlobals.Balance.isAttacking = false;
             this.setCurrentTextures(); //default
             this.Properties.attackCounter = 0;
         }
@@ -187,39 +187,39 @@ Character.prototype.attackCharacter = function() {
 };
 
 Character.prototype.startJumpAnimation = function() {
-    if (!PhysicsGlobals.characterAirborn) {
-        PhysicsGlobals.characterAirborn = true;
-        PhysicsGlobals.isAttacking = false;
-        PhysicsGlobals.characterVelocityY = PhysicsGlobals.characterJumpVelocity;
+    if (!MainGlobals.Physics.characterAirborn) {
+        MainGlobals.Physics.characterAirborn = true;
+        MainGlobals.Physics.isAttacking = false;
+        MainGlobals.Physics.characterVelocityY = MainGlobals.Physics.characterJumpVelocity;
         this.setCurrentTextures(TimingGlobals.characterJumpTime, this.Properties.jumpTextures);
-    } else if (this.Properties.spriteCount < 2 && !PhysicsGlobals.characterHighJumping) {
+    } else if (this.Properties.spriteCount < 2 && !MainGlobals.Physics.characterHighJumping) {
         this.startJumpHighAnimation();
     }
 };
 
 Character.prototype.startJumpHighAnimation = function() {
-    PhysicsGlobals.characterAirborn = true;
-    PhysicsGlobals.characterHighJumping = true;
-    PhysicsGlobals.isAttacking = false;
-    PhysicsGlobals.characterVelocityY = PhysicsGlobals.characterJumpHighVelocity;
+    MainGlobals.Physics.characterAirborn = true;
+    MainGlobals.Physics.characterHighJumping = true;
+    MainGlobals.Physics.isAttacking = false;
+    MainGlobals.Physics.characterVelocityY = MainGlobals.Physics.characterJumpHighVelocity;
     this.setCurrentTextures(TimingGlobals.characterJumpTime, this.Properties.jumpHighTextures);
 };
 
 Character.prototype.startAttackAnimation = function() {
-    if (!BalanceGlobals.isAttacking) {
-        if (PhysicsGlobals.characterAirborn) {
-            BalanceGlobals.isAttacking = false;
+    if (!MainGlobals.Balance.isAttacking) {
+        if (MainGlobals.Physics.characterAirborn) {
+            MainGlobals.Balance.isAttacking = false;
         } else {
             this.setCurrentTextures(TimingGlobals.characterAttackTime, this.Properties.attackTextures);
-            BalanceGlobals.isAttacking = true;
+            MainGlobals.Balance.isAttacking = true;
         }
     }
 };
 
 Character.prototype.startJumpAttackAnimation = function() {
-    if (!PhysicsGlobals.characterAirborn && this.Properties.spriteCount < 2) {
-        PhysicsGlobals.characterAirborn = true;
-        PhysicsGlobals.characterVelocityY = PhysicsGlobals.characterJumpAttackVelocity;
+    if (!MainGlobals.Physics.characterAirborn && this.Properties.spriteCount < 2) {
+        MainGlobals.Physics.characterAirborn = true;
+        MainGlobals.Physics.characterVelocityY = MainGlobals.Physics.characterJumpAttackVelocity;
         this.setCurrentTextures(TimingGlobals.characterJumpAttackTime, this.Properties.jumpAttackTextures);
     }
 };
@@ -261,24 +261,24 @@ Character.prototype.updatePowerUp = function(characterObj) {
 };
 
 Character.prototype.setSuperPositionY = function(characterObj) {
-    if (characterObj.position.y + (characterObj.height/2) >= MapGlobals.screenHeight / 2) {
-        characterObj.position.y -= PhysicsGlobals.characterRiseSpeed;
+    if (characterObj.position.y + (characterObj.height/2) >= MainGlobals.ScreenHeight / 2) {
+        characterObj.position.y -= MainGlobals.Physics.characterRiseSpeed;
     } else {
-        characterObj.position.y = MapGlobals.screenHeight/2 - (characterObj.height/2);
+        characterObj.position.y = MainGlobals.ScreenHeight/2 - (characterObj.height/2);
     }
 };
 
 Character.prototype.setSuperPositionX = function(characterObj) {
-    if (characterObj.position.x < MapGlobals.screenWidth*ScalingGlobals.characterSuperPosition) {
-        characterObj.position.x += PhysicsGlobals.characterBoltSpeed;
+    if (characterObj.position.x < MainGlobals.ScreenWidth*ScalingGlobals.characterSuperPosition) {
+        characterObj.position.x += MainGlobals.Physics.characterBoltSpeed;
     } else {
-        characterObj.position.x = MapGlobals.screenWidth*ScalingGlobals.characterSuperPosition;
+        characterObj.position.x = MainGlobals.ScreenWidth*ScalingGlobals.characterSuperPosition;
     }
 };
 
 Character.prototype.endSuper = function() {
-    PhysicsGlobals.characterAirborn = true;
-    PhysicsGlobals.characterVelocityY = PhysicsGlobals.characterEndSuperVelocity;
+    MainGlobals.Physics.characterAirborn = true;
+    MainGlobals.Physics.characterVelocityY = MainGlobals.Physics.characterEndSuperVelocity;
     this.setCurrentTextures(TimingGlobals.characterJumpTime, this.Properties.endSuperTextures);
 };
 
@@ -300,7 +300,7 @@ Character.prototype.listenForJumpTrigger = function() {
 Character.prototype.listenForAttackTrigger = function() {
     var that = this;
     this.Properties.ctrlButton.press = function () {
-        if (BalanceGlobals.isAttacking == false) {
+        if (MainGlobals.Balance.isAttacking == false) {
             that.startAttackAnimation();
         } else {
             that.startJumpAttackAnimation();

@@ -11,14 +11,14 @@ Gumball.prototype = Object.create(PIXI.Container.prototype);
 
 Gumball.prototype.constructGumball = function(gumballColor) {
     this.Properties = new GumballProperties();
-    this.Properties.color = MapGlobals.gumballs[gumballColor];
+    this.Properties.color = MainGlobals.Map.gumballs[gumballColor];
     this.initiateGumballSprites();
 };
 
 Gumball.prototype.setPositionAndScale = function(obj) {
     ScalingGlobals.gumballRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height, ScalingGlobals.gumballPercentOfScreen);
     obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.gumballRatio, ScalingGlobals.gumballRatio);
-    obj.position =  HelperFunctions().getNewPoint(MapGlobals.screenWidth+obj.width, 0);
+    obj.position =  HelperFunctions().getNewPoint(MainGlobals.ScreenWidth+obj.width, 0);
 };
 
 Gumball.prototype.initiateGumballSprites = function() {

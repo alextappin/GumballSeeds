@@ -19,18 +19,18 @@ function GroundHandler() {
 GroundHandler.constructor = GroundHandler;
 
 GroundHandler.prototype.constructGround = function() {
-    for (var n = 0; n < MapGlobals.groundSlices; n++) {
-        this.groundObjects.startA.push(new Ground(MapGlobals.groundStartA));
-        this.groundObjects.startB.push(new Ground(MapGlobals.groundStartB));
-        this.groundObjects.groundA.push(new Ground(MapGlobals.groundA));
-        this.groundObjects.groundB.push(new Ground(MapGlobals.groundB));
-        this.groundObjects.endA.push(new Ground(MapGlobals.groundEndA));
-        this.groundObjects.endB.push(new Ground(MapGlobals.groundEndB));
+    for (var n = 0; n < MainGlobals.Map.groundSlices; n++) {
+        this.groundObjects.startA.push(new Ground(MainGlobals.Map.groundStartA));
+        this.groundObjects.startB.push(new Ground(MainGlobals.Map.groundStartB));
+        this.groundObjects.groundA.push(new Ground(MainGlobals.Map.groundA));
+        this.groundObjects.groundB.push(new Ground(MainGlobals.Map.groundB));
+        this.groundObjects.endA.push(new Ground(MainGlobals.Map.groundEndA));
+        this.groundObjects.endB.push(new Ground(MainGlobals.Map.groundEndB));
     }
 };
 
 GroundHandler.prototype.setPositionAndScale = function(GroundHandler) {
-    for (var n = 0; n < MapGlobals.groundSlices; n++) {
+    for (var n = 0; n < MainGlobals.Map.groundSlices; n++) {
         GroundHandler.groundObjects.startA[n].setPositionAndScale(GroundHandler.groundObjects.startA[n]);
         GroundHandler.groundObjects.startB[n].setPositionAndScale(GroundHandler.groundObjects.startB[n]);
         GroundHandler.groundObjects.groundA[n].setPositionAndScale(GroundHandler.groundObjects.groundA[n]);
@@ -62,7 +62,7 @@ GroundHandler.prototype.setupStartGround = function(groundHandler) {
     for (var n = 0; n < groundHandler.groundStructure.length; n++) {
         groundHandler.groundStructure[n].position = HelperFunctions().getNewPoint(
             this.getNewPosition(groundHandler, n),
-            MapGlobals.groundY * MapGlobals.screenHeight
+            MainGlobals.Map.groundY * MainGlobals.ScreenHeight
         );
     }
 };
@@ -106,9 +106,9 @@ GroundHandler.prototype.addNewGround = function(groundHandler, stage) {
                 groundHandler,
                 groundHandler.groundStructure.length - 1
             ),
-            MapGlobals.groundY * MapGlobals.screenHeight
+            MainGlobals.Map.groundY * MainGlobals.ScreenHeight
         );
-    stage.addChildAt(groundHandler.groundStructure[groundHandler.groundStructure.length - 1], MapGlobals.addGroundChildConst);
+    stage.addChildAt(groundHandler.groundStructure[groundHandler.groundStructure.length - 1], MainGlobals.Map.addGroundChildConst);
 };
 
 GroundHandler.prototype.getNextPieceType = function(groundHandler) {
@@ -123,17 +123,17 @@ GroundHandler.prototype.returnPiece = function(piece, groundHandler, stage) {
     //pushed the piece to the correct pooooool
     stage.removeChild(piece);
     switch(piece.Properties.type) {
-        case MapGlobals.groundA: groundHandler.groundObjects.groundA.push(piece);
+        case MainGlobals.Map.groundA: groundHandler.groundObjects.groundA.push(piece);
             break;
-        case MapGlobals.groundB: groundHandler.groundObjects.groundB.push(piece);
+        case MainGlobals.Map.groundB: groundHandler.groundObjects.groundB.push(piece);
             break;
-        case MapGlobals.groundStartA: groundHandler.groundObjects.startA.push(piece);
+        case MainGlobals.Map.groundStartA: groundHandler.groundObjects.startA.push(piece);
             break;
-        case MapGlobals.groundStartB: groundHandler.groundObjects.startB.push(piece);
+        case MainGlobals.Map.groundStartB: groundHandler.groundObjects.startB.push(piece);
             break;
-        case MapGlobals.groundEndA: groundHandler.groundObjects.endA.push(piece);
+        case MainGlobals.Map.groundEndA: groundHandler.groundObjects.endA.push(piece);
             break;
-        case MapGlobals.groundEndB: groundHandler.groundObjects.endB.push(piece);
+        case MainGlobals.Map.groundEndB: groundHandler.groundObjects.endB.push(piece);
             break;
     }
 };
