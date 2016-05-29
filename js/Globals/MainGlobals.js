@@ -3,7 +3,6 @@
  */
 var MainGlobals = (function MainGlobals() {
     var constants = {};
-
     //Globals used throughout the game. /Globals/* directory
     constants.Balance = {};
     constants.Map = {};
@@ -13,8 +12,9 @@ var MainGlobals = (function MainGlobals() {
     constants.Score = {};
     constants.Scroller = {};
     constants.Timing = {};
-
-
+    constants.ScreenWidth = 1280;
+    constants.ScreenHeight = 720;
+    //stage and game sizing specific
     constants.stage = {};
     constants.renderer = {};
     constants.ratio = 0;
@@ -40,10 +40,10 @@ var MainGlobals = (function MainGlobals() {
     constants.initialize = function() {
         constants.initializeGlobals();
         //setup renderer stage and put it on the html view
-        constants.renderer = PIXI.autoDetectRenderer(constants.Map.screenWidth, constants.Map.screenHeight/*, rendererOptions*/);
-        constants.renderer.view.style.position = "absolute";
+        constants.renderer = PIXI.autoDetectRenderer(constants.ScreenWidth, constants.ScreenHeight/*, rendererOptions*/);
+/*        constants.renderer.view.style.position = "absolute";
         constants.renderer.view.style.top = "0px";
-        constants.renderer.view.style.left = "0px";
+        constants.renderer.view.style.left = "0px";*/
         constants.stage = new PIXI.Container(0xFFFFFF);
         constants.ratio = 0;
         document.body.appendChild(constants.renderer.view);
@@ -51,24 +51,21 @@ var MainGlobals = (function MainGlobals() {
 
     constants.resizeStage = function() {
         // Determine which screen dimension is most constrained
-
         constants.ratio = Math.min(
-            window.innerWidth/constants.Map.screenWidth,
-            window.innerHeight/constants.Map.screenHeight
+            window.innerWidth/constants.ScreenWidth,
+            window.innerHeight/constants.ScreenHeight
         );
         // Scale the view appropriately to fill that dimension
         constants.stage.scale.x = constants.stage.scale.y = constants.ratio;
         // Update the renderer dimensions
         constants.renderer.resize(
-            Math.ceil(constants.Map.screenWidth * constants.ratio),
-            Math.ceil(constants.Map.screenHeight * constants.ratio)
+            Math.ceil(constants.ScreenWidth * constants.ratio),
+            Math.ceil(constants.ScreenHeight * constants.ratio)
         );
 
-        constants.Map.screenWidth *= constants.ratio;
-        constants.Map.screenHeight *= constants.ratio;
+        constants.ScreenWidth *= constants.ratio;
+        constants.ScreenHeight *= constants.ratio;
         constants.initializeGlobals();
-        constants.Map.screenWidth *= constants.ratio;
-        constants.Map.screenHeight *= constants.ratio;
         /*console.log("Resize\n" +
             "  Window inner " + window.innerWidth + "," +
             window.innerHeight +
