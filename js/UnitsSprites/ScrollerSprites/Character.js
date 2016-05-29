@@ -282,6 +282,7 @@ Character.prototype.setSuperPositionX = function(characterObj) {
 
 Character.prototype.endSuper = function() {
     PhysicsGlobals.characterAirborn = true;
+    PhysicsGlobals.characterHighJumping = true;
     BalanceGlobals.isAttacking = false;
     PhysicsGlobals.characterVelocityY = PhysicsGlobals.characterEndSuperVelocity;
     this.setCurrentTextures(TimingGlobals.characterJumpTime, this.Properties.endSuperTextures);
@@ -289,7 +290,7 @@ Character.prototype.endSuper = function() {
 
 Character.prototype.resetCharacter = function(characterObj) {
     if (characterObj.position.x != ScalingGlobals.characterStartXScale) {
-        if (characterObj.position.y < 0 - characterObj.height*2) {
+        if (characterObj.position.y < (0 - characterObj.height*3)) {
             characterObj.position.x = ScalingGlobals.characterStartXScale;
         }
     }

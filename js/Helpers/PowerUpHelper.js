@@ -23,7 +23,6 @@ function PowerUpHelper() {
     };
     powerUpHelper.endPowerUp = function() {
         HelperFunctions().resetAfterPowerUp();
-        console.log("end Power Up");
     };
     powerUpHelper.incrementPowerUp = function() {
         //if powerUp is not active!
