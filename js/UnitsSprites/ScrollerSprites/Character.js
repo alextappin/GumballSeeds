@@ -118,11 +118,10 @@ Character.prototype.update = function(characterObj, groundObj) {
     if (this.Properties.currentTextures == this.Properties.superStartTextures) {
         this.endSuper();
     }
-
-    this.resetCharacter(characterObj);
     this.updateSprites(characterObj);
     this.gravityCharacter(characterObj, groundObj);
     this.attackCharacter();
+    this.resetCharacter(characterObj);
 };
 
 Character.prototype.updateSprites = function(characterObj) {
@@ -284,7 +283,7 @@ Character.prototype.setSuperPositionX = function(characterObj) {
 Character.prototype.endSuper = function() {
     PhysicsGlobals.characterAirborn = true;
     BalanceGlobals.isAttacking = false;
-    PhysicsGlobals.characterVelocityY += PhysicsGlobals.characterEndSuperVelocity;
+    PhysicsGlobals.characterVelocityY = PhysicsGlobals.characterEndSuperVelocity;
     this.setCurrentTextures(TimingGlobals.characterJumpTime, this.Properties.endSuperTextures);
 };
 
