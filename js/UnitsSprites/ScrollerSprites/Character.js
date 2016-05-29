@@ -243,19 +243,16 @@ Character.prototype.updatePowerUp = function(characterObj) {
 };
 
 Character.prototype.setSuperPositionY = function(characterObj) {
-    if (characterObj.position.y + (characterObj.height/2) > MapGlobals.screenHeight / 2) {
-        characterObj.position.y = (characterObj.position.y - (MapGlobals.screenHeight / 2) * .01);
-    }
-    if (this.Properties.currentTextures == this.Properties.superTextures) {
-        if (characterObj.position.x < MapGlobals.screenWidth*ScalingGlobals.characterSuperPosition) {
-            characterObj.position.x = (characterObj.position.x + (MapGlobals.screenWidth / 2) * .02);
-        }
+    if (characterObj.position.y + (characterObj.height/2) >= MapGlobals.screenHeight / 2) {
+        characterObj.position.y -= PhysicsGlobals.characterRiseSpeed;
+    } else {
+        characterObj.position.y = MapGlobals.screenHeight/2 - (characterObj.height/2);
     }
 };
 
 Character.prototype.setSuperPositionX = function(characterObj) {
     if (characterObj.position.x < MapGlobals.screenWidth*ScalingGlobals.characterSuperPosition) {
-        characterObj.position.x = (characterObj.position.x + (MapGlobals.screenWidth / 2) * .02);
+        characterObj.position.x += PhysicsGlobals.characterBoltSpeed;
     }
 };
 
