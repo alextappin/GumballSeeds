@@ -100,13 +100,14 @@ Super.prototype.nextSprite = function(superObj) {
     if (this.Properties.spriteCount == this.Properties.currentTextures.length - 1) {
         if(!PowerUpGlobals.characterDonePoweringUp) {
             PowerUpGlobals.characterDonePoweringUp = true;
+        } else {
+            this.Properties.spriteCount = 0;
+            this.setSpriteToCurrentTexture(superObj);
         }
-        this.Properties.spriteCount = 0;
     } else {
         this.Properties.spriteCount++;
+        this.setSpriteToCurrentTexture(superObj);
     }
-
-    this.setSpriteToCurrentTexture(superObj);
 };
 
 Super.prototype.setSpriteToCurrentTexture = function(superObj) {
