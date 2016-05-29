@@ -52,9 +52,6 @@ Character.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("gbs j7")
     );
     this.Properties.endSuperTextures.push(
-        PIXI.Texture.fromFrame("gbs j1"),
-        PIXI.Texture.fromFrame("gbs j2"),
-        PIXI.Texture.fromFrame("gbs j3"),
         PIXI.Texture.fromFrame("gbs j4"),
         PIXI.Texture.fromFrame("gbs j5"),
         PIXI.Texture.fromFrame("gbs j3"),
