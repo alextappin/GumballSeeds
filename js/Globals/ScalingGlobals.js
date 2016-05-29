@@ -48,5 +48,8 @@ var ScalingGlobals = (function ScalingGlobals() {
 
     constants.characterObjSuperScale = 0;
     constants.characterObjSuperPercentOfScreen = 1;
+
+    constants.superRatio = 0;
+    constants.superPercentOfScreen = 1;
     return constants;
 })();
