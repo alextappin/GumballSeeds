@@ -93,7 +93,6 @@ Character.prototype.update = function(characterObj, groundObj) {
         this.setCurrentTextures();
     }
     this.updateSprites(characterObj);
-    console.log(this.Properties);
     this.gravityCharacter(characterObj, groundObj);
     this.attackCharacter();
 };
@@ -232,60 +231,14 @@ Character.prototype.updatePowerUp = function(characterObj) {
     } else {
         this.updateSprites(characterObj);
     }
+    this.setSuperPosition(characterObj);
 };
 
-/*Character.prototype.setupSuper = function(characterObj) {
-    ScalingGlobals.characterSuperPosition = characterObj.position;
-
-    this.addChildAt(new PIXI.Sprite(this.Properties.currentSuperTextures[this.Properties.spriteCount]), 0); //add the rainbow thing to the back of the character container.
-
-    ScalingGlobals.characterObjSuperScale = HelperFunctions().getScreenRatioUsingHeight(
-        characterObj.children[0].height,
-        ScalingGlobals.characterObjSuperPercentOfScreen
-    );
-
-    ScalingGlobals.rainbowSuperRatio = HelperFunctions().getScreenRatioUsingHeight(
-        MapGlobals.screenHeight,
-        ScalingGlobals.rainbowSuperPercentOfScreen
-    );
-
-    ScalingGlobals.characterSuperRatio = HelperFunctions().getScreenRatioUsingHeight(
-        MapGlobals.screenHeight,
-        ScalingGlobals.characterSuperPercentOfScreen
-    );
-
-    characterObj.scale = HelperFunctions().getNewPoint(
-        ScalingGlobals.characterObjSuperScale,
-        ScalingGlobals.characterObjSuperScale
-    );
-
-    characterObj.children[0].scale = HelperFunctions().getNewPoint(
-        ScalingGlobals.rainbowSuperRatio,
-        ScalingGlobals.rainbowSuperRatio
-    );
-
-    characterObj.children[1].scale = HelperFunctions().getNewPoint(
-        ScalingGlobals.characterSuperRatio,
-        ScalingGlobals.characterSuperRatio
-    );
-
-    characterObj.position = HelperFunctions().getNewPoint(0,0);
-
-    //the ratio between the old screen and new. if its 2x then it will be 360p...
-    ScalingGlobals.superScreenSize = ScalingGlobals.characterSuperPercentOfScreen / ScalingGlobals.characterObjSuperScale;
-    characterObj.children[1].position =  HelperFunctions().getNewPoint(
-        ScalingGlobals.characterSuperPosition.x/ScalingGlobals.characterSuperRatio*ScalingGlobals.superScreenSize,
-        ScalingGlobals.characterSuperPosition.y/ScalingGlobals.characterSuperRatio*ScalingGlobals.superScreenSize
-    );
-};*/
-
-/*Character.prototype.startPowerJump = function(characterObj) {
-    if (characterObj.Properties.spriteCount >= 3) {
-        if (characterObj.children[1].position.y > MapGlobals.screenHeight / 2) {
-            characterObj.children[1].position.y -= 5;
-        }
+Character.prototype.setSuperPosition = function(characterObj) {
+    if (characterObj.position.y + (characterObj.height/2) > MapGlobals.screenHeight / 2) {
+        characterObj.position.y = (characterObj.position.y - (MapGlobals.screenHeight / 2) * .01);
     }
-};*/
+};
 
 
 Character.prototype.listenForJumpTrigger = function() {
