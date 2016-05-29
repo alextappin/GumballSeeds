@@ -56,7 +56,7 @@ Scroller.prototype.constructScroller = function(stage) {
     stage.addChild(this.Properties.touchAttack);
 };
 Scroller.prototype.update = function() {
-    if (PowerUpGlobals.powerUpActive) {
+    if (MainGlobals.PowerUp.powerUpActive) {
         this.updateViewportPowerUp();
         this.updateObjectsPowerUp();
     } else {
@@ -73,7 +73,7 @@ Scroller.prototype.updateViewport = function() {
         HelperFunctions().setScrollSpeedToMax();
     }
 
-    this.Properties.viewportX = this.Properties.viewportX + ScrollerGlobals.currentScrollSpeed;
+    this.Properties.viewportX = this.Properties.viewportX + MainGlobals.Scroller.currentScrollSpeed;
 };
 Scroller.prototype.updateObjects = function() {
     this.Properties.bgSky1.update(this.Properties.viewportX);
@@ -103,7 +103,7 @@ Scroller.prototype.updateObjects = function() {
 };
 Scroller.prototype.updateViewportPowerUp = function() {
     PowerUpHelper().continuePowerUp(this.Properties.viewportX);
-    this.Properties.viewportX = this.Properties.viewportX + ScrollerGlobals.currentScrollSpeed;
+    this.Properties.viewportX = this.Properties.viewportX + MainGlobals.Scroller.currentScrollSpeed;
 };
 Scroller.prototype.updateObjectsPowerUp = function() {
         this.Properties.ground.updatePowerUp(this.Properties.ground, this.getStage());

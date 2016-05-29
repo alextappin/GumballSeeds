@@ -10,11 +10,11 @@ function PowerUpHelper() {
         HelperFunctions().startBassSound();
     };
     powerUpHelper.continuePowerUp = function(viewPort) {
-        if (PowerUpGlobals.powerUpStartingViewport == 0) {
-            PowerUpGlobals.powerUpStartingViewport = viewPort;
+        if (MainGlobals.PowerUp.powerUpStartingViewport == 0) {
+            MainGlobals.PowerUp.powerUpStartingViewport = viewPort;
         }
         //if the map has travelled more than the duration, end it
-        else if (PowerUpGlobals.powerUpStartingViewport + PowerUpGlobals.powerUpDuration < viewPort) {
+        else if (MainGlobals.PowerUp.powerUpStartingViewport + MainGlobals.PowerUp.powerUpDuration < viewPort) {
             powerUpHelper.endPowerUp();
         }
         else {
@@ -26,12 +26,12 @@ function PowerUpHelper() {
     };
     powerUpHelper.incrementPowerUp = function() {
         //if powerUp is not active!
-        if (!PowerUpGlobals.powerUpActive) {
-            if (PowerUpGlobals.powerBarLevel >= PowerUpGlobals.maxPowerBarLevel) {
+        if (!MainGlobals.PowerUp.powerUpActive) {
+            if (MainGlobals.PowerUp.powerBarLevel >= MainGlobals.PowerUp.maxPowerBarLevel) {
                 powerUpHelper.startPowerUp();
             }
             else {
-                PowerUpGlobals.powerBarLevel++;
+                MainGlobals.PowerUp.powerBarLevel++;
             }
         }
     };

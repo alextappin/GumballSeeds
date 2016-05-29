@@ -18,12 +18,12 @@ Ground.prototype.constructGround = function(groundType) {
 Ground.prototype.setPositionAndScale = function(obj) {
     if (obj.Properties.type != MainGlobals.Map.groundA && obj.Properties.type != MainGlobals.Map.groundB) {
         //end or start pieces. #pragma since this happens more often...
-        ScalingGlobals.groundEndStartRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height,ScalingGlobals.groundEndStartPercentOfScreen); //access array and grab correct ratios out of array
-        obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.groundEndStartRatio,ScalingGlobals.groundEndStartRatio);
+        MainGlobals.Scaling.groundEndStartRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height,MainGlobals.Scaling.groundEndStartPercentOfScreen); //access array and grab correct ratios out of array
+        obj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.groundEndStartRatio,MainGlobals.Scaling.groundEndStartRatio);
     } else {
         //one of the main ground slices
-        ScalingGlobals.groundMainRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height,ScalingGlobals.groundMainPercentOfScreen); //access array and grab correct ratios out of array
-        obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.groundMainRatio,ScalingGlobals.groundMainRatio);
+        MainGlobals.Scaling.groundMainRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height,MainGlobals.Scaling.groundMainPercentOfScreen); //access array and grab correct ratios out of array
+        obj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.groundMainRatio,MainGlobals.Scaling.groundMainRatio);
     }
     obj.position = HelperFunctions().getNewPoint(0, 0);
 };
@@ -33,10 +33,10 @@ Ground.prototype.initiateGroundSprite = function() {
 };
 
 Ground.prototype.update = function(obj) {
-    obj.position.x -= ScrollerGlobals.groundSpeed;
+    obj.position.x -= MainGlobals.Scroller.groundSpeed;
 };
 
 Ground.prototype.updatePowerUp = function(obj) {
-    obj.position.x -= ScrollerGlobals.groundSpeed;
+    obj.position.x -= MainGlobals.Scroller.groundSpeed;
 };
 

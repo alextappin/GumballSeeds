@@ -69,7 +69,7 @@ GroundHandler.prototype.setupStartGround = function(groundHandler) {
 
 GroundHandler.prototype.getNewPosition = function(groundHandler, index) {
     if (index > 0) {
-        return groundHandler.groundStructure[index-1].width + groundHandler.groundStructure[index-1].position.x - ScrollerGlobals.groundSpeed;
+        return groundHandler.groundStructure[index-1].width + groundHandler.groundStructure[index-1].position.x - MainGlobals.Scroller.groundSpeed;
     } else {
         return 0;
     }

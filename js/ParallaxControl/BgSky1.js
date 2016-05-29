@@ -16,6 +16,6 @@ BgSky1.constructor = BgSky1;
 BgSky1.prototype = Object.create(PIXI.extras.TilingSprite.prototype);
 
 BgSky1.prototype.update = function(newViewportX) {
-    this.tilePosition.x -= ((newViewportX - this.viewportX) * ScrollerGlobals.deltaX1); //distance traveled * change
+    this.tilePosition.x -= ((newViewportX - this.viewportX) * MainGlobals.Scroller.deltaX1); //distance traveled * change
     this.viewportX = newViewportX;
 };

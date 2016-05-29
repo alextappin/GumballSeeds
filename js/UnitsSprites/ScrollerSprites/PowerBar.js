@@ -40,8 +40,8 @@ PowerBar.prototype.updatePowerUp = function(obj) {
     this.checkForUpdate();
 };
 PowerBar.prototype.checkForUpdate = function() {
-    if (PowerUpGlobals.powerBarLevel != this.Properties.spriteCount) {
-        this.Properties.spriteCount = PowerUpGlobals.powerBarLevel;
+    if (MainGlobals.PowerUp.powerBarLevel != this.Properties.spriteCount) {
+        this.Properties.spriteCount = MainGlobals.PowerUp.powerBarLevel;
         this.setSpriteToCurrentTexture();
     }
 };

@@ -15,11 +15,11 @@ TitleWords.prototype.constructTitleWords = function() {
 };
 
 TitleWords.prototype.setPositionAndScale = function(obj) {
-    ScalingGlobals.titleWordsScaleX = HelperFunctions().getCorrectScaleWidth(obj.width);
-    ScalingGlobals.titleWordsScaleY = HelperFunctions().getCorrectScaleHeight(obj.height);
-    obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.titleWordsScaleX,ScalingGlobals.titleWordsScaleY);
+    MainGlobals.Scaling.titleWordsScaleX = HelperFunctions().getCorrectScaleWidth(obj.width);
+    MainGlobals.Scaling.titleWordsScaleY = HelperFunctions().getCorrectScaleHeight(obj.height);
+    obj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.titleWordsScaleX,MainGlobals.Scaling.titleWordsScaleY);
     obj.position =  HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(obj.width), HelperFunctions().getScreenPositionMiddleHeight(obj.height));
-    obj.alpha = TimingGlobals.titleAlphaStart;
+    obj.alpha = MainGlobals.Timing.titleAlphaStart;
 };
 
 TitleWords.prototype.initiateTitleWordsSprites = function() {
@@ -30,10 +30,10 @@ TitleWords.prototype.initiateTitleWordsSprites = function() {
 };
 
 TitleWords.prototype.update = function(titleWordsObj) {
-    if (titleWordsObj.alpha + TimingGlobals.titleWordsAlphaIncrement > 1) {
+    if (titleWordsObj.alpha + MainGlobals.Timing.titleWordsAlphaIncrement > 1) {
         titleWordsObj.alpha = 1;
     } else {
-        titleWordsObj.alpha += TimingGlobals.titleWordsAlphaIncrement;
+        titleWordsObj.alpha += MainGlobals.Timing.titleWordsAlphaIncrement;
     }
 };
 

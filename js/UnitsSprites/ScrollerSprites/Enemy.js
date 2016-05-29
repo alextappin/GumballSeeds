@@ -79,7 +79,7 @@ Enemy.prototype.moveEnemy = function(enemyObj, characterObj) {
         }
         else {
             ScoreHelper().getHitByEnemy(1);
-            if (ScoreGlobals.lives < 0) {
+            if (MainGlobals.Score.lives < 0) {
                 HelperFunctions().endGame();
             }
         }
@@ -98,12 +98,12 @@ Enemy.prototype.moveEnemyPowerUp = function(enemyObj, characterObj) {
         if (MainGlobals.Balance.isAttacking) {
             ScoreHelper().killEnemy(this.Properties.pointsForKill);
             if (ScoreHelper().createNewEnemy()) {
-                ScoreGlobals.enemies += 1;
+                MainGlobals.Score.enemies += 1;
             }
         }
         else {
             ScoreHelper().getHitByEnemy(1);
-            if (ScoreGlobals.lives < 0) {
+            if (MainGlobals.Score.lives < 0) {
                 characterObj.endGame();
             }
         }
@@ -124,7 +124,7 @@ Enemy.prototype.updateVelocityPowerUp = function() {
     this.speedOrSlow();
 };
 Enemy.prototype.getUpdatedPositionVariables = function(posX, posY) {
-    if (posX < ScrollerGlobals.offScreenOffsetX || posY > MainGlobals.ScreenHeight + ScrollerGlobals.offScreenOffsetY) {
+    if (posX < MainGlobals.Scroller.offScreenOffsetX || posY > MainGlobals.ScreenHeight + MainGlobals.Scroller.offScreenOffsetY) {
         this.updateVelocity();
         return this.getNewPositions();
     }

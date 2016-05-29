@@ -22,8 +22,8 @@ Super.prototype.constructSuper = function() {
 };
 
 Super.prototype.setPositionAndScale = function(obj) {
-    ScalingGlobals.superRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height, ScalingGlobals.superPercentOfScreen);
-    obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.superRatio, ScalingGlobals.superRatio);
+    MainGlobals.Scaling.superRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.superPercentOfScreen);
+    obj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.superRatio, MainGlobals.Scaling.superRatio);
     obj.position =  HelperFunctions().getNewPoint(0,0);
     obj.visible = false;
 };
@@ -72,26 +72,26 @@ Super.prototype.initiateSuperSprites = function() {
         PIXI.Texture.fromFrame("rainbowband up1a")*/
     );
 
-    this.setCurrentTextures(TimingGlobals.rainbowChargeTime, this.Properties.superPowerupTextures);
+    this.setCurrentTextures(MainGlobals.Timing.rainbowChargeTime, this.Properties.superPowerupTextures);
     this.addChild(new PIXI.Sprite(this.Properties.currentTextures[this.Properties.spriteCount]));
 };
 
 Super.prototype.update = function(superObj) {
     if (this.Properties.currentTextures == this.Properties.rainbowSuperTextures) {
-        this.setCurrentTextures(TimingGlobals.rainbowChargeTime, this.Properties.superPowerupTextures);
+        this.setCurrentTextures(MainGlobals.Timing.rainbowChargeTime, this.Properties.superPowerupTextures);
         superObj.visible = false;
         this.nextSprite(superObj);
     }
 };
 
 Super.prototype.updatePowerUp = function(superObj) {
-    if (!PowerUpGlobals.characterDonePoweringUp && PowerUpGlobals.powerUpActive) {
+    if (!MainGlobals.PowerUp.characterDonePoweringUp && MainGlobals.PowerUp.powerUpActive) {
         this.resetScaleAndPosition(superObj);
         this.updateSprites(superObj);
         this.characterJumpTiming();
         this.characterBoltTiming();
     } else if (this.Properties.currentTextures != this.Properties.rainbowSuperTextures) {
-        this.setCurrentTextures(TimingGlobals.rainbowTime, this.Properties.rainbowSuperTextures);
+        this.setCurrentTextures(MainGlobals.Timing.rainbowTime, this.Properties.rainbowSuperTextures);
         this.adjustScaleAndPosition(superObj);
     } else {
         this.updateSprites(superObj);
@@ -110,8 +110,8 @@ Super.prototype.updateSprites = function(superObj) {
 
 Super.prototype.nextSprite = function(superObj) {
     if (this.Properties.spriteCount == this.Properties.currentTextures.length - 1) {
-        if(!PowerUpGlobals.characterDonePoweringUp) {
-            PowerUpGlobals.characterDonePoweringUp = true;
+        if(!MainGlobals.PowerUp.characterDonePoweringUp) {
+            MainGlobals.PowerUp.characterDonePoweringUp = true;
         } else {
             this.Properties.spriteCount = 0;
             this.setSpriteToCurrentTexture(superObj);
@@ -141,19 +141,19 @@ Super.prototype.resetScaleAndPosition = function(superObj) {
 };
 
 Super.prototype.adjustScaleAndPosition = function(superObj) {
-    superObj.children[0].scale.x = ScalingGlobals.rainbowSuperRatio;
-    superObj.children[0].scale.y = ScalingGlobals.rainbowSuperRatio;
-    /*superObj.children[0].position.y = superObj.height*ScalingGlobals.rainbowSuperRatio / 2;*/
+    superObj.children[0].scale.x = MainGlobals.Scaling.rainbowSuperRatio;
+    superObj.children[0].scale.y = MainGlobals.Scaling.rainbowSuperRatio;
+    /*superObj.children[0].position.y = superObj.height*MainGlobals.Scaling.rainbowSuperRatio / 2;*/
 };
 
 Super.prototype.characterJumpTiming = function() {
-    if (this.Properties.spriteCount == PowerUpGlobals.superRiseSpriteIndex) {
-        PowerUpGlobals.characterRise = true;
+    if (this.Properties.spriteCount == MainGlobals.PowerUp.superRiseSpriteIndex) {
+        MainGlobals.PowerUp.characterRise = true;
     }
 };
 
 Super.prototype.characterBoltTiming = function() {
-    if (this.Properties.spriteCount == PowerUpGlobals.superBoltSpriteIndex) {
-        PowerUpGlobals.characterBolt = true;
+    if (this.Properties.spriteCount == MainGlobals.PowerUp.superBoltSpriteIndex) {
+        MainGlobals.PowerUp.characterBolt = true;
     }
 };

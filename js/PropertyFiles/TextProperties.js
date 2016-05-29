@@ -7,19 +7,19 @@ function TextProperties(textType) {
         type : textType,
         setValues : function() {
             if (this.type == "score") {
-                this.text = "Score  " + ScoreGlobals.currentScore;
+                this.text = "Score  " + MainGlobals.Score.currentScore;
                 this.positionX = 10;
                 this.positionY = 10;
                 this.fill = "Green";
             }
             else if(this.type == "highscore") {
-                this.text = "HighScore  " + ScoreGlobals.highScore;
+                this.text = "HighScore  " + MainGlobals.Score.highScore;
                 this.positionX = (MainGlobals.ScreenWidth - this.words.width) / 2;
                 this.positionY = (MainGlobals.ScreenHeight / 2) + MainGlobals.ScreenHeight*.1;
                 this.fill = "Yellow";
             }
             else if(this.type == "lives") {
-                this.text = "Lives  " + ScoreGlobals.lives;
+                this.text = "Lives  " + MainGlobals.Score.lives;
                 this.positionX = 10;
                 this.positionY = 40;
                 this.fill = "Yellow";

@@ -13,7 +13,7 @@ Clouds7.constructor = Clouds7;
 Clouds7.prototype = Object.create(PIXI.Container.prototype);
 
 Clouds7.prototype.setPositionAndScale = function(obj) {
-    obj.position = HelperFunctions().getNewPoint(MainGlobals.ScreenWidth, HelperFunctions().getRandomNumber(ScrollerGlobals.cloudRandomYStart, ScrollerGlobals.cloudRandomYEnd));
+    obj.position = HelperFunctions().getNewPoint(MainGlobals.ScreenWidth, HelperFunctions().getRandomNumber(MainGlobals.Scroller.cloudRandomYStart, MainGlobals.Scroller.cloudRandomYEnd));
     this.setScale(obj);
 };
 
@@ -21,12 +21,12 @@ Clouds7.prototype.update = function(obj, newViewportX) {
     if (obj.position.x < 0 - obj.width) { //if its all the way off the left side of the screen, get new position
         this.getNewPositionsAndScale(obj);
     }
-    obj.position.x -= ((newViewportX - obj.viewportX) * ScrollerGlobals.deltaX7); //distance traveled * change
+    obj.position.x -= ((newViewportX - obj.viewportX) * MainGlobals.Scroller.deltaX7); //distance traveled * change
     obj.viewportX = newViewportX;
 };
 
 Clouds7.prototype.getNewPositionsAndScale = function(obj) {
-    var randY = HelperFunctions().getRandomNumber(ScrollerGlobals.cloudRandomYStart, ScrollerGlobals.cloudRandomYEnd);
+    var randY = HelperFunctions().getRandomNumber(MainGlobals.Scroller.cloudRandomYStart, MainGlobals.Scroller.cloudRandomYEnd);
     obj.position = HelperFunctions().getNewPoint(MainGlobals.ScreenWidth + obj.width, randY);
     this.setScale(obj);
 };

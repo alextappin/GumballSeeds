@@ -16,8 +16,8 @@ Gumball.prototype.constructGumball = function(gumballColor) {
 };
 
 Gumball.prototype.setPositionAndScale = function(obj) {
-    ScalingGlobals.gumballRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height, ScalingGlobals.gumballPercentOfScreen);
-    obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.gumballRatio, ScalingGlobals.gumballRatio);
+    MainGlobals.Scaling.gumballRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.gumballPercentOfScreen);
+    obj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.gumballRatio, MainGlobals.Scaling.gumballRatio);
     obj.position =  HelperFunctions().getNewPoint(MainGlobals.ScreenWidth+obj.width, 0);
 };
 
@@ -26,9 +26,9 @@ Gumball.prototype.initiateGumballSprites = function() {
 };
 
 Gumball.prototype.update = function(gumballObj) {
-    gumballObj.position.x -= ScrollerGlobals.groundSpeed;
+    gumballObj.position.x -= MainGlobals.Scroller.groundSpeed;
 };
 
 Gumball.prototype.updatePowerUp = function(gumballObj) {
-    gumballObj.position.x -= ScrollerGlobals.groundSpeed;
+    gumballObj.position.x -= MainGlobals.Scroller.groundSpeed;
 };

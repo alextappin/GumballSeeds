@@ -17,9 +17,9 @@ Character.prototype.constructCharacter = function() {
 };
 
 Character.prototype.setPositionAndScale = function(obj) {
-    ScalingGlobals.characterRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height, ScalingGlobals.characterPercentOfScreen);
-    obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.characterRatio, ScalingGlobals.characterRatio);
-    obj.position =  HelperFunctions().getNewPoint(ScalingGlobals.characterStartXScale, ScalingGlobals.characterStartYScale);
+    MainGlobals.Scaling.characterRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.characterPercentOfScreen);
+    obj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.characterRatio, MainGlobals.Scaling.characterRatio);
+    obj.position =  HelperFunctions().getNewPoint(MainGlobals.Scaling.characterStartXScale, MainGlobals.Scaling.characterStartYScale);
 };
 
 Character.prototype.initiateCharacterSprites = function() {
@@ -191,7 +191,7 @@ Character.prototype.startJumpAnimation = function() {
         MainGlobals.Physics.characterAirborn = true;
         MainGlobals.Physics.isAttacking = false;
         MainGlobals.Physics.characterVelocityY = MainGlobals.Physics.characterJumpVelocity;
-        this.setCurrentTextures(TimingGlobals.characterJumpTime, this.Properties.jumpTextures);
+        this.setCurrentTextures(MainGlobals.Timing.characterJumpTime, this.Properties.jumpTextures);
     } else if (this.Properties.spriteCount < 2 && !MainGlobals.Physics.characterHighJumping) {
         this.startJumpHighAnimation();
     }
@@ -202,7 +202,7 @@ Character.prototype.startJumpHighAnimation = function() {
     MainGlobals.Physics.characterHighJumping = true;
     MainGlobals.Physics.isAttacking = false;
     MainGlobals.Physics.characterVelocityY = MainGlobals.Physics.characterJumpHighVelocity;
-    this.setCurrentTextures(TimingGlobals.characterJumpTime, this.Properties.jumpHighTextures);
+    this.setCurrentTextures(MainGlobals.Timing.characterJumpTime, this.Properties.jumpHighTextures);
 };
 
 Character.prototype.startAttackAnimation = function() {
@@ -210,7 +210,7 @@ Character.prototype.startAttackAnimation = function() {
         if (MainGlobals.Physics.characterAirborn) {
             MainGlobals.Balance.isAttacking = false;
         } else {
-            this.setCurrentTextures(TimingGlobals.characterAttackTime, this.Properties.attackTextures);
+            this.setCurrentTextures(MainGlobals.Timing.characterAttackTime, this.Properties.attackTextures);
             MainGlobals.Balance.isAttacking = true;
         }
     }
@@ -220,7 +220,7 @@ Character.prototype.startJumpAttackAnimation = function() {
     if (!MainGlobals.Physics.characterAirborn && this.Properties.spriteCount < 2) {
         MainGlobals.Physics.characterAirborn = true;
         MainGlobals.Physics.characterVelocityY = MainGlobals.Physics.characterJumpAttackVelocity;
-        this.setCurrentTextures(TimingGlobals.characterJumpAttackTime, this.Properties.jumpAttackTextures);
+        this.setCurrentTextures(MainGlobals.Timing.characterJumpAttackTime, this.Properties.jumpAttackTextures);
     }
 };
 
@@ -232,7 +232,7 @@ Character.prototype.setCurrentTextures = function(speed, textures) {
         this.Properties.changeSpriteCounter = 0;
     } else {
         this.Properties.currentTextures = this.Properties.runTextures; //default is run...
-        this.Properties.spriteSpeed = TimingGlobals.characterRunTime;
+        this.Properties.spriteSpeed = MainGlobals.Timing.characterRunTime;
         this.Properties.spriteCount = 0;
         this.Properties.changeSpriteCounter = 0;
     }
@@ -242,20 +242,20 @@ Character.prototype.setCurrentTextures = function(speed, textures) {
 //POWERUP STUFF
 
 Character.prototype.updatePowerUp = function(characterObj) {
-    if (!PowerUpGlobals.characterDonePoweringUp) { //not done powering..
+    if (!MainGlobals.PowerUp.characterDonePoweringUp) { //not done powering..
         if (this.Properties.currentTextures != this.Properties.superStartTextures) {
-            this.setCurrentTextures(TimingGlobals.characterPowerUpTime, this.Properties.superStartTextures);
+            this.setCurrentTextures(MainGlobals.Timing.characterPowerUpTime, this.Properties.superStartTextures);
         }
         this.updateSprites(characterObj);
     } else if (this.Properties.currentTextures != this.Properties.superTextures) {
-        this.setCurrentTextures(TimingGlobals.characterSuperTime, this.Properties.superTextures);
+        this.setCurrentTextures(MainGlobals.Timing.characterSuperTime, this.Properties.superTextures);
     } else {
         this.updateSprites(characterObj);
     }
-    if (PowerUpGlobals.characterRise) {
+    if (MainGlobals.PowerUp.characterRise) {
         this.setSuperPositionY(characterObj);
     }
-    if (PowerUpGlobals.characterDonePoweringUp) {
+    if (MainGlobals.PowerUp.characterDonePoweringUp) {
         this.setSuperPositionX(characterObj);
     }
 };
@@ -269,23 +269,23 @@ Character.prototype.setSuperPositionY = function(characterObj) {
 };
 
 Character.prototype.setSuperPositionX = function(characterObj) {
-    if (characterObj.position.x < MainGlobals.ScreenWidth*ScalingGlobals.characterSuperPosition) {
+    if (characterObj.position.x < MainGlobals.ScreenWidth*MainGlobals.Scaling.characterSuperPosition) {
         characterObj.position.x += MainGlobals.Physics.characterBoltSpeed;
     } else {
-        characterObj.position.x = MainGlobals.ScreenWidth*ScalingGlobals.characterSuperPosition;
+        characterObj.position.x = MainGlobals.ScreenWidth*MainGlobals.Scaling.characterSuperPosition;
     }
 };
 
 Character.prototype.endSuper = function() {
     MainGlobals.Physics.characterAirborn = true;
     MainGlobals.Physics.characterVelocityY = MainGlobals.Physics.characterEndSuperVelocity;
-    this.setCurrentTextures(TimingGlobals.characterJumpTime, this.Properties.endSuperTextures);
+    this.setCurrentTextures(MainGlobals.Timing.characterJumpTime, this.Properties.endSuperTextures);
 };
 
 Character.prototype.resetCharacter = function(characterObj) {
-    if (characterObj.position.x != ScalingGlobals.characterStartXScale) {
+    if (characterObj.position.x != MainGlobals.Scaling.characterStartXScale) {
         if (characterObj.position.y < 0 - characterObj.height) {
-            characterObj.position.x = ScalingGlobals.characterStartXScale;
+            characterObj.position.x = MainGlobals.Scaling.characterStartXScale;
         }
     }
 };

@@ -23,15 +23,15 @@ function HelperFunctions() {
     };
 
     functions.setScrollSpeedToMin = function (){
-        ScrollerGlobals.currentScrollSpeed = ScrollerGlobals.minScrollSpeed;
+        MainGlobals.Scroller.currentScrollSpeed = MainGlobals.Scroller.minScrollSpeed;
     };
 
     functions.setScrollSpeedToMax = function() {
-        ScrollerGlobals.currentScrollSpeed = ScrollerGlobals.maxScrollSpeed;
+        MainGlobals.Scroller.currentScrollSpeed = MainGlobals.Scroller.maxScrollSpeed;
     };
 
     functions.scrollSpeedIsMaxed = function() {
-        return ScrollerGlobals.currentScrollSpeed > ScrollerGlobals.maxScrollSpeed;
+        return MainGlobals.Scroller.currentScrollSpeed > MainGlobals.Scroller.maxScrollSpeed;
     };
 
     functions.doSwitchScreen = function() {
@@ -39,7 +39,7 @@ function HelperFunctions() {
     };
 
     functions.doPowerUp = function() {
-        return PowerUpGlobals.powerUpActive;
+        return MainGlobals.PowerUp.powerUpActive;
     };
 
     functions.switchScreenToggle = function() {
@@ -75,44 +75,44 @@ function HelperFunctions() {
     };
 
     functions.resetGlobals = function() {
-        if (ScoreGlobals.currentScore > ScoreGlobals.highScore) {
-            ScoreGlobals.highScore = ScoreGlobals.currentScore;
+        if (MainGlobals.Score.currentScore > MainGlobals.Score.highScore) {
+            MainGlobals.Score.highScore = MainGlobals.Score.currentScore;
         }
 
         MainGlobals.Balance.enemies = 2;
         MainGlobals.Balance.gumballs = 1;
-        ScoreGlobals.lives = 20;
-        ScoreGlobals.kills = 0;
-        ScoreGlobals.currescore = 0;
+        MainGlobals.Score.lives = 20;
+        MainGlobals.Score.kills = 0;
+        MainGlobals.Score.currescore = 0;
         MainGlobals.Map.loopCounter = 0;
-        ScrollerGlobals.groundSpeed = 10;
-        PowerUpGlobals.powerBarLevel = 2;
-        PowerUpGlobals.powerUpActive = false;
-        PowerUpGlobals.powerUpStartingViewport = 0;
+        MainGlobals.Scroller.groundSpeed = 10;
+        MainGlobals.PowerUp.powerBarLevel = 2;
+        MainGlobals.PowerUp.powerUpActive = false;
+        MainGlobals.PowerUp.powerUpStartingViewport = 0;
     };
 
     functions.powerUpOn = function() {
-        PowerUpGlobals.powerUpActive = true;
+        MainGlobals.PowerUp.powerUpActive = true;
     };
 
     functions.powerUpOff = function() {
-        PowerUpGlobals.powerUpActive = false;
-        PowerUpGlobals.characterDonePoweringUp = false;
+        MainGlobals.PowerUp.powerUpActive = false;
+        MainGlobals.PowerUp.characterDonePoweringUp = false;
     };
 
     functions.resetAfterPowerUp = function() {
         functions.powerUpOff();
-        PowerUpGlobals.powerUpStartingViewport = 0;
-        PowerUpGlobals.characterDonePoweringUp = false;
-        PowerUpGlobals.characterBolt = false;
-        PowerUpGlobals.characterRise = false;
-        PowerUpGlobals.powerBarLevel = PowerUpGlobals.startPowerBarLevel;
-        ScrollerGlobals.groundSpeed = ScrollerGlobals.startGroundSpeed;
+        MainGlobals.PowerUp.powerUpStartingViewport = 0;
+        MainGlobals.PowerUp.characterDonePoweringUp = false;
+        MainGlobals.PowerUp.characterBolt = false;
+        MainGlobals.PowerUp.characterRise = false;
+        MainGlobals.PowerUp.powerBarLevel = MainGlobals.PowerUp.startPowerBarLevel;
+        MainGlobals.Scroller.groundSpeed = MainGlobals.Scroller.startGroundSpeed;
     };
 
     functions.powerUpScrollSpeed = function() {
-        ScrollerGlobals.currentScrollSpeed *= PowerUpGlobals.powerUpSpeedMultiplier;
-        ScrollerGlobals.groundSpeed *= PowerUpGlobals.powerUpSpeedMultiplier;
+        MainGlobals.Scroller.currentScrollSpeed *= MainGlobals.PowerUp.powerUpSpeedMultiplier;
+        MainGlobals.Scroller.groundSpeed *= MainGlobals.PowerUp.powerUpSpeedMultiplier;
     };
 
     functions.handlePowerUpViewport = function() {
@@ -168,7 +168,7 @@ function HelperFunctions() {
     };
 
     functions.calculateCloudScale = function(posY) {
-        return (1-(posY / MainGlobals.ScreenHeight))/ScrollerGlobals.cloudScaleConst;
+        return (1-(posY / MainGlobals.ScreenHeight))/MainGlobals.Scroller.cloudScaleConst;
     };
 
     functions.endGame = function() {

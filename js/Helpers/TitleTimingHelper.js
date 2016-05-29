@@ -5,33 +5,33 @@ function TitleTimingHelper() {
     var helpers = {};
 
     helpers.updateTitleObjects = function(bg, words, start, startAnimation) {
-        if (TimingGlobals.startButtonFadeIn) {
+        if (MainGlobals.Timing.startButtonFadeIn) {
             bg.update(bg);
             words.update(words);
             start.updateOpacity(start);
 
-        } else if (TimingGlobals.titleWordsFadeIn) {
+        } else if (MainGlobals.Timing.titleWordsFadeIn) {
             bg.update(bg);
             words.update(words);
-            if (words.alpha > TimingGlobals.startButtonAlphaCue) {
-                TimingGlobals.startButtonFadeIn = true;
+            if (words.alpha > MainGlobals.Timing.startButtonAlphaCue) {
+                MainGlobals.Timing.startButtonFadeIn = true;
             }
         } else {
             bg.update(bg);
-            if (bg.alpha > TimingGlobals.titleWordsAlphaCue) {
-                TimingGlobals.titleWordsFadeIn = true;
+            if (bg.alpha > MainGlobals.Timing.titleWordsAlphaCue) {
+                MainGlobals.Timing.titleWordsFadeIn = true;
             }
         }
 
-        if (TimingGlobals.startButtonPressed) { //start the startAnimation for button being pressed
+        if (MainGlobals.Timing.startButtonPressed) { //start the startAnimation for button being pressed
             startAnimation.update(startAnimation);
             start.updateClickedStartTextures(start);
             if (startAnimation.position.x >= 0) {
                 if (startAnimation.position.x >= startAnimation.width) { //switch to the game screen
                     HelperFunctions().switchScreenToggle();
                     MainGlobals.Map.screenToShow = MainGlobals.Map.gameString;
-                    TimingGlobals.startButtonPressed = false;
-                    TimingGlobals.startAnimation = false;
+                    MainGlobals.Timing.startButtonPressed = false;
+                    MainGlobals.Timing.startAnimation = false;
                 }
                 bg.switchToWhiteBackground(bg);
                 words.hideWords(words);
