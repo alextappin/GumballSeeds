@@ -271,6 +271,8 @@ Character.prototype.setSuperPositionY = function(characterObj) {
 Character.prototype.setSuperPositionX = function(characterObj) {
     if (characterObj.position.x < MapGlobals.screenWidth*ScalingGlobals.characterSuperPosition) {
         characterObj.position.x += PhysicsGlobals.characterBoltSpeed;
+    } else {
+        characterObj.position.x = MapGlobals.screenWidth*ScalingGlobals.characterSuperPosition;
     }
 };
 
