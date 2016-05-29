@@ -82,7 +82,9 @@ LoadImage.prototype.initiateLoadImageSprites = function() {
         PIXI.Texture.fromFrame("rainbowband up2a"),
         PIXI.Texture.fromFrame("rainbowband up2b"),
         PIXI.Texture.fromFrame("rainbowband up3a"),
-        PIXI.Texture.fromFrame("rainbowband up3b")
+        PIXI.Texture.fromFrame("rainbowband up3b"),
+        PIXI.Texture.fromFrame("rainbowband gumball1"),
+        PIXI.Texture.fromFrame("rainbowband gumball2")
     );
 };
 LoadImage.prototype.setSpriteToCurrentTexture = function() {
