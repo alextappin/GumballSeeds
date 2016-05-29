@@ -290,7 +290,7 @@ Character.prototype.endSuper = function() {
 
 Character.prototype.resetCharacter = function(characterObj) {
     if (characterObj.position.x != ScalingGlobals.characterStartXScale) {
-        if (characterObj.position.y < 0 - characterObj.height) {
+        if (characterObj.position.y < 0 - characterObj.height*2) {
             characterObj.position.x = ScalingGlobals.characterStartXScale;
         }
     }
