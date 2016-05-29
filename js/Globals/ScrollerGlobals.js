@@ -1,7 +1,7 @@
 /**
  * Created by ajt on 4/25/2016.
  */
-var ScrollerGlobals = (function ScrollerGlobals() {
+function ScrollerGlobals() {
     var constants = {};
 
     constants.minScrollSpeed = MapGlobals.screenHeight/130.9;//5.5;
@@ -42,4 +42,4 @@ var ScrollerGlobals = (function ScrollerGlobals() {
     constants.mid2DeltaX = 0.29;
 
     return constants;
-})();
+}

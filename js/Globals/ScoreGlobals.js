@@ -1,7 +1,7 @@
 /**
  * Created by ajt on 4/25/2016.
  */
-var ScoreGlobals = (function ScoreGlobals() {
+function ScoreGlobals() {
     var constants = {};
 
     constants.currentScore = 0;
@@ -10,4 +10,4 @@ var ScoreGlobals = (function ScoreGlobals() {
     constants.kills = 0;
 
     return constants;
-})();
+}

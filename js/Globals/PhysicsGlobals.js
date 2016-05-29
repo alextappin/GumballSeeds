@@ -1,7 +1,7 @@
 /**
  * Created by ajt on 4/30/2016.
  */
-var PhysicsGlobals = (function PhysicsGlobals() {
+function PhysicsGlobals() {
     var constants = {};
 
     constants.attackingTime = 0;
@@ -19,4 +19,4 @@ var PhysicsGlobals = (function PhysicsGlobals() {
     constants.characterEndSuperVelocity = MapGlobals.screenHeight/-28.8; //-25;
 
     return constants;
-})();
+};

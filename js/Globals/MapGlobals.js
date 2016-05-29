@@ -1,7 +1,7 @@
 /**
  * Created by ajt on 4/25/2016.
  */
-var MapGlobals = (function MapGlobals() {
+function MapGlobals() {
     var constants = {};
 
     constants.loopCounter = 1;
@@ -39,4 +39,4 @@ var MapGlobals = (function MapGlobals() {
     ];
     constants.gumballSpaceConst = 8;
     return constants;
-})();
+}

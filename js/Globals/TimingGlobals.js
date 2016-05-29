@@ -1,7 +1,7 @@
 /**
  * Created by ajt on 5/1/2016.
  */
-var TimingGlobals = (function TimingGlobals() {
+function TimingGlobals() {
     var constants = {};
 
     constants.titleWordsFadeIn = false;
@@ -29,4 +29,4 @@ var TimingGlobals = (function TimingGlobals() {
     constants.rainbowTime = 10;
 
     return constants;
-})();
+}

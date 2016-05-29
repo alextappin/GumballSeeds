@@ -1,7 +1,7 @@
 /**
  * Created by ajt on 4/25/2016.
  */
-var BalanceGlobals = (function BalanceGlobals() {
+function BalanceGlobals() {
     var constants = {};
 
     constants.enemies = 2;
@@ -22,4 +22,4 @@ var BalanceGlobals = (function BalanceGlobals() {
     constants.jumpAttackTime = 60;
 
     return constants;
-})();
+}

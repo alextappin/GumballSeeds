@@ -4,60 +4,11 @@
 function Main() {
     //going to run a pre-load function here to test the screen sizes and stufffff
 
-    var rendererOptions = {
-        antialiasing: false,
-        transparent: true,
-        resolution: window.devicePixelRatio,
-        autoResize: true,
-        backgroundColor : 0x000000
-    };
-
-    this.renderer = PIXI.autoDetectRenderer(MapGlobals.screenWidth, MapGlobals.screenHeight/*, rendererOptions*/);
-/*    this.renderer.view.style.position = "absolute";
-    this.renderer.view.style.top = "0px";
-    this.renderer.view.style.left = "0px";*/
-
-    this.stage = new PIXI.Container(0xFFFFFF);
-    this.ratio = 0;
-
-    //this.resize();
-
-    document.body.appendChild(this.renderer.view);
-    //window.addEventListener("resize", this.resize.bind(this), false);
-
+    MainGlobals.initialize();
+    window.addEventListener("resize", MainGlobals.resizeStage);
     HelperFunctions().setScrollSpeedToMin();
     this.loadSpriteSheet();
 }
-
-Main.prototype.resize = function() {
-// Determine which screen dimension is most constrained
-    this.ratio = Math.min(window.innerWidth/MapGlobals.screenWidth,
-        window.innerHeight/MapGlobals.screenHeight);
-
-    // Scale the view appropriately to fill that dimension
-    console.log(this.stage.scale);
-    this.stage.scale.x = this.stage.scale.y = this.ratio;
-    console.log(this.stage.scale);
-
-    // Update the renderer dimensions
-    this.renderer.resize(Math.ceil(MapGlobals.screenWidth * this.ratio),
-        Math.ceil(MapGlobals.screenHeight * this.ratio));
-
-    MapGlobals.screenWidth *= this.ratio;
-    MapGlobals.screenHeight *= this.ratio;
-    ScalingGlobals;
-    PhysicsGlobals;
-    ScrollerGlobals;
-    TimingGlobals;
-
-    console.log("Resize\n" +
-        "  Window inner " + window.innerWidth + "," +
-        window.innerHeight +
-        " pixel ratio " + window.devicePixelRatio + "\n" +
-        "  Renderer " + this.renderer.width + "," +
-        this.renderer.height + " res " + this.renderer.resolution + "\n" +
-        "  Scale " + this.stage.scale.x + "," + this.stage.scale.y + "\n");
-};
 
 Main.prototype.loadSpriteSheet = function() {
     var assetsToLoad = ["../resources/characterSprites.json", "../resources/enemy.json", "../resources/fgNew.json",
@@ -85,13 +36,15 @@ Main.prototype.loadSpriteSheet = function() {
 };
 Main.prototype.update = function() {
     this.gameStatesHandler();
-    this.renderer.render(this.stage);
+    MainGlobals.renderer.render(MainGlobals.stage);
     requestAnimationFrame(this.update.bind(this));
 };
+
 Main.prototype.spriteSheetLoaded = function() {
     this.startAppropriateScreen();
     requestAnimationFrame(this.update.bind(this));
 };
+
 Main.prototype.gameStatesHandler = function() {
     if (HelperFunctions().doSwitchScreen()) {
         this.purgeStage()
@@ -99,13 +52,15 @@ Main.prototype.gameStatesHandler = function() {
         this.updatedSelectedScreen();
     }
 };
+
 Main.prototype.purgeStage = function() {
     this.saveAndRestartGameVariables();
-    this.stage.destroy();
-    this.stage = new PIXI.Container(0x66FF99);
+    MainGlobals.stage.destroy();
+    MainGlobals.stage = new PIXI.Container(0xFFFFFF);
     this.startAppropriateScreen();
     HelperFunctions().switchScreenToggle();
 };
+
 Main.prototype.updatedSelectedScreen = function() {
     if(HelperFunctions().screenIsGame()) {
         this.scroller.update();
@@ -115,15 +70,17 @@ Main.prototype.updatedSelectedScreen = function() {
         this.loadScreen.update();
     }
 };
+
 Main.prototype.startAppropriateScreen = function() {
     if(HelperFunctions().screenIsGame()) {
-        this.scroller = new Scroller(this.stage);
+        this.scroller = new Scroller(MainGlobals.stage);
     } else if (HelperFunctions().screenIsTitle()) {
-        this.titleScreen = new TitleScreen(this.stage);
+        this.titleScreen = new TitleScreen(MainGlobals.stage);
     } else if(HelperFunctions().screenIsLoad()) {
-        this.loadScreen = new LoadScreen(this.stage);
+        this.loadScreen = new LoadScreen(MainGlobals.stage);
     }
 };
+
 Main.prototype.saveAndRestartGameVariables = function() {
     HelperFunctions().resetGlobals();
 };

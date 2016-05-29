@@ -1,7 +1,7 @@
 /**
  * Created by ajt on 4/30/2016.
  */
-var ScalingGlobals = (function ScalingGlobals() {
+function ScalingGlobals() {
     var constants = {};
 
     constants.characterScaleX = .5;
@@ -55,4 +55,4 @@ var ScalingGlobals = (function ScalingGlobals() {
     constants.characterSuperPosition = .40;
 
     return constants;
-})();
+}

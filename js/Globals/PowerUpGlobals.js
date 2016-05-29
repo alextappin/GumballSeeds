@@ -1,7 +1,7 @@
 /**
  * Created by ajt on 4/25/2016.
  */
-var PowerUpGlobals = (function PowerUpGlobals() {
+function PowerUpGlobals() {
     var constants = {};
 
     constants.startPowerBarLevel = 5;
@@ -20,4 +20,4 @@ var PowerUpGlobals = (function PowerUpGlobals() {
     constants.superBoltSpriteIndex = 9;
 
     return constants;
-})();
+}
