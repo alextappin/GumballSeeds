@@ -10,9 +10,13 @@ function GameSounds() {
         gameSound : {
             id : MapGlobals.gameString,
             url : "../resources/GameplaySong.mp3"
+        },
+        bassSound : {
+            id: "Bass",
+            url: "../resources/Bass bomb sound effect.mp3"
         }
     },
-        numSoundsToLoad = 2,
+        numSoundsToLoad = 3,
         counter = 0;
     createjs.Sound.addEventListener("fileload", handleFileLoad);
 

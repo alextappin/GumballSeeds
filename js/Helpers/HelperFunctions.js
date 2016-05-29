@@ -129,6 +129,10 @@ function HelperFunctions() {
         createjs.Sound.play(MapGlobals.gameString, {loop: 10, volume:1});
     };
 
+    functions.startBassSound = function() {
+        createjs.Sound.play("Bass", {loop: 1, volume:1, delay: 1000});
+    };
+
     functions.getCorrectScaleWidth = function(width) {
         return MapGlobals.screenWidth / width;
     };

@@ -227,6 +227,7 @@ Character.prototype.updatePowerUp = function(characterObj) {
     if (!PowerUpGlobals.characterDonePoweringUp) { //not done powering..
         if (this.Properties.currentTextures != this.Properties.superStartTextures) {
             this.setCurrentTextures(TimingGlobals.characterPowerUpTime, this.Properties.superStartTextures);
+            HelperFunctions().startBassSound();
         }
         this.updateSprites(characterObj);
     } else if (this.Properties.currentTextures != this.Properties.superTextures) {
