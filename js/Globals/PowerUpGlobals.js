@@ -16,8 +16,8 @@ var PowerUpGlobals = (function PowerUpGlobals() {
     constants.powerUpSpeedMultiplier = 2;
     constants.characterSpriteToJumpTime = 4;
 
-    constants.superRiseSpriteIndex = 5;
-    constants.superBoltSpriteIndex = 8;
+    constants.superRiseSpriteIndex = 3;
+    constants.superBoltSpriteIndex = 9;
 
     return constants;
 })();

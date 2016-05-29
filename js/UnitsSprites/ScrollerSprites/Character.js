@@ -93,8 +93,6 @@ Character.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("gbs super1"),
         PIXI.Texture.fromFrame("gbs super1"),
         PIXI.Texture.fromFrame("gbs super2"),
-        PIXI.Texture.fromFrame("gbs super1"),
-        PIXI.Texture.fromFrame("gbs super2"),
         PIXI.Texture.fromFrame("gbs super3"),
         PIXI.Texture.fromFrame("gbs super4"),
         PIXI.Texture.fromFrame("gbs super5"),
@@ -261,7 +259,7 @@ Character.prototype.updatePowerUp = function(characterObj) {
     if (PowerUpGlobals.characterRise) {
         this.setSuperPositionY(characterObj);
     }
-    if (PowerUpGlobals.characterBolt) {
+    if (PowerUpGlobals.characterDonePoweringUp) {
         this.setSuperPositionX(characterObj);
     }
 };

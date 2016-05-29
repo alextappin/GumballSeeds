@@ -14,8 +14,8 @@ var PhysicsGlobals = (function PhysicsGlobals() {
     constants.characterAirborn = true;
     constants.characterHighJumping = false;
 
-    constants.characterRiseSpeed = MapGlobals.screenHeight * .01;
-    constants.characterBoltSpeed = MapGlobals.screenWidth * .02;
+    constants.characterRiseSpeed = MapGlobals.screenHeight * .012;
+    constants.characterBoltSpeed = MapGlobals.screenWidth * .04;
     constants.characterEndSuperVelocity = -25;
 
     return constants;

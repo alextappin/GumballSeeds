@@ -97,6 +97,7 @@ LoadImage.prototype.updateSprites = function(imageObj) {
     if (imageObj.Properties.testCount < imageObj.Properties.textures.length) {
         imageObj.children[1].texture = imageObj.Properties.textures[imageObj.Properties.testCount];
         imageObj.Properties.testCount++;
+        imageObj.alpha += this.Properties.alphaIncrement/5;
     } else {
         if (imageObj.alpha + this.Properties.alphaIncrement > 1) {
             this.Properties.alphaIncrement = 0 - this.Properties.alphaIncrement;

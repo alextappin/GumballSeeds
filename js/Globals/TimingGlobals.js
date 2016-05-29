@@ -22,11 +22,11 @@ var TimingGlobals = (function TimingGlobals() {
     constants.characterJumpAttackTime = 9;
     constants.characterHitTime = 10;
     constants.characterDieTime = 10;
-    constants.characterSuperTime = 5;
-    constants.characterPowerUpTime = 15;
+    constants.characterSuperTime = 15;
+    constants.characterPowerUpTime = 12;
 
-    constants.rainbowChargeTime = 15;
-    constants.rainbowTime = 5;
+    constants.rainbowChargeTime = 6;
+    constants.rainbowTime = 10;
 
     return constants;
 })();

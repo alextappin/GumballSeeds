@@ -52,7 +52,7 @@ var ScalingGlobals = (function ScalingGlobals() {
     constants.superRatio = 0;
     constants.superPercentOfScreen = 1;
 
-    constants.characterSuperPosition = .42;
+    constants.characterSuperPosition = .40;
 
     return constants;
 })();

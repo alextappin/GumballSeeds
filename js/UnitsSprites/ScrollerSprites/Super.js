@@ -36,6 +36,7 @@ Super.prototype.initiateSuperSprites = function() {
         PIXI.Texture.fromFrame("2 super powerup"),
         PIXI.Texture.fromFrame("2 super powerup"),
         PIXI.Texture.fromFrame("3 super powerup"),
+        PIXI.Texture.fromFrame("3 super powerup"),
         PIXI.Texture.fromFrame("4 super powerup"),
         PIXI.Texture.fromFrame("5 super powerup"),
         PIXI.Texture.fromFrame("rainbowband 1start")
