@@ -16,6 +16,8 @@ Super.prototype.constructSuper = function() {
     this.Properties.changeSpriteCounter = 10;
     this.Properties.spriteSpeed = 10;
     this.Properties.currentTexture = [];
+    this.Properties.superPowerupTextures = [];
+    this.Properties.rainbowSuperTextures = [];
     this.initiateSuperSprites();
 };
 
@@ -23,6 +25,7 @@ Super.prototype.setPositionAndScale = function(obj) {
     ScalingGlobals.superRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height, ScalingGlobals.superPercentOfScreen);
     obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.superRatio, ScalingGlobals.superRatio);
     obj.position =  HelperFunctions().getNewPoint(0,0);
+    obj.visible = false;
 };
 
 Super.prototype.initiateSuperSprites = function() {
@@ -65,15 +68,21 @@ Super.prototype.initiateSuperSprites = function() {
     );
 
     this.setCurrentTextures(TimingGlobals.rainbowChargeTime, this.Properties.superPowerupTextures);
-
-    this.addChild(new PIXI.Sprite(PIXI.Texture.fromFrame(this.Properties.currentTextures[this.Properties.spriteCount])));
+    this.addChild(new PIXI.Sprite(this.Properties.currentTextures[this.Properties.spriteCount]));
 };
 
 Super.prototype.update = function(superObj) {
+    superObj.visible = false;
+    this.setCurrentTextures(TimingGlobals.rainbowChargeTime, this.Properties.superPowerupTextures);
+};
+
+Super.prototype.updatePowerUp = function(superObj) {
     if (!PowerUpGlobals.characterDonePoweringUp) {
+        superObj.visible = true;
         this.updateSprites(superObj);
     } else if (this.Properties.currentTextures != this.Properties.rainbowSuperTextures) {
         this.setCurrentTextures(TimingGlobals.rainbowTime, this.Properties.rainbowSuperTextures);
+    } else {
         this.updateSprites(superObj);
     }
 };
@@ -89,6 +98,9 @@ Super.prototype.updateSprites = function(superObj) {
 
 Super.prototype.nextSprite = function(superObj) {
     if (this.Properties.spriteCount == this.Properties.currentTextures.length - 1) {
+        if(!PowerUpGlobals.characterDonePoweringUp) {
+            PowerUpGlobals.characterDonePoweringUp = true;
+        }
         this.Properties.spriteCount = 0;
     } else {
         this.Properties.spriteCount++;
