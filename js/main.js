@@ -2,12 +2,63 @@
  * Created by ajt on 11/29/2015.
  */
 function Main() {
-    this.renderer = PIXI.autoDetectRenderer(MapGlobals.screenWidth, MapGlobals.screenHeight, {backgroundColor: 0x000000});
+    //going to run a pre-load function here to test the screen sizes and stufffff
+
+    var rendererOptions = {
+        antialiasing: false,
+        transparent: true,
+        resolution: window.devicePixelRatio,
+        autoResize: true,
+        backgroundColor : 0x000000
+    };
+
+    this.renderer = PIXI.autoDetectRenderer(MapGlobals.screenWidth, MapGlobals.screenHeight/*, rendererOptions*/);
+/*    this.renderer.view.style.position = "absolute";
+    this.renderer.view.style.top = "0px";
+    this.renderer.view.style.left = "0px";*/
+
+    this.stage = new PIXI.Container(0xFFFFFF);
+    this.ratio = 0;
+
+    //this.resize();
+
     document.body.appendChild(this.renderer.view);
-    this.stage = new PIXI.Container(0x66FF99);
+    //window.addEventListener("resize", this.resize.bind(this), false);
+
     HelperFunctions().setScrollSpeedToMin();
     this.loadSpriteSheet();
 }
+
+Main.prototype.resize = function() {
+// Determine which screen dimension is most constrained
+    this.ratio = Math.min(window.innerWidth/MapGlobals.screenWidth,
+        window.innerHeight/MapGlobals.screenHeight);
+
+    // Scale the view appropriately to fill that dimension
+    console.log(this.stage.scale);
+    this.stage.scale.x = this.stage.scale.y = this.ratio;
+    console.log(this.stage.scale);
+
+    // Update the renderer dimensions
+    this.renderer.resize(Math.ceil(MapGlobals.screenWidth * this.ratio),
+        Math.ceil(MapGlobals.screenHeight * this.ratio));
+
+    MapGlobals.screenWidth *= this.ratio;
+    MapGlobals.screenHeight *= this.ratio;
+    ScalingGlobals;
+    PhysicsGlobals;
+    ScrollerGlobals;
+    TimingGlobals;
+
+    console.log("Resize\n" +
+        "  Window inner " + window.innerWidth + "," +
+        window.innerHeight +
+        " pixel ratio " + window.devicePixelRatio + "\n" +
+        "  Renderer " + this.renderer.width + "," +
+        this.renderer.height + " res " + this.renderer.resolution + "\n" +
+        "  Scale " + this.stage.scale.x + "," + this.stage.scale.y + "\n");
+};
+
 Main.prototype.loadSpriteSheet = function() {
     var assetsToLoad = ["../resources/characterSprites.json", "../resources/enemy.json", "../resources/fgNew.json",
         "../resources/gumballStem.json", "../resources/loadImage.json", "../resources/powerBar.json",
