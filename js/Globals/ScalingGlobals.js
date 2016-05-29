@@ -43,7 +43,7 @@ var ScalingGlobals = (function ScalingGlobals() {
     constants.characterSuperPercentOfScreen = .3125;
     constants.characterSuperPosition = {};
 
-    constants.rainbowSuperRatio = .7;
+    constants.rainbowSuperRatio = 1;
     constants.rainbowSuperPercentOfScreen = 1;
 
     constants.characterObjSuperScale = 0;
@@ -51,6 +51,8 @@ var ScalingGlobals = (function ScalingGlobals() {
 
     constants.superRatio = 0;
     constants.superPercentOfScreen = 1;
+
+    constants.characterSuperPosition = .42;
 
     return constants;
 })();

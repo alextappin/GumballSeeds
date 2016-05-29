@@ -32,8 +32,8 @@ Super.prototype.initiateSuperSprites = function() {
     this.Properties.superPowerupTextures.push(
         PIXI.Texture.fromFrame("1 super powerup"),
         PIXI.Texture.fromFrame("1 super powerup"),
-        PIXI.Texture.fromFrame("2 super powerup"),
         PIXI.Texture.fromFrame("1 super powerup"),
+        PIXI.Texture.fromFrame("2 super powerup"),
         PIXI.Texture.fromFrame("2 super powerup"),
         PIXI.Texture.fromFrame("3 super powerup"),
         PIXI.Texture.fromFrame("4 super powerup"),
@@ -141,7 +141,7 @@ Super.prototype.resetScaleAndPosition = function(superObj) {
 Super.prototype.adjustScaleAndPosition = function(superObj) {
     superObj.children[0].scale.x = ScalingGlobals.rainbowSuperRatio;
     superObj.children[0].scale.y = ScalingGlobals.rainbowSuperRatio;
-    superObj.children[0].position.y = superObj.height*ScalingGlobals.rainbowSuperRatio / 2;
+    /*superObj.children[0].position.y = superObj.height*ScalingGlobals.rainbowSuperRatio / 2;*/
 };
 
 Super.prototype.characterJumpTiming = function() {

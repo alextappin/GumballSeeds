@@ -227,7 +227,6 @@ Character.prototype.updatePowerUp = function(characterObj) {
     if (!PowerUpGlobals.characterDonePoweringUp) { //not done powering..
         if (this.Properties.currentTextures != this.Properties.superStartTextures) {
             this.setCurrentTextures(TimingGlobals.characterPowerUpTime, this.Properties.superStartTextures);
-            HelperFunctions().startBassSound();
         }
         this.updateSprites(characterObj);
     } else if (this.Properties.currentTextures != this.Properties.superTextures) {
@@ -236,18 +235,27 @@ Character.prototype.updatePowerUp = function(characterObj) {
         this.updateSprites(characterObj);
     }
     if (PowerUpGlobals.characterRise) {
-        this.setSuperPosition(characterObj);
+        this.setSuperPositionY(characterObj);
+    }
+    if (PowerUpGlobals.characterBolt) {
+        this.setSuperPositionX(characterObj);
     }
 };
 
-Character.prototype.setSuperPosition = function(characterObj) {
+Character.prototype.setSuperPositionY = function(characterObj) {
     if (characterObj.position.y + (characterObj.height/2) > MapGlobals.screenHeight / 2) {
         characterObj.position.y = (characterObj.position.y - (MapGlobals.screenHeight / 2) * .01);
     }
     if (this.Properties.currentTextures == this.Properties.superTextures) {
-        if (characterObj.position.x < MapGlobals.screenWidth*.25) {
+        if (characterObj.position.x < MapGlobals.screenWidth*ScalingGlobals.characterSuperPosition) {
             characterObj.position.x = (characterObj.position.x + (MapGlobals.screenWidth / 2) * .02);
         }
+    }
+};
+
+Character.prototype.setSuperPositionX = function(characterObj) {
+    if (characterObj.position.x < MapGlobals.screenWidth*ScalingGlobals.characterSuperPosition) {
+        characterObj.position.x = (characterObj.position.x + (MapGlobals.screenWidth / 2) * .02);
     }
 };
 

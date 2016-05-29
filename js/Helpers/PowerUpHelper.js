@@ -7,6 +7,7 @@ function PowerUpHelper() {
     powerUpHelper.startPowerUp = function() {
         HelperFunctions().powerUpOn();
         HelperFunctions().powerUpScrollSpeed();
+        HelperFunctions().startBassSound();
     };
     powerUpHelper.continuePowerUp = function(viewPort) {
         if (PowerUpGlobals.powerUpStartingViewport == 0) {
