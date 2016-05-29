@@ -26,7 +26,7 @@ var TimingGlobals = (function TimingGlobals() {
     constants.characterPowerUpTime = 15;
 
     constants.rainbowChargeTime = 15;
-    constants.rainbowTime = 10;
+    constants.rainbowTime = 15;
 
     return constants;
 })();
