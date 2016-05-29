@@ -51,6 +51,35 @@ Character.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("gbs j6"),
         PIXI.Texture.fromFrame("gbs j7")
     );
+    this.Properties.endSuperTextures.push(
+        PIXI.Texture.fromFrame("gbs j1"),
+        PIXI.Texture.fromFrame("gbs j2"),
+        PIXI.Texture.fromFrame("gbs j3"),
+        PIXI.Texture.fromFrame("gbs j4"),
+        PIXI.Texture.fromFrame("gbs j5"),
+        PIXI.Texture.fromFrame("gbs j3"),
+        PIXI.Texture.fromFrame("gbs j4"),
+        PIXI.Texture.fromFrame("gbs j4"),
+        PIXI.Texture.fromFrame("gbs j5"),
+        PIXI.Texture.fromFrame("gbs j3"),
+        PIXI.Texture.fromFrame("gbs j4"),
+        PIXI.Texture.fromFrame("gbs j4"),
+        PIXI.Texture.fromFrame("gbs j5"),
+        PIXI.Texture.fromFrame("gbs j3"),
+        PIXI.Texture.fromFrame("gbs j4"),
+        PIXI.Texture.fromFrame("gbs j4"),
+        PIXI.Texture.fromFrame("gbs j5"),
+        PIXI.Texture.fromFrame("gbs j3"),
+        PIXI.Texture.fromFrame("gbs j4"),
+        PIXI.Texture.fromFrame("gbs j4"),
+        PIXI.Texture.fromFrame("gbs j5"),
+        PIXI.Texture.fromFrame("gbs j3"),
+        PIXI.Texture.fromFrame("gbs j4"),
+        PIXI.Texture.fromFrame("gbs j4"),
+        PIXI.Texture.fromFrame("gbs j5"),
+        PIXI.Texture.fromFrame("gbs j6"),
+        PIXI.Texture.fromFrame("gbs j7")
+    );
     this.Properties.attackTextures.push(
         PIXI.Texture.fromFrame("gbs a1"),
         PIXI.Texture.fromFrame("gbs a1"),
@@ -92,9 +121,10 @@ Character.prototype.setSpriteToCurrentTexture = function(characterObj) {
 
 Character.prototype.update = function(characterObj, groundObj) {
     if (this.Properties.currentTextures == this.Properties.superStartTextures) {
-        PhysicsGlobals.characterAirborn = true;
-        this.setCurrentTextures();
+        this.endSuper();
     }
+
+    this.resetCharacter(characterObj);
     this.updateSprites(characterObj);
     this.gravityCharacter(characterObj, groundObj);
     this.attackCharacter();
@@ -256,6 +286,20 @@ Character.prototype.setSuperPositionX = function(characterObj) {
     }
 };
 
+Character.prototype.endSuper = function() {
+    PhysicsGlobals.characterAirborn = true;
+    BalanceGlobals.isAttacking = false;
+    PhysicsGlobals.characterVelocityY += PhysicsGlobals.characterEndSuperVelocity;
+    this.setCurrentTextures(TimingGlobals.characterJumpTime, this.Properties.endSuperTextures);
+};
+
+Character.prototype.resetCharacter = function(characterObj) {
+    if (characterObj.position.x != ScalingGlobals.characterStartXScale) {
+        if (characterObj.position.y < 0 - characterObj.height) {
+            characterObj.position.x = ScalingGlobals.characterStartXScale;
+        }
+    }
+};
 
 Character.prototype.listenForJumpTrigger = function() {
     var that = this;

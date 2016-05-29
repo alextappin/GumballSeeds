@@ -12,6 +12,7 @@ function CharacterProperties() {
         attackTextures : [],
         jumpAttackTextures : [],
         superStartTextures : [],
+        endSuperTextures : [],
         superTextures : [],
         stopJumpAnimation : false,
         spriteCount : 0,

@@ -16,7 +16,7 @@ var PhysicsGlobals = (function PhysicsGlobals() {
 
     constants.characterRiseSpeed = MapGlobals.screenHeight * .01;
     constants.characterBoltSpeed = MapGlobals.screenWidth * .02;
-    constants.characterEndSuperVelocity = -25;
+    constants.characterEndSuperVelocity = -30;
 
     return constants;
 })();
