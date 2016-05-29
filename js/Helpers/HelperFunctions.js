@@ -103,6 +103,7 @@ function HelperFunctions() {
     functions.resetAfterPowerUp = function() {
         functions.powerUpOff();
         PowerUpGlobals.powerUpStartingViewport = 0;
+        PowerUpGlobals.characterDonePoweringUp = false;
         PowerUpGlobals.powerBarLevel = PowerUpGlobals.startPowerBarLevel;
         ScrollerGlobals.groundSpeed = ScrollerGlobals.startGroundSpeed;
     };

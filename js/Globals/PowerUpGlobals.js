@@ -9,10 +9,15 @@ var PowerUpGlobals = (function PowerUpGlobals() {
     constants.maxPowerBarLevel = 6;
     constants.powerUpActive = false;
     constants.characterDonePoweringUp = false;
+    constants.characterRise = false;
+    constants.characterBolt = false;
     constants.powerUpStartingViewport = 0;
     constants.powerUpDuration = 5000;
     constants.powerUpSpeedMultiplier = 2;
     constants.characterSpriteToJumpTime = 4;
+
+    constants.superRiseSpriteIndex = 5;
+    constants.superBoltSpriteIndex = 8;
 
     return constants;
 })();

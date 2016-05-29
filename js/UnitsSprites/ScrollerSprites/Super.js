@@ -33,6 +33,8 @@ Super.prototype.initiateSuperSprites = function() {
         PIXI.Texture.fromFrame("1 super powerup"),
         PIXI.Texture.fromFrame("1 super powerup"),
         PIXI.Texture.fromFrame("2 super powerup"),
+        PIXI.Texture.fromFrame("1 super powerup"),
+        PIXI.Texture.fromFrame("2 super powerup"),
         PIXI.Texture.fromFrame("3 super powerup"),
         PIXI.Texture.fromFrame("4 super powerup"),
         PIXI.Texture.fromFrame("5 super powerup"),
@@ -41,7 +43,9 @@ Super.prototype.initiateSuperSprites = function() {
     this.Properties.rainbowSuperTextures.push(
         PIXI.Texture.fromFrame("rainbowband 2straight"),
         PIXI.Texture.fromFrame("rainbowband 3straight"),
-        PIXI.Texture.fromFrame("rainbowband down1a"),
+        PIXI.Texture.fromFrame("rainbowband 2straight"),
+        PIXI.Texture.fromFrame("rainbowband 3straight")
+/*        PIXI.Texture.fromFrame("rainbowband down1a"),
         PIXI.Texture.fromFrame("rainbowband down1b"),
         PIXI.Texture.fromFrame("rainbowband down2a"),
         PIXI.Texture.fromFrame("rainbowband down2b"),
@@ -64,7 +68,7 @@ Super.prototype.initiateSuperSprites = function() {
         PIXI.Texture.fromFrame("rainbowband up2b"),
         PIXI.Texture.fromFrame("rainbowband up2a"),
         PIXI.Texture.fromFrame("rainbowband up1b"),
-        PIXI.Texture.fromFrame("rainbowband up1a")
+        PIXI.Texture.fromFrame("rainbowband up1a")*/
     );
 
     this.setCurrentTextures(TimingGlobals.rainbowChargeTime, this.Properties.superPowerupTextures);
@@ -72,17 +76,18 @@ Super.prototype.initiateSuperSprites = function() {
 };
 
 Super.prototype.update = function(superObj) {
-    superObj.visible = false;
-    this.setCurrentTextures(TimingGlobals.rainbowChargeTime, this.Properties.superPowerupTextures);
+    if (this.Properties.currentTextures = this.Properties.rainbowSuperTextures) {
+        this.setCurrentTextures(TimingGlobals.rainbowChargeTime, this.Properties.superPowerupTextures);
+        superObj.visible = false;
+    }
 };
 
 Super.prototype.updatePowerUp = function(superObj) {
     if (!PowerUpGlobals.characterDonePoweringUp) {
-        superObj.visible = true;
-        superObj.children[0].scale.x = 1;
-        superObj.children[0].scale.y = 1;
-        superObj.children[0].position.y = 0;
+        this.resetScaleAndPosition(superObj);
         this.updateSprites(superObj);
+        this.characterJumpTiming();
+        this.characterBoltTiming();
     } else if (this.Properties.currentTextures != this.Properties.rainbowSuperTextures) {
         this.setCurrentTextures(TimingGlobals.rainbowTime, this.Properties.rainbowSuperTextures);
         this.adjustScaleAndPosition(superObj);
@@ -126,8 +131,27 @@ Super.prototype.setCurrentTextures = function(speed, textures) {
     this.Properties.changeSpriteCounter = 0;
 };
 
+Super.prototype.resetScaleAndPosition = function(superObj) {
+    superObj.visible = true;
+    superObj.children[0].scale.x = 1;
+    superObj.children[0].scale.y = 1;
+    superObj.children[0].position.y = 0;
+};
+
 Super.prototype.adjustScaleAndPosition = function(superObj) {
     superObj.children[0].scale.x = ScalingGlobals.rainbowSuperRatio;
     superObj.children[0].scale.y = ScalingGlobals.rainbowSuperRatio;
     superObj.children[0].position.y = superObj.height*ScalingGlobals.rainbowSuperRatio / 2;
+};
+
+Super.prototype.characterJumpTiming = function() {
+    if (this.Properties.spriteCount == PowerUpGlobals.superRiseSpriteIndex) {
+        PowerUpGlobals.characterRise = true;
+    }
+};
+
+Super.prototype.characterBoltTiming = function() {
+    if (this.Properties.spriteCount == PowerUpGlobals.superBoltSpriteIndex) {
+        PowerUpGlobals.characterBolt = true;
+    }
 };

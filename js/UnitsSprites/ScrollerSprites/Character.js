@@ -69,6 +69,8 @@ Character.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("gbs super1"),
         PIXI.Texture.fromFrame("gbs super1"),
         PIXI.Texture.fromFrame("gbs super2"),
+        PIXI.Texture.fromFrame("gbs super1"),
+        PIXI.Texture.fromFrame("gbs super2"),
         PIXI.Texture.fromFrame("gbs super3"),
         PIXI.Texture.fromFrame("gbs super4"),
         PIXI.Texture.fromFrame("gbs super5"),
@@ -228,16 +230,23 @@ Character.prototype.updatePowerUp = function(characterObj) {
         }
         this.updateSprites(characterObj);
     } else if (this.Properties.currentTextures != this.Properties.superTextures) {
-        this.setCurrentTextures(TimingGlobals.rainbowTime, this.Properties.superTextures);
+        this.setCurrentTextures(TimingGlobals.characterSuperTime, this.Properties.superTextures);
     } else {
         this.updateSprites(characterObj);
     }
-    this.setSuperPosition(characterObj);
+    if (PowerUpGlobals.characterRise) {
+        this.setSuperPosition(characterObj);
+    }
 };
 
 Character.prototype.setSuperPosition = function(characterObj) {
     if (characterObj.position.y + (characterObj.height/2) > MapGlobals.screenHeight / 2) {
         characterObj.position.y = (characterObj.position.y - (MapGlobals.screenHeight / 2) * .01);
+    }
+    if (this.Properties.currentTextures == this.Properties.superTextures) {
+        if (characterObj.position.x < MapGlobals.screenWidth*.25) {
+            characterObj.position.x = (characterObj.position.x + (MapGlobals.screenWidth / 2) * .02);
+        }
     }
 };
 
