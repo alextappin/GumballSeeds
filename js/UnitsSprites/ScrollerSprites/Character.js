@@ -89,7 +89,11 @@ Character.prototype.setSpriteToCurrentTexture = function(characterObj) {
 };
 
 Character.prototype.update = function(characterObj, groundObj) {
+    if (this.Properties.currentTextures == this.Properties.superStartTextures) {
+        this.setCurrentTextures();
+    }
     this.updateSprites(characterObj);
+    console.log(this.Properties);
     this.gravityCharacter(characterObj, groundObj);
     this.attackCharacter();
 };
@@ -218,32 +222,19 @@ Character.prototype.setCurrentTextures = function(speed, textures) {
 //POWERUP STUFF
 
 Character.prototype.updatePowerUp = function(characterObj) {
-    if (characterObj.Properties.currentTextures != this.Properties.superStartTextures) {
-        this.setCurrentTextures(TimingGlobals.characterPowerUpTime, this.Properties.superStartTextures);
-    }
-    if (!PowerUpGlobals.characterDonePoweringUp) {
+    if (!PowerUpGlobals.characterDonePoweringUp) { //not done powering..
+        if (this.Properties.currentTextures != this.Properties.superStartTextures) {
+            this.setCurrentTextures(TimingGlobals.characterPowerUpTime, this.Properties.superStartTextures);
+        }
         this.updateSprites(characterObj);
-    } else if (this.Properties.currentTextures != this.Properties.superTextures) { //done powering up
+    } else if (this.Properties.currentTextures != this.Properties.superTextures) {
         this.setCurrentTextures(TimingGlobals.rainbowTime, this.Properties.superTextures);
-    }
-
-    this.updateSprites(characterObj);
-
-
-/*
-    //if character is airborn, wait until on floor... then GO
-    if (characterObj.Properties.currentTextures != this.Properties.superStartTextures) {
-        this.setCurrentTextures(TimingGlobals.characterPowerUpTime, this.Properties.superStartTextures);
-        this.setCurrentSuperTextures(TimingGlobals.rainbowChargeTime, this.Properties.superPowerupTextures);
-        this.setupSuper(characterObj);
     } else {
         this.updateSprites(characterObj);
-        this.updateSuperSprite(characterObj);
-        this.startPowerJump(characterObj);
-    }*/
+    }
 };
 
-Character.prototype.setupSuper = function(characterObj) {
+/*Character.prototype.setupSuper = function(characterObj) {
     ScalingGlobals.characterSuperPosition = characterObj.position;
 
     this.addChildAt(new PIXI.Sprite(this.Properties.currentSuperTextures[this.Properties.spriteCount]), 0); //add the rainbow thing to the back of the character container.
@@ -286,55 +277,15 @@ Character.prototype.setupSuper = function(characterObj) {
         ScalingGlobals.characterSuperPosition.x/ScalingGlobals.characterSuperRatio*ScalingGlobals.superScreenSize,
         ScalingGlobals.characterSuperPosition.y/ScalingGlobals.characterSuperRatio*ScalingGlobals.superScreenSize
     );
-};
+};*/
 
-Character.prototype.updateSuperSprite = function(characterObj) {
-    if (this.Properties.superChangeSpriteCounter == this.Properties.superSpriteSpeed) {
-        this.Properties.superChangeSpriteCounter = 0;
-        this.nextSuperSprite(characterObj);
-    } else {
-        this.Properties.superChangeSpriteCounter++;
-    }
-};
-
-Character.prototype.nextSuperSprite = function(characterObj) {
-    if (this.Properties.superSpriteCount == this.Properties.currentSuperTextures.length - 1) {
-        this.Properties.superSpriteCount = 0;
-        if (PowerUpGlobals.characterDonePoweringUp == false) {
-            PowerUpGlobals.characterDonePoweringUp = true;
-            this.setCurrentSuperTextures(TimingGlobals.rainbowChargeTime, this.Properties.rainbowSuperTextures);
-        }
-    } else {
-        this.Properties.superSpriteCount++;
-    }
-
-    this.setSuperSpriteToCurrentTexture(characterObj);
-};
-
-Character.prototype.setSuperSpriteToCurrentTexture = function(characterObj) {
-    characterObj.children[0].texture = this.Properties.currentSuperTextures[this.Properties.superSpriteCount];
-};
-
-Character.prototype.updatePowerUp = function(characterObj, groundObj) {
-    this.updateSprites(characterObj);
-    //this.gravityCharacter(characterObj, groundObj);
-    //this.attackCharacter();
-};
-
-Character.prototype.startPowerJump = function(characterObj) {
+/*Character.prototype.startPowerJump = function(characterObj) {
     if (characterObj.Properties.spriteCount >= 3) {
         if (characterObj.children[1].position.y > MapGlobals.screenHeight / 2) {
             characterObj.children[1].position.y -= 5;
         }
     }
-};
-
-Character.prototype.setCurrentSuperTextures = function(speed, textures) {
-    this.Properties.currentSuperTextures = textures;
-    this.Properties.superSpriteSpeed = speed;
-    this.Properties.superSpriteCount = 0;
-    this.Properties.superChangeSpriteCounter = 0;
-};
+};*/
 
 
 Character.prototype.listenForJumpTrigger = function() {
