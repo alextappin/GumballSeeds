@@ -79,11 +79,16 @@ Super.prototype.update = function(superObj) {
 Super.prototype.updatePowerUp = function(superObj) {
     if (!PowerUpGlobals.characterDonePoweringUp) {
         superObj.visible = true;
+        superObj.children[0].scale.x = 1;
+        superObj.children[0].scale.y = 1;
+        superObj.children[0].position.y = 0;
         this.updateSprites(superObj);
     } else if (this.Properties.currentTextures != this.Properties.rainbowSuperTextures) {
         this.setCurrentTextures(TimingGlobals.rainbowTime, this.Properties.rainbowSuperTextures);
+        this.adjustScaleAndPosition(superObj);
     } else {
         this.updateSprites(superObj);
+        this.adjustScaleAndPosition(superObj);
     }
 };
 
@@ -119,4 +124,10 @@ Super.prototype.setCurrentTextures = function(speed, textures) {
     this.Properties.spriteSpeed = speed;
     this.Properties.spriteCount = 0; //the setTexture will be one behind since it was already called for this loop
     this.Properties.changeSpriteCounter = 0;
+};
+
+Super.prototype.adjustScaleAndPosition = function(superObj) {
+    superObj.children[0].scale.x = ScalingGlobals.rainbowSuperRatio;
+    superObj.children[0].scale.y = ScalingGlobals.rainbowSuperRatio;
+    superObj.children[0].position.y = superObj.height*ScalingGlobals.rainbowSuperRatio / 2;
 };

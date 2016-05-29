@@ -90,6 +90,7 @@ Character.prototype.setSpriteToCurrentTexture = function(characterObj) {
 
 Character.prototype.update = function(characterObj, groundObj) {
     if (this.Properties.currentTextures == this.Properties.superStartTextures) {
+        PhysicsGlobals.characterAirborn = true;
         this.setCurrentTextures();
     }
     this.updateSprites(characterObj);
