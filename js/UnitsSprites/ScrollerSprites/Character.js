@@ -75,42 +75,9 @@ Character.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("gbs super6"),
         PIXI.Texture.fromFrame("rainbowband gumballstart")
     );
-    this.Properties.superPowerupTextures.push(
-        PIXI.Texture.fromFrame("1 super powerup"),
-        PIXI.Texture.fromFrame("1 super powerup"),
-        PIXI.Texture.fromFrame("2 super powerup"),
-        PIXI.Texture.fromFrame("3 super powerup"),
-        PIXI.Texture.fromFrame("4 super powerup"),
-        PIXI.Texture.fromFrame("5 super powerup"),
-        PIXI.Texture.fromFrame("rainbowband 1start")
-    );
-    this.Properties.rainbowSuperTextures.push(
-        PIXI.Texture.fromFrame("rainbowband 2straight"),
-        PIXI.Texture.fromFrame("rainbowband 3straight"),
-        PIXI.Texture.fromFrame("rainbowband down1a"),
-        PIXI.Texture.fromFrame("rainbowband down1b"),
-        PIXI.Texture.fromFrame("rainbowband down2a"),
-        PIXI.Texture.fromFrame("rainbowband down2b"),
-        PIXI.Texture.fromFrame("rainbowband down3a"),
-        PIXI.Texture.fromFrame("rainbowband down3b"),
-        PIXI.Texture.fromFrame("rainbowband down3a"),
-        PIXI.Texture.fromFrame("rainbowband down2b"),
-        PIXI.Texture.fromFrame("rainbowband down2a"),
-        PIXI.Texture.fromFrame("rainbowband down1b"),
-        PIXI.Texture.fromFrame("rainbowband down1a"),
-        PIXI.Texture.fromFrame("rainbowband 2straight"),
-        PIXI.Texture.fromFrame("rainbowband 3straight"),
-        PIXI.Texture.fromFrame("rainbowband up1a"),
-        PIXI.Texture.fromFrame("rainbowband up1b"),
-        PIXI.Texture.fromFrame("rainbowband up2a"),
-        PIXI.Texture.fromFrame("rainbowband up2b"),
-        PIXI.Texture.fromFrame("rainbowband up3a"),
-        PIXI.Texture.fromFrame("rainbowband up3b"),
-        PIXI.Texture.fromFrame("rainbowband up3a"),
-        PIXI.Texture.fromFrame("rainbowband up2b"),
-        PIXI.Texture.fromFrame("rainbowband up2a"),
-        PIXI.Texture.fromFrame("rainbowband up1b"),
-        PIXI.Texture.fromFrame("rainbowband up1a")
+    this.Properties.superTextures.push(
+        PIXI.Texture.fromFrame("rainbowband gumball1"),
+        PIXI.Texture.fromFrame("rainbowband gumball2")
     );
 
     this.setCurrentTextures();
@@ -118,8 +85,7 @@ Character.prototype.initiateCharacterSprites = function() {
 };
 
 Character.prototype.setSpriteToCurrentTexture = function(characterObj) {
-    characterObj.children[characterObj.children.length-1].texture = this.Properties.currentTextures[this.Properties.spriteCount];
-    //characterObj.children[0].texture = this.Properties.rainbowSuperTextures[this.Properties.spriteCount];
+    characterObj.children[0].texture = this.Properties.currentTextures[this.Properties.spriteCount];
 };
 
 Character.prototype.update = function(characterObj, groundObj) {
@@ -251,7 +217,20 @@ Character.prototype.setCurrentTextures = function(speed, textures) {
 
 //POWERUP STUFF
 
-Character.prototype.updatePowerUpStart = function(characterObj, groundObj) {
+Character.prototype.updatePowerUp = function(characterObj) {
+    if (characterObj.Properties.currentTextures != this.Properties.superStartTextures) {
+        this.setCurrentTextures(TimingGlobals.characterPowerUpTime, this.Properties.superStartTextures);
+    }
+    if (!PowerUpGlobals.characterDonePoweringUp) {
+        this.updateSprites(characterObj);
+    } else if (this.Properties.currentTextures != this.Properties.superTextures) { //done powering up
+        this.setCurrentTextures(TimingGlobals.rainbowTime, this.Properties.superTextures);
+    }
+
+    this.updateSprites(characterObj);
+
+
+/*
     //if character is airborn, wait until on floor... then GO
     if (characterObj.Properties.currentTextures != this.Properties.superStartTextures) {
         this.setCurrentTextures(TimingGlobals.characterPowerUpTime, this.Properties.superStartTextures);
@@ -261,7 +240,7 @@ Character.prototype.updatePowerUpStart = function(characterObj, groundObj) {
         this.updateSprites(characterObj);
         this.updateSuperSprite(characterObj);
         this.startPowerJump(characterObj);
-    }
+    }*/
 };
 
 Character.prototype.setupSuper = function(characterObj) {
