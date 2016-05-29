@@ -76,14 +76,15 @@ Super.prototype.initiateSuperSprites = function() {
 };
 
 Super.prototype.update = function(superObj) {
-    if (this.Properties.currentTextures = this.Properties.rainbowSuperTextures) {
+    if (this.Properties.currentTextures == this.Properties.rainbowSuperTextures) {
         this.setCurrentTextures(TimingGlobals.rainbowChargeTime, this.Properties.superPowerupTextures);
         superObj.visible = false;
+        this.nextSprite(superObj);
     }
 };
 
 Super.prototype.updatePowerUp = function(superObj) {
-    if (!PowerUpGlobals.characterDonePoweringUp) {
+    if (!PowerUpGlobals.characterDonePoweringUp && PowerUpGlobals.powerUpActive) {
         this.resetScaleAndPosition(superObj);
         this.updateSprites(superObj);
         this.characterJumpTiming();
