@@ -132,7 +132,7 @@ function HelperFunctions() {
     };
 
     functions.startBassSound = function() {
-        createjs.Sound.play("Bass", {loop: 0, volume:1, delay: 100});
+        createjs.Sound.play("Bass", {loop: 0, volume:1, duration: 10000});
     };
 
     functions.getCorrectScaleWidth = function(width) {
