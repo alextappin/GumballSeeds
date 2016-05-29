@@ -104,6 +104,8 @@ function HelperFunctions() {
         functions.powerUpOff();
         PowerUpGlobals.powerUpStartingViewport = 0;
         PowerUpGlobals.characterDonePoweringUp = false;
+        PowerUpGlobals.characterBolt = false;
+        PowerUpGlobals.characterRise = false;
         PowerUpGlobals.powerBarLevel = PowerUpGlobals.startPowerBarLevel;
         ScrollerGlobals.groundSpeed = ScrollerGlobals.startGroundSpeed;
     };
@@ -130,7 +132,8 @@ function HelperFunctions() {
     };
 
     functions.startBassSound = function() {
-        createjs.Sound.play("Bass", {loop: 1, volume:1, delay: 1000});
+        createjs.Sound.play("Bass", {loop: 1, volume:1, delay: 1200});
+        console.log("here");
     };
 
     functions.getCorrectScaleWidth = function(width) {
