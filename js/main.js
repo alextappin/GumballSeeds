@@ -33,7 +33,7 @@ Main.prototype.loadSpriteSheet = function() {
         "../updatedImages/super/rainbow13.json","../updatedImages/super/rainbow14.json","../updatedImages/super/rainbow15.json",
         "../updatedImages/super/superGumball1.json", "../updatedImages/character/characterSuper1.json", "../updatedImages/character/characterSuper2.json",
         "../updatedImages/super/super1.json", "../updatedImages/super/super2.json", "../updatedImages/super/super3.json",
-        "../updatedImages/super/super4.json", "../updatedImages/super/super5.json"
+        "../updatedImages/interface/superBar1.json", "../updatedImages/interface/superBar2.json"
     ],
         loader = new PIXI.loaders.Loader();
     loader.add(assetsToLoad).load(this.spriteSheetLoaded.bind(this))
