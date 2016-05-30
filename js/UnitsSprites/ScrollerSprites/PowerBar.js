@@ -28,11 +28,11 @@ PowerBar.prototype.initiatePowerBarSprites = function() {
         PIXI.Texture.fromFrame("superbar3"),
         PIXI.Texture.fromFrame("superbar4"),
         PIXI.Texture.fromFrame("superbar5"),
-        PIXI.Texture.fromFrame("superbar6"),
-        PIXI.Texture.fromFrame("superbar7")
+        PIXI.Texture.fromFrame("superbar6")
     );
 
     this.Properties.superbarFullTextures.push (
+        PIXI.Texture.fromFrame("superbar7"),
         PIXI.Texture.fromFrame("superbar8"),
         PIXI.Texture.fromFrame("superbar9")
     );
@@ -66,6 +66,10 @@ PowerBar.prototype.update = function(superbarObj) {
 };
 
 PowerBar.prototype.updatePowerUp = function(superbarObj) {
+    this.superCheckForUpdate(superbarObj);
+    /*if (MainGlobals.PowerUp.powerBarLevel < this.Properties.currentTextures.length-1) {
+        MainGlobals.PowerUp.powerBarLevel++;
+    }*/
     /*if (this.Properties.currentTextures != this.Properties.superbarFullTextures) {
         this.setCurrentTextures(this.Properties.spriteSpeed, this.Properties.superbarFullTextures);
         this.setSpriteToCurrentTexture(superbarObj)
@@ -79,16 +83,17 @@ PowerBar.prototype.checkForUpdate = function(superbarObj) {
     }
 };
 
-PowerBar.prototype.addBar = function() {
-    if (this.Properties.spriteCount !== this.Properties.textures.length) {
-        this.Properties.spriteCount++;
+PowerBar.prototype.superCheckForUpdate = function(superbarObj) {
+    if (this.Properties.changeSpriteCounter == MainGlobals.Timing.superbarTime) {
+        if (this.Properties.superPowerCount < this.Properties.currentTextures.length - 1) {
+            this.Properties.superPowerCount++;
+            superbarObj.children[0].texture = this.Properties.currentTextures[this.Properties.superPowerCount];
+            //MainGlobals.Scaling.superbarScale = HelperFunctions().getScreenRatioUsingHeight(superbarObj.height, MainGlobals.Scaling.superbarPercent);
+            //superbarObj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.superbarScale,MainGlobals.Scaling.superbarScale);
+            superbarObj.position =  HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(superbarObj.width), MainGlobals.Scaling.superbarPositionY);
+        }
+        this.Properties.changeSpriteCounter = 0;
+    } else {
+        this.Properties.changeSpriteCounter++;
     }
-    this.setSpriteToCurrentTexture();
-};
-
-PowerBar.prototype.removeBar = function() {
-    if (this.Properties.spriteCount !== 0) {
-        this.Properties.spriteCount--;
-    }
-    this.setSpriteToCurrentTexture();
 };

@@ -8,7 +8,9 @@ function PowerBarProperties() {
         currentTextures : [],
         superbarTextures : [],
         superbarFullTextures : [],
-        spriteCount : 2
+        spriteCount : 2,
+        changeSpriteCounter : 0,
+        superPowerCount : 8
     };
 
     return props;

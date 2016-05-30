@@ -12,7 +12,7 @@ function PowerUpGlobals() {
     constants.characterRise = false;
     constants.characterBolt = false;
     constants.powerUpStartingViewport = 0;
-    constants.powerUpDuration = MainGlobals.ScreenHeight/.256;//5000;
+    constants.powerUpDuration = MainGlobals.ScreenHeight/.156;//5000;
     constants.powerUpSpeedMultiplier = 2;
     constants.characterSpriteToJumpTime = 4;
 
