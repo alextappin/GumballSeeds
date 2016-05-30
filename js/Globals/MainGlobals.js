@@ -39,7 +39,6 @@ var MainGlobals = (function MainGlobals() {
 
     constants.initialize = function() {
         //setup renderer stage and put it on the html view
-        constants.initializeGlobals();
         constants.renderer = PIXI.autoDetectRenderer(constants.ScreenWidth, constants.ScreenHeight/*, rendererOptions*/);
         constants.stage = new PIXI.Container(0xFFFFFF);
         constants.ratio = 0;
@@ -63,6 +62,7 @@ var MainGlobals = (function MainGlobals() {
 
         constants.ScreenWidth *= constants.ratio;
         constants.ScreenHeight *= constants.ratio;
+        constants.initializeGlobals();
 /*        HelperFunctions().endGame();
         constants.initializeGlobals();
         HelperFunctions().resetGame();*/
