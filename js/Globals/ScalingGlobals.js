@@ -4,8 +4,8 @@
 function ScalingGlobals() {
     var constants = {};
 
-    constants.titleBoardScale = 0;
-    constants.titleBoardPercent = 1;
+    constants.titleScreenScale = 0;
+    constants.titleScreenPercent = 1;
     constants.titleWordsScale = 0;
     constants.titleWordsPercent = 1;
     constants.startButtonScale = 0;
