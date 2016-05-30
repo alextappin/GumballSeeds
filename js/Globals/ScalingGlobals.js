@@ -17,7 +17,7 @@ function ScalingGlobals() {
     constants.startAnimationPercent = 1;
 
     constants.characterScale = 0;
-    constants.characterPercent = .2;
+    constants.characterPercent = .25;
 
     constants.characterPositionX = MainGlobals.ScreenHeight *.35;
 
@@ -25,6 +25,8 @@ function ScalingGlobals() {
     constants.characterScaleY = .5;
     constants.characterStartXScale = MainGlobals.ScreenWidth * .18;
     constants.characterStartYScale = MainGlobals.ScreenWidth * .18;
+
+    constants.gumballPercentageY = MainGlobals.ScreenHeight * .02;
 
     constants.titleScreenScaleX = 0;
     constants.titleScreenScaleY = 0;
@@ -54,7 +56,7 @@ function ScalingGlobals() {
     constants.characterPercentOfScreen = .2;
 
     constants.gumballRatio = 0;
-    constants.gumballPercentOfScreen = .15;
+    constants.gumballPercentOfScreen = .18;
 
     constants.characterSuperRatio = 0;
     constants.characterSuperPercentOfScreen = .3125;

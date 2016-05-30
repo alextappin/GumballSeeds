@@ -50,7 +50,7 @@ GumballsHandler.prototype.setupStartGumballs = function(gumballHandler) {
 
 GumballsHandler.prototype.getNewPosition = function(gumballHandler, index, groundObj, recurseAdd) {
     var newGumballX = gumballHandler.gumballStructure[index-1].position.x + this.calculateRandomSpace() + recurseAdd,
-        groundHeight = groundObj.getHeightAtPositionX(newGumballX, groundObj);
+        groundHeight = groundObj.getHeightAtPositionX(newGumballX, groundObj) + MainGlobals.Scaling.gumballPercentageY;
 
     if (groundHeight) {
         return HelperFunctions().getNewPoint(
