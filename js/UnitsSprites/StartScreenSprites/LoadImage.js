@@ -18,7 +18,6 @@ LoadImage.prototype.constructLoadImage = function() {
 LoadImage.prototype.setPositionAndScale = function(obj) {
     MainGlobals.Scaling.loadScale = HelperFunctions().getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.loadPercent);
 
-    console.log(MainGlobals.Scaling.loadScale);
     obj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.loadScale,MainGlobals.Scaling.loadScale);
     obj.position =  HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(obj.width), HelperFunctions().getScreenPositionMiddleHeight(obj.height));
     obj.alpha = this.Properties.alphaStart;

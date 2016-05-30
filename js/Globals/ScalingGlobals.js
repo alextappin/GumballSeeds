@@ -14,7 +14,10 @@ function ScalingGlobals() {
     constants.startButtonScale = 0;
     constants.startButtonPercent = 0;
     constants.startAnimationScale = 0;
-    constants.startAnimationPercent = 0;
+    constants.startAnimationPercent = 1;
+
+    constants.characterScale = 0;
+    constants.characterPercent = .15;
 
     constants.characterScaleX = .5;
     constants.characterScaleY = .5;
