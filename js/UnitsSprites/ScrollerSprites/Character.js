@@ -18,8 +18,10 @@ Character.prototype.constructCharacter = function() {
 
 Character.prototype.setPositionAndScale = function(obj) {
     MainGlobals.Scaling.characterScale = HelperFunctions().getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.characterPercent);
+    MainGlobals.Scaling.characterPositionX = MainGlobals.ScreenHeight * MainGlobals.Scaling.characterPositionPercent;
+
     obj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.characterScale,MainGlobals.Scaling.characterScale);
-    obj.position =  HelperFunctions().getNewPoint(MainGlobals.Scaling.characterStartXScale, MainGlobals.Scaling.characterStartYScale);
+    obj.position =  HelperFunctions().getNewPoint(MainGlobals.Scaling.characterPositionX, 0);
 };
 
 Character.prototype.initiateCharacterSprites = function() {
@@ -283,9 +285,9 @@ Character.prototype.endSuper = function() {
 };
 
 Character.prototype.resetCharacter = function(characterObj) {
-    if (characterObj.position.x != MainGlobals.Scaling.characterStartXScale) {
+    if (characterObj.position.x != MainGlobals.Scaling.characterPositionX) {
         if (characterObj.position.y < 0 - characterObj.height) {
-            characterObj.position.x = MainGlobals.Scaling.characterStartXScale;
+            characterObj.position.x = MainGlobals.Scaling.characterPositionX;
         }
     }
 };
