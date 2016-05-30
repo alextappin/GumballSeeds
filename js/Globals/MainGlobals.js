@@ -38,15 +38,13 @@ var MainGlobals = (function MainGlobals() {
     };
 
     constants.initialize = function() {
-        constants.initializeGlobals();
         //setup renderer stage and put it on the html view
+        constants.initializeGlobals();
         constants.renderer = PIXI.autoDetectRenderer(constants.ScreenWidth, constants.ScreenHeight/*, rendererOptions*/);
-/*        constants.renderer.view.style.position = "absolute";
-        constants.renderer.view.style.top = "0px";
-        constants.renderer.view.style.left = "0px";*/
         constants.stage = new PIXI.Container(0xFFFFFF);
         constants.ratio = 0;
         document.body.appendChild(constants.renderer.view);
+        constants.resizeStage();
     };
 
     constants.resizeStage = function() {
@@ -65,7 +63,9 @@ var MainGlobals = (function MainGlobals() {
 
         constants.ScreenWidth *= constants.ratio;
         constants.ScreenHeight *= constants.ratio;
+/*        HelperFunctions().endGame();
         constants.initializeGlobals();
+        HelperFunctions().resetGame();*/
         /*console.log("Resize\n" +
             "  Window inner " + window.innerWidth + "," +
             window.innerHeight +

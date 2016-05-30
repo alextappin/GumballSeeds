@@ -5,10 +5,14 @@ function Main() {
     //going to run a pre-load function here to test the screen sizes and stufffff
 
     MainGlobals.initialize();
-    window.addEventListener("resize", MainGlobals.resizeStage);
+    window.addEventListener("resize", this.refresh);
     HelperFunctions().setScrollSpeedToMin();
     this.loadSpriteSheet();
 }
+
+Main.prototype.refresh = function() {
+    window.location.reload(false);
+};
 
 Main.prototype.loadSpriteSheet = function() {
     var assetsToLoad = ["../resources/characterSprites.json", "../resources/enemy.json", "../resources/fgNew.json",
