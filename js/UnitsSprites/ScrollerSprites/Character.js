@@ -17,8 +17,8 @@ Character.prototype.constructCharacter = function() {
 };
 
 Character.prototype.setPositionAndScale = function(obj) {
-    MainGlobals.Scaling.characterRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.characterPercentOfScreen);
-    obj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.characterRatio, MainGlobals.Scaling.characterRatio);
+    MainGlobals.Scaling.characterScale = HelperFunctions().getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.characterPercent);
+    obj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.characterScale,MainGlobals.Scaling.characterScale);
     obj.position =  HelperFunctions().getNewPoint(MainGlobals.Scaling.characterStartXScale, MainGlobals.Scaling.characterStartYScale);
 };
 
