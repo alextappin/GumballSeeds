@@ -34,6 +34,7 @@ Ground.prototype.initiateGroundSprite = function() {
 
 Ground.prototype.update = function(obj) {
     obj.position.x -= MainGlobals.Scroller.groundSpeed;
+    console.log(MainGlobals.Scroller.groundSpeed);
 };
 
 Ground.prototype.updatePowerUp = function(obj) {

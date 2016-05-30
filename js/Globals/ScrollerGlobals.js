@@ -4,11 +4,11 @@
 function ScrollerGlobals() {
     var constants = {};
 
-    constants.minScrollSpeed = MainGlobals.ScreenHeight/130.9;//5.5;
-    constants.maxScrollSpeed = MainGlobals.ScreenHeight/102.8;//7;
+    constants.minScrollSpeed = MainGlobals.ScreenHeight/80;//5.5;
+    constants.maxScrollSpeed = MainGlobals.ScreenHeight/70;//7;
     constants.currentScrollSpeed = MainGlobals.ScreenHeight/36;//20;
     constants.scrollAcceleration = MainGlobals.ScreenHeight/144000;//0.005;
-    constants.startGroundSpeed = MainGlobals.ScreenHeight/72;//10;
+    constants.startGroundSpeed = MainGlobals.ScreenHeight/50;
     constants.groundSpeed = MainGlobals.ScreenHeight/72;//10;
     constants.offScreenOffsetX = -200;
     constants.offScreenOffsetY = 200;
