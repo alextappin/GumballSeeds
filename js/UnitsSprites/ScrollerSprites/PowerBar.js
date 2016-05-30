@@ -66,7 +66,10 @@ PowerBar.prototype.update = function(superbarObj) {
 };
 
 PowerBar.prototype.updatePowerUp = function(superbarObj) {
-    //this.checkForUpdate();
+    /*if (this.Properties.currentTextures != this.Properties.superbarFullTextures) {
+        this.setCurrentTextures(this.Properties.spriteSpeed, this.Properties.superbarFullTextures);
+        this.setSpriteToCurrentTexture(superbarObj)
+    }*/
 };
 
 PowerBar.prototype.checkForUpdate = function(superbarObj) {
