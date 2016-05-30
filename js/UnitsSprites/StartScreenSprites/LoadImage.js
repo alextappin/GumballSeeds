@@ -16,8 +16,11 @@ LoadImage.prototype.constructLoadImage = function() {
     this.initiateLoadImageSprites();
 };
 LoadImage.prototype.setPositionAndScale = function(obj) {
-    obj.scale = HelperFunctions().getNewPoint(.8,.8);
-    obj.position =  HelperFunctions().getNewPoint((MainGlobals.ScreenWidth - obj.width)/2, (MainGlobals.ScreenHeight - obj.height)/2);
+    MainGlobals.Scaling.loadScale = HelperFunctions().getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.loadPercent);
+
+    console.log(MainGlobals.Scaling.loadScale);
+    obj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.loadScale,MainGlobals.Scaling.loadScale);
+    obj.position =  HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(obj.width), HelperFunctions().getScreenPositionMiddleHeight(obj.height));
     obj.alpha = this.Properties.alphaStart;
     //no scale yet...
 };

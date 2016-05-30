@@ -4,6 +4,9 @@
 function ScalingGlobals() {
     var constants = {};
 
+    constants.loadScale = 0;
+    constants.loadPercent = 1;
+
     constants.titleScreenScale = 0;
     constants.titleScreenPercent = 1;
     constants.titleWordsScale = 0;
