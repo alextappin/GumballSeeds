@@ -4,11 +4,11 @@
 function GameSounds() {
     var soundsProps = {
         titleSound : {
-            id : MainGlobals.Map.titleString,
+            id : "Title",
             url : "../resources/GumballSeedsTheme2.mp3"
         },
         gameSound : {
-            id : MainGlobals.Map.gameString,
+            id : "Game",
             url : "../resources/GameplaySong.mp3"
         },
         bassSound : {

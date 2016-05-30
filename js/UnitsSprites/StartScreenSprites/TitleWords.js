@@ -15,9 +15,9 @@ TitleWords.prototype.constructTitleWords = function() {
 };
 
 TitleWords.prototype.setPositionAndScale = function(obj) {
-    MainGlobals.Scaling.titleWordsScaleX = HelperFunctions().getCorrectScaleWidth(obj.width);
-    MainGlobals.Scaling.titleWordsScaleY = HelperFunctions().getCorrectScaleHeight(obj.height);
-    obj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.titleWordsScaleX,MainGlobals.Scaling.titleWordsScaleY);
+    MainGlobals.Scaling.titleWordsScale = HelperFunctions().getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.titleWordsPercent);
+
+    obj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.titleWordsScale,MainGlobals.Scaling.titleWordsScale);
     obj.position =  HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(obj.width), HelperFunctions().getScreenPositionMiddleHeight(obj.height));
     obj.alpha = MainGlobals.Timing.titleAlphaStart;
 };

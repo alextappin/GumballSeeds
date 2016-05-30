@@ -4,6 +4,15 @@
 function ScalingGlobals() {
     var constants = {};
 
+    constants.titleBoardScale = 0;
+    constants.titleBoardPercent = 1;
+    constants.titleWordsScale = 0;
+    constants.titleWordsPercent = 1;
+    constants.startButtonScale = 0;
+    constants.startButtonPercent = 0;
+    constants.startAnimationScale = 0;
+    constants.startAnimationPercent = 0;
+
     constants.characterScaleX = .5;
     constants.characterScaleY = .5;
     constants.characterStartXScale = MainGlobals.ScreenWidth * .18;

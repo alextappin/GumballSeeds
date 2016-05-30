@@ -17,6 +17,8 @@ TitleBoard.prototype.constructTitleBoard = function() {
 TitleBoard.prototype.setPositionAndScale = function(obj) {
     MainGlobals.Scaling.titleScreenScaleX = HelperFunctions().getCorrectScaleWidth(obj.width);
     MainGlobals.Scaling.titleScreenScaleY = HelperFunctions().getCorrectScaleHeight(obj.height);
+    console.log(MainGlobals.Scaling.titleScreenScaleX);
+    console.log(MainGlobals.Scaling.titleScreenScaleY);
     obj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.titleScreenScaleX,MainGlobals.Scaling.titleScreenScaleY);
     obj.position =  HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(obj.width), HelperFunctions().getScreenPositionMiddleHeight(obj.height));
     obj.alpha = MainGlobals.Timing.titleAlphaStart;
