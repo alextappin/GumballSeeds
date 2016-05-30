@@ -18,7 +18,6 @@ Character.prototype.constructCharacter = function() {
 
 Character.prototype.setPositionAndScale = function(obj) {
     MainGlobals.Scaling.characterScale = HelperFunctions().getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.characterPercent);
-    MainGlobals.Scaling.characterPositionX = MainGlobals.ScreenHeight * MainGlobals.Scaling.characterPositionPercent;
 
     obj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.characterScale,MainGlobals.Scaling.characterScale);
     obj.position =  HelperFunctions().getNewPoint(MainGlobals.Scaling.characterPositionX, 0);

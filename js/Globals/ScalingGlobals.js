@@ -19,8 +19,7 @@ function ScalingGlobals() {
     constants.characterScale = 0;
     constants.characterPercent = .2;
 
-    constants.characterPositionX = 0;
-    constants.characterPositionPercent = .35;
+    constants.characterPositionX = MainGlobals.ScreenHeight *.35;
 
     constants.characterScaleX = .5;
     constants.characterScaleY = .5;
