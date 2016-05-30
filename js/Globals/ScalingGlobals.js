@@ -15,16 +15,14 @@ function ScalingGlobals() {
     constants.startButtonPercent = 0;
     constants.startAnimationScale = 0;
     constants.startAnimationPercent = 1;
-
     constants.characterScale = 0;
     constants.characterPercent = .25;
-
     constants.characterPositionX = MainGlobals.ScreenHeight *.25;
+    constants.superbarScale = 0;
+    constants.superbarPercent = .1;
+    constants.superbarPositionY = MainGlobals.ScreenHeight * .1;
 
-    constants.characterScaleX = .5;
-    constants.characterScaleY = .5;
-    constants.characterStartXScale = MainGlobals.ScreenWidth * .18;
-    constants.characterStartYScale = MainGlobals.ScreenWidth * .18;
+    //BREAK
 
     constants.gumballPercentageY = MainGlobals.ScreenHeight * .02;
 

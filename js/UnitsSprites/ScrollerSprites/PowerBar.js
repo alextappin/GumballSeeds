@@ -13,44 +13,76 @@ PowerBar.prototype.constructPowerBar = function() {
     this.Properties = new PowerBarProperties();
     this.initiatePowerBarSprites();
 };
+
 PowerBar.prototype.setPositionAndScale = function(obj) {
-    obj.scale = HelperFunctions().getNewPoint(.4,.4);
-    obj.position =  HelperFunctions().getNewPoint((MainGlobals.ScreenWidth - obj.width) /2, 0);
+    MainGlobals.Scaling.superbarScale = HelperFunctions().getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.superbarPercent);
+    obj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.superbarScale,MainGlobals.Scaling.superbarScale);
+    obj.position =  HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(obj.width), MainGlobals.Scaling.superbarPositionY);
 };
+
 PowerBar.prototype.initiatePowerBarSprites = function() {
-    this.Properties.textures.push(
-        PIXI.Texture.fromFrame("life1"),
-        PIXI.Texture.fromFrame("life2"),
-        PIXI.Texture.fromFrame("life3"),
-        PIXI.Texture.fromFrame("life4"),
-        PIXI.Texture.fromFrame("life5"),
-        PIXI.Texture.fromFrame("life6"),
-        PIXI.Texture.fromFrame("life7")
+    this.Properties.superbarTextures.push(
+        PIXI.Texture.fromFrame("superbarBG"),
+        PIXI.Texture.fromFrame("superbar1"),
+        PIXI.Texture.fromFrame("superbar2"),
+        PIXI.Texture.fromFrame("superbar3"),
+        PIXI.Texture.fromFrame("superbar4"),
+        PIXI.Texture.fromFrame("superbar5"),
+        PIXI.Texture.fromFrame("superbar6"),
+        PIXI.Texture.fromFrame("superbar7")
     );
-    this.Properties.sprite = new PIXI.Sprite(this.Properties.textures[this.Properties.spriteCount]);
-    this.addChild(this.Properties.sprite);
+
+    this.Properties.superbarFullTextures.push (
+        PIXI.Texture.fromFrame("superbar8"),
+        PIXI.Texture.fromFrame("superbar9")
+    );
+
+    this.setCurrentTextures();
+
+    this.addChild(new PIXI.Sprite(this.Properties.currentTextures[this.Properties.spriteCount]));
 };
-PowerBar.prototype.setSpriteToCurrentTexture = function() {
-    this.Properties.sprite.texture = this.Properties.textures[this.Properties.spriteCount];
+
+PowerBar.prototype.setCurrentTextures = function(speed, textures) {
+    if (textures) {
+        this.Properties.currentTextures = textures;
+        this.Properties.spriteSpeed = speed;
+        this.Properties.spriteCount = 0; //the setTexture will be one behind since it was already called for this loop
+        this.Properties.changeSpriteCounter = 0;
+    } else {
+        this.Properties.currentTextures = this.Properties.superbarTextures; //default is run...
+        this.Properties.spriteSpeed = MainGlobals.Timing.superbarTime;
+        this.Properties.spriteCount = 0;
+        this.Properties.changeSpriteCounter = 0;
+    }
+
 };
-PowerBar.prototype.update = function(obj) {
+
+PowerBar.prototype.setSpriteToCurrentTexture = function(superbarObj) {
+    superbarObj.children[0].texture = this.Properties.currentTextures[this.Properties.spriteCount];
+};
+
+PowerBar.prototype.update = function(superbarObj) {
+    this.checkForUpdate(superbarObj);
+};
+
+PowerBar.prototype.updatePowerUp = function(superbarObj) {
     this.checkForUpdate();
 };
-PowerBar.prototype.updatePowerUp = function(obj) {
-    this.checkForUpdate();
-};
-PowerBar.prototype.checkForUpdate = function() {
+
+PowerBar.prototype.checkForUpdate = function(superbarObj) {
     if (MainGlobals.PowerUp.powerBarLevel != this.Properties.spriteCount) {
         this.Properties.spriteCount = MainGlobals.PowerUp.powerBarLevel;
-        this.setSpriteToCurrentTexture();
+        this.setSpriteToCurrentTexture(superbarObj);
     }
 };
+
 PowerBar.prototype.addBar = function() {
     if (this.Properties.spriteCount !== this.Properties.textures.length) {
         this.Properties.spriteCount++;
     }
     this.setSpriteToCurrentTexture();
 };
+
 PowerBar.prototype.removeBar = function() {
     if (this.Properties.spriteCount !== 0) {
         this.Properties.spriteCount--;
