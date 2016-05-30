@@ -66,7 +66,7 @@ PowerBar.prototype.update = function(superbarObj) {
 };
 
 PowerBar.prototype.updatePowerUp = function(superbarObj) {
-    this.checkForUpdate();
+    //this.checkForUpdate();
 };
 
 PowerBar.prototype.checkForUpdate = function(superbarObj) {

@@ -19,8 +19,8 @@ function ScalingGlobals() {
     constants.characterPercent = .25;
     constants.characterPositionX = MainGlobals.ScreenHeight *.25;
     constants.superbarScale = 0;
-    constants.superbarPercent = .1;
-    constants.superbarPositionY = MainGlobals.ScreenHeight * .1;
+    constants.superbarPercent = .085;
+    constants.superbarPositionY = MainGlobals.ScreenHeight * .08;
 
     //BREAK
 
