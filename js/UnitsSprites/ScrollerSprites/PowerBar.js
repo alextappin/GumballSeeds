@@ -99,7 +99,5 @@ PowerBar.prototype.setCurrentTextures = function(speed, textures) {
 };
 
 PowerBar.prototype.setPositionScaleNew = function(superbarObj) {
-    //MainGlobals.Scaling.superbarFullScale = HelperFunctions().getScreenRatioUsingHeight(superbarObj.height, MainGlobals.Scaling.superbarFullPercent);
-    //superbarObj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.superbarFullScale,MainGlobals.Scaling.superbarFullScale);
     superbarObj.position =  HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(superbarObj.width), MainGlobals.Scaling.superbarPositionY);
 };
