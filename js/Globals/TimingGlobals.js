@@ -28,7 +28,7 @@ function TimingGlobals() {
     constants.rainbowChargeTime = 6;
     constants.rainbowTime = 0;
 
-    constants.superbarTime = 30;
+    constants.superbarTime = 20;
 
     return constants;
 }

@@ -83,7 +83,15 @@ PowerBar.prototype.checkForUpdate = function(superbarObj) {
 };
 
 PowerBar.prototype.superCheckForUpdate = function(superbarObj) {
-
+    if (this.Properties.changeSpriteCounter == MainGlobals.Timing.superbarTime) {
+        if (this.Properties.spriteCount < this.Properties.currentTextures.length-1) {
+            this.Properties.changeSpriteCounter = 0;
+            this.Properties.spriteCount++;
+            this.setSpriteToCurrentTexture(superbarObj);
+        }
+    } else {
+        this.Properties.changeSpriteCounter++;
+    }
 };
 
 PowerBar.prototype.setCurrentTextures = function(speed, textures) {
