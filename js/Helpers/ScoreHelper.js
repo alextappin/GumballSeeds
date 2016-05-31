@@ -20,8 +20,16 @@ function ScoreHelper() {
         return MainGlobals.Score.kills % MainGlobals.Balance.createNewEnemiesCounter === HelperFunctions().returnZero();
     };
 
-    scoreHelpers.pickupGumball = function() {
-        PowerUpHelper().incrementPowerUp();
+    scoreHelpers.pickupGumball = function(color) {
+        console.log(color);
+        console.log(MainGlobals.Map.gumballs[MainGlobals.PowerUp.powerBarLevel]);
+        if (color == MainGlobals.Map.gumballs[MainGlobals.PowerUp.powerBarLevel]) {
+            PowerUpHelper().incrementPowerUp();
+        } else {
+            PowerUpHelper().decrementPowerUp();
+        }
+
+        //PowerUpHelper().decrementPowerUp();
         //MainGlobals.Score.currentScore = MainGlobals.Score.currentScore + MainGlobals.Balance.pickupGumballScore;
     };
 

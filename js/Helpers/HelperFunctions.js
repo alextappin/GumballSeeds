@@ -86,7 +86,7 @@ function HelperFunctions() {
         MainGlobals.Score.currescore = 0;
         MainGlobals.Map.loopCounter = 0;
         MainGlobals.Scroller.groundSpeed = MainGlobals.ScreenHeight/50;//10;
-        MainGlobals.PowerUp.powerBarLevel = 2;
+        MainGlobals.PowerUp.powerBarLevel = MainGlobals.PowerUp.startPowerBarLevel;
         MainGlobals.PowerUp.powerUpActive = false;
         MainGlobals.PowerUp.powerUpStartingViewport = 0;
     };

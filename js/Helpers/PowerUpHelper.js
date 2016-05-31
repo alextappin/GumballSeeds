@@ -9,6 +9,7 @@ function PowerUpHelper() {
         HelperFunctions().powerUpScrollSpeed();
         HelperFunctions().startBassSound();
     };
+
     powerUpHelper.continuePowerUp = function(viewPort) {
         if (MainGlobals.PowerUp.powerUpStartingViewport == 0) {
             MainGlobals.PowerUp.powerUpStartingViewport = viewPort;
@@ -21,9 +22,11 @@ function PowerUpHelper() {
             /*console.log("power up ongoing");*/
         }
     };
+
     powerUpHelper.endPowerUp = function() {
         HelperFunctions().resetAfterPowerUp();
     };
+
     powerUpHelper.incrementPowerUp = function() {
         //if powerUp is not active!
         if (!MainGlobals.PowerUp.powerUpActive) {
@@ -35,5 +38,12 @@ function PowerUpHelper() {
             }
         }
     };
+
+    powerUpHelper.decrementPowerUp = function() {
+        if (MainGlobals.PowerUp.powerBarLevel > 0) {
+            MainGlobals.PowerUp.powerBarLevel--;
+        }
+    };
+
     return powerUpHelper;
 }

@@ -135,7 +135,7 @@ GumballsHandler.prototype.characterGrab = function(gumballHandler, characterObj,
 };
 
 GumballsHandler.prototype.characterPickedUp = function(gumballHandler, groundObj, stage) {
-    ScoreHelper().pickupGumball();
+    ScoreHelper().pickupGumball(gumballHandler.gumballStructure[0].Properties.color);
     this.returnPiece(gumballHandler.gumballStructure.shift(), gumballHandler, stage);
     this.addNewGumball(gumballHandler, groundObj, stage);
 };
