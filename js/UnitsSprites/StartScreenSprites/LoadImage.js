@@ -91,7 +91,18 @@ LoadImage.prototype.initiateLoadImageSprites = function() {
         PIXI.Texture.fromFrame("rainbowband up3a"),
         PIXI.Texture.fromFrame("rainbowband up3b"),
         PIXI.Texture.fromFrame("rainbowband gumball1"),
-        PIXI.Texture.fromFrame("rainbowband gumball2")
+        PIXI.Texture.fromFrame("rainbowband gumball2"),
+        PIXI.Texture.fromFrame("superbarBG"),
+        PIXI.Texture.fromFrame("superbar1"),
+        PIXI.Texture.fromFrame("superbar2"),
+        PIXI.Texture.fromFrame("superbar3"),
+        PIXI.Texture.fromFrame("superbar4"),
+        PIXI.Texture.fromFrame("superbar5"),
+        PIXI.Texture.fromFrame("superbar6"),
+        PIXI.Texture.fromFrame("superbar7"),
+        PIXI.Texture.fromFrame("superbar7"),
+        PIXI.Texture.fromFrame("superbar8"),
+        PIXI.Texture.fromFrame("superbar9")
     );
 };
 LoadImage.prototype.setSpriteToCurrentTexture = function() {
