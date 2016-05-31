@@ -21,16 +21,11 @@ function ScoreHelper() {
     };
 
     scoreHelpers.pickupGumball = function(color) {
-        console.log(color);
-        console.log(MainGlobals.Map.gumballs[MainGlobals.PowerUp.powerBarLevel]);
         if (color == MainGlobals.Map.gumballs[MainGlobals.PowerUp.powerBarLevel]) {
             PowerUpHelper().incrementPowerUp();
         } else {
             PowerUpHelper().decrementPowerUp();
         }
-
-        //PowerUpHelper().decrementPowerUp();
-        //MainGlobals.Score.currentScore = MainGlobals.Score.currentScore + MainGlobals.Balance.pickupGumballScore;
     };
 
     scoreHelpers.updateScore = function() {
