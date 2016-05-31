@@ -35,6 +35,28 @@ function MapGlobals() {
         "6 orangegb",
         "7 redgb"
     ];
+/*    constants.lifebars = [
+        "lifebar1",
+        "lifebar2",
+        "lifebar3",
+        "lifebar4",
+        "lifebar5",
+        "lifebar6",
+        "lifebar7",
+        "lifebar8",
+        "lifebar9",
+        "lifebar10",
+        "lifebar11",
+        "lifebar12",
+        "lifebar13",
+        "lifebar14",
+        "lifebar15",
+        "lifebar16",
+        "lifebar17",
+        "lifebar18",
+        "lifebar19",
+        "lifebar20"
+    ];*/
     constants.gumballSpaceConst = 7;
     return constants;
 }

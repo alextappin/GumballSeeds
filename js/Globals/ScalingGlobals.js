@@ -23,6 +23,9 @@ function ScalingGlobals() {
     constants.superbarFullScale = 0;
     constants.superbarFullPercent = .06;
     constants.superbarFullPositionY = MainGlobals.ScreenHeight * .08;
+    constants.lifeBarScale = 0;
+    constants.lifeBarPercent = .04;
+    constants.lifeBarPositionY = MainGlobals.ScreenHeight * .03;
 
     //BREAK
 

@@ -15,46 +15,59 @@ LifeBar.prototype.constructLifeBar = function() {
 };
 
 LifeBar.prototype.setPositionAndScale = function(obj) {
-    MainGlobals.Scaling.superbarScale = HelperFunctions().getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.superbarPercent);
-    obj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.superbarScale,MainGlobals.Scaling.superbarScale);
+    MainGlobals.Scaling.lifeBarScale = HelperFunctions().getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.superbarPercent);
+    obj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.lifeBarScale,MainGlobals.Scaling.lifeBarScale);
     obj.position =  HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(obj.width), MainGlobals.Scaling.superbarPositionY);
 };
 
 LifeBar.prototype.initiateLifeBarSprites = function() {
     this.Properties.currentTextures.push(
-        PIXI.Texture.fromFrame("superbarBG"),
-        PIXI.Texture.fromFrame("superbar1"),
-        PIXI.Texture.fromFrame("superbar2"),
-        PIXI.Texture.fromFrame("superbar3"),
-        PIXI.Texture.fromFrame("superbar4"),
-        PIXI.Texture.fromFrame("superbar5"),
-        PIXI.Texture.fromFrame("superbar6")
+        PIXI.Texture.fromFrame("lifebar1"),
+        PIXI.Texture.fromFrame("lifebar2"),
+        PIXI.Texture.fromFrame("lifebar3"),
+        PIXI.Texture.fromFrame("lifebar4"),
+        PIXI.Texture.fromFrame("lifebar5"),
+        PIXI.Texture.fromFrame("lifebar6"),
+        PIXI.Texture.fromFrame("lifebar7"),
+        PIXI.Texture.fromFrame("lifebar8"),
+        PIXI.Texture.fromFrame("lifebar9"),
+        PIXI.Texture.fromFrame("lifebar10"),
+        PIXI.Texture.fromFrame("lifebar11"),
+        PIXI.Texture.fromFrame("lifebar12"),
+        PIXI.Texture.fromFrame("lifebar13"),
+        PIXI.Texture.fromFrame("lifebar14"),
+        PIXI.Texture.fromFrame("lifebar15"),
+        PIXI.Texture.fromFrame("lifebar16"),
+        PIXI.Texture.fromFrame("lifebar17"),
+        PIXI.Texture.fromFrame("lifebar18"),
+        PIXI.Texture.fromFrame("lifebar19"),
+        PIXI.Texture.fromFrame("lifebar20")
     );
 
     this.addChild(new PIXI.Sprite(this.Properties.currentTextures[this.Properties.spriteCount]));
 };
 
-LifeBar.prototype.setSpriteToCurrentTexture = function(superbarObj) {
-    superbarObj.children[0].texture = this.Properties.currentTextures[this.Properties.spriteCount];
+LifeBar.prototype.setSpriteToCurrentTexture = function(lifebarObj) {
+    lifebarObj.children[0].texture = this.Properties.currentTextures[this.Properties.spriteCount];
 };
 
-LifeBar.prototype.update = function(superbarObj) {
-    if (!superbarObj.visible) {
-        superbarObj.visible = true;
+LifeBar.prototype.update = function(lifebarObj) {
+    if (!lifebarObj.visible) {
+        lifebarObj.visible = true;
     }
 
-    this.checkForUpdate(superbarObj);
+    this.checkForUpdate(lifebarObj);
 };
 
-LifeBar.prototype.updatePowerUp = function(superbarObj) {
-    if (superbarObj.visible) {
-        superbarObj.visible = false;
+LifeBar.prototype.updatePowerUp = function(lifebarObj) {
+    if (lifebarObj.visible) {
+        lifebarObj.visible = false;
     }
 };
 
-LifeBar.prototype.checkForUpdate = function(superbarObj) {
+LifeBar.prototype.checkForUpdate = function(lifebarObj) {
     if (MainGlobals.PowerUp.powerBarLevel != this.Properties.spriteCount) {
         this.Properties.spriteCount = MainGlobals.PowerUp.powerBarLevel;
-        this.setSpriteToCurrentTexture(superbarObj);
+        this.setSpriteToCurrentTexture(lifebarObj);
     }
 };
