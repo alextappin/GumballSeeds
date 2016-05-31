@@ -39,7 +39,7 @@ var MainGlobals = (function MainGlobals() {
 
     constants.initialize = function() {
         //setup renderer stage and put it on the html view
-        constants.renderer = PIXI.autoDetectRenderer(constants.ScreenWidth, constants.ScreenHeight/*, rendererOptions*/);
+        constants.renderer = PIXI.autoDetectRenderer(constants.ScreenWidth, constants.ScreenHeight, constants.renderOptions);
         constants.stage = new PIXI.Container(0xFFFFFF);
         constants.ratio = 0;
         document.body.appendChild(constants.renderer.view);
