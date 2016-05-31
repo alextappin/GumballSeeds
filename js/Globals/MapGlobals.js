@@ -35,6 +35,6 @@ function MapGlobals() {
         "6 orangegb",
         "7 redgb"
     ];
-    constants.gumballSpaceConst = 8;
+    constants.gumballSpaceConst = 7;
     return constants;
 }
