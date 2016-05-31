@@ -22,6 +22,7 @@ function ScrollerProperties() {
         character : new Character(),
         gumballs : new GumballsHandler(),
         powerBar : new PowerBar(),
+        lifeBar : new LifeBar(),
         touchJump : new TouchJump(),
         touchAttack : new TouchAttack(),
         enemies : new EnemiesHandler(),
