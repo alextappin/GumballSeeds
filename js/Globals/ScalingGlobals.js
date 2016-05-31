@@ -6,7 +6,6 @@ function ScalingGlobals() {
 
     constants.loadScale = 0;
     constants.loadPercent = 1;
-
     constants.titleScreenScale = 0;
     constants.titleScreenPercent = 1;
     constants.titleWordsScale = 0;
@@ -21,6 +20,9 @@ function ScalingGlobals() {
     constants.superbarScale = 0;
     constants.superbarPercent = .085;
     constants.superbarPositionY = MainGlobals.ScreenHeight * .08;
+    constants.superbarFullScale = 0;
+    constants.superbarFullPercent = .06;
+    constants.superbarFullPositionY = MainGlobals.ScreenHeight * .08;
 
     //BREAK
 

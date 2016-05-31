@@ -28,11 +28,11 @@ PowerBar.prototype.initiatePowerBarSprites = function() {
         PIXI.Texture.fromFrame("superbar3"),
         PIXI.Texture.fromFrame("superbar4"),
         PIXI.Texture.fromFrame("superbar5"),
-        PIXI.Texture.fromFrame("superbar6"),
-        PIXI.Texture.fromFrame("superbar7")
+        PIXI.Texture.fromFrame("superbar6")
     );
 
     this.Properties.superbarFullTextures.push (
+        PIXI.Texture.fromFrame("superbar7"),
         PIXI.Texture.fromFrame("superbar8"),
         PIXI.Texture.fromFrame("superbar9")
     );
@@ -62,14 +62,17 @@ PowerBar.prototype.setSpriteToCurrentTexture = function(superbarObj) {
 };
 
 PowerBar.prototype.update = function(superbarObj) {
+    if (this.Properties.currentTextures != this.Properties.superbarTextures) {
+        this.setCurrentTextures(MainGlobals.Timing.superbarTime, this.Properties.superbarFullTextures);
+    }
     this.checkForUpdate(superbarObj);
 };
 
 PowerBar.prototype.updatePowerUp = function(superbarObj) {
-    /*if (this.Properties.currentTextures != this.Properties.superbarFullTextures) {
-        this.setCurrentTextures(this.Properties.spriteSpeed, this.Properties.superbarFullTextures);
-        this.setSpriteToCurrentTexture(superbarObj)
-    }*/
+    if (this.Properties.currentTextures != this.Properties.superbarFullTextures) {
+        this.setCurrentTextures(MainGlobals.Timing.superbarTime, this.Properties.superbarFullTextures);
+    }
+    this.superCheckForUpdate(superbarObj);
 };
 
 PowerBar.prototype.checkForUpdate = function(superbarObj) {
@@ -79,16 +82,13 @@ PowerBar.prototype.checkForUpdate = function(superbarObj) {
     }
 };
 
-PowerBar.prototype.addBar = function() {
-    if (this.Properties.spriteCount !== this.Properties.textures.length) {
-        this.Properties.spriteCount++;
-    }
-    this.setSpriteToCurrentTexture();
+PowerBar.prototype.superCheckForUpdate = function(superbarObj) {
+
 };
 
-PowerBar.prototype.removeBar = function() {
-    if (this.Properties.spriteCount !== 0) {
-        this.Properties.spriteCount--;
-    }
-    this.setSpriteToCurrentTexture();
+PowerBar.prototype.setCurrentTextures = function(speed, textures) {
+    this.Properties.currentTextures = textures;
+    this.Properties.spriteSpeed = speed;
+    this.Properties.spriteCount = 0; //the setTexture will be one behind since it was already called for this loop
+    this.Properties.changeSpriteCounter = 0;
 };
