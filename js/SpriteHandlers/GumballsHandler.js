@@ -34,8 +34,7 @@ GumballsHandler.prototype.addGumballsToStage = function(gumballHandler, stage) {
 GumballsHandler.prototype.setupStartGumballs = function(gumballHandler) {
     HelperFunctions().shuffleArray(gumballHandler.gumballs); //shuffle the array of gumball objects...
 
-    gumballHandler.gumballStructure.push( //3 gumballs at a time... maximum
-        gumballHandler.gumballs.pop(),
+    gumballHandler.gumballStructure.push( //2 gumballs at a time... maximum
         gumballHandler.gumballs.pop(),
         gumballHandler.gumballs.pop()
     );

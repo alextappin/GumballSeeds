@@ -47,7 +47,6 @@ Character.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("gbs j5"),
         PIXI.Texture.fromFrame("gbs j3"),
         PIXI.Texture.fromFrame("gbs j4"),
-        PIXI.Texture.fromFrame("gbs j4"),
         PIXI.Texture.fromFrame("gbs j5"),
         PIXI.Texture.fromFrame("gbs j6"),
         PIXI.Texture.fromFrame("gbs j7")
