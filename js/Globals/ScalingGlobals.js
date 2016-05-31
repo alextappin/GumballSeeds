@@ -18,14 +18,14 @@ function ScalingGlobals() {
     constants.characterPercent = .25;
     constants.characterPositionX = MainGlobals.ScreenHeight *.25;
     constants.superbarScale = 0;
-    constants.superbarPercent = .085;
-    constants.superbarPositionY = MainGlobals.ScreenHeight * .08;
+    constants.superbarPercent = .08;
+    constants.superbarPositionY = MainGlobals.ScreenHeight * .07;
     constants.superbarFullScale = 0;
     constants.superbarFullPercent = .06;
-    constants.superbarFullPositionY = MainGlobals.ScreenHeight * .08;
+    constants.superbarFullPositionY = MainGlobals.ScreenHeight * .07;
     constants.lifeBarScale = 0;
-    constants.lifeBarPercent = .02;
-    constants.lifeBarPositionY = MainGlobals.ScreenHeight * .03;
+    constants.lifeBarPercent = .018;
+    constants.lifeBarPositionY = MainGlobals.ScreenHeight * .04;
 
     //BREAK
 
