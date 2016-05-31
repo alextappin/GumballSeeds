@@ -23,8 +23,10 @@ function ScoreHelper() {
     scoreHelpers.pickupGumball = function(color) {
         if (color == MainGlobals.Map.gumballs[MainGlobals.PowerUp.powerBarLevel]) {
             PowerUpHelper().incrementPowerUp();
+            MainGlobals.Score.lives++;
         } else {
             PowerUpHelper().decrementPowerUp();
+            MainGlobals.Score.lives--;
         }
     };
 

@@ -17,7 +17,7 @@ LifeBar.prototype.constructLifeBar = function() {
 LifeBar.prototype.setPositionAndScale = function(obj) {
     MainGlobals.Scaling.lifeBarScale = HelperFunctions().getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.superbarPercent);
     obj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.lifeBarScale,MainGlobals.Scaling.lifeBarScale);
-    obj.position =  HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(obj.width), MainGlobals.Scaling.superbarPositionY);
+    obj.position =  HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(obj.width), MainGlobals.Scaling.lifeBarPositionY);
 };
 
 LifeBar.prototype.initiateLifeBarSprites = function() {
@@ -66,8 +66,8 @@ LifeBar.prototype.updatePowerUp = function(lifebarObj) {
 };
 
 LifeBar.prototype.checkForUpdate = function(lifebarObj) {
-    if (MainGlobals.PowerUp.powerBarLevel != this.Properties.spriteCount) {
-        this.Properties.spriteCount = MainGlobals.PowerUp.powerBarLevel;
+    if (MainGlobals.Score.lives != this.Properties.spriteCount) {
+        this.Properties.spriteCount = MainGlobals.Score.lives;
         this.setSpriteToCurrentTexture(lifebarObj);
     }
 };

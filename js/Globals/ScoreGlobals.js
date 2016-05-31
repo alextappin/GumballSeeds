@@ -6,7 +6,7 @@ function ScoreGlobals() {
 
     constants.currentScore = 0;
     constants.highScore = 0;
-    constants.lives = 30;
+    constants.lives = 20;
     constants.kills = 0;
 
     return constants;
