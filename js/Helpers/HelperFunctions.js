@@ -81,7 +81,7 @@ function HelperFunctions() {
 
         MainGlobals.Balance.enemies = 2;
         MainGlobals.Balance.gumballs = 1;
-        MainGlobals.Score.lives = 20;
+        MainGlobals.Score.lives = MainGlobals.Balance.maxLives;
         MainGlobals.Score.kills = 0;
         MainGlobals.Score.currescore = 0;
         MainGlobals.Map.loopCounter = 0;
@@ -108,6 +108,7 @@ function HelperFunctions() {
         MainGlobals.PowerUp.characterRise = false;
         MainGlobals.PowerUp.powerBarLevel = MainGlobals.PowerUp.startPowerBarLevel;
         MainGlobals.Scroller.groundSpeed = MainGlobals.Scroller.startGroundSpeed;
+        MainGlobals.Score.lives = MainGlobals.Balance.maxLives;
     };
 
     functions.powerUpScrollSpeed = function() {

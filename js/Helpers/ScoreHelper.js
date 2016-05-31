@@ -23,10 +23,16 @@ function ScoreHelper() {
     scoreHelpers.pickupGumball = function(color) {
         if (color == MainGlobals.Map.gumballs[MainGlobals.PowerUp.powerBarLevel]) {
             PowerUpHelper().incrementPowerUp();
-            MainGlobals.Score.lives++;
+            if (MainGlobals.Score.lives < MainGlobals.Balance.maxLives) {
+                MainGlobals.Score.lives++;
+            }
         } else {
             PowerUpHelper().decrementPowerUp();
-            MainGlobals.Score.lives--;
+            if (MainGlobals.Score.lives > 0) {
+                MainGlobals.Score.lives--;
+            } else {
+                //end game cuz lives are 0....
+            }
         }
     };
 

@@ -16,6 +16,8 @@ function BalanceGlobals() {
     constants.gumballsToAdd = 1;
     constants.continueGame = true;
 
+    constants.maxLives = 22;
+
     //Character Specific
     constants.isAttacking = false;
     constants.attackTime = 21;
