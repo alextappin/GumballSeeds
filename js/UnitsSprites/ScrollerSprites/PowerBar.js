@@ -62,18 +62,17 @@ PowerBar.prototype.setSpriteToCurrentTexture = function(superbarObj) {
 };
 
 PowerBar.prototype.update = function(superbarObj) {
+    if (this.Properties.currentTextures != this.Properties.superbarTextures) {
+        this.setCurrentTextures(MainGlobals.Timing.superbarTime, this.Properties.superbarFullTextures);
+    }
     this.checkForUpdate(superbarObj);
 };
 
 PowerBar.prototype.updatePowerUp = function(superbarObj) {
+    if (this.Properties.currentTextures != this.Properties.superbarFullTextures) {
+        this.setCurrentTextures(MainGlobals.Timing.superbarTime, this.Properties.superbarFullTextures);
+    }
     this.superCheckForUpdate(superbarObj);
-    /*if (MainGlobals.PowerUp.powerBarLevel < this.Properties.currentTextures.length-1) {
-        MainGlobals.PowerUp.powerBarLevel++;
-    }*/
-    /*if (this.Properties.currentTextures != this.Properties.superbarFullTextures) {
-        this.setCurrentTextures(this.Properties.spriteSpeed, this.Properties.superbarFullTextures);
-        this.setSpriteToCurrentTexture(superbarObj)
-    }*/
 };
 
 PowerBar.prototype.checkForUpdate = function(superbarObj) {
@@ -84,16 +83,12 @@ PowerBar.prototype.checkForUpdate = function(superbarObj) {
 };
 
 PowerBar.prototype.superCheckForUpdate = function(superbarObj) {
-    if (this.Properties.changeSpriteCounter == MainGlobals.Timing.superbarTime) {
-        if (this.Properties.superPowerCount < this.Properties.currentTextures.length - 1) {
-            this.Properties.superPowerCount++;
-            superbarObj.children[0].texture = this.Properties.currentTextures[this.Properties.superPowerCount];
-            //MainGlobals.Scaling.superbarScale = HelperFunctions().getScreenRatioUsingHeight(superbarObj.height, MainGlobals.Scaling.superbarPercent);
-            //superbarObj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.superbarScale,MainGlobals.Scaling.superbarScale);
-            superbarObj.position =  HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(superbarObj.width), MainGlobals.Scaling.superbarPositionY);
-        }
-        this.Properties.changeSpriteCounter = 0;
-    } else {
-        this.Properties.changeSpriteCounter++;
-    }
+
+};
+
+PowerBar.prototype.setCurrentTextures = function(speed, textures) {
+    this.Properties.currentTextures = textures;
+    this.Properties.spriteSpeed = speed;
+    this.Properties.spriteCount = 0; //the setTexture will be one behind since it was already called for this loop
+    this.Properties.changeSpriteCounter = 0;
 };
