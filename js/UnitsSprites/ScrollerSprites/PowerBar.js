@@ -43,21 +43,6 @@ PowerBar.prototype.initiatePowerBarSprites = function() {
     this.addChild(new PIXI.Sprite(this.Properties.currentTextures[this.Properties.spriteCount]));
 };
 
-PowerBar.prototype.setCurrentTextures = function(speed, textures) {
-    if (textures) {
-        this.Properties.currentTextures = textures;
-        this.Properties.spriteSpeed = speed;
-        this.Properties.spriteCount = 0; //the setTexture will be one behind since it was already called for this loop
-        this.Properties.changeSpriteCounter = 0;
-    } else {
-        this.Properties.currentTextures = this.Properties.superbarTextures; //default is run...
-        this.Properties.spriteSpeed = MainGlobals.Timing.superbarTime;
-        this.Properties.spriteCount = 0;
-        this.Properties.changeSpriteCounter = 0;
-    }
-
-};
-
 PowerBar.prototype.setSpriteToCurrentTexture = function(superbarObj) {
     superbarObj.children[0].texture = this.Properties.currentTextures[this.Properties.spriteCount];
 };
