@@ -21,7 +21,8 @@ function ScoreHelper() {
     };
 
     scoreHelpers.pickupGumball = function() {
-        MainGlobals.Score.currentScore = MainGlobals.Score.currentScore + MainGlobals.Balance.pickupGumballScore;
+        PowerUpHelper().incrementPowerUp();
+        //MainGlobals.Score.currentScore = MainGlobals.Score.currentScore + MainGlobals.Balance.pickupGumballScore;
     };
 
     scoreHelpers.updateScore = function() {
