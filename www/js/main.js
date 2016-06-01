@@ -38,8 +38,10 @@ Main.prototype.loadSpriteSheet = function() {
         "updatedImages/interface/superBar1.json", "updatedImages/interface/superBar2.json", "updatedImages/interface/interface.json",
         "updatedImages/titleScreen/loadscreen.json", "updatedImages/enemy/enemyDeath.json"
     ],
+        assetsToLoad2 = [
+            "imagesSmall/titleInter.json", "imagesSmall/backCharInter.json"],
         loader = new PIXI.loaders.Loader();
-    loader.add(assetsToLoad).load(this.spriteSheetLoaded.bind(this))
+    loader.add(assetsToLoad2).load(this.spriteSheetLoaded.bind(this))
 };
 Main.prototype.update = function() {
     this.gameStatesHandler();

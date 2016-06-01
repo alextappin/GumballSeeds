@@ -23,7 +23,7 @@ TitleWords.prototype.setPositionAndScale = function(obj) {
 
 TitleWords.prototype.initiateTitleWordsSprites = function() {
     this.Properties.textures.push(
-        PIXI.Texture.fromFrame("titleWords")
+        PIXI.Texture.fromFrame("title")
     );
     this.addChild(new PIXI.Sprite(this.Properties.textures[0]));
 };

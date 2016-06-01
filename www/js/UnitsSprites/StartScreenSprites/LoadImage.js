@@ -32,12 +32,11 @@ LoadImage.prototype.initiateLoadImageSprites = function() {
 
     this.Properties.textures.push(
         PIXI.Texture.fromFrame("titleBG"),
-        PIXI.Texture.fromFrame("titleWords"),
+        PIXI.Texture.fromFrame("title"),
         PIXI.Texture.fromFrame("startbutton1"),
         PIXI.Texture.fromFrame("startbutton2"),
         PIXI.Texture.fromFrame("startbutton3"),
         PIXI.Texture.fromFrame("startbutton4"),
-        PIXI.Texture.fromFrame("startrainbowanimation3"),
         PIXI.Texture.fromFrame("startrainbowanimation1"),
         PIXI.Texture.fromFrame("startrainbowanimation2"),
         PIXI.Texture.fromFrame("gbs run1"),
