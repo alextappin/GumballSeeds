@@ -72,13 +72,13 @@ Enemy.prototype.moveEnemy = function(enemyObj, characterObj) {
     enemyObj.position.y = obj.y;
     if (this.isIntersecting(characterObj, enemyObj)) {
         if (MainGlobals.Balance.isAttacking) {
-            ScoreHelper().killEnemy(this.Properties.pointsForKill);
-            if (ScoreHelper().createNewEnemy()) {
+            MainGlobals.ScoreHelper.killEnemy(this.Properties.pointsForKill);
+            if (MainGlobals.ScoreHelper.createNewEnemy()) {
                 MainGlobals.Balance.enemies += 1;
             }
         }
         else {
-            ScoreHelper().getHitByEnemy(1);
+            MainGlobals.ScoreHelper.getHitByEnemy(1);
             if (MainGlobals.Score.lives < 0) {
                 MainGlobals.Helpers.endGame();
             }
@@ -96,13 +96,13 @@ Enemy.prototype.moveEnemyPowerUp = function(enemyObj, characterObj) {
     enemyObj.position.y = obj.y;
     if (this.isIntersecting(characterObj, enemyObj)) {
         if (MainGlobals.Balance.isAttacking) {
-            ScoreHelper().killEnemy(this.Properties.pointsForKill);
-            if (ScoreHelper().createNewEnemy()) {
+            MainGlobals.ScoreHelper.killEnemy(this.Properties.pointsForKill);
+            if (MainGlobals.ScoreHelper.createNewEnemy()) {
                 MainGlobals.Score.enemies += 1;
             }
         }
         else {
-            ScoreHelper().getHitByEnemy(1);
+            MainGlobals.ScoreHelper.getHitByEnemy(1);
             if (MainGlobals.Score.lives < 0) {
                 characterObj.endGame();
             }

@@ -66,7 +66,7 @@ Scroller.prototype.update = function() {
         this.updateObjects();
     }
 
-    ScoreHelper().updateScore();
+    MainGlobals.ScoreHelper.updateScore();
 };
 Scroller.prototype.updateViewport = function() {
     if (MainGlobals.Helpers.doPowerUp()) {
