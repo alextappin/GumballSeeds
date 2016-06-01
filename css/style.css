@@ -1,4 +1,5 @@
 body {
-    background: #000000;
+    background: rgba(1, 1, 1, 1);
     text-align: center;
+    margin: -1px 0 0 0;
 }
