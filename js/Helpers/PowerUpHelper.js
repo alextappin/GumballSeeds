@@ -5,9 +5,9 @@ function PowerUpHelper() {
     var powerUpHelper = {};
 
     powerUpHelper.startPowerUp = function() {
-        HelperFunctions().powerUpOn();
-        HelperFunctions().powerUpScrollSpeed();
-        HelperFunctions().startBassSound();
+        MainGlobals.Helpers.powerUpOn();
+        MainGlobals.Helpers.powerUpScrollSpeed();
+        MainGlobals.Helpers.startBassSound();
     };
 
     powerUpHelper.continuePowerUp = function(viewPort) {
@@ -24,7 +24,7 @@ function PowerUpHelper() {
     };
 
     powerUpHelper.endPowerUp = function() {
-        HelperFunctions().resetAfterPowerUp();
+        MainGlobals.Helpers.resetAfterPowerUp();
     };
 
     powerUpHelper.incrementPowerUp = function() {

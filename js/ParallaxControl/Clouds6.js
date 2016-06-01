@@ -13,7 +13,7 @@ Clouds6.constructor = Clouds6;
 Clouds6.prototype = Object.create(PIXI.Container.prototype);
 
 Clouds6.prototype.setPositionAndScale = function(obj) {
-    obj.position = HelperFunctions().getNewPoint(MainGlobals.ScreenWidth/4, HelperFunctions().getRandomNumber(MainGlobals.Scroller.cloudRandomYStart, MainGlobals.Scroller.cloudRandomYEnd));
+    obj.position = MainGlobals.Helpers.getNewPoint(MainGlobals.ScreenWidth/4, MainGlobals.Helpers.getRandomNumber(MainGlobals.Scroller.cloudRandomYStart, MainGlobals.Scroller.cloudRandomYEnd));
     this.setScale(obj);
 };
 
@@ -26,12 +26,12 @@ Clouds6.prototype.update = function(obj, newViewportX) {
 };
 
 Clouds6.prototype.getNewPositionsAndScale = function(obj) {
-    var randY = HelperFunctions().getRandomNumber(MainGlobals.Scroller.cloudRandomYStart, MainGlobals.Scroller.cloudRandomYEnd);
-    obj.position = HelperFunctions().getNewPoint(MainGlobals.ScreenWidth + obj.width, randY);
+    var randY = MainGlobals.Helpers.getRandomNumber(MainGlobals.Scroller.cloudRandomYStart, MainGlobals.Scroller.cloudRandomYEnd);
+    obj.position = MainGlobals.Helpers.getNewPoint(MainGlobals.ScreenWidth + obj.width, randY);
     this.setScale(obj);
 };
 
 Clouds6.prototype.setScale = function(obj) {
-    var scale = HelperFunctions().calculateCloudScale(obj.position.y);
-    obj.scale = HelperFunctions().getNewPoint(scale,scale);
+    var scale = MainGlobals.Helpers.calculateCloudScale(obj.position.y);
+    obj.scale = MainGlobals.Helpers.getNewPoint(scale,scale);
 };

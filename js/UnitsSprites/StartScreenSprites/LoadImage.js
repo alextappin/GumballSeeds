@@ -16,10 +16,10 @@ LoadImage.prototype.constructLoadImage = function() {
     this.initiateLoadImageSprites();
 };
 LoadImage.prototype.setPositionAndScale = function(obj) {
-    MainGlobals.Scaling.loadScale = HelperFunctions().getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.loadPercent);
+    MainGlobals.Scaling.loadScale = MainGlobals.Helpers.getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.loadPercent);
 
-    obj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.loadScale,MainGlobals.Scaling.loadScale);
-    obj.position =  HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(obj.width), HelperFunctions().getScreenPositionMiddleHeight(obj.height));
+    obj.scale = MainGlobals.Helpers.getNewPoint(MainGlobals.Scaling.loadScale,MainGlobals.Scaling.loadScale);
+    obj.position =  MainGlobals.Helpers.getNewPoint(MainGlobals.Helpers.getScreenPositionMiddleWidth(obj.width), MainGlobals.Helpers.getScreenPositionMiddleHeight(obj.height));
     obj.alpha = this.Properties.alphaStart;
     //no scale yet...
 };
@@ -29,7 +29,7 @@ LoadImage.prototype.initiateLoadImageSprites = function() {
 
     //load all the lagging sprites into the texture cache by using them!
     this.addChild(new PIXI.Sprite(PIXI.Texture.fromFrame("loadScreen")));
-    this.children[1].scale = HelperFunctions().getNewPoint(0,0);
+    this.children[1].scale = MainGlobals.Helpers.getNewPoint(0,0);
 
     this.Properties.textures.push(
         PIXI.Texture.fromFrame("titleBG"),
@@ -124,8 +124,8 @@ LoadImage.prototype.updateSprites = function(imageObj) {
         imageObj.alpha += this.Properties.alphaIncrement;
 
         if (MainGlobals.Map.soundLoaded && imageObj.alpha < this.Properties.alphaStart) {
-            HelperFunctions().switchToTitle();
-            HelperFunctions().switchScreenToggle();
+            MainGlobals.Helpers.switchToTitle();
+            MainGlobals.Helpers.switchScreenToggle();
         }
     }
 };

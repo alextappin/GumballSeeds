@@ -6,7 +6,7 @@ function Main() {
 
     MainGlobals.initialize();
     window.addEventListener("resize", this.refresh);
-    HelperFunctions().setScrollSpeedToMin();
+    MainGlobals.Helpers.setScrollSpeedToMin();
     this.loadSpriteSheet();
 }
 
@@ -51,7 +51,7 @@ Main.prototype.spriteSheetLoaded = function() {
 };
 
 Main.prototype.gameStatesHandler = function() {
-    if (HelperFunctions().doSwitchScreen()) {
+    if (MainGlobals.Helpers.doSwitchScreen()) {
         this.purgeStage()
     } else {
         this.updatedSelectedScreen();
@@ -63,29 +63,29 @@ Main.prototype.purgeStage = function() {
     MainGlobals.stage.destroy();
     MainGlobals.stage = new PIXI.Container(0xFFFFFF);
     this.startAppropriateScreen();
-    HelperFunctions().switchScreenToggle();
+    MainGlobals.Helpers.switchScreenToggle();
 };
 
 Main.prototype.updatedSelectedScreen = function() {
-    if(HelperFunctions().screenIsGame()) {
+    if(MainGlobals.Helpers.screenIsGame()) {
         this.scroller.update();
-    } else if (HelperFunctions().screenIsTitle()) {
+    } else if (MainGlobals.Helpers.screenIsTitle()) {
         this.titleScreen.update();
-    } else if(HelperFunctions().screenIsLoad()) {
+    } else if(MainGlobals.Helpers.screenIsLoad()) {
         this.loadScreen.update();
     }
 };
 
 Main.prototype.startAppropriateScreen = function() {
-    if(HelperFunctions().screenIsGame()) {
+    if(MainGlobals.Helpers.screenIsGame()) {
         this.scroller = new Scroller(MainGlobals.stage);
-    } else if (HelperFunctions().screenIsTitle()) {
+    } else if (MainGlobals.Helpers.screenIsTitle()) {
         this.titleScreen = new TitleScreen(MainGlobals.stage);
-    } else if(HelperFunctions().screenIsLoad()) {
+    } else if(MainGlobals.Helpers.screenIsLoad()) {
         this.loadScreen = new LoadScreen(MainGlobals.stage);
     }
 };
 
 Main.prototype.saveAndRestartGameVariables = function() {
-    HelperFunctions().resetGlobals();
+    MainGlobals.Helpers.resetGlobals();
 };

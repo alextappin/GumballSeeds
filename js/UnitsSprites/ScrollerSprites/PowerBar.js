@@ -15,9 +15,9 @@ PowerBar.prototype.constructPowerBar = function() {
 };
 
 PowerBar.prototype.setPositionAndScale = function(obj) {
-    MainGlobals.Scaling.superbarScale = HelperFunctions().getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.superbarPercent);
-    obj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.superbarScale,MainGlobals.Scaling.superbarScale);
-    obj.position =  HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(obj.width), MainGlobals.Scaling.superbarPositionY);
+    MainGlobals.Scaling.superbarScale = MainGlobals.Helpers.getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.superbarPercent);
+    obj.scale = MainGlobals.Helpers.getNewPoint(MainGlobals.Scaling.superbarScale,MainGlobals.Scaling.superbarScale);
+    obj.position =  MainGlobals.Helpers.getNewPoint(MainGlobals.Helpers.getScreenPositionMiddleWidth(obj.width), MainGlobals.Scaling.superbarPositionY);
 };
 
 PowerBar.prototype.initiatePowerBarSprites = function() {
@@ -99,5 +99,5 @@ PowerBar.prototype.setCurrentTextures = function(speed, textures) {
 };
 
 PowerBar.prototype.setPositionScaleNew = function(superbarObj) {
-    superbarObj.position =  HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(superbarObj.width), MainGlobals.Scaling.superbarPositionY);
+    superbarObj.position =  MainGlobals.Helpers.getNewPoint(MainGlobals.Helpers.getScreenPositionMiddleWidth(superbarObj.width), MainGlobals.Scaling.superbarPositionY);
 };

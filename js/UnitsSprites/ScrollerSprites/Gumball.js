@@ -16,9 +16,9 @@ Gumball.prototype.constructGumball = function(gumballColor) {
 };
 
 Gumball.prototype.setPositionAndScale = function(obj) {
-    MainGlobals.Scaling.gumballRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.gumballPercentOfScreen);
-    obj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.gumballRatio, MainGlobals.Scaling.gumballRatio);
-    obj.position =  HelperFunctions().getNewPoint(MainGlobals.ScreenWidth+obj.width, 0);
+    MainGlobals.Scaling.gumballRatio = MainGlobals.Helpers.getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.gumballPercentOfScreen);
+    obj.scale = MainGlobals.Helpers.getNewPoint(MainGlobals.Scaling.gumballRatio, MainGlobals.Scaling.gumballRatio);
+    obj.position =  MainGlobals.Helpers.getNewPoint(MainGlobals.ScreenWidth+obj.width, 0);
 };
 
 Gumball.prototype.initiateGumballSprites = function() {

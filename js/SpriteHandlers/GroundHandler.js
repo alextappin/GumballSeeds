@@ -60,7 +60,7 @@ GroundHandler.prototype.setupStartGround = function(groundHandler) {
     );
 
     for (var n = 0; n < groundHandler.groundStructure.length; n++) {
-        groundHandler.groundStructure[n].position = HelperFunctions().getNewPoint(
+        groundHandler.groundStructure[n].position = MainGlobals.Helpers.getNewPoint(
             this.getNewPosition(groundHandler, n),
             MainGlobals.Map.groundY * MainGlobals.ScreenHeight
         );
@@ -101,7 +101,7 @@ GroundHandler.prototype.handleOffScreen = function(groundHandler, stage) {
 GroundHandler.prototype.addNewGround = function(groundHandler, stage) {
     groundHandler.groundStructure.push(this.getNextPieceType(groundHandler));
     groundHandler.groundStructure[groundHandler.groundStructure.length - 1].position =
-        HelperFunctions().getNewPoint(
+        MainGlobals.Helpers.getNewPoint(
             this.getNewPosition(
                 groundHandler,
                 groundHandler.groundStructure.length - 1

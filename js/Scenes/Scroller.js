@@ -9,8 +9,8 @@ function Scroller(stage) {
         return stage;
     };
 
-    HelperFunctions().stopTitleSound();
-    HelperFunctions().startGameSound();
+    MainGlobals.Helpers.stopTitleSound();
+    MainGlobals.Helpers.startGameSound();
 }
 Scroller.prototype.initializePositionsAndScale = function() {
     this.Properties.cloud5.setPositionAndScale(this.Properties.cloud5);
@@ -69,10 +69,10 @@ Scroller.prototype.update = function() {
     ScoreHelper().updateScore();
 };
 Scroller.prototype.updateViewport = function() {
-    if (HelperFunctions().doPowerUp()) {
+    if (MainGlobals.Helpers.doPowerUp()) {
         PowerUpHelper().continuePowerUp(this.Properties.viewportX);
-    } else if (HelperFunctions().scrollSpeedIsMaxed()) {
-        HelperFunctions().setScrollSpeedToMax();
+    } else if (MainGlobals.Helpers.scrollSpeedIsMaxed()) {
+        MainGlobals.Helpers.setScrollSpeedToMax();
     }
 
     this.Properties.viewportX = this.Properties.viewportX + MainGlobals.Scroller.currentScrollSpeed;

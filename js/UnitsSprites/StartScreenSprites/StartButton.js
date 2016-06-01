@@ -14,9 +14,9 @@ StartButton.prototype.constructStartButton = function() {
     this.initiateStartButtonSprites();
 };
 StartButton.prototype.setPositionAndScale = function(obj) {
-    MainGlobals.Scaling.startButtonRatios[this.Properties.spriteCount] = HelperFunctions().getScreenRatioUsingHeight(obj.height,MainGlobals.Scaling.startButtonsPercentOfScreen[this.Properties.spriteCount]); //access array and grab correct ratios out of array
-    obj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.startButtonRatios[this.Properties.spriteCount],MainGlobals.Scaling.startButtonRatios[this.Properties.spriteCount]);
-    obj.position = HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(obj.width), HelperFunctions().getHeightGivenConstant(MainGlobals.Scaling.titleStartYOffset, obj.height));
+    MainGlobals.Scaling.startButtonRatios[this.Properties.spriteCount] = MainGlobals.Helpers.getScreenRatioUsingHeight(obj.height,MainGlobals.Scaling.startButtonsPercentOfScreen[this.Properties.spriteCount]); //access array and grab correct ratios out of array
+    obj.scale = MainGlobals.Helpers.getNewPoint(MainGlobals.Scaling.startButtonRatios[this.Properties.spriteCount],MainGlobals.Scaling.startButtonRatios[this.Properties.spriteCount]);
+    obj.position = MainGlobals.Helpers.getNewPoint(MainGlobals.Helpers.getScreenPositionMiddleWidth(obj.width), MainGlobals.Helpers.getHeightGivenConstant(MainGlobals.Scaling.titleStartYOffset, obj.height));
     obj.alpha = MainGlobals.Timing.titleAlphaStart;
 };
 StartButton.prototype.initiateStartButtonSprites = function() {
@@ -66,9 +66,9 @@ StartButton.prototype.updateClickedStartTextures = function(startButtonObj) {
 
 StartButton.prototype.nextClickedStartSprite = function(startButtonObj) {
     startButtonObj.children[0].texture = this.Properties.textures[this.Properties.spriteCount];
-    MainGlobals.Scaling.startButtonRatios[this.Properties.spriteCount] = HelperFunctions().getScreenRatioUsingHeight(startButtonObj.height,MainGlobals.Scaling.startButtonsPercentOfScreen[this.Properties.spriteCount]); //access array and grab correct ratios out of array
-    startButtonObj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.startButtonRatios[this.Properties.spriteCount],MainGlobals.Scaling.startButtonRatios[this.Properties.spriteCount]);
-    startButtonObj.position = HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(startButtonObj.width), HelperFunctions().getHeightGivenConstant(MainGlobals.Scaling.titleStartYOffset, startButtonObj.height));
+    MainGlobals.Scaling.startButtonRatios[this.Properties.spriteCount] = MainGlobals.Helpers.getScreenRatioUsingHeight(startButtonObj.height,MainGlobals.Scaling.startButtonsPercentOfScreen[this.Properties.spriteCount]); //access array and grab correct ratios out of array
+    startButtonObj.scale = MainGlobals.Helpers.getNewPoint(MainGlobals.Scaling.startButtonRatios[this.Properties.spriteCount],MainGlobals.Scaling.startButtonRatios[this.Properties.spriteCount]);
+    startButtonObj.position = MainGlobals.Helpers.getNewPoint(MainGlobals.Helpers.getScreenPositionMiddleWidth(startButtonObj.width), MainGlobals.Helpers.getHeightGivenConstant(MainGlobals.Scaling.titleStartYOffset, startButtonObj.height));
     startButtonObj.alpha = 1;
 };
 

@@ -28,7 +28,7 @@ function TitleTimingHelper() {
             start.updateClickedStartTextures(start);
             if (startAnimation.position.x >= 0) {
                 if (startAnimation.position.x >= startAnimation.width) { //switch to the game screen
-                    HelperFunctions().switchScreenToggle();
+                    MainGlobals.Helpers.switchScreenToggle();
                     MainGlobals.Map.screenToShow = MainGlobals.Map.gameString;
                     MainGlobals.Timing.startButtonPressed = false;
                     MainGlobals.Timing.startAnimation = false;

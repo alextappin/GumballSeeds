@@ -9,7 +9,7 @@ function TitleScreen(stage) {
         return stage;
     };
 
-    HelperFunctions().startTitleSound();
+    MainGlobals.Helpers.startTitleSound();
 }
 
 TitleScreen.prototype.initializePositions = function() {

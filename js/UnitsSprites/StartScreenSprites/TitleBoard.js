@@ -15,9 +15,9 @@ TitleBoard.prototype.constructTitleBoard = function() {
 };
 
 TitleBoard.prototype.setPositionAndScale = function(obj) {
-    MainGlobals.Scaling.titleScreenScale = HelperFunctions().getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.titleScreenPercent);
-    obj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.titleScreenScale,MainGlobals.Scaling.titleScreenScale);
-    obj.position =  HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(obj.width), HelperFunctions().getScreenPositionMiddleHeight(obj.height));
+    MainGlobals.Scaling.titleScreenScale = MainGlobals.Helpers.getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.titleScreenPercent);
+    obj.scale = MainGlobals.Helpers.getNewPoint(MainGlobals.Scaling.titleScreenScale,MainGlobals.Scaling.titleScreenScale);
+    obj.position =  MainGlobals.Helpers.getNewPoint(MainGlobals.Helpers.getScreenPositionMiddleWidth(obj.width), MainGlobals.Helpers.getScreenPositionMiddleHeight(obj.height));
     obj.alpha = MainGlobals.Timing.titleAlphaStart;
 };
 

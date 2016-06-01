@@ -8,7 +8,7 @@ function ScoreHelper() {
     };
 
     scoreHelpers.getHitByEnemy = function() {
-        MainGlobals.PowerUp.powerBarLevel = (MainGlobals.PowerUp.powerBarLevel > HelperFunctions().returnZero() ? MainGlobals.PowerUp.powerBarLevel - MainGlobals.Balance.enemyDamage : 0);
+        MainGlobals.PowerUp.powerBarLevel = (MainGlobals.PowerUp.powerBarLevel > MainGlobals.Helpers.returnZero() ? MainGlobals.PowerUp.powerBarLevel - MainGlobals.Balance.enemyDamage : 0);
         MainGlobals.Score.lives -= MainGlobals.Balance.enemyDamage;
     };
 
@@ -17,7 +17,7 @@ function ScoreHelper() {
     };
 
     scoreHelpers.createNewEnemy = function() {
-        return MainGlobals.Score.kills % MainGlobals.Balance.createNewEnemiesCounter === HelperFunctions().returnZero();
+        return MainGlobals.Score.kills % MainGlobals.Balance.createNewEnemiesCounter === MainGlobals.Helpers.returnZero();
     };
 
     scoreHelpers.pickupGumball = function(color) {

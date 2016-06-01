@@ -22,9 +22,9 @@ Super.prototype.constructSuper = function() {
 };
 
 Super.prototype.setPositionAndScale = function(obj) {
-    MainGlobals.Scaling.superRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.superPercentOfScreen);
-    obj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.superRatio, MainGlobals.Scaling.superRatio);
-    obj.position =  HelperFunctions().getNewPoint(0,0);
+    MainGlobals.Scaling.superRatio = MainGlobals.Helpers.getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.superPercentOfScreen);
+    obj.scale = MainGlobals.Helpers.getNewPoint(MainGlobals.Scaling.superRatio, MainGlobals.Scaling.superRatio);
+    obj.position =  MainGlobals.Helpers.getNewPoint(0,0);
     obj.visible = false;
 };
 

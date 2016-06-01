@@ -35,6 +35,11 @@ var MainGlobals = (function MainGlobals() {
         constants.Score = ScoreGlobals();
         constants.Scroller = ScrollerGlobals();
         constants.Timing = TimingGlobals();
+
+        constants.Helpers = HelperFunctions();
+        constants.ScoreHelper = ScoreHelper();
+        constants.TitleTime = TitleTimingHelper();
+        constants.PowerHelper = PowerUpHelper();
     };
 
     constants.initialize = function() {

@@ -5,10 +5,10 @@ function Haze14() {
     var texture = PIXI.Texture.fromFrame("14 haze3");
     PIXI.extras.TilingSprite.call(this, texture, texture.width, texture.height);
 
-    var scale = HelperFunctions().getCorrectScaleWidth(this.width);
-    this.scale = HelperFunctions().getNewPoint(scale ,scale);
-    this.position = HelperFunctions().getNewPoint(0,MainGlobals.Scroller.haze14Y);
-    this.tilePosition = HelperFunctions().getNewPoint(0,0);
+    var scale = MainGlobals.Helpers.getCorrectScaleWidth(this.width);
+    this.scale = MainGlobals.Helpers.getNewPoint(scale ,scale);
+    this.position = MainGlobals.Helpers.getNewPoint(0,MainGlobals.Scroller.haze14Y);
+    this.tilePosition = MainGlobals.Helpers.getNewPoint(0,0);
     this.viewportX = 0;
 }
 

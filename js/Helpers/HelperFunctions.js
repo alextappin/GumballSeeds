@@ -175,8 +175,8 @@ function HelperFunctions() {
     functions.endGame = function() {
         MainGlobals.Physics.airborn = true;
         MainGlobals.Balance.continueGame = false;
-        HelperFunctions().switchScreenToggle();
-        HelperFunctions().switchToTitle();
+        MainGlobals.Helpers.switchScreenToggle();
+        MainGlobals.Helpers.switchToTitle();
     };
 
     functions.isIntersecting = function(rectangle1, rectangle2) { //rectangular isIntersection method
