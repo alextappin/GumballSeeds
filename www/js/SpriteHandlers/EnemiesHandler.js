@@ -4,13 +4,14 @@
 function EnemiesHandler() {
     //array of enemy objects
     this.enemies = [];
+    this.enemyStructure = [];
     this.constructEnemies();
 }
 
 EnemiesHandler.constructor = EnemiesHandler;
 
 EnemiesHandler.prototype.constructEnemies = function() {
-    for (var n = 0; n < MainGlobals.Balance.enemies; n++) {
+    for (var n = 0; n < MainGlobals.Map.enemiesPool; n++) {
         this.enemies.push(new Enemy);
     }
 };
@@ -22,42 +23,55 @@ EnemiesHandler.prototype.setPositionAndScale = function(enemyHandler) {
 };
 
 EnemiesHandler.prototype.addEnemiesToStage = function(enemyHandler, stage) {
+    this.setupEnemyStructure(enemyHandler);
+
     for (var n = 0; n < enemyHandler.enemies.length; n++) {
         stage.addChild(enemyHandler.enemies[n]);
     }
 };
 
-EnemiesHandler.prototype.update = function(enemyHandler, characterObj, stage) {
-    for (var n = 0; n < MainGlobals.Balance.enemies; n++) {
-        if (enemyHandler.enemies[n]) {
-            enemyHandler.enemies[n].update(enemyHandler.enemies[n], characterObj);
-        } else {
-            this.addEnemy(MainGlobals.Balance.enemiesToAdd, stage, enemyHandler); //if there are not enough enemies, add another
-        }
-    }
-};
-EnemiesHandler.prototype.updatePowerUp = function(enemyHandler, characterObj, stage) {
-    for (var n = 0; n < MainGlobals.Balance.enemies; n++) {
-        if (enemyHandler.enemies[n]) {
-            enemyHandler.enemies[n].updatePowerUp(enemyHandler.enemies[n], characterObj);
-        } else {
-            this.addEnemy(MainGlobals.Balance.enemiesToAdd, stage, enemyHandler); //if there are not enough enemies, add another
-        }
+EnemiesHandler.prototype.setupEnemyStructure = function(enemyHandler) {
+    MainGlobals.Helpers.shuffleArray(enemyHandler.enemies); //shuffle the enemies. This will prove useful later once enemies are unique
+
+    enemyHandler.enemyStructure.push( //3 enemies in the queue
+        enemyHandler.enemies.pop(),
+        enemyHandler.enemies.pop(),
+        enemyHandler.enemies.pop()
+    );
+
+    for (var n = 0; n < enemyHandler.enemyStructure.length; n++) { //start them off the screen so we can move them later.
+        enemyHandler.enemyStructure[n].position = MainGlobals.Helpers.getNewPoint(
+            0-enemyHandler.enemyStructure[n].width,
+            0
+        );
     }
 };
 
-EnemiesHandler.prototype.addEnemy = function(numberToAdd, stage, enemyHandler) {
-    for (var n = 0; n < numberToAdd; n++) {
-        var enemy = new Enemy();
-        enemy.setPositionAndScale(enemy);
-        enemyHandler.enemies.push(enemy);
-        stage.addChild(enemy);
+EnemiesHandler.prototype.update = function(enemyHandler, groundObj, characterObj, stage) {
+    for (var n = 0; n < enemyHandler.enemyStructure.length; n++) {
+        enemyHandler.enemyStructure[n].update(enemyHandler.enemyStructure[n]); //will just move them/expload
     }
+
+    this.handleOffScreen(enemyHandler, groundObj, stage);
+    this.characterCollide(enemyHandler, groundObj, characterObj);
+};
+EnemiesHandler.prototype.updatePowerUp = function(enemyHandler, groundObj, characterObj, stage) {
+    for (var n = 0; n < enemyHandler.enemyStructure.length; n++) {
+        enemyHandler.enemyStructure[n].update(enemyHandler.enemyStructure[n]); //will just move them/expload
+    }
+
+    this.handleOffScreen(enemyHandler, groundObj, stage);
+    this.characterCollide(enemyHandler, groundObj, characterObj);
 };
 
-EnemiesHandler.prototype.removeEnemy = function(index, stage) {
-    if (this.enemies.length > 0) {
-        stage.removeChild(this.enemies[index]);
-        this.enemies.splice(index, 1);
-    }
+EnemiesHandler.prototype.handleOffScreen = function(enemyHandler, groundObj, stage) {
+
+};
+
+EnemiesHandler.prototype.characterCollide = function(enemyHandler, groundObj, stage) {
+
+};
+
+EnemiesHandler.prototype.returnPiece = function(piece, enemyHandler, stage) {
+
 };

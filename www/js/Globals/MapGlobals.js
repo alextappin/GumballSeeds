@@ -35,6 +35,7 @@ function MapGlobals() {
         "6 orangegb",
         "7 redgb"
     ];
+    constants.enemiesPool = 10;
 /*    constants.lifebars = [
         "lifebar1",
         "lifebar2",
