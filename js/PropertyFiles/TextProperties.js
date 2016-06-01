@@ -7,19 +7,19 @@ function TextProperties(textType) {
         type : textType,
         setValues : function() {
             if (this.type == "score") {
-                this.text = "Score  " + ScoreGlobals.currentScore;
+                this.text = "Score  " + MainGlobals.Score.currentScore;
                 this.positionX = 10;
                 this.positionY = 10;
                 this.fill = "Green";
             }
             else if(this.type == "highscore") {
-                this.text = "HighScore  " + ScoreGlobals.highScore;
-                this.positionX = (MapGlobals.screenWidth - this.words.width) / 2;
-                this.positionY = (MapGlobals.screenHeight / 2) + MapGlobals.screenHeight*.1;
+                this.text = "HighScore  " + MainGlobals.Score.highScore;
+                this.positionX = (MainGlobals.ScreenWidth - this.words.width) / 2;
+                this.positionY = (MainGlobals.ScreenHeight / 2) + MainGlobals.ScreenHeight*.1;
                 this.fill = "Yellow";
             }
             else if(this.type == "lives") {
-                this.text = "Lives  " + ScoreGlobals.lives;
+                this.text = "Lives  " + MainGlobals.Score.lives;
                 this.positionX = 10;
                 this.positionY = 40;
                 this.fill = "Yellow";
@@ -32,16 +32,16 @@ function TextProperties(textType) {
                 this.fill = "White";
                 this.font = "15px Arial";
                 this.wordWrap = true;
-                this.wordWrapWidth = MapGlobals.screenWidth/4;
+                this.wordWrapWidth = MainGlobals.ScreenWidth/4;
             }
             else if(this.type = "loadInfo") {
                 this.text = "Only five guardians called GUMBALL SEEDS can save the sweet gumball world from a dark and sour transformation led by KING SOUR and his minions of TWISTED SOURS, but first the GUMBALL SEED siblings must overcome their own sourness and reunite as a family to turn everything sour back to sweet!";
-                this.positionX = MapGlobals.screenWidth - MapGlobals.screenWidth/4;
+                this.positionX = MainGlobals.ScreenWidth - MainGlobals.ScreenWidth/4;
                 this.positionY = 0;
                 this.fill = "White";
                 this.font = "15px Arial";
                 this.wordWrap = true;
-                this.wordWrapWidth = MapGlobals.screenWidth/4;
+                this.wordWrapWidth = MainGlobals.ScreenWidth/4;
             }
             else {
                 this.text = "DEFAULT";

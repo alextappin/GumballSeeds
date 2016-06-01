@@ -5,7 +5,12 @@ function PowerBarProperties() {
     var props = {
         sprite : {},
         textures : [],
-        spriteCount : 2
+        currentTextures : [],
+        superbarTextures : [],
+        superbarFullTextures : [],
+        spriteCount : 2,
+        changeSpriteCounter : 0,
+        superPowerCount : 8
     };
 
     return props;

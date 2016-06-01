@@ -23,92 +23,97 @@ function HelperFunctions() {
     };
 
     functions.setScrollSpeedToMin = function (){
-        ScrollerGlobals.currentScrollSpeed = ScrollerGlobals.minScrollSpeed;
+        MainGlobals.Scroller.currentScrollSpeed = MainGlobals.Scroller.minScrollSpeed;
     };
 
     functions.setScrollSpeedToMax = function() {
-        ScrollerGlobals.currentScrollSpeed = ScrollerGlobals.maxScrollSpeed;
+        MainGlobals.Scroller.currentScrollSpeed = MainGlobals.Scroller.maxScrollSpeed;
     };
 
     functions.scrollSpeedIsMaxed = function() {
-        return ScrollerGlobals.currentScrollSpeed > ScrollerGlobals.maxScrollSpeed;
+        return MainGlobals.Scroller.currentScrollSpeed > MainGlobals.Scroller.maxScrollSpeed;
     };
 
     functions.doSwitchScreen = function() {
-        return MapGlobals.switchScreen;
+        return MainGlobals.Map.switchScreen;
     };
 
     functions.doPowerUp = function() {
-        return PowerUpGlobals.powerUpActive;
+        return MainGlobals.PowerUp.powerUpActive;
     };
 
     functions.switchScreenToggle = function() {
-        MapGlobals.switchScreen = !MapGlobals.switchScreen;
+        MainGlobals.Map.switchScreen = !MainGlobals.Map.switchScreen;
     };
 
     functions.screenIsGame  = function() {
-        return MapGlobals.screenToShow === MapGlobals.gameString;
+        return MainGlobals.Map.screenToShow === MainGlobals.Map.gameString;
     };
 
     functions.screenIsTitle  = function() {
-        return MapGlobals.screenToShow === MapGlobals.titleString;
+        return MainGlobals.Map.screenToShow === MainGlobals.Map.titleString;
     };
 
     functions.screenIsLoad  = function() {
-        return MapGlobals.screenToShow === MapGlobals.loadString;
+        return MainGlobals.Map.screenToShow === MainGlobals.Map.loadString;
     };
 
     functions.switchToGame = function() {
-        MapGlobals.screenToShow = MapGlobals.gameString;
+        MainGlobals.Map.screenToShow = MainGlobals.Map.gameString;
     };
 
     functions.switchToTitle = function() {
-        MapGlobals.screenToShow = MapGlobals.titleString;
+        MainGlobals.Map.screenToShow = MainGlobals.Map.titleString;
     };
 
     functions.switchToStartAnimation = function() {
-        MapGlobals.screenToShow = MapGlobals.startAnimationString;
+        MainGlobals.Map.screenToShow = MainGlobals.Map.startAnimationString;
     };
 
     functions.switchToLoad = function() {
-        MapGlobals.screenToShow = MapGlobals.loadString;
+        MainGlobals.Map.screenToShow = MainGlobals.Map.loadString;
     };
 
     functions.resetGlobals = function() {
-        if (ScoreGlobals.currentScore > ScoreGlobals.highScore) {
-            ScoreGlobals.highScore = ScoreGlobals.currentScore;
+        if (MainGlobals.Score.currentScore > MainGlobals.Score.highScore) {
+            MainGlobals.Score.highScore = MainGlobals.Score.currentScore;
         }
 
-        BalanceGlobals.enemies = 2;
-        BalanceGlobals.gumballs = 1;
-        ScoreGlobals.lives = 20;
-        ScoreGlobals.kills = 0;
-        ScoreGlobals.currescore = 0;
-        MapGlobals.loopCounter = 0;
-        ScrollerGlobals.groundSpeed = 10;
-        PowerUpGlobals.powerBarLevel = 2;
-        PowerUpGlobals.powerUpActive = false;
-        PowerUpGlobals.powerUpStartingViewport = 0;
+        MainGlobals.Balance.enemies = 2;
+        MainGlobals.Balance.gumballs = 1;
+        MainGlobals.Score.lives = MainGlobals.Balance.maxLives;
+        MainGlobals.Score.kills = 0;
+        MainGlobals.Score.currescore = 0;
+        MainGlobals.Map.loopCounter = 0;
+        MainGlobals.Scroller.groundSpeed = MainGlobals.ScreenHeight/50;//10;
+        MainGlobals.PowerUp.powerBarLevel = MainGlobals.PowerUp.startPowerBarLevel;
+        MainGlobals.PowerUp.powerUpActive = false;
+        MainGlobals.PowerUp.powerUpStartingViewport = 0;
     };
 
     functions.powerUpOn = function() {
-        PowerUpGlobals.powerUpActive = true;
+        MainGlobals.PowerUp.powerUpActive = true;
     };
 
     functions.powerUpOff = function() {
-        PowerUpGlobals.powerUpActive = false;
+        MainGlobals.PowerUp.powerUpActive = false;
+        MainGlobals.PowerUp.characterDonePoweringUp = false;
     };
 
     functions.resetAfterPowerUp = function() {
         functions.powerUpOff();
-        PowerUpGlobals.powerUpStartingViewport = 0;
-        PowerUpGlobals.powerBarLevel = PowerUpGlobals.startPowerBarLevel;
-        ScrollerGlobals.groundSpeed = ScrollerGlobals.startGroundSpeed;
+        MainGlobals.PowerUp.powerUpStartingViewport = 0;
+        MainGlobals.PowerUp.characterDonePoweringUp = false;
+        MainGlobals.PowerUp.characterBolt = false;
+        MainGlobals.PowerUp.characterRise = false;
+        MainGlobals.PowerUp.powerBarLevel = MainGlobals.PowerUp.startPowerBarLevel;
+        MainGlobals.Scroller.groundSpeed = MainGlobals.Scroller.startGroundSpeed;
+        MainGlobals.Score.lives = MainGlobals.Balance.maxLives;
     };
 
     functions.powerUpScrollSpeed = function() {
-        ScrollerGlobals.currentScrollSpeed *= PowerUpGlobals.powerUpSpeedMultiplier;
-        ScrollerGlobals.groundSpeed *= PowerUpGlobals.powerUpSpeedMultiplier;
+        MainGlobals.Scroller.currentScrollSpeed *= MainGlobals.PowerUp.powerUpSpeedMultiplier;
+        MainGlobals.Scroller.groundSpeed *= MainGlobals.PowerUp.powerUpSpeedMultiplier;
     };
 
     functions.handlePowerUpViewport = function() {
@@ -116,47 +121,79 @@ function HelperFunctions() {
     };
 
     functions.startTitleSound = function() {
-        createjs.Sound.play(MapGlobals.titleString, {loop: 10, volume:.2});
+        createjs.Sound.play(MainGlobals.Map.titleString, {loop: 10, volume:.2});
     };
 
     functions.stopTitleSound = function() {
-        createjs.Sound.stop(MapGlobals.titleString);
+        createjs.Sound.stop(MainGlobals.Map.titleString);
+    };
+
+    functions.startGameSound = function() {
+        createjs.Sound.play(MainGlobals.Map.gameString, {loop: 10, volume:.5});
+    };
+
+    functions.startBassSound = function() {
+        createjs.Sound.play("Bass", {loop: 0, volume:1, duration: 10000});
     };
 
     functions.getCorrectScaleWidth = function(width) {
-        return MapGlobals.screenWidth / width;
+        return MainGlobals.ScreenWidth / width;
     };
 
     functions.getCorrectScaleHeight = function(height) {
-        return MapGlobals.screenHeight / height;
+        return MainGlobals.ScreenHeight / height;
     };
 
     functions.getHeightGivenConstant = function(constant, height) {
-        return (MapGlobals.screenHeight - height)/2 - (MapGlobals.screenHeight) * constant;
+        return (MainGlobals.ScreenHeight - height)/2 - (MainGlobals.ScreenHeight) * constant;
     };
 
     functions.getRatioToScreenGivenConst = function(constant, height, width) {
-        return (MapGlobals.screenHeight * MapGlobals.screenWidth * constant) / (height * width);
+        return (MainGlobals.ScreenHeight * MainGlobals.ScreenWidth * constant) / (height * width);
     };
 
     functions.getScreenPositionMiddleWidth = function(width) {
-        return (MapGlobals.screenWidth - width)/2;
+        return (MainGlobals.ScreenWidth - width)/2;
     };
 
     functions.getScreenPositionMiddleHeight = function(height) {
-        return (MapGlobals.screenHeight - height)/2;
+        return (MainGlobals.ScreenHeight - height)/2;
     };
 
     functions.getScreenRatioUsingHeight = function(height, percentage) {
         if (percentage) {
-            return (MapGlobals.screenHeight*percentage) / height;
+            return (MainGlobals.ScreenHeight*percentage) / height;
         } else {
-            return MapGlobals.screenHeight / height;
+            return MainGlobals.ScreenHeight / height;
         }
     };
 
     functions.calculateCloudScale = function(posY) {
-        return (1-(posY / MapGlobals.screenHeight))/ScrollerGlobals.cloudScaleConst;
+        return (1-(posY / MainGlobals.ScreenHeight))/MainGlobals.Scroller.cloudScaleConst;
+    };
+
+    functions.endGame = function() {
+        MainGlobals.Physics.airborn = true;
+        MainGlobals.Balance.continueGame = false;
+        MainGlobals.Helpers.switchScreenToggle();
+        MainGlobals.Helpers.switchToTitle();
+    };
+
+    functions.isIntersecting = function(rectangle1, rectangle2) { //rectangular isIntersection method
+        return !(rectangle2.position.x > (rectangle1.position.x + rectangle1.width) ||
+        (rectangle2.position.x + rectangle2.width) < rectangle1.x ||
+        rectangle2.position.y > (rectangle1.position.y + rectangle1.height) ||
+        (rectangle2.position.y + rectangle2.height) < rectangle1.position.y);
+    };
+
+    functions.shuffleArray = function(a) {
+        var j, x, i;
+        for (i = a.length; i; i -= 1) {
+            j = Math.floor(Math.random() * i);
+            x = a[i - 1];
+            a[i - 1] = a[j];
+            a[j] = x;
+        }
     };
 
     return functions;

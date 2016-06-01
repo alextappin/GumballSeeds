@@ -3,9 +3,8 @@
  */
 function LoadImageProperties() {
     var props = {
-        sprite : {},
         textures : [],
-        alphaStart : 0.00,
+        alphaStart : 0.02,
         alphaIncrement :.005
     };
 

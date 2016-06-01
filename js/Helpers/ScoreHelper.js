@@ -2,31 +2,43 @@ function ScoreHelper() {
     var scoreHelpers = {};
 
     scoreHelpers.killEnemy = function(enemyPoints) {
-        ScoreGlobals.currentScore += enemyPoints;
-        ScoreGlobals.kills++;
-        PowerUpHelper().incrementPowerUp();
+        MainGlobals.Score.currentScore += enemyPoints;
+        MainGlobals.Score.kills++;
+        MainGlobals.PowerHelper.incrementPowerUp();
     };
 
     scoreHelpers.getHitByEnemy = function() {
-        PowerUpGlobals.powerBarLevel = (PowerUpGlobals.powerBarLevel > HelperFunctions().returnZero() ? PowerUpGlobals.powerBarLevel - BalanceGlobals.enemyDamage : 0);
-        ScoreGlobals.lives -= BalanceGlobals.enemyDamage;
+        MainGlobals.PowerUp.powerBarLevel = (MainGlobals.PowerUp.powerBarLevel > MainGlobals.Helpers.returnZero() ? MainGlobals.PowerUp.powerBarLevel - MainGlobals.Balance.enemyDamage : 0);
+        MainGlobals.Score.lives -= MainGlobals.Balance.enemyDamage;
     };
 
     scoreHelpers.runningScore = function() {
-        ScoreGlobals.currentScore = ScoreGlobals.currentScore + BalanceGlobals.runningScore;
+        MainGlobals.Score.currentScore = MainGlobals.Score.currentScore + MainGlobals.Balance.runningScore;
     };
 
     scoreHelpers.createNewEnemy = function() {
-        return ScoreGlobals.kills % BalanceGlobals.createNewEnemiesCounter === HelperFunctions().returnZero();
+        return MainGlobals.Score.kills % MainGlobals.Balance.createNewEnemiesCounter === MainGlobals.Helpers.returnZero();
     };
 
-    scoreHelpers.pickupGumball = function() {
-        ScoreGlobals.currentScore = ScoreGlobals.currentScore + BalanceGlobals.pickupGumballScore;
+    scoreHelpers.pickupGumball = function(color) {
+        if (color == MainGlobals.Map.gumballs[MainGlobals.PowerUp.powerBarLevel]) {
+            MainGlobals.PowerHelper.incrementPowerUp();
+            if (MainGlobals.Score.lives < MainGlobals.Balance.maxLives) {
+                MainGlobals.Score.lives++;
+            }
+        } else {
+            MainGlobals.PowerHelper.decrementPowerUp();
+            if (MainGlobals.Score.lives > 0) {
+                MainGlobals.Score.lives--;
+            } else {
+                //end game cuz lives are 0....
+            }
+        }
     };
 
     scoreHelpers.updateScore = function() {
-        MapGlobals.loopCounter++;
-        if (MapGlobals.loopCounter % BalanceGlobals.loopScoreIncrementTime === 0) {
+        MainGlobals.Map.loopCounter++;
+        if (MainGlobals.Map.loopCounter % MainGlobals.Balance.loopScoreIncrementTime === 0) {
             scoreHelpers.runningScore();
         }
     };

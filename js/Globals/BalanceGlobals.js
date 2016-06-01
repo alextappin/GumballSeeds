@@ -1,7 +1,7 @@
 /**
  * Created by ajt on 4/25/2016.
  */
-var BalanceGlobals = (function BalanceGlobals() {
+function BalanceGlobals() {
     var constants = {};
 
     constants.enemies = 2;
@@ -16,8 +16,12 @@ var BalanceGlobals = (function BalanceGlobals() {
     constants.gumballsToAdd = 1;
     constants.continueGame = true;
 
+    constants.maxLives = 22;
+
     //Character Specific
     constants.isAttacking = false;
+    constants.attackTime = 21;
+    constants.jumpAttackTime = 39;
 
     return constants;
-})();
+}

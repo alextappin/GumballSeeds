@@ -15,11 +15,10 @@ TitleBoard.prototype.constructTitleBoard = function() {
 };
 
 TitleBoard.prototype.setPositionAndScale = function(obj) {
-    ScalingGlobals.titleScreenScaleX = HelperFunctions().getCorrectScaleWidth(obj.width);
-    ScalingGlobals.titleScreenScaleY = HelperFunctions().getCorrectScaleHeight(obj.height);
-    obj.scale = HelperFunctions().getNewPoint(ScalingGlobals.titleScreenScaleX,ScalingGlobals.titleScreenScaleY);
-    obj.position =  HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(obj.width), HelperFunctions().getScreenPositionMiddleHeight(obj.height));
-    obj.alpha = TimingGlobals.titleAlphaStart;
+    MainGlobals.Scaling.titleScreenScale = MainGlobals.Helpers.getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.titleScreenPercent);
+    obj.scale = MainGlobals.Helpers.getNewPoint(MainGlobals.Scaling.titleScreenScale,MainGlobals.Scaling.titleScreenScale);
+    obj.position =  MainGlobals.Helpers.getNewPoint(MainGlobals.Helpers.getScreenPositionMiddleWidth(obj.width), MainGlobals.Helpers.getScreenPositionMiddleHeight(obj.height));
+    obj.alpha = MainGlobals.Timing.titleAlphaStart;
 };
 
 TitleBoard.prototype.initiateTitleBoardSprites = function() {
@@ -35,10 +34,10 @@ TitleBoard.prototype.setSpriteToCurrentTexture = function(titleBoardObj) {
 };
 
 TitleBoard.prototype.update = function(titleBoardObj) {
-    if (titleBoardObj.alpha + TimingGlobals.titleBgAlphaIncrement > 1) {
+    if (titleBoardObj.alpha + MainGlobals.Timing.titleBgAlphaIncrement > 1) {
         titleBoardObj.alpha = 1;
     } else {
-        titleBoardObj.alpha += TimingGlobals.titleBgAlphaIncrement;
+        titleBoardObj.alpha += MainGlobals.Timing.titleBgAlphaIncrement;
     }
 };
 

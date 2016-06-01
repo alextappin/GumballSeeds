@@ -4,11 +4,19 @@
 function GameSounds() {
     var soundsProps = {
         titleSound : {
-            id : MapGlobals.titleString,
+            id : "Title",
             url : "../resources/GumballSeedsTheme2.mp3"
+        },
+        gameSound : {
+            id : "Game",
+            url : "../resources/GameplaySong.mp3"
+        },
+        bassSound : {
+            id: "Bass",
+            url: "../resources/Bass bomb sound effect.mp3"
         }
     },
-        numSoundsToLoad = 1,
+        numSoundsToLoad = 3,
         counter = 0;
     createjs.Sound.addEventListener("fileload", handleFileLoad);
 
@@ -22,7 +30,7 @@ function GameSounds() {
 
     function handleFileLoad() {
         if (counter == numSoundsToLoad) {
-            MapGlobals.soundLoaded = true;
+            MainGlobals.Map.soundLoaded = true;
         }
     }
 }
