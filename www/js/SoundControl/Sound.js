@@ -5,15 +5,15 @@ function GameSounds() {
     var soundsProps = {
         titleSound : {
             id : "Title",
-            url : "../resources/GumballSeedsTheme2.mp3"
+            url : "resources/GumballSeedsTheme2.mp3"
         },
         gameSound : {
             id : "Game",
-            url : "../resources/GameplaySong.mp3"
+            url : "resources/GameplaySong.mp3"
         },
         bassSound : {
             id: "Bass",
-            url: "../resources/Bass bomb sound effect.mp3"
+            url: "resources/Bass bomb sound effect.mp3"
         }
     },
         numSoundsToLoad = 3,

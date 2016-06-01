@@ -44,4 +44,5 @@ TitleBoard.prototype.update = function(titleBoardObj) {
 TitleBoard.prototype.switchToWhiteBackground = function(titleBoardObj) {
     if (titleBoardObj.children[0].texture != this.Properties.textures[this.Properties.whiteBoardTextureNumber]) //if its not already set
         titleBoardObj.children[0].texture = this.Properties.textures[this.Properties.whiteBoardTextureNumber];
+    titleBoardObj.visible = false;
 };
