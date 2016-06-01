@@ -49,7 +49,7 @@ EnemiesHandler.prototype.setupEnemyStructure = function(enemyHandler) {
 
 EnemiesHandler.prototype.update = function(enemyHandler, groundObj, characterObj, stage) {
     for (var n = 0; n < enemyHandler.enemyStructure.length; n++) {
-        enemyHandler.enemyStructure[n].update(enemyHandler.enemyStructure[n]); //will just move them/expload
+        enemyHandler.enemyStructure[n].update(enemyHandler.enemyStructure[n]); //will just move them/explode
     }
 
     this.handleOffScreen(enemyHandler, groundObj, stage);
@@ -57,7 +57,7 @@ EnemiesHandler.prototype.update = function(enemyHandler, groundObj, characterObj
 };
 EnemiesHandler.prototype.updatePowerUp = function(enemyHandler, groundObj, characterObj, stage) {
     for (var n = 0; n < enemyHandler.enemyStructure.length; n++) {
-        enemyHandler.enemyStructure[n].update(enemyHandler.enemyStructure[n]); //will just move them/expload
+        enemyHandler.enemyStructure[n].update(enemyHandler.enemyStructure[n]); //will just move them/explode
     }
 
     this.handleOffScreen(enemyHandler, groundObj, stage);
@@ -65,11 +65,32 @@ EnemiesHandler.prototype.updatePowerUp = function(enemyHandler, groundObj, chara
 };
 
 EnemiesHandler.prototype.handleOffScreen = function(enemyHandler, groundObj, stage) {
-
+    if (enemyHandler.enemyStructure[0].position.x < 0 - enemyHandler.enemyStructure[0].width) {
+        this.returnPiece(enemyHandler.enemyStructure.shift(), enemyHandler, stage);
+        this.addNewEnemy(enemyHandler, groundObj, stage);
+    }
 };
 
 EnemiesHandler.prototype.characterCollide = function(enemyHandler, groundObj, stage) {
 
+};
+
+EnemiesHandler.prototype.addNewEnemy = function(enemyHandler, groundObj, stage) {
+    enemyHandler.enemyStructure.push(
+        enemyHandler.gumballs.pop()
+    );
+
+    enemyHandler.enemyStructure[enemyHandler.enemyStructure.length-1].position = this.getNewPosition(
+        enemyHandler,
+        enemyHandler.enemyStructure.length-1,
+        groundObj,
+        0
+    );
+
+    stage.addChildAt(
+        enemyHandler.enemyStructure[enemyHandler.enemyStructure.length-1],
+        MainGlobals.Map.addGumballChildConst
+    );
 };
 
 EnemiesHandler.prototype.returnPiece = function(piece, enemyHandler, stage) {
