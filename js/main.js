@@ -8,6 +8,7 @@ function Main() {
     window.addEventListener("resize", this.refresh);
     MainGlobals.Helpers.setScrollSpeedToMin();
     this.loadSpriteSheet();
+    PIXI.GC_MODES.DEFAULT = PIXI.GC_MODES.AUTO; //Optimizes the game by about 2% Total...
 }
 
 Main.prototype.refresh = function() {
