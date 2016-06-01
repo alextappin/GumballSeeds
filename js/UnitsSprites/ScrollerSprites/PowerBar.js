@@ -53,11 +53,9 @@ PowerBar.prototype.update = function(superbarObj) {
     }
 
     this.checkForUpdate(superbarObj);
+    superbarObj.visible = true;
+    this.setPositionScaleNew(superbarObj);
 
-    if (!superbarObj.visible) {
-        superbarObj.visible = true;
-        this.setPositionScaleNew(superbarObj);
-    }
 };
 
 PowerBar.prototype.updatePowerUp = function(superbarObj) {

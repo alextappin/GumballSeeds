@@ -28,11 +28,6 @@ function ScoreHelper() {
             }
         } else {
             MainGlobals.PowerHelper.decrementPowerUp();
-            if (MainGlobals.Score.lives > 0) {
-                MainGlobals.Score.lives--;
-            } else {
-                //end game cuz lives are 0....
-            }
         }
     };
 
