@@ -53,11 +53,6 @@ PowerBar.prototype.update = function(superbarObj) {
     }
 
     this.checkForUpdate(superbarObj);
-
-    if (!superbarObj.visible) {
-        superbarObj.visible = true;
-        this.setPositionScaleNew(superbarObj);
-    }
 };
 
 PowerBar.prototype.updatePowerUp = function(superbarObj) {
@@ -73,6 +68,12 @@ PowerBar.prototype.checkForUpdate = function(superbarObj) {
     if (MainGlobals.PowerUp.powerBarLevel != this.Properties.spriteCount) {
         this.Properties.spriteCount = MainGlobals.PowerUp.powerBarLevel;
         this.setSpriteToCurrentTexture(superbarObj);
+    }
+    if (this.Properties.superbarFullTextures.indexOf(superbarObj.children[0].texture) > -1) {
+        this.Properties.spriteCount = MainGlobals.PowerUp.powerBarLevel;
+        this.setSpriteToCurrentTexture(superbarObj);
+        superbarObj.visible = true;
+        this.setPositionScaleNew(superbarObj);
     }
 };
 

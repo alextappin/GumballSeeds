@@ -8,6 +8,7 @@ function Main() {
     window.addEventListener("resize", this.refresh);
     MainGlobals.Helpers.setScrollSpeedToMin();
     this.loadSpriteSheet();
+    PIXI.GC_MODES.DEFAULT = PIXI.GC_MODES.AUTO; //Optimizes the game by about 2% Total...
 }
 
 Main.prototype.refresh = function() {
@@ -35,7 +36,7 @@ Main.prototype.loadSpriteSheet = function() {
         "../updatedImages/super/super1.json", "../updatedImages/super/super2.json", "../updatedImages/super/super3.json",
         "../updatedImages/super/super4.json", "../updatedImages/super/super5.json",
         "../updatedImages/interface/superBar1.json", "../updatedImages/interface/superBar2.json", "../updatedImages/interface/interface.json",
-        "../updatedImages/titleScreen/loadscreen.json"
+        "../updatedImages/titleScreen/loadscreen.json", "../updatedImages/enemy/enemyDeath.json"
     ],
         loader = new PIXI.loaders.Loader();
     loader.add(assetsToLoad).load(this.spriteSheetLoaded.bind(this))
