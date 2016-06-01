@@ -6,7 +6,7 @@ function Main() {
 
     MainGlobals.initialize();
     window.addEventListener("resize", this.refresh);
-    HelperFunctions().setScrollSpeedToMin();
+    MainGlobals.Helpers.setScrollSpeedToMin();
     this.loadSpriteSheet();
 }
 
@@ -16,7 +16,7 @@ Main.prototype.refresh = function() {
 
 Main.prototype.loadSpriteSheet = function() {
     var assetsToLoad = ["../resources/characterSprites.json", "../resources/enemy.json", "../resources/fgNew.json",
-        "../resources/gumballStem.json", "../resources/loadImage.json", "../resources/powerBar.json",
+        "../resources/gumballStem.json", "../resources/powerBar.json",
         "../resources/StartButton.json", "../resources/trans.json",
 
         "../updatedImages/titleScreen/startButtons.json", "../updatedImages/titleScreen/startrainbowanimations.json","../updatedImages/titleScreen/startrainbowanimationwhite.json",
@@ -34,7 +34,8 @@ Main.prototype.loadSpriteSheet = function() {
         "../updatedImages/super/superGumball1.json", "../updatedImages/character/characterSuper1.json", "../updatedImages/character/characterSuper2.json",
         "../updatedImages/super/super1.json", "../updatedImages/super/super2.json", "../updatedImages/super/super3.json",
         "../updatedImages/super/super4.json", "../updatedImages/super/super5.json",
-        "../updatedImages/interface/superBar1.json", "../updatedImages/interface/superBar2.json", "../updatedImages/interface/interface.json"
+        "../updatedImages/interface/superBar1.json", "../updatedImages/interface/superBar2.json", "../updatedImages/interface/interface.json",
+        "../updatedImages/titleScreen/loadscreen.json"
     ],
         loader = new PIXI.loaders.Loader();
     loader.add(assetsToLoad).load(this.spriteSheetLoaded.bind(this))
@@ -51,7 +52,7 @@ Main.prototype.spriteSheetLoaded = function() {
 };
 
 Main.prototype.gameStatesHandler = function() {
-    if (HelperFunctions().doSwitchScreen()) {
+    if (MainGlobals.Helpers.doSwitchScreen()) {
         this.purgeStage()
     } else {
         this.updatedSelectedScreen();
@@ -63,29 +64,29 @@ Main.prototype.purgeStage = function() {
     MainGlobals.stage.destroy();
     MainGlobals.stage = new PIXI.Container(0xFFFFFF);
     this.startAppropriateScreen();
-    HelperFunctions().switchScreenToggle();
+    MainGlobals.Helpers.switchScreenToggle();
 };
 
 Main.prototype.updatedSelectedScreen = function() {
-    if(HelperFunctions().screenIsGame()) {
+    if(MainGlobals.Helpers.screenIsGame()) {
         this.scroller.update();
-    } else if (HelperFunctions().screenIsTitle()) {
+    } else if (MainGlobals.Helpers.screenIsTitle()) {
         this.titleScreen.update();
-    } else if(HelperFunctions().screenIsLoad()) {
+    } else if(MainGlobals.Helpers.screenIsLoad()) {
         this.loadScreen.update();
     }
 };
 
 Main.prototype.startAppropriateScreen = function() {
-    if(HelperFunctions().screenIsGame()) {
+    if(MainGlobals.Helpers.screenIsGame()) {
         this.scroller = new Scroller(MainGlobals.stage);
-    } else if (HelperFunctions().screenIsTitle()) {
+    } else if (MainGlobals.Helpers.screenIsTitle()) {
         this.titleScreen = new TitleScreen(MainGlobals.stage);
-    } else if(HelperFunctions().screenIsLoad()) {
+    } else if(MainGlobals.Helpers.screenIsLoad()) {
         this.loadScreen = new LoadScreen(MainGlobals.stage);
     }
 };
 
 Main.prototype.saveAndRestartGameVariables = function() {
-    HelperFunctions().resetGlobals();
+    MainGlobals.Helpers.resetGlobals();
 };

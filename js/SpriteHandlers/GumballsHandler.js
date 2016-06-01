@@ -32,7 +32,7 @@ GumballsHandler.prototype.addGumballsToStage = function(gumballHandler, stage) {
 };
 
 GumballsHandler.prototype.setupStartGumballs = function(gumballHandler) {
-    HelperFunctions().shuffleArray(gumballHandler.gumballs); //shuffle the array of gumball objects...
+    MainGlobals.Helpers.shuffleArray(gumballHandler.gumballs); //shuffle the array of gumball objects...
 
     gumballHandler.gumballStructure.push( //2 gumballs at a time... maximum
         gumballHandler.gumballs.pop(),
@@ -40,7 +40,7 @@ GumballsHandler.prototype.setupStartGumballs = function(gumballHandler) {
     );
 
     for (var n = 0; n < gumballHandler.gumballStructure.length; n++) {
-        gumballHandler.gumballStructure[n].position = HelperFunctions().getNewPoint(
+        gumballHandler.gumballStructure[n].position = MainGlobals.Helpers.getNewPoint(
             0-gumballHandler.gumballStructure[n].width,
             0
         );
@@ -52,7 +52,7 @@ GumballsHandler.prototype.getNewPosition = function(gumballHandler, index, groun
         groundHeight = groundObj.getHeightAtPositionX(newGumballX, groundObj) + MainGlobals.Scaling.gumballPercentageY;
 
     if (groundHeight) {
-        return HelperFunctions().getNewPoint(
+        return MainGlobals.Helpers.getNewPoint(
             newGumballX,
             groundHeight + (MainGlobals.ScreenHeight * MainGlobals.Map.gumballHeightConst)
         );
@@ -66,7 +66,7 @@ GumballsHandler.prototype.getNewPosition = function(gumballHandler, index, groun
             MainGlobals.ScreenWidth / MainGlobals.Map.gumballSpaceConst
         );
     } else { //the new position is past the last ground...
-        return HelperFunctions().getNewPoint(
+        return MainGlobals.Helpers.getNewPoint(
             groundObj.groundStructure[groundObj.groundStructure.length - 1].position.x,
             groundObj.groundStructure[groundObj.groundStructure.length - 1].position.y
         );
@@ -75,7 +75,7 @@ GumballsHandler.prototype.getNewPosition = function(gumballHandler, index, groun
 
 GumballsHandler.prototype.calculateRandomSpace = function() {
     //1/x of the screen width * a random number between 1 and 15. Example (1280/x) * 5 =  6400/x unit space
-    return (MainGlobals.ScreenWidth / MainGlobals.Map.gumballSpaceConst) * (HelperFunctions().getRandomNumber(4, 10))
+    return (MainGlobals.ScreenWidth / MainGlobals.Map.gumballSpaceConst) * (MainGlobals.Helpers.getRandomNumber(4, 10))
 };
 
 GumballsHandler.prototype.update = function(gumballHandler, groundObj, characterObj, stage) {
@@ -106,7 +106,7 @@ GumballsHandler.prototype.handleOffScreen = function(gumballHandler, groundObj, 
 GumballsHandler.prototype.returnPiece = function(piece, gumballHandler, stage) {
     stage.removeChild(piece);
     gumballHandler.gumballs.push(piece);
-    HelperFunctions().shuffleArray(gumballHandler.gumballs);
+    MainGlobals.Helpers.shuffleArray(gumballHandler.gumballs);
 };
 
 GumballsHandler.prototype.addNewGumball = function(gumballHandler, groundObj, stage) {
@@ -128,13 +128,13 @@ GumballsHandler.prototype.addNewGumball = function(gumballHandler, groundObj, st
 };
 
 GumballsHandler.prototype.characterGrab = function(gumballHandler, characterObj, groundObj, stage) {
-    if (HelperFunctions().isIntersecting(gumballHandler.gumballStructure[0], characterObj)) {
+    if (MainGlobals.Helpers.isIntersecting(gumballHandler.gumballStructure[0], characterObj)) {
         this.characterPickedUp(gumballHandler, groundObj, stage);
     }
 };
 
 GumballsHandler.prototype.characterPickedUp = function(gumballHandler, groundObj, stage) {
-    ScoreHelper().pickupGumball(gumballHandler.gumballStructure[0].Properties.color);
+    MainGlobals.ScoreHelper.pickupGumball(gumballHandler.gumballStructure[0].Properties.color);
     this.returnPiece(gumballHandler.gumballStructure.shift(), gumballHandler, stage);
     this.addNewGumball(gumballHandler, groundObj, stage);
 };

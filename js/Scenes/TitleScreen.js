@@ -9,7 +9,7 @@ function TitleScreen(stage) {
         return stage;
     };
 
-    HelperFunctions().startTitleSound();
+    MainGlobals.Helpers.startTitleSound();
 }
 
 TitleScreen.prototype.initializePositions = function() {
@@ -28,5 +28,5 @@ TitleScreen.prototype.constructTitleScreen = function(stage) {
 };
 
 TitleScreen.prototype.update = function() {
-    TitleTimingHelper().updateTitleObjects(this.Properties.titleBoard, this.Properties.titleWords, this.Properties.startButton, this.Properties.startAnimation);
+    MainGlobals.TitleTime.updateTitleObjects(this.Properties.titleBoard, this.Properties.titleWords, this.Properties.startButton, this.Properties.startAnimation);
 };

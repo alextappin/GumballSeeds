@@ -18,14 +18,14 @@ Ground.prototype.constructGround = function(groundType) {
 Ground.prototype.setPositionAndScale = function(obj) {
     if (obj.Properties.type != MainGlobals.Map.groundA && obj.Properties.type != MainGlobals.Map.groundB) {
         //end or start pieces. #pragma since this happens more often...
-        MainGlobals.Scaling.groundEndStartRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height,MainGlobals.Scaling.groundEndStartPercentOfScreen); //access array and grab correct ratios out of array
-        obj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.groundEndStartRatio,MainGlobals.Scaling.groundEndStartRatio);
+        MainGlobals.Scaling.groundEndStartRatio = MainGlobals.Helpers.getScreenRatioUsingHeight(obj.height,MainGlobals.Scaling.groundEndStartPercentOfScreen); //access array and grab correct ratios out of array
+        obj.scale = MainGlobals.Helpers.getNewPoint(MainGlobals.Scaling.groundEndStartRatio,MainGlobals.Scaling.groundEndStartRatio);
     } else {
         //one of the main ground slices
-        MainGlobals.Scaling.groundMainRatio = HelperFunctions().getScreenRatioUsingHeight(obj.height,MainGlobals.Scaling.groundMainPercentOfScreen); //access array and grab correct ratios out of array
-        obj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.groundMainRatio,MainGlobals.Scaling.groundMainRatio);
+        MainGlobals.Scaling.groundMainRatio = MainGlobals.Helpers.getScreenRatioUsingHeight(obj.height,MainGlobals.Scaling.groundMainPercentOfScreen); //access array and grab correct ratios out of array
+        obj.scale = MainGlobals.Helpers.getNewPoint(MainGlobals.Scaling.groundMainRatio,MainGlobals.Scaling.groundMainRatio);
     }
-    obj.position = HelperFunctions().getNewPoint(0, 0);
+    obj.position = MainGlobals.Helpers.getNewPoint(0, 0);
 };
 
 Ground.prototype.initiateGroundSprite = function() {

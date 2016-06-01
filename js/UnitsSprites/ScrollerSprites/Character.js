@@ -17,10 +17,10 @@ Character.prototype.constructCharacter = function() {
 };
 
 Character.prototype.setPositionAndScale = function(obj) {
-    MainGlobals.Scaling.characterScale = HelperFunctions().getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.characterPercent);
+    MainGlobals.Scaling.characterScale = MainGlobals.Helpers.getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.characterPercent);
 
-    obj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.characterScale,MainGlobals.Scaling.characterScale);
-    obj.position =  HelperFunctions().getNewPoint(MainGlobals.Scaling.characterPositionX, 0);
+    obj.scale = MainGlobals.Helpers.getNewPoint(MainGlobals.Scaling.characterScale,MainGlobals.Scaling.characterScale);
+    obj.position =  MainGlobals.Helpers.getNewPoint(MainGlobals.Scaling.characterPositionX, 0);
 };
 
 Character.prototype.initiateCharacterSprites = function() {
@@ -160,7 +160,7 @@ Character.prototype.fallCharacter = function(characterObj, groundObj) {
         MainGlobals.Physics.characterHighJumping = false;
         this.setCurrentTextures();
     } else {
-        HelperFunctions().endGame();
+        MainGlobals.Helpers.endGame();
         characterObj.position.y += MainGlobals.Physics.characterVelocityY;
     }
 };

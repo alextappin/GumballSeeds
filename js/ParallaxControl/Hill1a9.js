@@ -13,9 +13,9 @@ Hill1a9.constructor = Hill1a9;
 Hill1a9.prototype = Object.create(PIXI.Container.prototype);
 
 Hill1a9.prototype.setPositionAndScale = function(obj) {
-    var scale = HelperFunctions().getCorrectScaleWidth(obj.width);
-    obj.position = HelperFunctions().getNewPoint(0, MainGlobals.Scroller.hill1aY);
-    obj.scale = HelperFunctions().getNewPoint(scale, scale);
+    var scale = MainGlobals.Helpers.getCorrectScaleWidth(obj.width);
+    obj.position = MainGlobals.Helpers.getNewPoint(0, MainGlobals.Scroller.hill1aY);
+    obj.scale = MainGlobals.Helpers.getNewPoint(scale, scale);
 };
 
 Hill1a9.prototype.update = function(obj, newViewportX) {

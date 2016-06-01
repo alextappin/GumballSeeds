@@ -15,9 +15,9 @@ LifeBar.prototype.constructLifeBar = function() {
 };
 
 LifeBar.prototype.setPositionAndScale = function(obj) {
-    MainGlobals.Scaling.lifeBarScale = HelperFunctions().getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.lifeBarPercent);
-    obj.scale = HelperFunctions().getNewPoint(MainGlobals.Scaling.lifeBarScale,MainGlobals.Scaling.lifeBarScale);
-    obj.position =  HelperFunctions().getNewPoint(HelperFunctions().getScreenPositionMiddleWidth(obj.width), MainGlobals.Scaling.lifeBarPositionY);
+    MainGlobals.Scaling.lifeBarScale = MainGlobals.Helpers.getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.lifeBarPercent);
+    obj.scale = MainGlobals.Helpers.getNewPoint(MainGlobals.Scaling.lifeBarScale,MainGlobals.Scaling.lifeBarScale);
+    obj.position =  MainGlobals.Helpers.getNewPoint(MainGlobals.Helpers.getScreenPositionMiddleWidth(obj.width), MainGlobals.Scaling.lifeBarPositionY);
 };
 
 LifeBar.prototype.initiateLifeBarSprites = function() {

@@ -15,8 +15,8 @@ Enemy.prototype.constructEnemy = function() {
     this.initiateCharacterSprites();
 };
 Enemy.prototype.setPositionAndScale = function(obj) {
-    obj.position = HelperFunctions().getNewPoint(this.Properties.startPosX, this.Properties.startPosY);
-    obj.scale = HelperFunctions().getNewPoint(this.Properties.scaleX/3.5, this.Properties.scaleY/3.5);
+    obj.position = MainGlobals.Helpers.getNewPoint(this.Properties.startPosX, this.Properties.startPosY);
+    obj.scale = MainGlobals.Helpers.getNewPoint(this.Properties.scaleX/3.5, this.Properties.scaleY/3.5);
 };
 Enemy.prototype.initiateCharacterSprites = function() {
     this.Properties.textures.push(
@@ -72,15 +72,15 @@ Enemy.prototype.moveEnemy = function(enemyObj, characterObj) {
     enemyObj.position.y = obj.y;
     if (this.isIntersecting(characterObj, enemyObj)) {
         if (MainGlobals.Balance.isAttacking) {
-            ScoreHelper().killEnemy(this.Properties.pointsForKill);
-            if (ScoreHelper().createNewEnemy()) {
+            MainGlobals.ScoreHelper.killEnemy(this.Properties.pointsForKill);
+            if (MainGlobals.ScoreHelper.createNewEnemy()) {
                 MainGlobals.Balance.enemies += 1;
             }
         }
         else {
-            ScoreHelper().getHitByEnemy(1);
+            MainGlobals.ScoreHelper.getHitByEnemy(1);
             if (MainGlobals.Score.lives < 0) {
-                HelperFunctions().endGame();
+                MainGlobals.Helpers.endGame();
             }
         }
         this.updateVelocity();
@@ -90,19 +90,19 @@ Enemy.prototype.moveEnemy = function(enemyObj, characterObj) {
     }
 };
 Enemy.prototype.moveEnemyPowerUp = function(enemyObj, characterObj) {
-    //Use the point object in the HelperFunctions() class and set position.
+    //Use the point object in the MainGlobals.Helpers class and set position.
     var obj = this.getUpdatedPositionVariables(enemyObj.position.x, enemyObj.position.y);
     enemyObj.position.x = obj.x;
     enemyObj.position.y = obj.y;
     if (this.isIntersecting(characterObj, enemyObj)) {
         if (MainGlobals.Balance.isAttacking) {
-            ScoreHelper().killEnemy(this.Properties.pointsForKill);
-            if (ScoreHelper().createNewEnemy()) {
+            MainGlobals.ScoreHelper.killEnemy(this.Properties.pointsForKill);
+            if (MainGlobals.ScoreHelper.createNewEnemy()) {
                 MainGlobals.Score.enemies += 1;
             }
         }
         else {
-            ScoreHelper().getHitByEnemy(1);
+            MainGlobals.ScoreHelper.getHitByEnemy(1);
             if (MainGlobals.Score.lives < 0) {
                 characterObj.endGame();
             }
@@ -114,13 +114,13 @@ Enemy.prototype.moveEnemyPowerUp = function(enemyObj, characterObj) {
     }
 };
 Enemy.prototype.updateVelocity = function() {
-    this.Properties.velocityX = HelperFunctions().getRandomNumber(4,10);
-    this.Properties.velocityY =  HelperFunctions().getRandomNumber(1,3);
+    this.Properties.velocityX = MainGlobals.Helpers.getRandomNumber(4,10);
+    this.Properties.velocityY =  MainGlobals.Helpers.getRandomNumber(1,3);
     this.speedOrSlow();
 };
 Enemy.prototype.updateVelocityPowerUp = function() {
-    this.Properties.velocityX = HelperFunctions().getRandomNumber(20,22);
-    this.Properties.velocityY = HelperFunctions().getRandomNumber(1,3);
+    this.Properties.velocityX = MainGlobals.Helpers.getRandomNumber(20,22);
+    this.Properties.velocityY = MainGlobals.Helpers.getRandomNumber(1,3);
     this.speedOrSlow();
 };
 Enemy.prototype.getUpdatedPositionVariables = function(posX, posY) {
@@ -142,12 +142,12 @@ Enemy.prototype.getUpdatedPositionVariables = function(posX, posY) {
 Enemy.prototype.getNewPositions = function() {
     return {
         x : MainGlobals.ScreenWidth + 100,
-        y :  HelperFunctions().getRandomNumber(0, 400)
+        y :  MainGlobals.Helpers.getRandomNumber(0, 400)
     };
 };
 Enemy.prototype.speedOrSlow = function() {
-    this.Properties.changeVelocityX = HelperFunctions().getRandomNumber(1,2) == 1 ? this.Properties.velocityDecelerate : this.Properties.velocityAccelerate;
-    this.Properties.changeVelocityY = HelperFunctions().getRandomNumber(1,2) == 1 ? this.Properties.velocityDecelerate : this.Properties.velocityAccelerate;
+    this.Properties.changeVelocityX = MainGlobals.Helpers.getRandomNumber(1,2) == 1 ? this.Properties.velocityDecelerate : this.Properties.velocityAccelerate;
+    this.Properties.changeVelocityY = MainGlobals.Helpers.getRandomNumber(1,2) == 1 ? this.Properties.velocityDecelerate : this.Properties.velocityAccelerate;
 };
 Enemy.prototype.isIntersecting = function(rectangle1, rectangle2) {
     return !(rectangle2.position.x > (rectangle1.position.x + rectangle1.width) ||

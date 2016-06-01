@@ -35,6 +35,11 @@ var MainGlobals = (function MainGlobals() {
         constants.Score = ScoreGlobals();
         constants.Scroller = ScrollerGlobals();
         constants.Timing = TimingGlobals();
+
+        constants.Helpers = HelperFunctions();
+        constants.ScoreHelper = ScoreHelper();
+        constants.TitleTime = TitleTimingHelper();
+        constants.PowerHelper = PowerUpHelper();
     };
 
     constants.initialize = function() {
@@ -53,6 +58,9 @@ var MainGlobals = (function MainGlobals() {
             window.innerHeight/constants.ScreenHeight
         );
         // Scale the view appropriately to fill that dimension
+        constants.renderer.view.style.position = "absolute";
+        constants.renderer.view.style.top = "-1px";
+        constants.renderer.view.style.left = "-1px";
         constants.stage.scale.x = constants.stage.scale.y = constants.ratio;
         // Update the renderer dimensions
         constants.renderer.resize(
