@@ -4,7 +4,7 @@ function ScoreHelper() {
     scoreHelpers.killEnemy = function(enemyPoints) {
         MainGlobals.Score.currentScore += enemyPoints;
         MainGlobals.Score.kills++;
-        PowerUpHelper().incrementPowerUp();
+        MainGlobals.PowerHelper.incrementPowerUp();
     };
 
     scoreHelpers.getHitByEnemy = function() {
@@ -22,12 +22,12 @@ function ScoreHelper() {
 
     scoreHelpers.pickupGumball = function(color) {
         if (color == MainGlobals.Map.gumballs[MainGlobals.PowerUp.powerBarLevel]) {
-            PowerUpHelper().incrementPowerUp();
+            MainGlobals.PowerHelper.incrementPowerUp();
             if (MainGlobals.Score.lives < MainGlobals.Balance.maxLives) {
                 MainGlobals.Score.lives++;
             }
         } else {
-            PowerUpHelper().decrementPowerUp();
+            MainGlobals.PowerHelper.decrementPowerUp();
             if (MainGlobals.Score.lives > 0) {
                 MainGlobals.Score.lives--;
             } else {

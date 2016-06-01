@@ -70,7 +70,7 @@ Scroller.prototype.update = function() {
 };
 Scroller.prototype.updateViewport = function() {
     if (MainGlobals.Helpers.doPowerUp()) {
-        PowerUpHelper().continuePowerUp(this.Properties.viewportX);
+        MainGlobals.PowerHelper.continuePowerUp(this.Properties.viewportX);
     } else if (MainGlobals.Helpers.scrollSpeedIsMaxed()) {
         MainGlobals.Helpers.setScrollSpeedToMax();
     }
@@ -105,7 +105,7 @@ Scroller.prototype.updateObjects = function() {
     this.Properties.touchAttack.update(this.Properties.touchAttack, this.Properties.character);
 };
 Scroller.prototype.updateViewportPowerUp = function() {
-    PowerUpHelper().continuePowerUp(this.Properties.viewportX);
+    MainGlobals.PowerHelper.continuePowerUp(this.Properties.viewportX);
     this.Properties.viewportX = this.Properties.viewportX + MainGlobals.Scroller.currentScrollSpeed;
 };
 Scroller.prototype.updateObjectsPowerUp = function() {
