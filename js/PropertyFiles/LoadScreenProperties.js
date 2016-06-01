@@ -3,9 +3,7 @@
  */
 function LoadScreenProperties() {
     var props = {
-        loadImage : new LoadImage(),
-        textInstructions : new Text("loadInstructions"),
-        textInfo : new Text ("loadInfo")
+        loadImage : new LoadImage()
     };
 
     return props;

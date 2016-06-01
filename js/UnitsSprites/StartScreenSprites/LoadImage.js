@@ -24,8 +24,7 @@ LoadImage.prototype.setPositionAndScale = function(obj) {
     //no scale yet...
 };
 LoadImage.prototype.initiateLoadImageSprites = function() {
-    this.Properties.sprite = new PIXI.Sprite(PIXI.Texture.fromFrame("loadscreen"));
-    this.addChild(this.Properties.sprite);
+    this.addChild(new PIXI.Sprite(PIXI.Texture.fromFrame("loadscreen")));
 
     //load all the lagging sprites into the texture cache by using them!
     this.addChild(new PIXI.Sprite(PIXI.Texture.fromFrame("loadscreen")));

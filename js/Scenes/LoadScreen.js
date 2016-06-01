@@ -14,10 +14,7 @@ LoadScreen.prototype.initializePositions = function() {
     this.Properties.loadImage.setPositionAndScale(this.Properties.loadImage);
 };
 LoadScreen.prototype.constructLoadScreen = function(stage) {
-    //Add to stage the units
     stage.addChild(this.Properties.loadImage);
-    //stage.addChild(this.Properties.textInstructions);
-    //stage.addChild(this.Properties.textInfo);
 };
 LoadScreen.prototype.update = function() {
     this.Properties.loadImage.update(this.Properties.loadImage);

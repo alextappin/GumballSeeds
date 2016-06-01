@@ -16,7 +16,7 @@ Main.prototype.refresh = function() {
 
 Main.prototype.loadSpriteSheet = function() {
     var assetsToLoad = ["../resources/characterSprites.json", "../resources/enemy.json", "../resources/fgNew.json",
-        "../resources/gumballStem.json", "../resources/loadImage.json", "../resources/powerBar.json",
+        "../resources/gumballStem.json", "../resources/powerBar.json",
         "../resources/StartButton.json", "../resources/trans.json",
 
         "../updatedImages/titleScreen/startButtons.json", "../updatedImages/titleScreen/startrainbowanimations.json","../updatedImages/titleScreen/startrainbowanimationwhite.json",
