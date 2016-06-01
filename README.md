@@ -1,5 +1,5 @@
 #Gumball Seeds (C)
-#####A game created in HTML5 and mainly Javascriptfor Alex Tappin's Senior Project 
+#####A game created in HTML5 and Javascript for Alex Tappin's Senior Project 
 #Play [Here] (http://alextappin.github.io/GumballSeeds/)
 ###Contributors
 I am the only **developer** on this project. My uncle [Ovi Nedelcu](http://www.ovinedelcu.com/) is the **artist** and owner of the product.
