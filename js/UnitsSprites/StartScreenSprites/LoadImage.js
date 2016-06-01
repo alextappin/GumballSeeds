@@ -19,7 +19,7 @@ LoadImage.prototype.setPositionAndScale = function(obj) {
     MainGlobals.Scaling.loadScale = MainGlobals.Helpers.getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.loadPercent);
 
     obj.scale = MainGlobals.Helpers.getNewPoint(MainGlobals.Scaling.loadScale,MainGlobals.Scaling.loadScale);
-    obj.position =  MainGlobals.Helpers.getNewPoint(MainGlobals.Helpers.getScreenPositionMiddleWidth(obj.width), MainGlobals.Helpers.getScreenPositionMiddleHeight(obj.height));
+    obj.position =  MainGlobals.Helpers.getNewPoint(MainGlobals.Helpers.getScreenPositionMiddleWidth(obj.width)+MainGlobals.ScreenWidth/obj.width, MainGlobals.Helpers.getScreenPositionMiddleHeight(obj.height));
     obj.alpha = this.Properties.alphaStart;
     //no scale yet...
 };
