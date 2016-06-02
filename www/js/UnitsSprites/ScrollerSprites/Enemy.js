@@ -41,20 +41,42 @@ Enemy.prototype.setSpriteToCurrentTexture = function(enemyObj) {
     enemyObj.children[0].texture = this.Properties.currentTextures[this.Properties.spriteCount];
 };
 
-Enemy.prototype.update = function(enemyObj, characterObj) {
+Enemy.prototype.update = function(enemyObj) {
+    if (this.Properties.currentTextures != this.Properties.flyTextures) {
+        this.setCurrentTextures(MainGlobals.Timing.enemyDieTime, this.Properties.flyTextures);
+    }
+
     this.updateSprite(enemyObj);
+    this.moveForward(enemyObj);
 };
 
-Enemy.prototype.updatePowerUp = function(enemyObj, characterObj) {
-    this.updateSprite();
+Enemy.prototype.death = function(enemyObj) {
+    if (this.Properties.currentTextures != this.Properties.deathTextures) {
+        this.setCurrentTextures(MainGlobals.Timing.enemyDieTime, this.Properties.deathTextures);
+    }
+
+    this.updateSprite(enemyObj);
+    this.fallBack(enemyObj);
+};
+
+Enemy.prototype.updatePowerUp = function(enemyObj) {
+    this.updateSprite(enemyObj);
+    this.moveForward(enemyObj);
+};
+
+Enemy.prototype.moveForward = function(enemyObj) {
+    enemyObj.position.x -= MainGlobals.Physics.enemySpeed;
+};
+
+Enemy.prototype.fallBack = function(enemyObj) {
+    enemyObj.position.x += MainGlobals.Physics.enemyExplode;
 };
 
 Enemy.prototype.updateSprite = function(enemyObj) {
     if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
         this.Properties.changeSpriteCounter = 0;
         this.nextSprite(enemyObj);
-    }
-    else {
+    } else {
         this.Properties.changeSpriteCounter++;
     }
 };
@@ -62,8 +84,7 @@ Enemy.prototype.updateSprite = function(enemyObj) {
 Enemy.prototype.nextSprite = function(enemyObj) {
     if (this.Properties.spriteCount == this.Properties.spriteSpeed) {
         this.Properties.spriteCount = 0;
-    }
-    else {
+    } else {
         this.Properties.spriteCount++;
     }
 
@@ -75,6 +96,4 @@ Enemy.prototype.setCurrentTextures = function(speed, textures) {
     this.Properties.spriteSpeed = speed;
     this.Properties.spriteCount = 0; //the setTexture will be one behind since it was already called for this loop
     this.Properties.changeSpriteCounter = 0;
-
-
 };

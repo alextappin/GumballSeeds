@@ -24,5 +24,9 @@ function BalanceGlobals() {
     constants.attackTime = 21;
     constants.jumpAttackTime = 39;
 
+    //Enemy Specific
+    constants.enemySpeed = MainGlobals.ScreenHeight/60;
+    constants.enemyExplode = MainGlobals.ScreenHeight/100;
+
     return constants;
 }
