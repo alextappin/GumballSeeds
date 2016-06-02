@@ -25,7 +25,7 @@ function MapGlobals() {
     constants.groundY = .86 * MainGlobals.ScreenHeight; //86% of screen height...
     constants.addGroundChildConst = 16;
     constants.addGumballChildConst = 20;
-    constants.addEnemyChildConst = 21;
+    constants.addEnemyChildConst = 16;
     constants.gumballHeightConst = .02;
     constants.gumballs = [
         "1 violetgb",
