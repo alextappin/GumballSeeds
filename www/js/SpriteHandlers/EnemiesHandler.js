@@ -5,7 +5,8 @@ function EnemiesHandler() {
     //array of enemy objects
     this.enemies = [];
     this.enemyStructure = [];
-    this.exploadingEnemies = [];
+    this.explodingEnemies = [];
+    this.successEnemies = [];
     this.constructEnemies();
 }
 
@@ -42,7 +43,7 @@ EnemiesHandler.prototype.setupEnemyStructure = function(enemyHandler) {
 
     for (var n = 0; n < enemyHandler.enemyStructure.length; n++) { //start them off the screen so we can move them later.
         enemyHandler.enemyStructure[n].position = MainGlobals.Helpers.getNewPoint(
-            0-enemyHandler.enemyStructure[n].width*n,
+            0-enemyHandler.enemyStructure[n].width,
             0
         );
     }
@@ -53,8 +54,12 @@ EnemiesHandler.prototype.update = function(enemyHandler, groundObj, characterObj
         enemyHandler.enemyStructure[n].update(enemyHandler.enemyStructure[n]); //will just move them/explode
     }
 
-    for (n = 0; n < enemyHandler.exploadingEnemies.length; n++) {
-        enemyHandler.exploadingEnemies[n].expload(enemyHandler.exploadingEnemies[n]);
+    for (n = 0; n < enemyHandler.explodingEnemies.length; n++) {
+        enemyHandler.explodingEnemies[n].explode(enemyHandler.explodingEnemies[n]);
+    }
+
+    for (n = 0; n < enemyHandler.successEnemies.length; n++) {
+        enemyHandler.explodingEnemies[n].(enemyHandler.explodingEnemies[n]);
     }
 
     this.handleOffScreen(enemyHandler, groundObj, stage);
@@ -65,8 +70,12 @@ EnemiesHandler.prototype.updatePowerUp = function(enemyHandler, groundObj, chara
         enemyHandler.enemyStructure[n].update(enemyHandler.enemyStructure[n]); //will just move them/explode
     }
 
-    for (n = 0; n < enemyHandler.exploadingEnemies.length; n++) {
-        enemyHandler.exploadingEnemies[n].expload(enemyHandler.exploadingEnemies[n]);
+    for (n = 0; n < enemyHandler.explodingEnemies.length; n++) {
+        enemyHandler.explodingEnemies[n].explode(enemyHandler.explodingEnemies[n]);
+    }
+
+    for (n = 0; n < enemyHandler.successEnemies.length; n++) {
+        enemyHandler.explodingEnemies[n].success(enemyHandler.explodingEnemies[n]);
     }
 
     this.handleOffScreen(enemyHandler, groundObj, stage);
@@ -79,8 +88,13 @@ EnemiesHandler.prototype.handleOffScreen = function(enemyHandler, groundObj, sta
         this.addNewEnemy(enemyHandler, groundObj, stage);
     }
 
-    if (enemyHandler.exploadingEnemies[0].position.x > MainGlobals.ScreenWidth) {
-        this.returnPiece(enemyHandler.exploadingEnemies.shift(), enemyHandler, stage);
+    if (enemyHandler.explodingEnemies[0].position.x > MainGlobals.ScreenWidth) {
+        this.returnPiece(enemyHandler.explodingEnemies.shift(), enemyHandler, stage);
+        this.addNewEnemy(enemyHandler, groundObj, stage);
+    }
+
+    if (enemyHandler.successEnemies[0].position.x < 0 - enemyHandler.successEnemies[0].width) {
+        this.returnPiece(enemyHandler.successEnemies.shift(), enemyHandler, stage);
         this.addNewEnemy(enemyHandler, groundObj, stage);
     }
 };
@@ -98,13 +112,35 @@ EnemiesHandler.prototype.getNewPosition = function(enemyHandler, groundObj) { //
     );
 };
 
-EnemiesHandler.prototype.characterCollide = function(enemyHandler, groundObj, stage) {
+EnemiesHandler.prototype.characterCollide = function(enemyHandler, groundObj, characterObj) {
+    if (MainGlobals.Helpers.isIntersecting(enemyHandler.enemyStructure[0], characterObj)) {
+        if (MainGlobals.Balance.isAttacking) {
+            this.death(enemyHandler, stage);
+        } else {
+            this.hurtCharacter(enemyHandler);
+        }
+    }
+};
 
+EnemiesHandler.prototype.hurtCharacter = function(enemyHandler) {
+    enemyHandler.successEnemies.push(
+        enemyHandler.enemyStructure.shift()
+    );
+
+    MainGlobals.Score.getHitByEnemy();
+};
+
+EnemiesHandler.prototype.death = function(enemyHandler, characterObj) {
+    enemyHandler.explodingEnemies.push(
+        enemyHandler.enemyStructure.shift()
+    );
+
+    MainGlobals.Score.killEnemy();
 };
 
 EnemiesHandler.prototype.addNewEnemy = function(enemyHandler, groundObj, stage) {
     enemyHandler.enemyStructure.push(
-        enemyHandler.gumballs.pop()
+        enemyHandler.enemies.pop()
     );
 
     enemyHandler.enemyStructure[enemyHandler.enemyStructure.length-1].position = this.getNewPosition(
@@ -116,7 +152,7 @@ EnemiesHandler.prototype.addNewEnemy = function(enemyHandler, groundObj, stage) 
 
     stage.addChildAt(
         enemyHandler.enemyStructure[enemyHandler.enemyStructure.length-1],
-        MainGlobals.Map.addGumballChildConst
+        MainGlobals.Map.addEnemyChildConst
     );
 };
 

@@ -26,6 +26,8 @@ function ScalingGlobals() {
     constants.lifeBarScale = 0;
     constants.lifeBarPercent = .018;
     constants.lifeBarPositionY = MainGlobals.ScreenHeight * .04;
+    constants.enemyRatio = 0;
+    constants.enemyPercent = .1;
 
     //BREAK
 

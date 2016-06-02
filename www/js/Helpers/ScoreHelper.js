@@ -1,14 +1,12 @@
 function ScoreHelper() {
     var scoreHelpers = {};
 
-    scoreHelpers.killEnemy = function(enemyPoints) {
-        MainGlobals.Score.currentScore += enemyPoints;
+    scoreHelpers.killEnemy = function() {
+        MainGlobals.Score.currentScore += MainGlobals.Balance.enemyPoints;
         MainGlobals.Score.kills++;
-        MainGlobals.PowerHelper.incrementPowerUp();
     };
 
     scoreHelpers.getHitByEnemy = function() {
-        MainGlobals.PowerUp.powerBarLevel = (MainGlobals.PowerUp.powerBarLevel > MainGlobals.Helpers.returnZero() ? MainGlobals.PowerUp.powerBarLevel - MainGlobals.Balance.enemyDamage : 0);
         MainGlobals.Score.lives -= MainGlobals.Balance.enemyDamage;
     };
 
