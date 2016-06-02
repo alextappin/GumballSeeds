@@ -3,7 +3,6 @@
  */
 function EnemyProperties() {
     var props = {
-        sprite : {},
         textures : [],
         currentTextures : [],
         flyTextures : [],
