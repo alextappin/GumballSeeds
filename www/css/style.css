@@ -1,5 +1,10 @@
 body {
     background: rgba(1, 1, 1, 1);
+    position: absolute;
+    /*top: 22.5%;*/
+    /*top: 25%;*//*
     text-align: center;
-    margin-top: 25%;
+    margin: -1px 0 0 0;*/
+    margin: -1px 0 0 0;
+    overflow: hidden;
 }

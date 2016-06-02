@@ -70,6 +70,11 @@ var MainGlobals = (function MainGlobals() {
 
         constants.ScreenWidth *= constants.ratio;
         constants.ScreenHeight *= constants.ratio;
+
+        constants.renderer.view.style.position = 'absolute';
+        constants.renderer.view.style.left = ((window.innerWidth - constants.renderer.width) >> 1) + 'px';
+        constants.renderer.view.style.top = ((window.innerHeight - constants.renderer.height) >> 1) + 'px';
+
         constants.initializeGlobals();
 /*        HelperFunctions().endGame();
         constants.initializeGlobals();
@@ -78,7 +83,7 @@ var MainGlobals = (function MainGlobals() {
             "  Window inner " + window.innerWidth + "," +
             window.innerHeight +
             " pixel ratio " + window.devicePixelRatio + "\n" +
-            "  Renderer " + constants.renderer.width + "," +
+            "  Renderer " + constants.constants.renderer.width + "," +
             constants.renderer.height + " res " + constants.renderer.resolution + "\n" +
             "  Scale " + constants.stage.scale.x + "," + constants.stage.scale.y + "\n");*/
     };
