@@ -32,38 +32,49 @@ Enemy.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("ts death4"),
         PIXI.Texture.fromFrame("ts death5")
     );
-    //add them to the array
+
+    this.setCurrentTextures(MainGlobals.Timing.enemyFlyTime, this.Properties.flyTextures);
     this.addChild(new PIXI.Sprite(this.Properties.currentTextures[this.Properties.spriteCount]));
 };
 
-Enemy.prototype.setSpriteToCurrentTexture = function() {
-    this.Properties.sprite.texture = this.Properties.textures[this.Properties.spriteCount];
+Enemy.prototype.setSpriteToCurrentTexture = function(enemyObj) {
+    enemyObj.children[0].texture = this.Properties.currentTextures[this.Properties.spriteCount];
 };
 
 Enemy.prototype.update = function(enemyObj, characterObj) {
-    this.updateSprite();
+    this.updateSprite(enemyObj);
 };
 
 Enemy.prototype.updatePowerUp = function(enemyObj, characterObj) {
     this.updateSprite();
 };
 
-Enemy.prototype.updateSprite = function() {
+Enemy.prototype.updateSprite = function(enemyObj) {
     if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
         this.Properties.changeSpriteCounter = 0;
-        this.nextSprite();
+        this.nextSprite(enemyObj);
     }
     else {
         this.Properties.changeSpriteCounter++;
     }
 };
 
-Enemy.prototype.nextSprite = function() {
-    if (this.Properties.spriteCount == 1) {
+Enemy.prototype.nextSprite = function(enemyObj) {
+    if (this.Properties.spriteCount == this.Properties.spriteSpeed) {
         this.Properties.spriteCount = 0;
     }
     else {
         this.Properties.spriteCount++;
     }
-    this.setSpriteToCurrentTexture();
+
+    this.setSpriteToCurrentTexture(enemyObj);
+};
+
+Enemy.prototype.setCurrentTextures = function(speed, textures) {
+    this.Properties.currentTextures = textures;
+    this.Properties.spriteSpeed = speed;
+    this.Properties.spriteCount = 0; //the setTexture will be one behind since it was already called for this loop
+    this.Properties.changeSpriteCounter = 0;
+
+
 };
