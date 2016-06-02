@@ -136,6 +136,10 @@ function HelperFunctions() {
         createjs.Sound.play("Bass", {loop: 0, volume:1, duration: 10000});
     };
 
+    functions.stopGameSound = function() {
+        createjs.Sound.stop(MainGlobals.Map.gameString);
+    };
+
     functions.getCorrectScaleWidth = function(width) {
         return MainGlobals.ScreenWidth / width;
     };
@@ -175,8 +179,23 @@ function HelperFunctions() {
     functions.endGame = function() {
         MainGlobals.Physics.airborn = true;
         MainGlobals.Balance.continueGame = false;
+        MainGlobals.Score.lives = MainGlobals.Score.maxLives;
+        MainGlobals.Balance.isAttacking = false;
+        MainGlobals.Physics.applyFallingGravity = false;
+        MainGlobals.Physics.characterHighJumping = false;
+        MainGlobals.PowerUp.powerUpActive = false;
+        MainGlobals.PowerUp.characterDonePoweringUp = false;
+        MainGlobals.PowerUp.characterRise = false;
+        MainGlobals.PowerUp.characterBolt = false;
+        MainGlobals.Score.currentScore = 0;
+        MainGlobals.Score.kills = 0;
+        MainGlobals.Timing.startButtonPressed = false;
+        MainGlobals.titleWordsFadeIn = false;
+        MainGlobals.startButtonFadeIn = false;
         MainGlobals.Helpers.switchScreenToggle();
         MainGlobals.Helpers.switchToTitle();
+        MainGlobals.Helpers.stopGameSound();
+
     };
 
     functions.isIntersecting = function(rectangle1, rectangle2) { //rectangular isIntersection method
