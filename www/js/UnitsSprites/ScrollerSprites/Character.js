@@ -12,8 +12,8 @@ Character.prototype = Object.create(PIXI.Container.prototype);
 Character.prototype.constructCharacter = function() {
     this.Properties = new CharacterProperties();
     this.initiateCharacterSprites();
-    this.listenForJumpTrigger();
-    this.listenForAttackTrigger();
+    /*this.listenForJumpTrigger();
+    this.listenForAttackTrigger();*/
 };
 
 Character.prototype.setPositionAndScale = function(obj) {

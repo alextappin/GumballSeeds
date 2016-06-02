@@ -8,7 +8,7 @@ function PhysicsGlobals() {
     constants.characterGravity = MainGlobals.ScreenHeight/911; // .51;
     constants.characterJumpVelocity = MainGlobals.ScreenHeight/-35;//-16;
     constants.characterJumpHighVelocity = MainGlobals.ScreenHeight/-30; //-20;
-    constants.characterJumpAttackVelocity = MainGlobals.ScreenHeight/-44.4; //-14;
+    constants.characterJumpAttackVelocity = MainGlobals.ScreenHeight/-39.4; //-14;
     constants.characterVelocityY = MainGlobals.ScreenHeight/144; //5;
     constants.applyFallingGravity = false;
     constants.characterAirborn = true;
