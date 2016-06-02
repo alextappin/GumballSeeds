@@ -30,7 +30,8 @@ Enemy.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("ts death2"),
         PIXI.Texture.fromFrame("ts death3"),
         PIXI.Texture.fromFrame("ts death4"),
-        PIXI.Texture.fromFrame("ts death5")
+        PIXI.Texture.fromFrame("ts death5"),
+        PIXI.Texture.fromFrame("trans")
     );
 
     this.setCurrentTextures(MainGlobals.Timing.enemyFlyTime, this.Properties.flyTextures);
@@ -54,19 +55,23 @@ Enemy.prototype.explode = function(enemyObj) {
     if (this.Properties.currentTextures != this.Properties.deathTextures) {
         this.setCurrentTextures(MainGlobals.Timing.enemyDieTime, this.Properties.deathTextures);
     }
-
+    if (this.Properties.spriteCount == this.Properties.currentTextures.length - 1) {
+        this.Properties.spriteCount = this.Properties.currentTextures.length-2;
+    }
     this.updateSprites(enemyObj);
     this.fallBack(enemyObj);
+    this.moveUp(enemyObj);
 };
 
 Enemy.prototype.succeed = function(enemyObj) {
     this.updateSprites(enemyObj);
     this.moveForward(enemyObj);
+    this.moveUp(enemyObj);
 };
 
 Enemy.prototype.updatePowerUp = function(enemyObj) {
-    /*this.updateSprites(enemyObj);
-    this.moveForward(enemyObj);*/
+    this.updateSprites(enemyObj);
+    this.moveForward(enemyObj);
 };
 
 Enemy.prototype.moveForward = function(enemyObj) {
@@ -77,8 +82,12 @@ Enemy.prototype.fallBack = function(enemyObj) {
     enemyObj.position.x += MainGlobals.Balance.enemyExplode;
 };
 
+Enemy.prototype.moveUp = function(enemyObj) {
+    enemyObj.position.y -= MainGlobals.Balance.enemySpeed/2;
+};
+
 Enemy.prototype.updateSprites = function(enemyObj) {
-    if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
+    if (this.Properties.changeSpriteCounter >= this.Properties.spriteSpeed) {
         this.Properties.changeSpriteCounter = 0;
         this.nextSprite(enemyObj);
     } else {
@@ -87,7 +96,7 @@ Enemy.prototype.updateSprites = function(enemyObj) {
 };
 
 Enemy.prototype.nextSprite = function(enemyObj) {
-    if (this.Properties.spriteCount == this.Properties.currentTextures.length - 1) {
+    if (this.Properties.spriteCount >= this.Properties.currentTextures.length - 1) {
         //leave it here...
         this.Properties.spriteCount = 0;
     } else {

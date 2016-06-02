@@ -40,10 +40,10 @@ function PowerUpHelper() {
     };
 
     powerUpHelper.decrementPowerUp = function() {
-        /*if (MainGlobals.PowerUp.powerBarLevel > 0) {
+        if (MainGlobals.PowerUp.powerBarLevel > 0) {
             MainGlobals.PowerUp.powerBarLevel--;
-        }*/
-        //cheats below
+        }
+        /*//cheats below
         if (!MainGlobals.PowerUp.powerUpActive) {
             if (MainGlobals.PowerUp.powerBarLevel >= MainGlobals.PowerUp.maxPowerBarLevel) {
                 powerUpHelper.startPowerUp();
@@ -51,7 +51,7 @@ function PowerUpHelper() {
             else {
                 MainGlobals.PowerUp.powerBarLevel++;
             }
-        }
+        }*/
     };
 
     return powerUpHelper;

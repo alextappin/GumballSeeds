@@ -26,7 +26,7 @@ function TimingGlobals() {
     constants.characterPowerUpTime = 10;
 
     constants.enemyFlyTime = 6;
-    constants.enemyDieTime = 5;
+    constants.enemyDieTime = 4;
 
     constants.rainbowChargeTime = 3;
     constants.rainbowTime = 3;

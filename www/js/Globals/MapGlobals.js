@@ -24,7 +24,7 @@ function MapGlobals() {
     constants.groundEndB = "17 ground1end b";
     constants.groundY = .86 * MainGlobals.ScreenHeight; //86% of screen height...
     constants.addGroundChildConst = 16;
-    constants.addGumballChildConst = 20;
+    constants.addGumballChildConst = 21;
     constants.addEnemyChildConst = 16;
     constants.gumballHeightConst = .02;
     constants.gumballs = [
@@ -36,7 +36,7 @@ function MapGlobals() {
         "6 orangegb",
         "7 redgb"
     ];
-    constants.enemiesPool = 10;
+    constants.enemiesPool = 2;
 /*    constants.lifebars = [
         "lifebar1",
         "lifebar2",

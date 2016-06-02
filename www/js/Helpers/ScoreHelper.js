@@ -21,9 +21,6 @@ function ScoreHelper() {
     scoreHelpers.pickupGumball = function(color) {
         if (color == MainGlobals.Map.gumballs[MainGlobals.PowerUp.powerBarLevel]) {
             MainGlobals.PowerHelper.incrementPowerUp();
-            if (MainGlobals.Score.lives < MainGlobals.Balance.maxLives) {
-                MainGlobals.Score.lives++;
-            }
         } else {
             MainGlobals.PowerHelper.decrementPowerUp();
         }
