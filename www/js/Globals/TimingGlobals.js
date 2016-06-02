@@ -25,10 +25,10 @@ function TimingGlobals() {
     constants.characterSuperTime = 15;
     constants.characterPowerUpTime = 12;
 
-    constants.rainbowChargeTime = 6;
-    constants.rainbowTime = 30;
+    constants.rainbowChargeTime = 3;
+    constants.rainbowTime = 3;
 
-    constants.superbarTime = 3;//2 or 3??!?
+    constants.superbarTime = 1;//2 or 3??!?
 
     return constants;
 }
