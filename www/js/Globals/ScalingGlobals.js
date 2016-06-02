@@ -74,7 +74,7 @@ function ScalingGlobals() {
     constants.superRatio = 0;
     constants.superPercentOfScreen = 1;
 
-    constants.characterSuperPosition = .37;
+    constants.characterSuperPosition = .75;
 
     return constants;
 }

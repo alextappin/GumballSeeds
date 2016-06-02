@@ -52,13 +52,10 @@ Character.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("gbs j7")
     );
     this.Properties.endSuperTextures.push(
-        PIXI.Texture.fromFrame("gbs j4"),
-        PIXI.Texture.fromFrame("gbs j4"),
+        PIXI.Texture.fromFrame("gbs super6"),
+        PIXI.Texture.fromFrame("gbs super6"),
+        PIXI.Texture.fromFrame("gbs super6"),
         PIXI.Texture.fromFrame("gbs j5"),
-        PIXI.Texture.fromFrame("gbs j6"),
-        PIXI.Texture.fromFrame("gbs j7"),
-        PIXI.Texture.fromFrame("gbs j6"),
-        PIXI.Texture.fromFrame("gbs j7"),
         PIXI.Texture.fromFrame("gbs j6"),
         PIXI.Texture.fromFrame("gbs j7")
     );
@@ -76,7 +73,7 @@ Character.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("gbs ja4")
     );
     this.Properties.superStartTextures.push(
-        PIXI.Texture.fromFrame("gbs super1"),
+        PIXI.Texture.fromFrame("gbs super6"),
         PIXI.Texture.fromFrame("gbs super1"),
         PIXI.Texture.fromFrame("gbs super1"),
         PIXI.Texture.fromFrame("gbs super2"),
@@ -99,6 +96,7 @@ Character.prototype.update = function(characterObj, groundObj) {
         this.endSuper();
         characterObj.visible = true;
     }
+
     this.updateSprites(characterObj);
     this.gravityCharacter(characterObj, groundObj);
     this.resetCharacter(characterObj);
@@ -254,7 +252,7 @@ Character.prototype.setSuperPositionY = function(characterObj) {
 };
 
 Character.prototype.setSuperPositionX = function(characterObj) {
-    characterObj.position.x = MainGlobals.ScreenWidth*MainGlobals.Scaling.characterSuperPosition;
+    characterObj.position.x = MainGlobals.ScreenHeight*MainGlobals.Scaling.characterSuperPosition;
 };
 
 Character.prototype.endSuper = function() {
@@ -265,7 +263,7 @@ Character.prototype.endSuper = function() {
 
 Character.prototype.resetCharacter = function(characterObj) {
     if (characterObj.position.x != MainGlobals.Scaling.characterPositionX) {
-        if (characterObj.position.y < 0 - characterObj.height) {
+        if (MainGlobals.Physics.characterVelocityY > 0) {
             characterObj.position.x = MainGlobals.Scaling.characterPositionX;
         }
     }
