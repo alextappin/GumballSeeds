@@ -14,7 +14,7 @@ EnemiesHandler.constructor = EnemiesHandler;
 
 EnemiesHandler.prototype.constructEnemies = function() {
     for (var n = 0; n < MainGlobals.Map.enemiesPool; n++) {
-        this.enemies.push(new Enemy);
+        this.enemies.push(new Enemy());
     }
 };
 
@@ -76,8 +76,9 @@ EnemiesHandler.prototype.updatePowerUp = function(enemyHandler, characterObj, gr
     }
 
     for (n = 0; n < enemyHandler.successEnemies.length; n++) {
-        enemyHandler.successEnemies[n].success(enemyHandler.explodingEnemies[n]);
+        enemyHandler.successEnemies[n].succeed(enemyHandler.successEnemies[n]);
     }
+
     if (enemyHandler.enemyStructure.length > 0) {
         this.handleOffScreen(enemyHandler, groundObj, stage);
         this.characterCollide(enemyHandler, characterObj, groundObj);
@@ -86,9 +87,7 @@ EnemiesHandler.prototype.updatePowerUp = function(enemyHandler, characterObj, gr
 
 EnemiesHandler.prototype.handleOffScreen = function(enemyHandler, groundObj, stage) {
     if (enemyHandler.enemyStructure.length > 0 && enemyHandler.enemyStructure[0].position.x < (0 - enemyHandler.enemyStructure[0].width)) {
-        console.log(enemyHandler.enemyStructure);
         this.returnPiece(enemyHandler.enemyStructure.shift(), enemyHandler, stage);
-        console.log(enemyHandler.enemyStructure);
         this.addNewEnemy(enemyHandler, groundObj, stage);
     }
 
@@ -152,7 +151,7 @@ EnemiesHandler.prototype.addNewEnemy = function(enemyHandler, groundObj, stage) 
         groundObj
     );
 
-    stage.addChild(
+    stage.addChildAt(
         enemyHandler.enemyStructure[enemyHandler.enemyStructure.length-1],
         MainGlobals.Map.addEnemyChildConst
     );

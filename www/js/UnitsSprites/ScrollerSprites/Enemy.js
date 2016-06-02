@@ -46,7 +46,7 @@ Enemy.prototype.update = function(enemyObj) {
         this.setCurrentTextures(MainGlobals.Timing.enemyFlyTime, this.Properties.flyTextures);
     }
 
-    this.updateSprite(enemyObj);
+    this.updateSprites(enemyObj);
     this.moveForward(enemyObj);
 };
 
@@ -55,18 +55,18 @@ Enemy.prototype.explode = function(enemyObj) {
         this.setCurrentTextures(MainGlobals.Timing.enemyDieTime, this.Properties.deathTextures);
     }
 
-    this.updateSprite(enemyObj);
+    this.updateSprites(enemyObj);
     this.fallBack(enemyObj);
 };
 
 Enemy.prototype.succeed = function(enemyObj) {
-    this.updateSprite(enemyObj);
+    this.updateSprites(enemyObj);
     this.moveForward(enemyObj);
 };
 
 Enemy.prototype.updatePowerUp = function(enemyObj) {
-    this.updateSprite(enemyObj);
-    this.moveForward(enemyObj);
+    /*this.updateSprites(enemyObj);
+    this.moveForward(enemyObj);*/
 };
 
 Enemy.prototype.moveForward = function(enemyObj) {
@@ -77,7 +77,7 @@ Enemy.prototype.fallBack = function(enemyObj) {
     enemyObj.position.x += MainGlobals.Balance.enemyExplode;
 };
 
-Enemy.prototype.updateSprite = function(enemyObj) {
+Enemy.prototype.updateSprites = function(enemyObj) {
     if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
         this.Properties.changeSpriteCounter = 0;
         this.nextSprite(enemyObj);
@@ -87,7 +87,8 @@ Enemy.prototype.updateSprite = function(enemyObj) {
 };
 
 Enemy.prototype.nextSprite = function(enemyObj) {
-    if (this.Properties.spriteCount == this.Properties.spriteSpeed) {
+    if (this.Properties.spriteCount == this.Properties.currentTextures.length - 1) {
+        //leave it here...
         this.Properties.spriteCount = 0;
     } else {
         this.Properties.spriteCount++;
