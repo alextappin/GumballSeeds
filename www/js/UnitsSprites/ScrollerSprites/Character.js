@@ -52,13 +52,6 @@ Character.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("gbs j7")
     );
     this.Properties.endSuperTextures.push(
-        PIXI.Texture.fromFrame("rainbowband gumball1"),
-        PIXI.Texture.fromFrame("rainbowband gumball1"),
-        PIXI.Texture.fromFrame("rainbowband gumball1"),
-        PIXI.Texture.fromFrame("rainbowband gumball1"),
-        PIXI.Texture.fromFrame("rainbowband gumball1"),
-        PIXI.Texture.fromFrame("rainbowband gumball1"),
-        PIXI.Texture.fromFrame("rainbowband gumball1"),
         PIXI.Texture.fromFrame("gbs j4"),
         PIXI.Texture.fromFrame("gbs j4"),
         PIXI.Texture.fromFrame("gbs j5"),
@@ -89,12 +82,11 @@ Character.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("gbs super3"),
         PIXI.Texture.fromFrame("gbs super4"),
         PIXI.Texture.fromFrame("gbs super5"),
-        PIXI.Texture.fromFrame("gbs super6"),
-        PIXI.Texture.fromFrame("rainbowband gumballstart")
+        PIXI.Texture.fromFrame("gbs super6")
     );
     this.Properties.superTextures.push(
-        PIXI.Texture.fromFrame("rainbowband gumball1"),
-        PIXI.Texture.fromFrame("rainbowband gumball2")
+        PIXI.Texture.fromFrame("gbs super5"),
+        PIXI.Texture.fromFrame("gbs super6")
     );
 
     this.setCurrentTextures();

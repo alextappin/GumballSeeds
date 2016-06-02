@@ -26,7 +26,7 @@ function TimingGlobals() {
     constants.characterPowerUpTime = 12;
 
     constants.rainbowChargeTime = 6;
-    constants.rainbowTime = 0;
+    constants.rainbowTime = 30;
 
     constants.superbarTime = 3;//2 or 3??!?
 

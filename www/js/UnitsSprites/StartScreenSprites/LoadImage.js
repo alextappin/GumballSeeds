@@ -66,7 +66,7 @@ LoadImage.prototype.initiateLoadImageSprites = function() {
         PIXI.Texture.fromFrame("gbs super4"),
         PIXI.Texture.fromFrame("gbs super5"),
         PIXI.Texture.fromFrame("gbs super6"),
-        PIXI.Texture.fromFrame("rainbowband gumballstart"),
+/*        PIXI.Texture.fromFrame("rainbowband gumballstart"),*/
         PIXI.Texture.fromFrame("1 super powerup"),
         PIXI.Texture.fromFrame("1 super powerup"),
         PIXI.Texture.fromFrame("2 super powerup"),
@@ -88,8 +88,6 @@ LoadImage.prototype.initiateLoadImageSprites = function() {
         PIXI.Texture.fromFrame("rainbowband up2b"),
         PIXI.Texture.fromFrame("rainbowband up3a"),
         PIXI.Texture.fromFrame("rainbowband up3b"),
-        PIXI.Texture.fromFrame("rainbowband gumball1"),
-        PIXI.Texture.fromFrame("rainbowband gumball2"),
         PIXI.Texture.fromFrame("superbarBG"),
         PIXI.Texture.fromFrame("superbar1"),
         PIXI.Texture.fromFrame("superbar2"),

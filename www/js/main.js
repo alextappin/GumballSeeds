@@ -39,9 +39,14 @@ Main.prototype.loadSpriteSheet = function() {
         "updatedImages/titleScreen/loadscreen.json", "updatedImages/enemy/enemyDeath.json"
     ],
         assetsToLoad2 = [
-            "imagesSmall/titleInter.json", "imagesSmall/backCharInter.json"],
+            "imagesSmall/titleInter.json", "imagesSmall/backCharInter.json"
+        ],
+        assetsToLoad3 = [
+            "imagesSmall/character.json", "imagesSmall/map.json",
+            "imagesSmall/title.json", "imagesSmall/interface.json"
+        ],
         loader = new PIXI.loaders.Loader();
-    loader.add(assetsToLoad2).load(this.spriteSheetLoaded.bind(this))
+    loader.add(assetsToLoad3).load(this.spriteSheetLoaded.bind(this))
 };
 Main.prototype.update = function() {
     this.gameStatesHandler();
