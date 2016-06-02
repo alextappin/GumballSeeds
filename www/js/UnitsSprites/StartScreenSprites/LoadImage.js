@@ -66,7 +66,6 @@ LoadImage.prototype.initiateLoadImageSprites = function() {
         PIXI.Texture.fromFrame("gbs super4"),
         PIXI.Texture.fromFrame("gbs super5"),
         PIXI.Texture.fromFrame("gbs super6"),
-/*        PIXI.Texture.fromFrame("rainbowband gumballstart"),*/
         PIXI.Texture.fromFrame("1 super powerup"),
         PIXI.Texture.fromFrame("1 super powerup"),
         PIXI.Texture.fromFrame("2 super powerup"),
@@ -98,7 +97,14 @@ LoadImage.prototype.initiateLoadImageSprites = function() {
         PIXI.Texture.fromFrame("superbar7"),
         PIXI.Texture.fromFrame("superbar7"),
         PIXI.Texture.fromFrame("superbar8"),
-        PIXI.Texture.fromFrame("superbar9")
+        PIXI.Texture.fromFrame("superbar9"),
+        PIXI.Texture.fromFrame("ts death1"),
+        PIXI.Texture.fromFrame("ts death2"),
+        PIXI.Texture.fromFrame("ts death3"),
+        PIXI.Texture.fromFrame("ts death4"),
+        PIXI.Texture.fromFrame("ts death5"),
+        PIXI.Texture.fromFrame("ts flying1"),
+        PIXI.Texture.fromFrame("ts flying2")
     );
 };
 LoadImage.prototype.setSpriteToCurrentTexture = function() {
