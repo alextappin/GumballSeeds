@@ -22,7 +22,7 @@ function MapGlobals() {
     constants.groundB = "17 ground1b";
     constants.groundEndA = "17 ground1end";
     constants.groundEndB = "17 ground1end b";
-    constants.groundY = .86; //86% of screen height...
+    constants.groundY = .86 * MainGlobals.ScreenHeight; //86% of screen height...
     constants.addGroundChildConst = 16;
     constants.addGumballChildConst = 20;
     constants.addEnemyChildConst = 21;

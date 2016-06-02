@@ -5,6 +5,7 @@ function EnemiesHandler() {
     //array of enemy objects
     this.enemies = [];
     this.enemyStructure = [];
+    this.exploadingEnemies = [];
     this.constructEnemies();
 }
 
@@ -41,7 +42,7 @@ EnemiesHandler.prototype.setupEnemyStructure = function(enemyHandler) {
 
     for (var n = 0; n < enemyHandler.enemyStructure.length; n++) { //start them off the screen so we can move them later.
         enemyHandler.enemyStructure[n].position = MainGlobals.Helpers.getNewPoint(
-            0-enemyHandler.enemyStructure[n].width,
+            0-enemyHandler.enemyStructure[n].width*n,
             0
         );
     }
@@ -52,12 +53,20 @@ EnemiesHandler.prototype.update = function(enemyHandler, groundObj, characterObj
         enemyHandler.enemyStructure[n].update(enemyHandler.enemyStructure[n]); //will just move them/explode
     }
 
+    for (n = 0; n < enemyHandler.exploadingEnemies.length; n++) {
+        enemyHandler.exploadingEnemies[n].expload(enemyHandler.exploadingEnemies[n]);
+    }
+
     this.handleOffScreen(enemyHandler, groundObj, stage);
     this.characterCollide(enemyHandler, groundObj, characterObj);
 };
 EnemiesHandler.prototype.updatePowerUp = function(enemyHandler, groundObj, characterObj, stage) {
     for (var n = 0; n < enemyHandler.enemyStructure.length; n++) {
         enemyHandler.enemyStructure[n].update(enemyHandler.enemyStructure[n]); //will just move them/explode
+    }
+
+    for (n = 0; n < enemyHandler.exploadingEnemies.length; n++) {
+        enemyHandler.exploadingEnemies[n].expload(enemyHandler.exploadingEnemies[n]);
     }
 
     this.handleOffScreen(enemyHandler, groundObj, stage);
@@ -69,6 +78,24 @@ EnemiesHandler.prototype.handleOffScreen = function(enemyHandler, groundObj, sta
         this.returnPiece(enemyHandler.enemyStructure.shift(), enemyHandler, stage);
         this.addNewEnemy(enemyHandler, groundObj, stage);
     }
+
+    if (enemyHandler.exploadingEnemies[0].position.x > MainGlobals.ScreenWidth) {
+        this.returnPiece(enemyHandler.exploadingEnemies.shift(), enemyHandler, stage);
+        this.addNewEnemy(enemyHandler, groundObj, stage);
+    }
+};
+
+EnemiesHandler.prototype.getNewPosition = function(enemyHandler, groundObj) { //use the ground height eventually
+    enemyHandler.enemyStructure[enemyHandler.enemyStructure.length-1].position = MainGlobals.Helpers.getNewPoint(
+        MainGlobals.Helpers.getRandomNumber(
+            enemyHandler.enemyStructure[enemyHandler.enemyStructure.length-2].position.x,
+            enemyHandler.enemyStructure[enemyHandler.enemyStructure.length-2].position.x*MainGlobals.Balance.enemiesPositionChance
+        ),
+        MainGlobals.Helpers.getRandomNumber(
+            enemyHandler.enemyStructure[enemyHandler.enemyStructure.length-1].height,
+            MainGlobals.Map.groundY - enemyHandler.enemyStructure[enemyHandler.enemyStructure.length-1].height
+        )
+    );
 };
 
 EnemiesHandler.prototype.characterCollide = function(enemyHandler, groundObj, stage) {
@@ -94,5 +121,7 @@ EnemiesHandler.prototype.addNewEnemy = function(enemyHandler, groundObj, stage) 
 };
 
 EnemiesHandler.prototype.returnPiece = function(piece, enemyHandler, stage) {
-
+    stage.removeChild(piece);
+    enemyHandler.enemies.push(piece);
+    MainGlobals.Helpers.shuffleArray(enemyHandler.enemies);
 };

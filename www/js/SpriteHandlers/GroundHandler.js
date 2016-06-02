@@ -62,7 +62,7 @@ GroundHandler.prototype.setupStartGround = function(groundHandler) {
     for (var n = 0; n < groundHandler.groundStructure.length; n++) {
         groundHandler.groundStructure[n].position = MainGlobals.Helpers.getNewPoint(
             this.getNewPosition(groundHandler, n),
-            MainGlobals.Map.groundY * MainGlobals.ScreenHeight
+            MainGlobals.Map.groundY
         );
     }
 };
@@ -106,7 +106,7 @@ GroundHandler.prototype.addNewGround = function(groundHandler, stage) {
                 groundHandler,
                 groundHandler.groundStructure.length - 1
             ),
-            MainGlobals.Map.groundY * MainGlobals.ScreenHeight
+            MainGlobals.Map.groundY
         );
     stage.addChildAt(groundHandler.groundStructure[groundHandler.groundStructure.length - 1], MainGlobals.Map.addGroundChildConst);
 };
