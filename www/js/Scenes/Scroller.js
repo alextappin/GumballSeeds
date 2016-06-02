@@ -96,7 +96,7 @@ Scroller.prototype.updateObjects = function() {
     this.Properties.character.update(this.Properties.character, this.Properties.ground);
     this.Properties.super.update(this.Properties.super);
     this.Properties.gumballs.update(this.Properties.gumballs, this.Properties.ground, this.Properties.character, this.getStage());
-    //this.Properties.enemies.update(this.Properties.enemies, this.Properties.character, this.getStage());
+    this.Properties.enemies.update(this.Properties.enemies, this.Properties.character, this.Properties.ground, this.getStage());
     this.Properties.powerBar.update(this.Properties.powerBar);
     this.Properties.lifeBar.update(this.Properties.lifeBar);
     //this.Properties.textScore.update(this.Properties.textScore);
@@ -112,7 +112,7 @@ Scroller.prototype.updateObjectsPowerUp = function() {
         this.Properties.ground.updatePowerUp(this.Properties.ground, this.getStage());
         this.Properties.character.updatePowerUp(this.Properties.character, this.Properties.ground);
         this.Properties.gumballs.updatePowerUp(this.Properties.gumballs, this.Properties.ground, this.Properties.character, this.getStage());
-        //this.Properties.enemies.updatePowerUp(this.Properties.enemies, this.Properties.character, this.getStage());
+        this.Properties.enemies.updatePowerUp(this.Properties.enemies, this.Properties.character, this.Properties.ground, this.getStage());
         this.Properties.powerBar.updatePowerUp(this.Properties.powerBar);
         this.Properties.lifeBar.updatePowerUp(this.Properties.lifeBar);
         //this.Properties.textScore.update(this.Properties.textScore);
