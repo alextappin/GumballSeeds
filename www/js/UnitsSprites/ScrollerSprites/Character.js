@@ -78,13 +78,10 @@ Character.prototype.initiateCharacterSprites = function() {
     this.Properties.superStartTextures.push(
         PIXI.Texture.fromFrame("gbs super1"),
         PIXI.Texture.fromFrame("gbs super1"),
+        PIXI.Texture.fromFrame("gbs super1"),
         PIXI.Texture.fromFrame("gbs super2"),
         PIXI.Texture.fromFrame("gbs super3"),
         PIXI.Texture.fromFrame("gbs super4"),
-        PIXI.Texture.fromFrame("gbs super5"),
-        PIXI.Texture.fromFrame("gbs super6")
-    );
-    this.Properties.superTextures.push(
         PIXI.Texture.fromFrame("gbs super5"),
         PIXI.Texture.fromFrame("gbs super6")
     );
@@ -100,6 +97,7 @@ Character.prototype.setSpriteToCurrentTexture = function(characterObj) {
 Character.prototype.update = function(characterObj, groundObj) {
     if (this.Properties.currentTextures == this.Properties.superStartTextures) {
         this.endSuper();
+        characterObj.visible = true;
     }
     this.updateSprites(characterObj);
     this.gravityCharacter(characterObj, groundObj);
@@ -235,16 +233,14 @@ Character.prototype.updatePowerUp = function(characterObj) {
         if (this.Properties.currentTextures != this.Properties.superStartTextures) {
             this.setCurrentTextures(MainGlobals.Timing.characterPowerUpTime, this.Properties.superStartTextures);
         }
+
+        if (MainGlobals.PowerUp.characterRise) {
+            this.setSuperPositionY(characterObj);
+        }
+
         this.updateSprites(characterObj);
-    } else if (this.Properties.currentTextures != this.Properties.superTextures) {
-        this.setCurrentTextures(MainGlobals.Timing.characterSuperTime, this.Properties.superTextures);
-    } else {
-        this.updateSprites(characterObj);
-    }
-    if (MainGlobals.PowerUp.characterRise) {
-        this.setSuperPositionY(characterObj);
-    }
-    if (MainGlobals.PowerUp.characterDonePoweringUp) {
+    } else if (characterObj.visible) {
+        characterObj.visible = false;
         this.setSuperPositionX(characterObj);
     }
 };
@@ -258,11 +254,7 @@ Character.prototype.setSuperPositionY = function(characterObj) {
 };
 
 Character.prototype.setSuperPositionX = function(characterObj) {
-    if (characterObj.position.x < MainGlobals.ScreenWidth*MainGlobals.Scaling.characterSuperPosition) {
-        characterObj.position.x += MainGlobals.Physics.characterBoltSpeed;
-    } else {
-        characterObj.position.x = MainGlobals.ScreenWidth*MainGlobals.Scaling.characterSuperPosition;
-    }
+    characterObj.position.x = MainGlobals.ScreenWidth*MainGlobals.Scaling.characterSuperPosition;
 };
 
 Character.prototype.endSuper = function() {

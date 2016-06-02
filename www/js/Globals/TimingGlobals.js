@@ -23,7 +23,7 @@ function TimingGlobals() {
     constants.characterHitTime = 10;
     constants.characterDieTime = 10;
     constants.characterSuperTime = 15;
-    constants.characterPowerUpTime = 12;
+    constants.characterPowerUpTime = 10;
 
     constants.rainbowChargeTime = 3;
     constants.rainbowTime = 3;

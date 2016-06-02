@@ -14,8 +14,8 @@ function PhysicsGlobals() {
     constants.characterAirborn = true;
     constants.characterHighJumping = false;
 
-    constants.characterRiseSpeed = MainGlobals.ScreenHeight * .06;//.012; with width
-    constants.characterBoltSpeed = MainGlobals.ScreenHeight * .07;//.04; with width..
+    constants.characterRiseSpeed = MainGlobals.ScreenHeight * .04;//.012; with width
+    constants.characterBoltSpeed = MainGlobals.ScreenHeight * .08;//.04; with width..
     constants.characterEndSuperVelocity = MainGlobals.ScreenHeight/-25.8; //-25;
 
     return constants;

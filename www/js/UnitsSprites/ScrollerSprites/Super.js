@@ -134,13 +134,13 @@ Super.prototype.setCurrentTextures = function(speed, textures) {
 };
 
 Super.prototype.characterJumpTiming = function() {
-    if (this.Properties.spriteCount == MainGlobals.PowerUp.superRiseSpriteIndex) {
+    if (this.Properties.spriteCount == MainGlobals.PowerUp.superRiseSpriteNum) {
         MainGlobals.PowerUp.characterRise = true;
     }
 };
 
 Super.prototype.characterBoltTiming = function() {
-    if (this.Properties.spriteCount == MainGlobals.PowerUp.superBoltSpriteIndex) {
+    if (this.Properties.spriteCount == MainGlobals.PowerUp.superBoltSpriteNum) {
         MainGlobals.PowerUp.characterBolt = true;
     }
 };
