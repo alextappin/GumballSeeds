@@ -83,7 +83,8 @@ Character.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("gbs super6")
     );
 
-    this.setCurrentTextures();
+    this.setCurrentTextures(MainGlobals.Timing.characterRunTime, this.Properties.runTextures);
+
     this.addChild(new PIXI.Sprite(this.Properties.currentTextures[this.Properties.spriteCount]));
 };
 
@@ -269,20 +270,21 @@ Character.prototype.resetCharacter = function(characterObj) {
     }
 };
 
+/*
 Character.prototype.listenForJumpTrigger = function() {
     var that = this;
-    this.Properties.spaceBar.press = function () {
+    MainGlobals.KeyboardSpace(32).press = function () {
         that.startJumpAnimation();
     }
 };
 
 Character.prototype.listenForAttackTrigger = function() {
     var that = this;
-    this.Properties.ctrlButton.press = function () {
+    MainGlobals.KeyboardCtrl(17).press = function () {
         if (MainGlobals.Balance.isAttacking == false) {
             that.startAttackAnimation();
         } else {
             that.startJumpAttackAnimation();
         }
     }
-};
+};*/

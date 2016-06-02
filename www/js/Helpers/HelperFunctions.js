@@ -195,6 +195,7 @@ function HelperFunctions() {
         MainGlobals.Helpers.switchScreenToggle();
         MainGlobals.Helpers.switchToTitle();
         MainGlobals.Helpers.stopGameSound();
+        MainGlobals.Helpers.resetGlobals();
 
     };
 
