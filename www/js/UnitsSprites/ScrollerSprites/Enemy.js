@@ -17,7 +17,7 @@ Enemy.prototype.constructEnemy = function() {
 Enemy.prototype.setPositionAndScale = function(obj) {
     MainGlobals.Scaling.enemyRatio = MainGlobals.Helpers.getScreenRatioUsingHeight(obj.height, MainGlobals.Scaling.enemyPercent);
     obj.scale = MainGlobals.Helpers.getNewPoint(MainGlobals.Scaling.enemyRatio, MainGlobals.Scaling.enemyRatio);
-    obj.position =  MainGlobals.Helpers.getNewPoint(0-obj.width, 0);
+    obj.position =  MainGlobals.Helpers.getNewPoint(MainGlobals.ScreenWidth+obj.width, 0);
 };
 
 Enemy.prototype.initiateCharacterSprites = function() {
@@ -43,14 +43,14 @@ Enemy.prototype.setSpriteToCurrentTexture = function(enemyObj) {
 
 Enemy.prototype.update = function(enemyObj) {
     if (this.Properties.currentTextures != this.Properties.flyTextures) {
-        this.setCurrentTextures(MainGlobals.Timing.enemyDieTime, this.Properties.flyTextures);
+        this.setCurrentTextures(MainGlobals.Timing.enemyFlyTime, this.Properties.flyTextures);
     }
 
     this.updateSprite(enemyObj);
     this.moveForward(enemyObj);
 };
 
-Enemy.prototype.death = function(enemyObj) {
+Enemy.prototype.explode = function(enemyObj) {
     if (this.Properties.currentTextures != this.Properties.deathTextures) {
         this.setCurrentTextures(MainGlobals.Timing.enemyDieTime, this.Properties.deathTextures);
     }
@@ -59,17 +59,22 @@ Enemy.prototype.death = function(enemyObj) {
     this.fallBack(enemyObj);
 };
 
+Enemy.prototype.succeed = function(enemyObj) {
+    this.updateSprite(enemyObj);
+    this.moveForward(enemyObj);
+};
+
 Enemy.prototype.updatePowerUp = function(enemyObj) {
     this.updateSprite(enemyObj);
     this.moveForward(enemyObj);
 };
 
 Enemy.prototype.moveForward = function(enemyObj) {
-    enemyObj.position.x -= MainGlobals.Physics.enemySpeed;
+    enemyObj.position.x -= MainGlobals.Balance.enemySpeed;
 };
 
 Enemy.prototype.fallBack = function(enemyObj) {
-    enemyObj.position.x += MainGlobals.Physics.enemyExplode;
+    enemyObj.position.x += MainGlobals.Balance.enemyExplode;
 };
 
 Enemy.prototype.updateSprite = function(enemyObj) {
