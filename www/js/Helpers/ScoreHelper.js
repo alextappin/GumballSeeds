@@ -22,7 +22,7 @@ function ScoreHelper() {
         if (color == MainGlobals.Map.gumballs[MainGlobals.PowerUp.powerBarLevel]) {
             MainGlobals.PowerHelper.incrementPowerUp();
         } else {
-            MainGlobals.PowerHelper.decrementPowerUp();
+            //MainGlobals.PowerHelper.decrementPowerUp();
         }
     };
 
