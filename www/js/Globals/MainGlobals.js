@@ -70,10 +70,10 @@ var MainGlobals = (function MainGlobals() {
 
         constants.ScreenWidth *= constants.ratio;
         constants.ScreenHeight *= constants.ratio;
-
+/*
         constants.renderer.view.style.position = 'absolute';
         constants.renderer.view.style.left = ((window.innerWidth - constants.renderer.width) >> 1) + 'px';
-        constants.renderer.view.style.top = ((window.innerHeight - constants.renderer.height) >> 1) + 'px';
+        constants.renderer.view.style.top = ((window.innerHeight - constants.renderer.height) >> 1) + 'px';*/
 
         constants.initializeGlobals();
 /*        HelperFunctions().endGame();
