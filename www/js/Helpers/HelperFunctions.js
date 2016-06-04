@@ -140,8 +140,8 @@ function HelperFunctions() {
         createjs.Sound.stop(MainGlobals.Map.gameString);
     };
 
-    functions.playSound = function(soundName) {
-        createjs.Sound.play(soundName, {loop:0, volume:.7});
+    functions.playSound = function(soundName, vol, dur) {
+        createjs.Sound.play(soundName, {loop: 0, volume: vol});
     };
 
     functions.stopSound = function(soundName) {

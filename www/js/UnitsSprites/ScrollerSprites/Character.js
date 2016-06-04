@@ -177,7 +177,7 @@ Character.prototype.startJumpAnimation = function() {
         MainGlobals.Physics.characterAirborn = true;
         MainGlobals.Physics.isAttacking = false;
         MainGlobals.Physics.characterVelocityY = MainGlobals.Physics.characterJumpVelocity;
-        MainGlobals.Helpers.playSound("GumballJump");
+        MainGlobals.Helpers.playSound("GumballJump",.4);
         this.setCurrentTextures(MainGlobals.Timing.characterJumpTime, this.Properties.jumpTextures);
     } else if (this.Properties.spriteCount < 2 && !MainGlobals.Physics.characterHighJumping) {
         this.startJumpHighAnimation();
@@ -185,6 +185,7 @@ Character.prototype.startJumpAnimation = function() {
 };
 
 Character.prototype.startJumpHighAnimation = function() {
+    MainGlobals.Helpers.playSound("GumballJump",.4);
     MainGlobals.Physics.characterAirborn = true;
     MainGlobals.Physics.characterHighJumping = true;
     MainGlobals.Physics.isAttacking = false;
@@ -197,6 +198,9 @@ Character.prototype.startAttackAnimation = function() {
         if (MainGlobals.Physics.characterAirborn) {
             MainGlobals.Balance.isAttacking = false;
         } else {
+            MainGlobals.Helpers.playSound("GumballAttack1",.6);
+            MainGlobals.Helpers.playSound("GumballAttack2",.5);
+            MainGlobals.Helpers.playSound("GumballAttack3",.3);
             this.setCurrentTextures(MainGlobals.Timing.characterAttackTime, this.Properties.attackTextures);
             MainGlobals.Balance.isAttacking = true;
         }

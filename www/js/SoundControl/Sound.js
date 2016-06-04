@@ -19,6 +19,18 @@ function GameSounds() {
             id : "GumballJump",
             url : "resources/GumballSounds/GBS gumball seed JUMP.m4a"
         },
+        attackSound : {
+            id : "GumballAttack1",
+            url : "resources/GumballSounds/GBS gumball seed SWORD SWING HAH 1.m4a"
+        },
+        attackSound2 : {
+            id : "GumballAttack2",
+            url : "resources/GumballSounds/GBS SWORD SWING sfx.mp3"
+        },
+        attackSound3 : {
+            id : "GumballAttack3",
+            url : "resources/GumballSounds/GBS SWORD SWING sfx2.mp3"
+        },
         EnemyDieSound : {
             id : "EnemyDie",
             url : "resources/GumballSounds/Gumball Seeds Bad Guy DYING SOUND.mp3"
@@ -30,6 +42,10 @@ function GameSounds() {
         PowerAddSound : {
             id : "AddPower",
             url : "resources/GumballSounds/Gumball Seeds LIFE STATUS ADD.mp3"
+        },
+        CharacterHitSound : {
+            id : "CharacterHit",
+            url : "resources/GumballSounds/Gumball Seeds LIFE STATUS SUBTRACT OOF.mp3"
         },
         BassEnergySound : {
             id : "BassEnergy",
@@ -48,13 +64,12 @@ function GameSounds() {
             url : "resources/GumballSounds/GumballSeeds Rainbow band Rocket.mp3"
         }
     },
-        numSoundsToLoad = 10,
+        numSoundsToLoad = 12,
         counter = 0;
     createjs.Sound.addEventListener("fileload", handleFileLoad);
 
     //Register the sounds at the start of the game
     for (var key in soundsProps) {
-        console.log(key);
         if (soundsProps.hasOwnProperty(key)) {
             createjs.Sound.registerSound(soundsProps[key].url, soundsProps[key].id);
             counter++;
