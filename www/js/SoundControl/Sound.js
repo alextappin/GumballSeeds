@@ -14,9 +14,41 @@ function GameSounds() {
         bassSound : {
             id: "Bass",
             url: "resources/Bass bomb sound effect.mp3"
+        },
+        jumpSound : {
+          id : "GumballJump",
+            url : "resources/GumballSounds/GBS gumball seed JUMP.m4a"
+        },
+        EnemyDieSound : {
+            id : "EnemyDie",
+            url : "resources/GumballSounds/Gumball Seeds Bad Guy DYING SOUND.mp3"
+        },
+        EnemyExplodeSound : {
+            id : "ExplodeEnemy",
+            url : "resources/GumballSounds/"
+        },
+        PowerAddSound : {
+            id : "AddPower",
+            url : "resources/GumballSounds/Gumball Seeds LIFE STATUS ADD.mp3"
+        },
+        BassEnergySound : {
+            id : "BassEnergy",
+            url : "resources/GumballSounds/Gumball Seeds low bass energy blast.mp3"
+        },
+        SuperChargeSound : {
+            id : "SuperCharge",
+            url : "resources/GumballSounds/Gumball Seeds Super PowerUp.mp3"
+        },
+        EnemyTakeThatSound : {
+            id : "TakeThat",
+            url : "resources/GumballSounds/Gumball Seeds TAKE THAT.mp3"
+        },
+        RainbowRocketSound : {
+            id : "RainbowRocket",
+            url : "resources/GumballSounds/GumballSeeds Rainbow band Rocket.mp3"
         }
     },
-        numSoundsToLoad = 3,
+        numSoundsToLoad = 11,
         counter = 0;
     createjs.Sound.addEventListener("fileload", handleFileLoad);
 
