@@ -16,7 +16,7 @@ function GameSounds() {
             url: "resources/Bass bomb sound effect.mp3"
         },
         jumpSound : {
-          id : "GumballJump",
+            id : "GumballJump",
             url : "resources/GumballSounds/GBS gumball seed JUMP.m4a"
         },
         EnemyDieSound : {
@@ -25,7 +25,7 @@ function GameSounds() {
         },
         EnemyExplodeSound : {
             id : "ExplodeEnemy",
-            url : "resources/GumballSounds/"
+            url : "resources/GumballSounds/Gumball Seeds Explosion.mp3"
         },
         PowerAddSound : {
             id : "AddPower",
@@ -48,12 +48,13 @@ function GameSounds() {
             url : "resources/GumballSounds/GumballSeeds Rainbow band Rocket.mp3"
         }
     },
-        numSoundsToLoad = 11,
+        numSoundsToLoad = 10,
         counter = 0;
     createjs.Sound.addEventListener("fileload", handleFileLoad);
 
     //Register the sounds at the start of the game
     for (var key in soundsProps) {
+        console.log(key);
         if (soundsProps.hasOwnProperty(key)) {
             createjs.Sound.registerSound(soundsProps[key].url, soundsProps[key].id);
             counter++;
@@ -61,7 +62,7 @@ function GameSounds() {
     }
 
     function handleFileLoad() {
-        if (counter == numSoundsToLoad) {
+        if (counter >= numSoundsToLoad) {
             MainGlobals.Map.soundLoaded = true;
         }
     }

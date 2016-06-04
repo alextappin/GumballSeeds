@@ -177,6 +177,7 @@ Character.prototype.startJumpAnimation = function() {
         MainGlobals.Physics.characterAirborn = true;
         MainGlobals.Physics.isAttacking = false;
         MainGlobals.Physics.characterVelocityY = MainGlobals.Physics.characterJumpVelocity;
+        MainGlobals.Helpers.playSound("GumballJump");
         this.setCurrentTextures(MainGlobals.Timing.characterJumpTime, this.Properties.jumpTextures);
     } else if (this.Properties.spriteCount < 2 && !MainGlobals.Physics.characterHighJumping) {
         this.startJumpHighAnimation();
