@@ -45,7 +45,7 @@ function GameSounds() {
         },
         CharacterHitSound : {
             id : "CharacterHit",
-            url : "resources/GumballSounds/Gumball Seeds LIFE STATUS SUBTRACT OOF.mp3"
+            url : "resources/GumballSounds/Gumball Seeds LIFE STATUS SUBTRACT OOF2.mp3"
         },
         BassEnergySound : {
             id : "BassEnergy",

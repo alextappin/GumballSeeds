@@ -8,7 +8,7 @@ function ScoreHelper() {
 
     scoreHelpers.getHitByEnemy = function() {
         MainGlobals.Score.lives -= MainGlobals.Balance.enemyDamage;
-        MainGlobals.Helpers.playSound("CharacterHit",.2);
+        MainGlobals.Helpers.playSound("CharacterHit",.4);
     };
 
     scoreHelpers.runningScore = function() {
@@ -22,7 +22,7 @@ function ScoreHelper() {
     scoreHelpers.pickupGumball = function(color) {
         if (color == MainGlobals.Map.gumballs[MainGlobals.PowerUp.powerBarLevel]) {
             MainGlobals.PowerHelper.incrementPowerUp();
-            MainGlobals.Helpers.playSound("AddPower",.7)
+            MainGlobals.Helpers.playSound("AddPower",.5)
         } else {
             MainGlobals.PowerHelper.decrementPowerUp();
         }
