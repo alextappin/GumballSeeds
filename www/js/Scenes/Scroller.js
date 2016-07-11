@@ -14,7 +14,6 @@ function Scroller(stage) {
 }
 Scroller.prototype.initializePositionsAndScale = function() {
     this.Properties.cloud5.setPositionAndScale(this.Properties.cloud5);
-    this.Properties.cloud6.setPositionAndScale(this.Properties.cloud6);
     this.Properties.cloud7.setPositionAndScale(this.Properties.cloud7);
     this.Properties.hill1a9.setPositionAndScale(this.Properties.hill1a9);
     this.Properties.hill1b10.setPositionAndScale(this.Properties.hill1b10);
@@ -34,7 +33,6 @@ Scroller.prototype.constructScroller = function(stage) {
     stage.addChild(this.Properties.bgSky1);
     stage.addChild(this.Properties.haze4);
     stage.addChild(this.Properties.cloud5);
-    stage.addChild(this.Properties.cloud6);
     stage.addChild(this.Properties.cloud7);
     stage.addChild(this.Properties.gumballMachine8);
     stage.addChild(this.Properties.hill1a9);
@@ -81,7 +79,6 @@ Scroller.prototype.updateObjects = function() {
     this.Properties.bgSky1.update(this.Properties.viewportX);
     this.Properties.haze4.update(this.Properties.viewportX);
     this.Properties.cloud5.update(this.Properties.cloud5, this.Properties.viewportX);
-    this.Properties.cloud6.update(this.Properties.cloud6, this.Properties.viewportX);
     this.Properties.cloud7.update(this.Properties.cloud7, this.Properties.viewportX);
     this.Properties.gumballMachine8.update(this.Properties.viewportX);
     this.Properties.hill1a9.update(this.Properties.hill1a9, this.Properties.viewportX);
