@@ -13,8 +13,7 @@ Clouds7.constructor = Clouds7;
 Clouds7.prototype = Object.create(PIXI.Container.prototype);
 
 Clouds7.prototype.setPositionAndScale = function(obj) {
-    obj.position = MainGlobals.Helpers.getNewPoint(MainGlobals.ScreenWidth, MainGlobals.Helpers.getRandomNumber(MainGlobals.Scroller.cloudRandomYStart, MainGlobals.Scroller.cloudRandomYEnd));
-    this.setScale(obj);
+    this.getNewPositionsAndScale(obj);
 };
 
 Clouds7.prototype.update = function(obj, newViewportX) {
