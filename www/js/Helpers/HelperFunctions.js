@@ -140,6 +140,14 @@ function HelperFunctions() {
         createjs.Sound.stop(MainGlobals.Map.gameString);
     };
 
+    functions.playSound = function(soundName, vol, dur) {
+        createjs.Sound.play(soundName, {loop: 0, volume: vol});
+    };
+
+    functions.stopSound = function(soundName) {
+        createjs.Sound.stop(soundName);
+    };
+
     functions.getCorrectScaleWidth = function(width) {
         return MainGlobals.ScreenWidth / width;
     };
