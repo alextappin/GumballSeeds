@@ -19,7 +19,7 @@ Haze11.prototype.setPositionAndScale = function(obj) {
 };
 
 Haze11.prototype.update = function(obj, newViewportX) {
-    if (obj.position.x < 0 - obj.width/2) { //if its all the way off the left side of the screen, get new position
+    if (obj.position.x < 0 - obj.width/2) {
         obj.position.x = 0;
     }
     obj.position.x -= ((newViewportX - this.viewportX) * MainGlobals.Scroller.deltaX11); //distance traveled * change
