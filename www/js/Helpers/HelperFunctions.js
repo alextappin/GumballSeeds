@@ -181,7 +181,7 @@ function HelperFunctions() {
     };
 
     functions.calculateCloudScale = function(posY) {
-        return (1-(posY / MainGlobals.ScreenHeight))/MainGlobals.Scroller.cloudScaleConst;
+        return (1-(posY / MainGlobals.ScreenHeight)*2);
     };
 
     functions.endGame = function() {

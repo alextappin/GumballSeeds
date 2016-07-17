@@ -6,7 +6,6 @@ function ScrollerProperties() {
         bgSky1 : new BgSky1(),
         haze4 : new Haze4(),
         cloud5 : new Clouds5(),
-        cloud6 : new Clouds6(),
         cloud7 : new Clouds7(),
         gumballMachine8 : new GumballMachine8(),
         hill1a9 : new Hill1a9(),
