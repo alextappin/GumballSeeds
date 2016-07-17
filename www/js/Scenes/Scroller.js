@@ -13,13 +13,16 @@ function Scroller(stage) {
     MainGlobals.Helpers.startGameSound();
 }
 Scroller.prototype.initializePositionsAndScale = function() {
+    this.Properties.haze4.setPositionAndScale(this.Properties.haze4);
     this.Properties.cloud5.setPositionAndScale(this.Properties.cloud5);
     this.Properties.cloud7.setPositionAndScale(this.Properties.cloud7);
     this.Properties.gumballMachine8.setPositionAndScale(this.Properties.gumballMachine8);
     this.Properties.hill1a9.setPositionAndScale(this.Properties.hill1a9);
     this.Properties.hill1b10.setPositionAndScale(this.Properties.hill1b10);
+    this.Properties.haze11.setPositionAndScale(this.Properties.haze11);
     this.Properties.hill2a12.setPositionAndScale(this.Properties.hill2a12);
     this.Properties.hill2b13.setPositionAndScale(this.Properties.hill2b13);
+    this.Properties.haze14.setPositionAndScale(this.Properties.haze14);
     this.Properties.hill3a15.setPositionAndScale(this.Properties.hill3a15);
     this.Properties.hill3b16.setPositionAndScale(this.Properties.hill3b16);
     this.Properties.character.setPositionAndScale(this.Properties.character);
@@ -78,16 +81,16 @@ Scroller.prototype.updateViewport = function() {
 };
 Scroller.prototype.updateObjects = function() {
     /*this.Properties.bgSky1.update(this.Properties.viewportX);*/
-    this.Properties.haze4.update(this.Properties.viewportX);
+    this.Properties.haze4.update(this.Properties.haze4, this.Properties.viewportX);
     this.Properties.cloud5.update(this.Properties.cloud5, this.Properties.viewportX);
     this.Properties.cloud7.update(this.Properties.cloud7, this.Properties.viewportX);
     this.Properties.gumballMachine8.update(this.Properties.gumballMachine8, this.Properties.viewportX);
     this.Properties.hill1a9.update(this.Properties.hill1a9, this.Properties.viewportX);
     this.Properties.hill1b10.update(this.Properties.hill1b10, this.Properties.viewportX);
-    this.Properties.haze11.update(this.Properties.viewportX);
+    this.Properties.haze11.update(this.Properties.haze11, this.Properties.viewportX);
     this.Properties.hill2a12.update(this.Properties.hill2a12, this.Properties.viewportX, this.Properties.hill2b13);
     this.Properties.hill2b13.update(this.Properties.hill2b13, this.Properties.viewportX, this.Properties.hill2a12);
-    this.Properties.haze14.update(this.Properties.viewportX);
+    this.Properties.haze14.update(this.Properties.haze14, this.Properties.viewportX);
     this.Properties.hill3a15.update(this.Properties.hill3a15, this.Properties.viewportX, this.Properties.hill3b16);
     this.Properties.hill3b16.update(this.Properties.hill3b16, this.Properties.viewportX, this.Properties.hill3a15);
     this.Properties.ground.update(this.Properties.ground, this.getStage());
