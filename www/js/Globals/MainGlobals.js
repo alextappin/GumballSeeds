@@ -58,6 +58,7 @@ var MainGlobals = (function MainGlobals() {
             window.innerHeight/constants.ScreenHeight
         );
         // Scale the view appropriately to fill that dimension
+        //adding test
 /*        constants.renderer.view.style.position = "absolute";
         constants.renderer.view.style.top = "-1px";
         constants.renderer.view.style.left = "-1px";*/
