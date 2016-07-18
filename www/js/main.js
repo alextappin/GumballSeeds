@@ -20,8 +20,13 @@ Main.prototype.loadSpriteSheet = function() {
             "imagesSmall/character.json", "imagesSmall/map.json",
             "imagesSmall/title.json", "imagesSmall/interface.json"
         ],
+        assetsToLoadHighRes = ["imagesSmall/character.json",
+            "imagesSmall/title.json", "imagesSmall/interface.json"],
         loader = new PIXI.loaders.Loader();
-    loader.add(assetsToLoad3).load(this.spriteSheetLoaded.bind(this))
+    for (var i = 1; i < 17; i++) {
+        assetsToLoadHighRes.push("imagesBig/bam" + i + ".json");
+    }
+    loader.add(assetsToLoadHighRes).load(this.spriteSheetLoaded.bind(this))
 };
 Main.prototype.update = function() {
     this.gameStatesHandler();
