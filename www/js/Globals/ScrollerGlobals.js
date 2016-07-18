@@ -33,9 +33,9 @@ function ScrollerGlobals() {
     constants.hill1aY = MainGlobals.ScreenHeight*.52; // 60% down the screen put the hill1
     constants.hill1bY = MainGlobals.ScreenHeight*.655;
     constants.hill2aY = MainGlobals.ScreenHeight*.32; // 60% down the screen put the hill1
-    constants.hill2bY = MainGlobals.ScreenHeight*.505;
-    constants.hill3aY = MainGlobals.ScreenHeight*.65;
-    constants.hill3bY = MainGlobals.ScreenHeight*.65;
+    constants.hill2bY = MainGlobals.ScreenHeight*.32;
+    constants.hill3aY = MainGlobals.ScreenHeight*.19;
+    constants.hill3bY = MainGlobals.ScreenHeight*.25;
 
     constants.haze11Y = MainGlobals.ScreenHeight*.3;
     constants.haze14Y = MainGlobals.ScreenHeight*.55;
