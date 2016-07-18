@@ -16,6 +16,8 @@ function TimingGlobals() {
     constants.titlePulseMinimumAlpha = .5;
     constants.startButtonPressed = false;
 
+    constants.mapWaterfallTime1 = 9;
+    constants.mapWaterfallTime2 = 9;
     constants.characterRunTime = 7;
     constants.characterJumpTime = 6;
     constants.characterAttackTime = 6;

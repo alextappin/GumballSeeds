@@ -32,6 +32,7 @@ function PowerUpHelper() {
         if (!MainGlobals.PowerUp.powerUpActive) {
             if (MainGlobals.PowerUp.powerBarLevel >= MainGlobals.PowerUp.maxPowerBarLevel) {
                 powerUpHelper.startPowerUp();
+                MainGlobals.Helpers.playSound("SuperCharge");
             }
             else {
                 MainGlobals.PowerUp.powerBarLevel++;

@@ -3,8 +3,13 @@
  */
 function Hill3a15() {
     PIXI.Container.call(this);
-    var texture = PIXI.Texture.fromFrame("15 hill3a");
-    var sprite = new PIXI.Sprite(texture);
+    this.textures = [
+        PIXI.Texture.fromFrame("15a hill3a"),
+        PIXI.Texture.fromFrame("15b hill3a")
+    ];
+    this.spriteCounter = 0;
+    this.currentSprite = 0;
+    var sprite = new PIXI.Sprite(this.textures[this.currentSprite]);
     this.addChild(sprite);
     this.viewportX = 0;
 }
@@ -24,6 +29,14 @@ Hill3a15.prototype.update = function(obj, newViewportX, bObj) {
     }
     obj.position.x -= ((newViewportX - obj.viewportX) * MainGlobals.Scroller.deltaXhill3); //distance traveled * change
     obj.viewportX = newViewportX;
+
+    if (obj.spriteCounter >= MainGlobals.Timing.mapWaterfallTime1) {
+        obj.currentSprite = obj.currentSprite == 0 ? 1 : 0;
+        obj.children[0].texture = obj.textures[obj.currentSprite];
+        obj.spriteCounter = 0;
+    }
+
+    obj.spriteCounter++;
 };
 
 Hill3a15.prototype.getNewPosition = function(obj, bObj) {

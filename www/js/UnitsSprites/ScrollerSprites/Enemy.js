@@ -54,6 +54,7 @@ Enemy.prototype.update = function(enemyObj) {
 Enemy.prototype.explode = function(enemyObj) {
     if (this.Properties.currentTextures != this.Properties.deathTextures) {
         this.setCurrentTextures(MainGlobals.Timing.enemyDieTime, this.Properties.deathTextures);
+        MainGlobals.Helpers.playSound("EnemyDie",.3);
     }
     if (this.Properties.spriteCount == this.Properties.currentTextures.length - 1) {
         this.Properties.spriteCount = this.Properties.currentTextures.length-2;
