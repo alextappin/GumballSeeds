@@ -7,7 +7,7 @@ function Hill3a15() {
         PIXI.Texture.fromFrame("15a hill3a"),
         PIXI.Texture.fromFrame("15b hill3a")
     ];
-    this.spriteCounter = 0;
+    this.spriteCounter = 4;
     this.currentSprite = 0;
     var sprite = new PIXI.Sprite(this.textures[this.currentSprite]);
     this.addChild(sprite);
