@@ -252,7 +252,7 @@ Character.prototype.startJumpAnimation = function() {
         MainGlobals.Balance.isAttacking = false;
         MainGlobals.Physics.characterVelocityY = MainGlobals.Physics.characterJumpVelocity;
         MainGlobals.Helpers.playSound("GumballJump",.4);
-        this.setCurrentTextures(MainGlobals.Timing.characterJumpTime, this.Properties.jumpTextures);
+        //this.setCurrentTextures(MainGlobals.Timing.characterJumpTime, this.Properties.jumpTextures);
     } else if (!MainGlobals.Physics.characterHighJumping && MainGlobals.Physics.characterVelocityY < 0 && !MainGlobals.Balance.isAttacking) {
         this.startJumpHighAnimation();
     }
@@ -264,7 +264,7 @@ Character.prototype.startJumpHighAnimation = function() {
     MainGlobals.Physics.characterHighJumping = true;
     MainGlobals.Physics.isAttacking = false;
     MainGlobals.Physics.characterVelocityY = MainGlobals.Physics.characterJumpHighVelocity;
-    this.setCurrentTextures(MainGlobals.Timing.characterJumpTime, this.Properties.jumpHighTextures);
+    //this.setCurrentTextures(MainGlobals.Timing.characterJumpTime, this.Properties.jumpHighTextures);
 };
 
 Character.prototype.startAttackAnimation = function() {
