@@ -256,7 +256,6 @@ EnemiesHandler.prototype.getNewPosition = function(enemyHandler, groundObj) { //
             enemyHandler.enemyStructure[enemyHandler.enemyStructure.length-1].height,
             groundObj.getHeightAtPositionX(50, groundObj) - MainGlobals.ScreenWidth *.025
         )
-
     );
 };
 
