@@ -105,38 +105,57 @@ Character.prototype.setCorrectTextureForPosition = function(characterObj) {
     var characterPositionPercentage = characterObj.position.y / MainGlobals.ScreenHeight;
 
     if (MainGlobals.Physics.characterVelocityY < 0) {
-        // console.log(characterObj.position.y / MainGlobals.ScreenHeight, this.Properties.spriteCount);
-        if (characterPositionPercentage > .42) {
-            // set J1
-            characterObj.children[0].texture = this.newJumpPosition[0];
-        } else if (characterPositionPercentage > .36) {
-            // set J2
-            characterObj.children[0].texture = this.newJumpPosition[1];
-        } else if (characterPositionPercentage > .35) {
-            // set J3
-            characterObj.children[0].texture = this.newJumpPosition[2];
-
+        if (MainGlobals.Physics.characterHighJumping) {
+            if (characterPositionPercentage > .28) {
+                characterObj.children[0].texture = this.newJumpPosition[0];
+            } else if (characterPositionPercentage > .133) {
+                characterObj.children[0].texture = this.newJumpPosition[1];
+            } else if (characterPositionPercentage > .038) {
+                characterObj.children[0].texture = this.newJumpPosition[2];
+            } else if (characterPositionPercentage > 0) {
+                characterObj.children[0].texture = this.newJumpPosition[3];
+            } else if (characterPositionPercentage < 0 ) {
+                characterObj.children[0].texture = this.newJumpPosition[3];
+            }
+        } else {
+            if (characterPositionPercentage > .42) {
+                characterObj.children[0].texture = this.newJumpPosition[0];
+            } else if (characterPositionPercentage > .36) {
+                characterObj.children[0].texture = this.newJumpPosition[1];
+            } else if (characterPositionPercentage > .35) {
+                characterObj.children[0].texture = this.newJumpPosition[2];
+            }
         }
     } else {
-        //fall logic
-        console.log(characterObj.position.y / MainGlobals.ScreenHeight, this.Properties.spriteCount);
-        if (characterPositionPercentage < .355) {
-            // set J3
-            characterObj.children[0].texture = this.newJumpPosition[2];
-        } else if (characterPositionPercentage < .39) {
-            // set J4
-            characterObj.children[0].texture = this.newJumpPosition[3];
-        } else if (characterPositionPercentage < .48) {
-            // set J5
-            characterObj.children[0].texture = this.newJumpPosition[4];
-        } else if (characterPositionPercentage < .629) {
-            // set J6
-            characterObj.children[0].texture = this.newJumpPosition[5];
-        } else if (characterPositionPercentage < .73) {
-            // set J7
-            characterObj.children[0].texture = this.newJumpPosition[6];
+        if (MainGlobals.Physics.characterHighJumping) {
+            // high jumping fall logic
+            if (characterPositionPercentage < 0) {
+                characterObj.children[0].texture = this.newJumpPosition[3];
+            } else if (characterPositionPercentage < .075) {
+                characterObj.children[0].texture = this.newJumpPosition[2];
+            } else if (characterPositionPercentage < .196) {
+                characterObj.children[0].texture = this.newJumpPosition[3];
+            } else if (characterPositionPercentage < .37) {
+                characterObj.children[0].texture = this.newJumpPosition[4];
+            } else if (characterPositionPercentage < .5 ) {
+                characterObj.children[0].texture = this.newJumpPosition[5];
+            } else if (characterPositionPercentage > .5 ) {
+                characterObj.children[0].texture = this.newJumpPosition[6];
+            }
+        } else {
+            //fall logic regular
+            if (characterPositionPercentage < .355) {
+                characterObj.children[0].texture = this.newJumpPosition[2];
+            } else if (characterPositionPercentage < .39) {
+                characterObj.children[0].texture = this.newJumpPosition[3];
+            } else if (characterPositionPercentage < .48) {
+                characterObj.children[0].texture = this.newJumpPosition[4];
+            } else if (characterPositionPercentage < .629) {
+                characterObj.children[0].texture = this.newJumpPosition[5];
+            } else if (characterPositionPercentage < .73) {
+                characterObj.children[0].texture = this.newJumpPosition[6];
+            }
         }
-
     }
 };
 
@@ -151,7 +170,7 @@ Character.prototype.update = function(characterObj, groundObj) {
         characterObj.visible = true;
     }
 
-    //this.updateSprites(characterObj);
+    this.updateSprites(characterObj);
     this.gravityCharacter(characterObj, groundObj);
     this.resetCharacter(characterObj);
     this.attackCharacter();
@@ -159,11 +178,13 @@ Character.prototype.update = function(characterObj, groundObj) {
 };
 
 Character.prototype.updateSprites = function(characterObj) {
-    if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
-        this.Properties.changeSpriteCounter = 0;
-        this.nextSprite(characterObj);
-    } else {
-        this.Properties.changeSpriteCounter++;
+    if (!MainGlobals.Physics.characterAirborn) {
+        if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
+            this.Properties.changeSpriteCounter = 0;
+            this.nextSprite(characterObj);
+        } else {
+            this.Properties.changeSpriteCounter++;
+        }
     }
 };
 
