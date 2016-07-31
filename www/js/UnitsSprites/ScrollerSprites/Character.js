@@ -82,11 +82,64 @@ Character.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("gbs super5"),
         PIXI.Texture.fromFrame("gbs super6")
     );
+    this.newJumpPosition = [];
+    this.newJumpPosition.push(
+        PIXI.Texture.fromFrame("gbs j1"),
+        PIXI.Texture.fromFrame("gbs j2"),
+        PIXI.Texture.fromFrame("gbs j3"),
+        PIXI.Texture.fromFrame("gbs j4"),
+        PIXI.Texture.fromFrame("gbs j5"),
+        PIXI.Texture.fromFrame("gbs j6"),
+        PIXI.Texture.fromFrame("gbs j7")
+    );
 
     this.setCurrentTextures(MainGlobals.Timing.characterRunTime, this.Properties.runTextures);
 
     this.addChild(new PIXI.Sprite(this.Properties.currentTextures[this.Properties.spriteCount]));
 };
+
+Character.prototype.setCorrectTextureForPosition = function(characterObj) {
+    if (!MainGlobals.Physics.characterAirborn) {
+        return false;
+    }
+    var characterPositionPercentage = characterObj.position.y / MainGlobals.ScreenHeight;
+
+    if (MainGlobals.Physics.characterVelocityY < 0) {
+        // console.log(characterObj.position.y / MainGlobals.ScreenHeight, this.Properties.spriteCount);
+        if (characterPositionPercentage > .42) {
+            // set J1
+            characterObj.children[0].texture = this.newJumpPosition[0];
+        } else if (characterPositionPercentage > .36) {
+            // set J2
+            characterObj.children[0].texture = this.newJumpPosition[1];
+        } else if (characterPositionPercentage > .35) {
+            // set J3
+            characterObj.children[0].texture = this.newJumpPosition[2];
+
+        }
+    } else {
+        //fall logic
+        console.log(characterObj.position.y / MainGlobals.ScreenHeight, this.Properties.spriteCount);
+        if (characterPositionPercentage < .355) {
+            // set J3
+            characterObj.children[0].texture = this.newJumpPosition[2];
+        } else if (characterPositionPercentage < .39) {
+            // set J4
+            characterObj.children[0].texture = this.newJumpPosition[3];
+        } else if (characterPositionPercentage < .48) {
+            // set J5
+            characterObj.children[0].texture = this.newJumpPosition[4];
+        } else if (characterPositionPercentage < .629) {
+            // set J6
+            characterObj.children[0].texture = this.newJumpPosition[5];
+        } else if (characterPositionPercentage < .73) {
+            // set J7
+            characterObj.children[0].texture = this.newJumpPosition[6];
+        }
+
+    }
+};
+
 
 Character.prototype.setSpriteToCurrentTexture = function(characterObj) {
     characterObj.children[0].texture = this.Properties.currentTextures[this.Properties.spriteCount];
@@ -98,10 +151,11 @@ Character.prototype.update = function(characterObj, groundObj) {
         characterObj.visible = true;
     }
 
-    this.updateSprites(characterObj);
+    //this.updateSprites(characterObj);
     this.gravityCharacter(characterObj, groundObj);
     this.resetCharacter(characterObj);
     this.attackCharacter();
+    this.setCorrectTextureForPosition(characterObj);
 };
 
 Character.prototype.updateSprites = function(characterObj) {
@@ -229,7 +283,6 @@ Character.prototype.setCurrentTextures = function(speed, textures) {
     }
 
 };
-
 //POWERUP STUFF
 
 Character.prototype.updatePowerUp = function(characterObj) {
