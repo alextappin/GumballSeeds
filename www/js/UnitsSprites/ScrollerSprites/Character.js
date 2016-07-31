@@ -98,8 +98,8 @@ Character.prototype.initiateCharacterSprites = function() {
     this.addChild(new PIXI.Sprite(this.Properties.currentTextures[this.Properties.spriteCount]));
 };
 
-Character.prototype.setCorrectTextureForPosition = function(characterObj) {
-    if (!MainGlobals.Physics.characterAirborn) {
+Character.prototype.setCorrectTextureForPositionJumping = function(characterObj) {
+    if (!MainGlobals.Physics.characterAirborn || MainGlobals.Balance.isAttacking) {
         return false;
     }
     var characterPositionPercentage = characterObj.position.y / MainGlobals.ScreenHeight;
@@ -130,7 +130,7 @@ Character.prototype.setCorrectTextureForPosition = function(characterObj) {
         if (MainGlobals.Physics.characterHighJumping) {
             // high jumping fall logic
             if (characterPositionPercentage < 0) {
-                characterObj.children[0].texture = this.newJumpPosition[3];
+                characterObj.children[0].texture = this.newJumpPosition[4];
             } else if (characterPositionPercentage < .075) {
                 characterObj.children[0].texture = this.newJumpPosition[2];
             } else if (characterPositionPercentage < .196) {
@@ -159,7 +159,6 @@ Character.prototype.setCorrectTextureForPosition = function(characterObj) {
     }
 };
 
-
 Character.prototype.setSpriteToCurrentTexture = function(characterObj) {
     characterObj.children[0].texture = this.Properties.currentTextures[this.Properties.spriteCount];
 };
@@ -174,11 +173,11 @@ Character.prototype.update = function(characterObj, groundObj) {
     this.gravityCharacter(characterObj, groundObj);
     this.resetCharacter(characterObj);
     this.attackCharacter();
-    this.setCorrectTextureForPosition(characterObj);
+    this.setCorrectTextureForPositionJumping(characterObj);
 };
 
 Character.prototype.updateSprites = function(characterObj) {
-    if (!MainGlobals.Physics.characterAirborn) {
+    if (!MainGlobals.Physics.characterAirborn || MainGlobals.Balance.isAttacking) {
         if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
             this.Properties.changeSpriteCounter = 0;
             this.nextSprite(characterObj);
@@ -250,11 +249,11 @@ Character.prototype.attackCharacter = function() {
 Character.prototype.startJumpAnimation = function() {
     if (!MainGlobals.Physics.characterAirborn) {
         MainGlobals.Physics.characterAirborn = true;
-        MainGlobals.Physics.isAttacking = false;
+        MainGlobals.Balance.isAttacking = false;
         MainGlobals.Physics.characterVelocityY = MainGlobals.Physics.characterJumpVelocity;
         MainGlobals.Helpers.playSound("GumballJump",.4);
         this.setCurrentTextures(MainGlobals.Timing.characterJumpTime, this.Properties.jumpTextures);
-    } else if (this.Properties.spriteCount < 2 && !MainGlobals.Physics.characterHighJumping) {
+    } else if (!MainGlobals.Physics.characterHighJumping && MainGlobals.Physics.characterVelocityY < 0) {
         this.startJumpHighAnimation();
     }
 };
@@ -271,23 +270,23 @@ Character.prototype.startJumpHighAnimation = function() {
 Character.prototype.startAttackAnimation = function() {
     if (!MainGlobals.Balance.isAttacking) {
         if (MainGlobals.Physics.characterAirborn) {
-            MainGlobals.Balance.isAttacking = false;
+            this.setCurrentTextures(MainGlobals.Timing.characterJumpAttackTime, this.Properties.jumpAttackTextures);
         } else {
-            MainGlobals.Helpers.playSound("GumballAttack1",.6);
-            MainGlobals.Helpers.playSound("GumballAttack2",.5);
-            MainGlobals.Helpers.playSound("GumballAttack3",.3);
             this.setCurrentTextures(MainGlobals.Timing.characterAttackTime, this.Properties.attackTextures);
-            MainGlobals.Balance.isAttacking = true;
         }
+        MainGlobals.Helpers.playSound("GumballAttack1",.6);
+        MainGlobals.Helpers.playSound("GumballAttack2",.5);
+        MainGlobals.Helpers.playSound("GumballAttack3",.3);
+        MainGlobals.Balance.isAttacking = true;
     }
 };
 
 Character.prototype.startJumpAttackAnimation = function() {
-    if (!MainGlobals.Physics.characterAirborn && this.Properties.spriteCount < 2) {
-        MainGlobals.Physics.characterAirborn = true;
-        MainGlobals.Physics.characterVelocityY = MainGlobals.Physics.characterJumpAttackVelocity;
-        this.setCurrentTextures(MainGlobals.Timing.characterJumpAttackTime, this.Properties.jumpAttackTextures);
-    }
+    //if (!MainGlobals.Physics.characterAirborn && this.Properties.spriteCount < 2) {
+    //    MainGlobals.Physics.characterAirborn = true;
+    //    MainGlobals.Physics.characterVelocityY = MainGlobals.Physics.characterJumpAttackVelocity;
+    //    this.setCurrentTextures(MainGlobals.Timing.characterJumpAttackTime, this.Properties.jumpAttackTextures);
+    //}
 };
 
 Character.prototype.setCurrentTextures = function(speed, textures) {
