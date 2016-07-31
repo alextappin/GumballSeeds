@@ -41,10 +41,10 @@ Scroller.prototype.constructScroller = function(stage) {
     stage.addChild(this.Properties.gumballMachine8);
     stage.addChild(this.Properties.hill1a9);
     stage.addChild(this.Properties.hill1b10);
-    stage.addChild(this.Properties.haze11);
+    //stage.addChild(this.Properties.haze11);
     stage.addChild(this.Properties.hill2a12);
     stage.addChild(this.Properties.hill2b13);
-    stage.addChild(this.Properties.haze14);
+    //stage.addChild(this.Properties.haze14);
     stage.addChild(this.Properties.hill3a15);
     stage.addChild(this.Properties.hill3b16);
     this.Properties.ground.addGroundToStage(this.Properties.ground, stage);
@@ -87,10 +87,10 @@ Scroller.prototype.updateObjects = function() {
     this.Properties.gumballMachine8.update(this.Properties.gumballMachine8, this.Properties.viewportX);
     this.Properties.hill1a9.update(this.Properties.hill1a9, this.Properties.viewportX);
     this.Properties.hill1b10.update(this.Properties.hill1b10, this.Properties.viewportX);
-    this.Properties.haze11.update(this.Properties.haze11, this.Properties.viewportX);
+    //this.Properties.haze11.update(this.Properties.haze11, this.Properties.viewportX);
     this.Properties.hill2a12.update(this.Properties.hill2a12, this.Properties.viewportX, this.Properties.hill2b13);
     this.Properties.hill2b13.update(this.Properties.hill2b13, this.Properties.viewportX, this.Properties.hill2a12);
-    this.Properties.haze14.update(this.Properties.haze14, this.Properties.viewportX);
+    //this.Properties.haze14.update(this.Properties.haze14, this.Properties.viewportX);
     this.Properties.hill3a15.update(this.Properties.hill3a15, this.Properties.viewportX, this.Properties.hill3b16);
     this.Properties.hill3b16.update(this.Properties.hill3b16, this.Properties.viewportX, this.Properties.hill3a15);
     this.Properties.ground.update(this.Properties.ground, this.getStage());
