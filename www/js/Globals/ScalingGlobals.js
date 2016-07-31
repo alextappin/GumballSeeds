@@ -15,7 +15,7 @@ function ScalingGlobals() {
     constants.startAnimationScale = 0;
     constants.startAnimationPercent = 1;
     constants.characterScale = 0;
-    constants.characterPercent = .25;
+    constants.characterPercent = .23;
     constants.characterPositionX = MainGlobals.ScreenHeight *.25;
     constants.superbarScale = 0;
     constants.superbarPercent = .08;
