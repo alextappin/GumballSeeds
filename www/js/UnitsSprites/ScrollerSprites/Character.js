@@ -216,7 +216,7 @@ Character.prototype.fallCharacter = function(characterObj, groundObj) {
 
     if (characterObj.position.y < groundHeight) { //keep falling
         characterObj.position.y += MainGlobals.Physics.characterVelocityY;
-    } else if (characterObj.position.y + MainGlobals.Physics.characterVelocityY > groundHeight) {
+    } else if (characterObj.position.y + MainGlobals.Physics.characterVelocityY >= groundHeight) {
         characterObj.position.y = groundHeight;
         MainGlobals.Physics.characterVelocityY = 0;
         MainGlobals.Physics.characterAirborn = false;
