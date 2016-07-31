@@ -254,7 +254,7 @@ EnemiesHandler.prototype.getNewPosition = function(enemyHandler, groundObj) { //
         MainGlobals.ScreenWidth*2,
         MainGlobals.Helpers.getRandomNumber(
             enemyHandler.enemyStructure[enemyHandler.enemyStructure.length-1].height,
-            groundObj.getHeightAtPositionX(50, groundObj)
+            groundObj.getHeightAtPositionX(50, groundObj) - MainGlobals.ScreenWidth *.025
         )
 
     );
