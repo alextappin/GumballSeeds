@@ -114,6 +114,11 @@ LoadImage.prototype.update = function(imageObj) {
     this.updateSprites(imageObj);
 };
 LoadImage.prototype.updateSprites = function(imageObj) {
+    if (imageObj.position.x < -100) { //black screen scene to fix scaling issues.
+        MainGlobals.Helpers.switchToLoad();
+        MainGlobals.Helpers.switchScreenToggle();
+        return;
+    }
     if (imageObj.Properties.testCount < imageObj.Properties.textures.length) {
         imageObj.children[1].texture = imageObj.Properties.textures[imageObj.Properties.testCount];
         imageObj.Properties.testCount++;

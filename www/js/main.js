@@ -62,6 +62,8 @@ Main.prototype.updatedSelectedScreen = function() {
         this.titleScreen.update();
     } else if(MainGlobals.Helpers.screenIsLoad()) {
         this.loadScreen.update();
+    } else if(MainGlobals.Helpers.screenIsBlack()) {
+        this.loadScreen.update();
     }
 };
 
@@ -70,7 +72,11 @@ Main.prototype.startAppropriateScreen = function() {
         this.scroller = new Scroller(MainGlobals.stage);
     } else if (MainGlobals.Helpers.screenIsTitle()) {
         this.titleScreen = new TitleScreen(MainGlobals.stage);
-    } else if(MainGlobals.Helpers.screenIsLoad()) {
+        console.log(MainGlobals.stage);
+    } else if (MainGlobals.Helpers.screenIsBlack()) {
+        this.loadScreen = new BlackScreen(MainGlobals.stage);
+    }
+    else if(MainGlobals.Helpers.screenIsLoad()) {
         this.loadScreen = new LoadScreen(MainGlobals.stage);
     }
 };
