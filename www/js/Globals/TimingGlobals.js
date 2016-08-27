@@ -18,7 +18,7 @@ function TimingGlobals() {
 
     constants.mapWaterfallTime1 = 9;
     constants.mapWaterfallTime2 = 9;
-    constants.characterRunTime = 7;
+    constants.characterRunTime = 6;
     constants.characterJumpTime = 6;
     constants.characterAttackTime = 6;
     constants.characterJumpAttackTime = 6;
