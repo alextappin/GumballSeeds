@@ -71,7 +71,6 @@ Main.prototype.startAppropriateScreen = function() {
         this.scroller = new Scroller(MainGlobals.stage);
     } else if (MainGlobals.Helpers.screenIsTitle()) {
         this.titleScreen = new TitleScreen(MainGlobals.stage);
-        console.log(MainGlobals.stage);
     } else if (MainGlobals.Helpers.screenIsBlack()) {
         this.loadScreen = new BlackScreen(MainGlobals.stage);
     }
