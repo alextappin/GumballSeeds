@@ -34,10 +34,11 @@ Ground.prototype.initiateGroundSprite = function() {
 
 Ground.prototype.update = function(obj) {
     obj.position.x -= MainGlobals.Scroller.groundSpeed;
-    obj.visible = true;
+    obj.alpha = 1;
 };
 
 Ground.prototype.updatePowerUp = function(obj) {
-    obj.visible = false;
+    obj.position.x -= MainGlobals.Scroller.groundSpeed;
+    obj.alpha = 0;
 };
 

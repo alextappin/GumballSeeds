@@ -34,11 +34,12 @@ Gumball.prototype.update = function(gumballObj) {
     if (gumballObj.Properties.grabbed) {
         this.pickupAnimation(gumballObj);
     }
-    gumballObj.visible = true;
+    gumballObj.alpha = 1;
 };
 
 Gumball.prototype.updatePowerUp = function(gumballObj) {
-    gumballObj.visible = false;
+    this.update(gumballObj);
+    gumballObj.alpha = 0;
 };
 
 Gumball.prototype.pickupAnimation = function(gumballObj) {
