@@ -12,7 +12,13 @@ function ScoreHelper() {
     };
 
     scoreHelpers.runningScore = function() {
-        MainGlobals.Score.currentScore = MainGlobals.Score.currentScore + MainGlobals.Balance.runningScore;
+        if (MainGlobals.PowerUp.powerUpActive) {
+            MainGlobals.Score.currentScore = MainGlobals.Score.currentScore + MainGlobals.Balance.superScore;
+            MainGlobals.Balance.loopScoreIncrementTime = 3;
+        } else {
+            MainGlobals.Score.currentScore = MainGlobals.Score.currentScore + MainGlobals.Balance.runningScore;
+            MainGlobals.Balance.loopScoreIncrementTime = 10;
+        }
     };
 
     scoreHelpers.createNewEnemy = function() {
