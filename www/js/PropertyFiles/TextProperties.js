@@ -8,9 +8,16 @@ function TextProperties(textType) {
         setValues : function() {
             if (this.type == "score") {
                 this.numberOfZeros = 10 - MainGlobals.Score.currentScore.toString().length;
-                console.log(this.numberOfZeros);
                 this.text = "Score   " + '0'.repeat(this.numberOfZeros) + MainGlobals.Score.currentScore;
                 this.positionX = MainGlobals.ScreenWidth * .785;
+                this.positionY = MainGlobals.ScreenHeight * .096;
+                this.fill = "White";
+                this.fontSize = "30px";
+                this.fontFamily = "myFirstFont";
+            }
+            else if (this.type == "combo") {
+                this.text = "X " + MainGlobals.Score.combo;
+                this.positionX = MainGlobals.ScreenWidth * .072;
                 this.positionY = MainGlobals.ScreenHeight * .096;
                 this.fill = "White";
                 this.fontSize = "30px";
@@ -71,12 +78,10 @@ function TextProperties(textType) {
         needsUpdate : function() {
             if (this.type == "score") {
                 var numberOfZeros = 10 - MainGlobals.Score.currentScore.toString().length;
-                console.log(numberOfZeros);
-
-                return !("Score   " + '0'.repeat(numberOfZeros) + MainGlobals.Score.currentScore == this.text);
+                return ("Score   " + '0'.repeat(numberOfZeros) + MainGlobals.Score.currentScore != this.text);
             }
-            else if(this.type == "highscore") {
-
+            else if(this.type == "combo") {
+                return ("X " + MainGlobals.Score.combo != this.text);
             }
             else if(this.type == "lives") {
 

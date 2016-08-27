@@ -30,7 +30,7 @@ function ScrollerProperties() {
         enemies : new EnemiesHandler(),
         mapBuilder : {},
         textScore : new Text("score"),
-        textLives : new Text("lives"),
+        textCombo : new Text("combo"),
         viewportX : 0
     };
 

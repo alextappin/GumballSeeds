@@ -29,6 +29,6 @@ ComboLivesBar.prototype.update = function(comboLivesObj) {
 
 ComboLivesBar.prototype.updatePowerUp = function(comboLivesObj) {
     if (comboLivesObj.visible) {
-        comboLivesObj.visible = false;
+        comboLivesObj.visible = true;
     }
 };
