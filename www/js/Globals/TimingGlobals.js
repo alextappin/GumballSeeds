@@ -18,7 +18,7 @@ function TimingGlobals() {
 
     constants.mapWaterfallTime1 = 9;
     constants.mapWaterfallTime2 = 9;
-    constants.characterRunTime = 7;
+    constants.characterRunTime = 6;
     constants.characterJumpTime = 6;
     constants.characterAttackTime = 6;
     constants.characterJumpAttackTime = 6;
@@ -36,6 +36,8 @@ function TimingGlobals() {
     constants.superbarTime = 1;//2 or 3??!?
 
     constants.superBgTime = 3;
+
+    constants.gumballExplosionTime = 4;
 
     return constants;
 }

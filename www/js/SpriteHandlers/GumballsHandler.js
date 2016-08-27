@@ -128,13 +128,20 @@ GumballsHandler.prototype.addNewGumball = function(gumballHandler, groundObj, st
 };
 
 GumballsHandler.prototype.characterGrab = function(gumballHandler, characterObj, groundObj, stage) {
-    if (MainGlobals.Helpers.isIntersecting(gumballHandler.gumballStructure[0], characterObj)) {
-        this.characterPickedUp(gumballHandler, groundObj, stage);
+    if (gumballHandler.gumballStructure[0].Properties.grabbed) {
+        if (gumballHandler.gumballStructure[0].Properties.exploded) {
+            this.characterPickedUp(gumballHandler, groundObj, stage);
+        }
+    } else if (MainGlobals.Helpers.isIntersecting(gumballHandler.gumballStructure[0], characterObj)) {
+        gumballHandler.gumballStructure[0].Properties.grabbed = true;
+        //this.characterPickedUp(gumballHandler, groundObj, stage);
     }
 };
 
 GumballsHandler.prototype.characterPickedUp = function(gumballHandler, groundObj, stage) {
     MainGlobals.ScoreHelper.pickupGumball(gumballHandler.gumballStructure[0].Properties.color);
+    gumballHandler.gumballStructure[0].Properties.grabbed = false;
+    gumballHandler.gumballStructure[0].Properties.exploded = false;
     this.returnPiece(gumballHandler.gumballStructure.shift(), gumballHandler, stage);
     this.addNewGumball(gumballHandler, groundObj, stage);
 };

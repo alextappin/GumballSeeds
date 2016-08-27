@@ -31,6 +31,8 @@ Scroller.prototype.initializePositionsAndScale = function() {
     this.Properties.ground.setPositionAndScale(this.Properties.ground);
     this.Properties.powerBar.setPositionAndScale(this.Properties.powerBar);
     this.Properties.lifeBar.setPositionAndScale(this.Properties.lifeBar);
+    this.Properties.scoreBar.setPositionAndScale(this.Properties.scoreBar);
+    this.Properties.comboLivesBar.setPositionAndScale(this.Properties.comboLivesBar);
     this.Properties.gumballs.setPositionAndScale(this.Properties.gumballs);
     this.Properties.super.setPositionAndScale(this.Properties.super);
 };
@@ -56,8 +58,10 @@ Scroller.prototype.constructScroller = function(stage) {
     this.Properties.gumballs.addGumballsToStage(this.Properties.gumballs, stage);
     stage.addChild(this.Properties.powerBar);
     stage.addChild(this.Properties.lifeBar);
-    //stage.addChild(this.Properties.textScore);
-    //stage.addChild(this.Properties.textLives);
+    stage.addChild(this.Properties.scoreBar);
+    stage.addChild(this.Properties.comboLivesBar);
+    stage.addChild(this.Properties.textScore);
+    stage.addChild(this.Properties.textCombo);
     stage.addChild(this.Properties.touchJump);
     stage.addChild(this.Properties.touchAttack);
 };
@@ -103,8 +107,10 @@ Scroller.prototype.updateObjects = function() {
     this.Properties.enemies.update(this.Properties.enemies, this.Properties.character, this.Properties.ground, this.getStage());
     this.Properties.powerBar.update(this.Properties.powerBar);
     this.Properties.lifeBar.update(this.Properties.lifeBar);
-    //this.Properties.textScore.update(this.Properties.textScore);
-    //this.Properties.textLives.update(this.Properties.textLives);
+    this.Properties.scoreBar.update(this.Properties.scoreBar);
+    this.Properties.comboLivesBar.update(this.Properties.comboLivesBar);
+    this.Properties.textScore.update(this.Properties.textScore);
+    this.Properties.textCombo.update(this.Properties.textCombo);
     this.Properties.touchJump.update(this.Properties.touchJump, this.Properties.character);
     this.Properties.touchAttack.update(this.Properties.touchAttack, this.Properties.character);
 };
@@ -120,8 +126,10 @@ Scroller.prototype.updateObjectsPowerUp = function() {
         this.Properties.enemies.updatePowerUp(this.Properties.enemies, this.Properties.character, this.Properties.ground, this.getStage());
         this.Properties.powerBar.updatePowerUp(this.Properties.powerBar);
         this.Properties.lifeBar.updatePowerUp(this.Properties.lifeBar);
-        //this.Properties.textScore.update(this.Properties.textScore);
-        //this.Properties.textLives.update(this.Properties.textLives);
+        this.Properties.scoreBar.updatePowerUp(this.Properties.scoreBar);
+        this.Properties.comboLivesBar.updatePowerUp(this.Properties.comboLivesBar);
+        this.Properties.textScore.update(this.Properties.textScore);
+        this.Properties.textCombo.update(this.Properties.textCombo);
         this.Properties.touchJump.update(this.Properties.touchJump, this.Properties.character);
         this.Properties.touchAttack.update(this.Properties.touchAttack, this.Properties.character);
         this.Properties.super.updatePowerUp(this.Properties.super);

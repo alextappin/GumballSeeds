@@ -68,7 +68,7 @@ LifeBar.prototype.updatePowerUp = function(lifebarObj) {
 };
 
 LifeBar.prototype.checkForUpdate = function(lifebarObj) {
-    if (MainGlobals.Score.lives == 0) {
+    if (MainGlobals.Score.lives <= 1) {
         MainGlobals.Helpers.endGame();
     } else if (MainGlobals.Score.lives-1 != this.Properties.spriteCount) {
         this.Properties.spriteCount = MainGlobals.Score.lives-1;

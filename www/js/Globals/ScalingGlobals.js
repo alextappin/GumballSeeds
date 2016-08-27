@@ -29,6 +29,17 @@ function ScalingGlobals() {
     constants.enemyRatio = 0;
     constants.enemyPercent = .1;
 
+    constants.scoreScale = 0;
+    constants.scorePercent = .06;
+    constants.scorePositionY = MainGlobals.ScreenHeight * .085;
+
+    constants.comboLivesScale = 0;
+    constants.comboLivesPercent = .085;
+    constants.comboLivesPositionY = MainGlobals.ScreenHeight * .07;
+
+    constants.textScale = 0;
+    constants.textPercent = .04;
+
     //BREAK
 
     constants.gumballPercentageY = MainGlobals.ScreenHeight * .02;

@@ -12,7 +12,10 @@ function GumballProperties() {
         spriteSpeed : 0,
         startingX : MainGlobals.ScreenWidth*1.5,
         startingY : 500,
-        yGumballOffsetWithMap : 90
+        yGumballOffsetWithMap : 90,
+        explosionTextures : [],
+        exploded : false,
+        grabbed : false
     };
 
     return props;

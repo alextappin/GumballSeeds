@@ -17,6 +17,8 @@ function ScrollerProperties() {
         hill3a15 : new Hill3a15(),
         hill3b16 : new Hill3b16(),
         superBg : new SuperBg(),
+        scoreBar : new ScoreBar(),
+        comboLivesBar : new ComboLivesBar(),
         ground : new GroundHandler(),
         super : new Super(),
         character : new Character(),
@@ -28,7 +30,7 @@ function ScrollerProperties() {
         enemies : new EnemiesHandler(),
         mapBuilder : {},
         textScore : new Text("score"),
-        textLives : new Text("lives"),
+        textCombo : new Text("combo"),
         viewportX : 0
     };
 

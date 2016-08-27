@@ -12,6 +12,10 @@ Gumball.prototype = Object.create(PIXI.Container.prototype);
 Gumball.prototype.constructGumball = function(gumballColor) {
     this.Properties = new GumballProperties();
     this.Properties.color = MainGlobals.Map.gumballs[gumballColor];
+    this.Properties.explosionTextures.push(
+        PIXI.Texture.fromFrame(this.Properties.color + '2'),
+        PIXI.Texture.fromFrame('8 all gb3')
+    );
     this.initiateGumballSprites();
 };
 
@@ -27,9 +31,27 @@ Gumball.prototype.initiateGumballSprites = function() {
 
 Gumball.prototype.update = function(gumballObj) {
     gumballObj.position.x -= MainGlobals.Scroller.groundSpeed;
+    if (gumballObj.Properties.grabbed) {
+        this.pickupAnimation(gumballObj);
+    }
     gumballObj.visible = true;
 };
 
 Gumball.prototype.updatePowerUp = function(gumballObj) {
     gumballObj.visible = false;
+};
+
+Gumball.prototype.pickupAnimation = function(gumballObj) {
+    gumballObj.Properties.changeSpriteCounter++;
+    if (gumballObj.Properties.changeSpriteCounter >= MainGlobals.Timing.gumballExplosionTime) {
+        gumballObj.Properties.changeSpriteCounter = 0;
+        if (gumballObj.Properties.spriteCount < 2) {
+            gumballObj.children[0].texture = gumballObj.Properties.explosionTextures[gumballObj.Properties.spriteCount];
+            gumballObj.Properties.spriteCount++;
+        } else {
+            gumballObj.Properties.spriteCount = 0;
+            gumballObj.children[0].texture = PIXI.Texture.fromFrame(gumballObj.Properties.color);
+            gumballObj.Properties.exploded = true;
+        }
+    }
 };

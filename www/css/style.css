@@ -1,5 +1,12 @@
+
+@font-face {
+    font-family: myFirstFont;
+    src: url(../resources/MyGirlIsRetroDEMO.ttf);
+}
+
 body {
     background: rgba(1, 1, 1, 1);
     text-align: center;
     margin: -1px 0 0 0;
+    letter-spacing: .8em;
 }
