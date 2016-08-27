@@ -89,7 +89,7 @@ GumballsHandler.prototype.update = function(gumballHandler, groundObj, character
 
 GumballsHandler.prototype.updatePowerUp = function(gumballHandler, groundObj, characterObj, stage) {
     for (var n = 0; n < gumballHandler.gumballStructure.length; n++) {
-        gumballHandler.gumballStructure[n].update(gumballHandler.gumballStructure[n]);
+        gumballHandler.gumballStructure[n].updatePowerUp(gumballHandler.gumballStructure[n]);
     }
 
     this.handleOffScreen(gumballHandler, groundObj, stage);

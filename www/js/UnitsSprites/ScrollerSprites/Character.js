@@ -27,7 +27,10 @@ Character.prototype.initiateCharacterSprites = function() {
     this.Properties.runTextures.push(
         PIXI.Texture.fromFrame("gbs run1"),
         PIXI.Texture.fromFrame("gbs run2"),
-        PIXI.Texture.fromFrame("gbs run3")
+        PIXI.Texture.fromFrame("gbs run3"),
+        PIXI.Texture.fromFrame("gbs run4"),
+        PIXI.Texture.fromFrame("gbs run5"),
+        PIXI.Texture.fromFrame("gbs run6")
     );
     this.Properties.jumpTextures.push(
         PIXI.Texture.fromFrame("gbs j1"),

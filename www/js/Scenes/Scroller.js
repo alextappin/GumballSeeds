@@ -25,6 +25,7 @@ Scroller.prototype.initializePositionsAndScale = function() {
     this.Properties.haze14.setPositionAndScale(this.Properties.haze14);
     this.Properties.hill3a15.setPositionAndScale(this.Properties.hill3a15);
     this.Properties.hill3b16.setPositionAndScale(this.Properties.hill3b16);
+    this.Properties.superBg.setPositionAndScale(this.Properties.superBg);
     this.Properties.character.setPositionAndScale(this.Properties.character);
     this.Properties.enemies.setPositionAndScale(this.Properties.enemies);
     this.Properties.ground.setPositionAndScale(this.Properties.ground);
@@ -47,6 +48,7 @@ Scroller.prototype.constructScroller = function(stage) {
     //stage.addChild(this.Properties.haze14);
     stage.addChild(this.Properties.hill3a15);
     stage.addChild(this.Properties.hill3b16);
+    stage.addChild(this.Properties.superBg);
     this.Properties.ground.addGroundToStage(this.Properties.ground, stage);
     stage.addChild(this.Properties.super);
     stage.addChild(this.Properties.character);
@@ -93,6 +95,7 @@ Scroller.prototype.updateObjects = function() {
     //this.Properties.haze14.update(this.Properties.haze14, this.Properties.viewportX);
     this.Properties.hill3a15.update(this.Properties.hill3a15, this.Properties.viewportX, this.Properties.hill3b16);
     this.Properties.hill3b16.update(this.Properties.hill3b16, this.Properties.viewportX, this.Properties.hill3a15);
+    this.Properties.superBg.update(this.Properties.superBg);
     this.Properties.ground.update(this.Properties.ground, this.getStage());
     this.Properties.character.update(this.Properties.character, this.Properties.ground);
     this.Properties.super.update(this.Properties.super);
@@ -110,6 +113,7 @@ Scroller.prototype.updateViewportPowerUp = function() {
     this.Properties.viewportX = this.Properties.viewportX + MainGlobals.Scroller.currentScrollSpeed;
 };
 Scroller.prototype.updateObjectsPowerUp = function() {
+        this.Properties.superBg.updatePowerUp(this.Properties.superBg, this.Properties.viewportX);
         this.Properties.ground.updatePowerUp(this.Properties.ground, this.getStage());
         this.Properties.character.updatePowerUp(this.Properties.character, this.Properties.ground);
         this.Properties.gumballs.updatePowerUp(this.Properties.gumballs, this.Properties.ground, this.Properties.character, this.getStage());
