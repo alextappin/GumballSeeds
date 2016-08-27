@@ -161,6 +161,7 @@ Character.prototype.setSpriteToCurrentTexture = function(characterObj) {
 };
 
 Character.prototype.update = function(characterObj, groundObj) {
+    characterObj.alpha = 1;
     if (this.Properties.currentTextures == this.Properties.superStartTextures) {
         this.endSuper();
         characterObj.visible = true;
@@ -303,6 +304,7 @@ Character.prototype.setCurrentTextures = function(speed, textures) {
 //POWERUP STUFF
 
 Character.prototype.updatePowerUp = function(characterObj) {
+    characterObj.alpha = 0;
     if (!MainGlobals.PowerUp.characterDonePoweringUp) { //not done powering..
         if (this.Properties.currentTextures != this.Properties.superStartTextures) {
             this.setCurrentTextures(MainGlobals.Timing.characterPowerUpTime, this.Properties.superStartTextures);
