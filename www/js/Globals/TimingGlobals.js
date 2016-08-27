@@ -37,7 +37,7 @@ function TimingGlobals() {
 
     constants.superBgTime = 3;
 
-    constants.gumballExplosionTime = 4;
+    constants.gumballExplosionTime = 3;
 
     return constants;
 }
