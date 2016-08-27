@@ -30,7 +30,7 @@ function PowerUpHelper() {
     powerUpHelper.incrementPowerUp = function() {
         //if powerUp is not active!
         if (!MainGlobals.PowerUp.powerUpActive) {
-            if (MainGlobals.PowerUp.powerBarLevel >= MainGlobals.PowerUp.maxPowerBarLevel) {
+            if (MainGlobals.PowerUp.powerBarLevel <= MainGlobals.PowerUp.maxPowerBarLevel) {
                 powerUpHelper.startPowerUp();
                 MainGlobals.Helpers.playSound("SuperCharge");
             }

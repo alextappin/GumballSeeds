@@ -52,9 +52,6 @@ Character.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("gbs j7")
     );
     this.Properties.endSuperTextures.push(
-        PIXI.Texture.fromFrame("gbs super6"),
-        PIXI.Texture.fromFrame("gbs super6"),
-        PIXI.Texture.fromFrame("gbs super6"),
         PIXI.Texture.fromFrame("gbs j5"),
         PIXI.Texture.fromFrame("gbs j6"),
         PIXI.Texture.fromFrame("gbs j7")
@@ -73,14 +70,11 @@ Character.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("gbs ja4")
     );
     this.Properties.superStartTextures.push(
-        PIXI.Texture.fromFrame("gbs super6"),
-        PIXI.Texture.fromFrame("gbs super1"),
-        PIXI.Texture.fromFrame("gbs super1"),
-        PIXI.Texture.fromFrame("gbs super2"),
-        PIXI.Texture.fromFrame("gbs super3"),
-        PIXI.Texture.fromFrame("gbs super4"),
-        PIXI.Texture.fromFrame("gbs super5"),
-        PIXI.Texture.fromFrame("gbs super6")
+        PIXI.Texture.fromFrame("gbs ja1"),
+        PIXI.Texture.fromFrame("gbs ja1"),
+        PIXI.Texture.fromFrame("gbs ja2"),
+        PIXI.Texture.fromFrame("gbs ja3"),
+        PIXI.Texture.fromFrame("gbs ja4")
     );
     this.newJumpPosition = [];
     this.newJumpPosition.push(

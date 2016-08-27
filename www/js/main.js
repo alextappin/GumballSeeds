@@ -20,11 +20,10 @@ Main.prototype.loadSpriteSheet = function() {
             "imagesSmall/character.json", "imagesSmall/map.json",
             "imagesSmall/title.json", "imagesSmall/interface.json"
         ],
-        assetsToLoadHighRes = ["imagesSmall/character.json",
-            "imagesSmall/title.json", "imagesSmall/interface.json"],
+        assetsToLoadHighRes = [],
         loader = new PIXI.loaders.Loader();
-    for (var i = 1; i < 17; i++) {
-        assetsToLoadHighRes.push("imagesBig/bam" + i + ".json");
+    for (var i = 1; i < 8; i++) {
+        assetsToLoadHighRes.push("imagesBeta/img" + i + ".json");
     }
     loader.add(assetsToLoadHighRes).load(this.spriteSheetLoaded.bind(this))
 };
