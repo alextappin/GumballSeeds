@@ -31,6 +31,7 @@ Scroller.prototype.initializePositionsAndScale = function() {
     this.Properties.ground.setPositionAndScale(this.Properties.ground);
     this.Properties.powerBar.setPositionAndScale(this.Properties.powerBar);
     this.Properties.lifeBar.setPositionAndScale(this.Properties.lifeBar);
+    this.Properties.scoreBar.setPositionAndScale(this.Properties.scoreBar);
     this.Properties.gumballs.setPositionAndScale(this.Properties.gumballs);
     this.Properties.super.setPositionAndScale(this.Properties.super);
 };
@@ -56,6 +57,7 @@ Scroller.prototype.constructScroller = function(stage) {
     this.Properties.gumballs.addGumballsToStage(this.Properties.gumballs, stage);
     stage.addChild(this.Properties.powerBar);
     stage.addChild(this.Properties.lifeBar);
+    stage.addChild(this.Properties.scoreBar);
     //stage.addChild(this.Properties.textScore);
     //stage.addChild(this.Properties.textLives);
     stage.addChild(this.Properties.touchJump);
@@ -103,6 +105,7 @@ Scroller.prototype.updateObjects = function() {
     this.Properties.enemies.update(this.Properties.enemies, this.Properties.character, this.Properties.ground, this.getStage());
     this.Properties.powerBar.update(this.Properties.powerBar);
     this.Properties.lifeBar.update(this.Properties.lifeBar);
+    this.Properties.scoreBar.update(this.Properties.scoreBar);
     //this.Properties.textScore.update(this.Properties.textScore);
     //this.Properties.textLives.update(this.Properties.textLives);
     this.Properties.touchJump.update(this.Properties.touchJump, this.Properties.character);
@@ -120,6 +123,7 @@ Scroller.prototype.updateObjectsPowerUp = function() {
         this.Properties.enemies.updatePowerUp(this.Properties.enemies, this.Properties.character, this.Properties.ground, this.getStage());
         this.Properties.powerBar.updatePowerUp(this.Properties.powerBar);
         this.Properties.lifeBar.updatePowerUp(this.Properties.lifeBar);
+        this.Properties.scoreBar.updatePowerUp(this.Properties.scoreBar);
         //this.Properties.textScore.update(this.Properties.textScore);
         //this.Properties.textLives.update(this.Properties.textLives);
         this.Properties.touchJump.update(this.Properties.touchJump, this.Properties.character);

@@ -29,6 +29,10 @@ function ScalingGlobals() {
     constants.enemyRatio = 0;
     constants.enemyPercent = .1;
 
+    constants.scoreScale = 0;
+    constants.scorePercent = .055;
+    constants.scorePositionY = MainGlobals.ScreenHeight * .085;
+
     //BREAK
 
     constants.gumballPercentageY = MainGlobals.ScreenHeight * .02;
