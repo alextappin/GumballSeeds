@@ -10,8 +10,8 @@ function TextProperties(textType) {
                 this.numberOfZeros = 10 - MainGlobals.Score.currentScore.toString().length;
                 console.log(this.numberOfZeros);
                 this.text = "Score   " + '0'.repeat(this.numberOfZeros) + MainGlobals.Score.currentScore;
-                this.positionX = MainGlobals.ScreenWidth * .78;
-                this.positionY = MainGlobals.ScreenHeight * .094;
+                this.positionX = MainGlobals.ScreenWidth * .785;
+                this.positionY = MainGlobals.ScreenHeight * .096;
                 this.fill = "White";
                 this.fontSize = "30px";
                 this.fontFamily = "myFirstFont";
@@ -61,7 +61,7 @@ function TextProperties(textType) {
                 fill : this.fill,
                 wordWrap : this.wordWrap,
                 wordWrapWidth : this.wordWrapWidth,
-                fontFamily: this.fontFamily,
+                fontFamily: "myFirstFont",
                 fontSize: this.fontSize,
                 fontStyle: "bold",
                 letterSpacing: 2

@@ -26,10 +26,10 @@ Text.prototype.initiateTextType = function() {
 
     this.Properties.words.position.x = this.Properties.positionX;
     this.Properties.words.position.y = this.Properties.positionY;
-
     this.addChild(this.Properties.words);
 };
 Text.prototype.update = function() {
+
     this.updateText();
 };
 Text.prototype.updateText = function() {
@@ -39,5 +39,7 @@ Text.prototype.updateText = function() {
         this.Properties.words.style = this.Properties.getStyleProperties();
         this.Properties.words.position.x = this.Properties.positionX;
         this.Properties.words.position.y = this.Properties.positionY;
+    } else if (this.Properties.words.style !== this.Properties.getStyleProperties()) {
+        this.Properties.words.style = this.Properties.getStyleProperties();
     }
 };
