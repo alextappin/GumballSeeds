@@ -2,13 +2,13 @@ function ScoreHelper() {
     var scoreHelpers = {};
 
     scoreHelpers.killEnemy = function() {
-        MainGlobals.Score.currentScore += MainGlobals.Balance.enemyPoints;
+        MainGlobals.Score.currentScore += (MainGlobals.Balance.enemyPoints*MainGlobals.Score.combo);
         MainGlobals.Score.combo++;
         MainGlobals.Score.kills++;
     };
 
     scoreHelpers.getHitByEnemy = function() {
-        MainGlobals.Score.lives -= MainGlobals.Balance.enemyDamage;
+        MainGlobals.Score.lives -= MainGlobals.Helpers.getRandomNumber(1,5);
         MainGlobals.Score.combo = 0;
         MainGlobals.Helpers.playSound("CharacterHit",.4);
     };
@@ -32,7 +32,7 @@ function ScoreHelper() {
             MainGlobals.PowerHelper.incrementPowerUp();
             MainGlobals.Helpers.playSound("AddPower",.5);
             MainGlobals.Score.combo++;
-            MainGlobals.Score.currescore+=MainGlobals.Balance.pickupGumballScore;
+            MainGlobals.Score.currescore+=(MainGlobals.Balance.pickupGumballScore * MainGlobals.Score.combo);
         } else {
             MainGlobals.PowerHelper.decrementPowerUp();
             MainGlobals.Score.combo = 0;

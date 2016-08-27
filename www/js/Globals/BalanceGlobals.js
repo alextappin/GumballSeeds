@@ -13,7 +13,7 @@ function BalanceGlobals() {
     constants.runningScore = 1;
     constants.superScore = 28;
     constants.pickupGumballScore = 500;
-    constants.enemyDamage = 1;
+    constants.enemyDamage = 2;
     constants.enemiesToAdd = 1;
     constants.gumballsToAdd = 1;
     constants.continueGame = true;
