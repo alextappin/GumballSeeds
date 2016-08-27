@@ -85,7 +85,7 @@ GroundHandler.prototype.update = function(groundHandler, stage) {
 
 GroundHandler.prototype.updatePowerUp = function(groundHandler, stage) {
     for (var n = 0; n < groundHandler.groundStructure.length; n++) {
-        groundHandler.groundStructure[n].update(groundHandler.groundStructure[n]);
+        groundHandler.groundStructure[n].updatePowerUp(groundHandler.groundStructure[n]);
     }
 
     this.handleOffScreen(groundHandler, stage);

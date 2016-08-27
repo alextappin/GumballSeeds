@@ -202,7 +202,7 @@ EnemiesHandler.prototype.update = function(enemyHandler, characterObj, groundObj
 };
 EnemiesHandler.prototype.updatePowerUp = function(enemyHandler, characterObj, groundObj, stage) {
     for (var n = 0; n < enemyHandler.enemyStructure.length; n++) {
-        enemyHandler.enemyStructure[n].update(enemyHandler.enemyStructure[n]); //will just move them/explode
+        enemyHandler.enemyStructure[n].updatePowerUp(enemyHandler.enemyStructure[n]); //will just move them/explode
     }
 
     for (n = 0; n < enemyHandler.explodingEnemies.length; n++) {
@@ -254,9 +254,8 @@ EnemiesHandler.prototype.getNewPosition = function(enemyHandler, groundObj) { //
         MainGlobals.ScreenWidth*2,
         MainGlobals.Helpers.getRandomNumber(
             enemyHandler.enemyStructure[enemyHandler.enemyStructure.length-1].height,
-            groundObj.getHeightAtPositionX(50, groundObj)
+            groundObj.getHeightAtPositionX(50, groundObj) - MainGlobals.ScreenWidth *.025
         )
-
     );
 };
 

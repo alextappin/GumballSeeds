@@ -5,7 +5,7 @@ function MapGlobals() {
     var constants = {};
 
     constants.loopCounter = 1;
-    constants.screenToShow = "Load";
+    constants.screenToShow = "";
     constants.switchScreen = false;
     constants.characterOffsetX = .2;
     constants.soundLoaded = false;

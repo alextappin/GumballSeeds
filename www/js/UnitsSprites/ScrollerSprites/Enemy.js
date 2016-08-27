@@ -43,6 +43,7 @@ Enemy.prototype.setSpriteToCurrentTexture = function(enemyObj) {
 };
 
 Enemy.prototype.update = function(enemyObj) {
+    enemyObj.visible = true;
     if (this.Properties.currentTextures != this.Properties.flyTextures) {
         this.setCurrentTextures(MainGlobals.Timing.enemyFlyTime, this.Properties.flyTextures);
     }
@@ -71,8 +72,9 @@ Enemy.prototype.succeed = function(enemyObj) {
 };
 
 Enemy.prototype.updatePowerUp = function(enemyObj) {
-    this.updateSprites(enemyObj);
-    this.moveForward(enemyObj);
+    enemyObj.visible = false;
+    //this.updateSprites(enemyObj);
+    //this.moveForward(enemyObj);
 };
 
 Enemy.prototype.moveForward = function(enemyObj) {

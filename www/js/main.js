@@ -20,11 +20,10 @@ Main.prototype.loadSpriteSheet = function() {
             "imagesSmall/character.json", "imagesSmall/map.json",
             "imagesSmall/title.json", "imagesSmall/interface.json"
         ],
-        assetsToLoadHighRes = ["imagesSmall/character.json",
-            "imagesSmall/title.json", "imagesSmall/interface.json"],
+        assetsToLoadHighRes = [],
         loader = new PIXI.loaders.Loader();
-    for (var i = 1; i < 17; i++) {
-        assetsToLoadHighRes.push("imagesBig/bam" + i + ".json");
+    for (var i = 1; i < 8; i++) {
+        assetsToLoadHighRes.push("imagesBeta/img" + i + ".json");
     }
     loader.add(assetsToLoadHighRes).load(this.spriteSheetLoaded.bind(this))
 };
@@ -62,6 +61,8 @@ Main.prototype.updatedSelectedScreen = function() {
         this.titleScreen.update();
     } else if(MainGlobals.Helpers.screenIsLoad()) {
         this.loadScreen.update();
+    } else if(MainGlobals.Helpers.screenIsBlack()) {
+        this.loadScreen.update();
     }
 };
 
@@ -70,7 +71,11 @@ Main.prototype.startAppropriateScreen = function() {
         this.scroller = new Scroller(MainGlobals.stage);
     } else if (MainGlobals.Helpers.screenIsTitle()) {
         this.titleScreen = new TitleScreen(MainGlobals.stage);
-    } else if(MainGlobals.Helpers.screenIsLoad()) {
+        console.log(MainGlobals.stage);
+    } else if (MainGlobals.Helpers.screenIsBlack()) {
+        this.loadScreen = new BlackScreen(MainGlobals.stage);
+    }
+    else if(MainGlobals.Helpers.screenIsLoad()) {
         this.loadScreen = new LoadScreen(MainGlobals.stage);
     }
 };

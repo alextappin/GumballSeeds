@@ -16,6 +16,7 @@ function ScrollerProperties() {
         haze14 : new Haze14(),
         hill3a15 : new Hill3a15(),
         hill3b16 : new Hill3b16(),
+        superBg : new SuperBg(),
         ground : new GroundHandler(),
         super : new Super(),
         character : new Character(),

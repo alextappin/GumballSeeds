@@ -59,13 +59,6 @@ LoadImage.prototype.initiateLoadImageSprites = function() {
         PIXI.Texture.fromFrame("gbs ja2"),
         PIXI.Texture.fromFrame("gbs ja3"),
         PIXI.Texture.fromFrame("gbs ja4"),
-        PIXI.Texture.fromFrame("gbs super1"),
-        PIXI.Texture.fromFrame("gbs super1"),
-        PIXI.Texture.fromFrame("gbs super2"),
-        PIXI.Texture.fromFrame("gbs super3"),
-        PIXI.Texture.fromFrame("gbs super4"),
-        PIXI.Texture.fromFrame("gbs super5"),
-        PIXI.Texture.fromFrame("gbs super6"),
         PIXI.Texture.fromFrame("1 super powerup"),
         PIXI.Texture.fromFrame("1 super powerup"),
         PIXI.Texture.fromFrame("2 super powerup"),
@@ -114,6 +107,11 @@ LoadImage.prototype.update = function(imageObj) {
     this.updateSprites(imageObj);
 };
 LoadImage.prototype.updateSprites = function(imageObj) {
+    if (imageObj.position.x < -100) { //black screen scene to fix scaling issues.
+        MainGlobals.Helpers.switchToLoad();
+        MainGlobals.Helpers.switchScreenToggle();
+        return;
+    }
     if (imageObj.Properties.testCount < imageObj.Properties.textures.length) {
         imageObj.children[1].texture = imageObj.Properties.textures[imageObj.Properties.testCount];
         imageObj.Properties.testCount++;

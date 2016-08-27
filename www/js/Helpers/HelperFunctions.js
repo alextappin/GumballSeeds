@@ -58,12 +58,20 @@ function HelperFunctions() {
         return MainGlobals.Map.screenToShow === MainGlobals.Map.loadString;
     };
 
+    functions.screenIsBlack  = function() {
+        return MainGlobals.Map.screenToShow === "";
+    };
+
     functions.switchToGame = function() {
         MainGlobals.Map.screenToShow = MainGlobals.Map.gameString;
     };
 
     functions.switchToTitle = function() {
         MainGlobals.Map.screenToShow = MainGlobals.Map.titleString;
+    };
+
+    functions.switchToLoad = function() {
+        MainGlobals.Map.screenToShow = MainGlobals.Map.loadString;
     };
 
     functions.switchToStartAnimation = function() {

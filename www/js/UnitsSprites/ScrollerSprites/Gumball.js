@@ -27,8 +27,9 @@ Gumball.prototype.initiateGumballSprites = function() {
 
 Gumball.prototype.update = function(gumballObj) {
     gumballObj.position.x -= MainGlobals.Scroller.groundSpeed;
+    gumballObj.visible = true;
 };
 
 Gumball.prototype.updatePowerUp = function(gumballObj) {
-    gumballObj.position.x -= MainGlobals.Scroller.groundSpeed;
+    gumballObj.visible = false;
 };

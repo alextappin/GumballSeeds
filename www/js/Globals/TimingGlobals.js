@@ -35,5 +35,7 @@ function TimingGlobals() {
 
     constants.superbarTime = 1;//2 or 3??!?
 
+    constants.superBgTime = 3;
+
     return constants;
 }

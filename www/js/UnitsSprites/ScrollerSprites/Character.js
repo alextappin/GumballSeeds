@@ -27,7 +27,10 @@ Character.prototype.initiateCharacterSprites = function() {
     this.Properties.runTextures.push(
         PIXI.Texture.fromFrame("gbs run1"),
         PIXI.Texture.fromFrame("gbs run2"),
-        PIXI.Texture.fromFrame("gbs run3")
+        PIXI.Texture.fromFrame("gbs run3"),
+        PIXI.Texture.fromFrame("gbs run4"),
+        PIXI.Texture.fromFrame("gbs run5"),
+        PIXI.Texture.fromFrame("gbs run6")
     );
     this.Properties.jumpTextures.push(
         PIXI.Texture.fromFrame("gbs j1"),
@@ -52,9 +55,6 @@ Character.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("gbs j7")
     );
     this.Properties.endSuperTextures.push(
-        PIXI.Texture.fromFrame("gbs super6"),
-        PIXI.Texture.fromFrame("gbs super6"),
-        PIXI.Texture.fromFrame("gbs super6"),
         PIXI.Texture.fromFrame("gbs j5"),
         PIXI.Texture.fromFrame("gbs j6"),
         PIXI.Texture.fromFrame("gbs j7")
@@ -73,14 +73,21 @@ Character.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("gbs ja4")
     );
     this.Properties.superStartTextures.push(
-        PIXI.Texture.fromFrame("gbs super6"),
-        PIXI.Texture.fromFrame("gbs super1"),
-        PIXI.Texture.fromFrame("gbs super1"),
-        PIXI.Texture.fromFrame("gbs super2"),
-        PIXI.Texture.fromFrame("gbs super3"),
-        PIXI.Texture.fromFrame("gbs super4"),
-        PIXI.Texture.fromFrame("gbs super5"),
-        PIXI.Texture.fromFrame("gbs super6")
+        PIXI.Texture.fromFrame("gbs ja1"),
+        PIXI.Texture.fromFrame("gbs ja1"),
+        PIXI.Texture.fromFrame("gbs ja2"),
+        PIXI.Texture.fromFrame("gbs ja3"),
+        PIXI.Texture.fromFrame("gbs ja4")
+    );
+    this.newJumpPosition = [];
+    this.newJumpPosition.push(
+        PIXI.Texture.fromFrame("gbs j1"),
+        PIXI.Texture.fromFrame("gbs j2"),
+        PIXI.Texture.fromFrame("gbs j3"),
+        PIXI.Texture.fromFrame("gbs j4"),
+        PIXI.Texture.fromFrame("gbs j5"),
+        PIXI.Texture.fromFrame("gbs j6"),
+        PIXI.Texture.fromFrame("gbs j7")
     );
 
     this.setCurrentTextures(MainGlobals.Timing.characterRunTime, this.Properties.runTextures);
@@ -88,11 +95,73 @@ Character.prototype.initiateCharacterSprites = function() {
     this.addChild(new PIXI.Sprite(this.Properties.currentTextures[this.Properties.spriteCount]));
 };
 
+Character.prototype.setCorrectTextureForPositionJumping = function(characterObj) {
+    if (!MainGlobals.Physics.characterAirborn || MainGlobals.Balance.isAttacking) {
+        return false;
+    }
+    var characterPositionPercentage = characterObj.position.y / MainGlobals.ScreenHeight;
+
+    if (MainGlobals.Physics.characterVelocityY < 0) {
+        if (MainGlobals.Physics.characterHighJumping) {
+            if (characterPositionPercentage > .28) {
+                characterObj.children[0].texture = this.newJumpPosition[0];
+            } else if (characterPositionPercentage > .133) {
+                characterObj.children[0].texture = this.newJumpPosition[1];
+            } else if (characterPositionPercentage > .038) {
+                characterObj.children[0].texture = this.newJumpPosition[2];
+            } else if (characterPositionPercentage > 0) {
+                characterObj.children[0].texture = this.newJumpPosition[3];
+            } else if (characterPositionPercentage < 0 ) {
+                characterObj.children[0].texture = this.newJumpPosition[3];
+            }
+        } else {
+            if (characterPositionPercentage > .42) {
+                characterObj.children[0].texture = this.newJumpPosition[0];
+            } else if (characterPositionPercentage > .36) {
+                characterObj.children[0].texture = this.newJumpPosition[1];
+            } else if (characterPositionPercentage > .35) {
+                characterObj.children[0].texture = this.newJumpPosition[2];
+            }
+        }
+    } else {
+        if (MainGlobals.Physics.characterHighJumping) {
+            // high jumping fall logic
+            if (characterPositionPercentage < 0) {
+                characterObj.children[0].texture = this.newJumpPosition[4];
+            } else if (characterPositionPercentage < .075) {
+                characterObj.children[0].texture = this.newJumpPosition[2];
+            } else if (characterPositionPercentage < .196) {
+                characterObj.children[0].texture = this.newJumpPosition[3];
+            } else if (characterPositionPercentage < .37) {
+                characterObj.children[0].texture = this.newJumpPosition[4];
+            } else if (characterPositionPercentage < .5 ) {
+                characterObj.children[0].texture = this.newJumpPosition[5];
+            } else if (characterPositionPercentage > .5 ) {
+                characterObj.children[0].texture = this.newJumpPosition[6];
+            }
+        } else {
+            //fall logic regular
+            if (characterPositionPercentage < .355) {
+                characterObj.children[0].texture = this.newJumpPosition[2];
+            } else if (characterPositionPercentage < .39) {
+                characterObj.children[0].texture = this.newJumpPosition[3];
+            } else if (characterPositionPercentage < .48) {
+                characterObj.children[0].texture = this.newJumpPosition[4];
+            } else if (characterPositionPercentage < .629) {
+                characterObj.children[0].texture = this.newJumpPosition[5];
+            } else if (characterPositionPercentage < .73) {
+                characterObj.children[0].texture = this.newJumpPosition[6];
+            }
+        }
+    }
+};
+
 Character.prototype.setSpriteToCurrentTexture = function(characterObj) {
     characterObj.children[0].texture = this.Properties.currentTextures[this.Properties.spriteCount];
 };
 
 Character.prototype.update = function(characterObj, groundObj) {
+    characterObj.alpha = 1;
     if (this.Properties.currentTextures == this.Properties.superStartTextures) {
         this.endSuper();
         characterObj.visible = true;
@@ -102,14 +171,17 @@ Character.prototype.update = function(characterObj, groundObj) {
     this.gravityCharacter(characterObj, groundObj);
     this.resetCharacter(characterObj);
     this.attackCharacter();
+    this.setCorrectTextureForPositionJumping(characterObj);
 };
 
 Character.prototype.updateSprites = function(characterObj) {
-    if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
-        this.Properties.changeSpriteCounter = 0;
-        this.nextSprite(characterObj);
-    } else {
-        this.Properties.changeSpriteCounter++;
+    if (!MainGlobals.Physics.characterAirborn || MainGlobals.Balance.isAttacking) {
+        if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
+            this.Properties.changeSpriteCounter = 0;
+            this.nextSprite(characterObj);
+        } else {
+            this.Properties.changeSpriteCounter++;
+        }
     }
 };
 
@@ -142,7 +214,7 @@ Character.prototype.fallCharacter = function(characterObj, groundObj) {
 
     if (characterObj.position.y < groundHeight) { //keep falling
         characterObj.position.y += MainGlobals.Physics.characterVelocityY;
-    } else if (characterObj.position.y + MainGlobals.Physics.characterVelocityY > groundHeight) {
+    } else if (characterObj.position.y + MainGlobals.Physics.characterVelocityY >= groundHeight) {
         characterObj.position.y = groundHeight;
         MainGlobals.Physics.characterVelocityY = 0;
         MainGlobals.Physics.characterAirborn = false;
@@ -173,13 +245,13 @@ Character.prototype.attackCharacter = function() {
 };
 
 Character.prototype.startJumpAnimation = function() {
-    if (!MainGlobals.Physics.characterAirborn) {
+    if (!MainGlobals.Physics.characterAirborn && !MainGlobals.Balance.isAttacking) {
         MainGlobals.Physics.characterAirborn = true;
-        MainGlobals.Physics.isAttacking = false;
+        MainGlobals.Balance.isAttacking = false;
         MainGlobals.Physics.characterVelocityY = MainGlobals.Physics.characterJumpVelocity;
         MainGlobals.Helpers.playSound("GumballJump",.4);
-        this.setCurrentTextures(MainGlobals.Timing.characterJumpTime, this.Properties.jumpTextures);
-    } else if (this.Properties.spriteCount < 2 && !MainGlobals.Physics.characterHighJumping) {
+        //this.setCurrentTextures(MainGlobals.Timing.characterJumpTime, this.Properties.jumpTextures);
+    } else if (!MainGlobals.Physics.characterHighJumping && MainGlobals.Physics.characterVelocityY < 0 && !MainGlobals.Balance.isAttacking) {
         this.startJumpHighAnimation();
     }
 };
@@ -190,29 +262,29 @@ Character.prototype.startJumpHighAnimation = function() {
     MainGlobals.Physics.characterHighJumping = true;
     MainGlobals.Physics.isAttacking = false;
     MainGlobals.Physics.characterVelocityY = MainGlobals.Physics.characterJumpHighVelocity;
-    this.setCurrentTextures(MainGlobals.Timing.characterJumpTime, this.Properties.jumpHighTextures);
+    //this.setCurrentTextures(MainGlobals.Timing.characterJumpTime, this.Properties.jumpHighTextures);
 };
 
 Character.prototype.startAttackAnimation = function() {
     if (!MainGlobals.Balance.isAttacking) {
         if (MainGlobals.Physics.characterAirborn) {
-            MainGlobals.Balance.isAttacking = false;
+            this.setCurrentTextures(MainGlobals.Timing.characterJumpAttackTime, this.Properties.jumpAttackTextures);
         } else {
-            MainGlobals.Helpers.playSound("GumballAttack1",.6);
-            MainGlobals.Helpers.playSound("GumballAttack2",.5);
-            MainGlobals.Helpers.playSound("GumballAttack3",.3);
             this.setCurrentTextures(MainGlobals.Timing.characterAttackTime, this.Properties.attackTextures);
-            MainGlobals.Balance.isAttacking = true;
         }
+        MainGlobals.Helpers.playSound("GumballAttack1",.6);
+        MainGlobals.Helpers.playSound("GumballAttack2",.5);
+        MainGlobals.Helpers.playSound("GumballAttack3",.3);
+        MainGlobals.Balance.isAttacking = true;
     }
 };
 
 Character.prototype.startJumpAttackAnimation = function() {
-    if (!MainGlobals.Physics.characterAirborn && this.Properties.spriteCount < 2) {
-        MainGlobals.Physics.characterAirborn = true;
-        MainGlobals.Physics.characterVelocityY = MainGlobals.Physics.characterJumpAttackVelocity;
-        this.setCurrentTextures(MainGlobals.Timing.characterJumpAttackTime, this.Properties.jumpAttackTextures);
-    }
+    //if (!MainGlobals.Physics.characterAirborn && this.Properties.spriteCount < 2) {
+    //    MainGlobals.Physics.characterAirborn = true;
+    //    MainGlobals.Physics.characterVelocityY = MainGlobals.Physics.characterJumpAttackVelocity;
+    //    this.setCurrentTextures(MainGlobals.Timing.characterJumpAttackTime, this.Properties.jumpAttackTextures);
+    //}
 };
 
 Character.prototype.setCurrentTextures = function(speed, textures) {
@@ -229,10 +301,10 @@ Character.prototype.setCurrentTextures = function(speed, textures) {
     }
 
 };
-
 //POWERUP STUFF
 
 Character.prototype.updatePowerUp = function(characterObj) {
+    characterObj.alpha = 0;
     if (!MainGlobals.PowerUp.characterDonePoweringUp) { //not done powering..
         if (this.Properties.currentTextures != this.Properties.superStartTextures) {
             this.setCurrentTextures(MainGlobals.Timing.characterPowerUpTime, this.Properties.superStartTextures);
