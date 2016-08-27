@@ -34,7 +34,7 @@ function ScalingGlobals() {
     constants.scorePositionY = MainGlobals.ScreenHeight * .085;
 
     constants.comboLivesScale = 0;
-    constants.comboLivesPercent = .073;
+    constants.comboLivesPercent = .085;
     constants.comboLivesPositionY = MainGlobals.ScreenHeight * .07;
 
     constants.textScale = 0;

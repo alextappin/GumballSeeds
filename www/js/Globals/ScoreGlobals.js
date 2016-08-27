@@ -8,6 +8,7 @@ function ScoreGlobals() {
     constants.highScore = 0;
     constants.lives = 15;
     constants.kills = 0;
+    constants.combo = 0;
 
     return constants;
 }
