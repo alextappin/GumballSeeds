@@ -2,7 +2,7 @@ function ScoreHelper() {
     var scoreHelpers = {};
 
     scoreHelpers.killEnemy = function() {
-        MainGlobals.Score.currentScore += (MainGlobals.Balance.enemyPoints*MainGlobals.Score.combo);
+        MainGlobals.Score.currentScore += (MainGlobals.Balance.enemyPoints*MainGlobals.Score.combo+1);
         MainGlobals.Score.combo++;
         MainGlobals.Score.kills++;
     };
@@ -15,7 +15,7 @@ function ScoreHelper() {
 
     scoreHelpers.runningScore = function() {
         if (MainGlobals.PowerUp.powerUpActive) {
-            MainGlobals.Score.currentScore = MainGlobals.Score.currentScore + (MainGlobals.Balance.superScore * MainGlobals.Score.combo);
+            MainGlobals.Score.currentScore = MainGlobals.Score.currentScore + (MainGlobals.Balance.superScore * MainGlobals.Score.combo+1);
             MainGlobals.Balance.loopScoreIncrementTime = 3;
         } else {
             MainGlobals.Score.currentScore = MainGlobals.Score.currentScore + MainGlobals.Balance.runningScore;
@@ -32,7 +32,7 @@ function ScoreHelper() {
             MainGlobals.PowerHelper.incrementPowerUp();
             MainGlobals.Helpers.playSound("AddPower",.5);
             MainGlobals.Score.combo++;
-            MainGlobals.Score.currescore+=(MainGlobals.Balance.pickupGumballScore * MainGlobals.Score.combo);
+            MainGlobals.Score.currescore+=(MainGlobals.Balance.pickupGumballScore * MainGlobals.Score.combo+1);
         } else {
             if (!MainGlobals.PowerUp.powerUpActive) {
                 MainGlobals.PowerHelper.decrementPowerUp();
