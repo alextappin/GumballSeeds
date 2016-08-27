@@ -7,10 +7,14 @@ function TextProperties(textType) {
         type : textType,
         setValues : function() {
             if (this.type == "score") {
-                this.text = "Score  " + MainGlobals.Score.currentScore;
-                this.positionX = 10;
-                this.positionY = 10;
-                this.fill = "Green";
+                this.numberOfZeros = 10 - MainGlobals.Score.currentScore.toString().length;
+                console.log(this.numberOfZeros);
+                this.text = "Score   " + '0'.repeat(this.numberOfZeros) + MainGlobals.Score.currentScore;
+                this.positionX = MainGlobals.ScreenWidth * .78;
+                this.positionY = MainGlobals.ScreenHeight * .094;
+                this.fill = "White";
+                this.fontSize = "30px";
+                this.fontFamily = "myFirstFont";
             }
             else if(this.type == "highscore") {
                 this.text = "HighScore  " + MainGlobals.Score.highScore;
@@ -30,7 +34,8 @@ function TextProperties(textType) {
                 this.positionX = 0;
                 this.positionY = 0;
                 this.fill = "White";
-                this.font = "15px Arial";
+                this.fontFamily = "Arial";
+                this.fontSize = "15px";
                 this.wordWrap = true;
                 this.wordWrapWidth = MainGlobals.ScreenWidth/4;
             }
@@ -39,7 +44,8 @@ function TextProperties(textType) {
                 this.positionX = MainGlobals.ScreenWidth - MainGlobals.ScreenWidth/4;
                 this.positionY = 0;
                 this.fill = "White";
-                this.font = "15px Arial";
+                this.fontFamily = "Arial";
+                this.fontSize = "15px";
                 this.wordWrap = true;
                 this.wordWrapWidth = MainGlobals.ScreenWidth/4;
             }
@@ -55,9 +61,35 @@ function TextProperties(textType) {
                 fill : this.fill,
                 wordWrap : this.wordWrap,
                 wordWrapWidth : this.wordWrapWidth,
-                font: this.font
+                fontFamily: this.fontFamily,
+                fontSize: this.fontSize,
+                fontStyle: "bold",
+                letterSpacing: 2
             }
 
+        },
+        needsUpdate : function() {
+            if (this.type == "score") {
+                var numberOfZeros = 10 - MainGlobals.Score.currentScore.toString().length;
+                console.log(numberOfZeros);
+
+                return !("Score   " + '0'.repeat(numberOfZeros) + MainGlobals.Score.currentScore == this.text);
+            }
+            else if(this.type == "highscore") {
+
+            }
+            else if(this.type == "lives") {
+
+            }
+            else if(this.type == "loadInstructions") {
+
+            }
+            else if(this.type = "loadInfo") {
+
+            }
+            else {
+                return false;
+            }
         }
     };
 

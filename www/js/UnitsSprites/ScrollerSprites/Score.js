@@ -32,6 +32,6 @@ ScoreBar.prototype.update = function(scoreObj) {
 
 ScoreBar.prototype.updatePowerUp = function(scoreObj) {
     if (scoreObj.visible) {
-        scoreObj.visible = false;
+        scoreObj.visible = true;
     }
 };

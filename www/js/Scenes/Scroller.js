@@ -60,7 +60,7 @@ Scroller.prototype.constructScroller = function(stage) {
     stage.addChild(this.Properties.lifeBar);
     stage.addChild(this.Properties.scoreBar);
     stage.addChild(this.Properties.comboLivesBar);
-    //stage.addChild(this.Properties.textScore);
+    stage.addChild(this.Properties.textScore);
     //stage.addChild(this.Properties.textLives);
     stage.addChild(this.Properties.touchJump);
     stage.addChild(this.Properties.touchAttack);
@@ -109,7 +109,7 @@ Scroller.prototype.updateObjects = function() {
     this.Properties.lifeBar.update(this.Properties.lifeBar);
     this.Properties.scoreBar.update(this.Properties.scoreBar);
     this.Properties.comboLivesBar.update(this.Properties.comboLivesBar);
-    //this.Properties.textScore.update(this.Properties.textScore);
+    this.Properties.textScore.update(this.Properties.textScore);
     //this.Properties.textLives.update(this.Properties.textLives);
     this.Properties.touchJump.update(this.Properties.touchJump, this.Properties.character);
     this.Properties.touchAttack.update(this.Properties.touchAttack, this.Properties.character);
@@ -128,7 +128,7 @@ Scroller.prototype.updateObjectsPowerUp = function() {
         this.Properties.lifeBar.updatePowerUp(this.Properties.lifeBar);
         this.Properties.scoreBar.updatePowerUp(this.Properties.scoreBar);
         this.Properties.comboLivesBar.updatePowerUp(this.Properties.comboLivesBar);
-        //this.Properties.textScore.update(this.Properties.textScore);
+        this.Properties.textScore.update(this.Properties.textScore);
         //this.Properties.textLives.update(this.Properties.textLives);
         this.Properties.touchJump.update(this.Properties.touchJump, this.Properties.character);
         this.Properties.touchAttack.update(this.Properties.touchAttack, this.Properties.character);

@@ -30,12 +30,15 @@ function ScalingGlobals() {
     constants.enemyPercent = .1;
 
     constants.scoreScale = 0;
-    constants.scorePercent = .055;
+    constants.scorePercent = .06;
     constants.scorePositionY = MainGlobals.ScreenHeight * .085;
 
     constants.comboLivesScale = 0;
     constants.comboLivesPercent = .073;
     constants.comboLivesPositionY = MainGlobals.ScreenHeight * .07;
+
+    constants.textScale = 0;
+    constants.textPercent = .04;
 
     //BREAK
 
