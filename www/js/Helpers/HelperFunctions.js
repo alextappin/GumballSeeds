@@ -232,5 +232,9 @@ function HelperFunctions() {
         }
     };
 
+    functions.enemySpeed = function() {
+        return (MainGlobals.Balance.enemySpeed*60)/(60-(MainGlobals.Score.combo*2));
+        //return MainGlobals.Balance.enemySpeed + (MainGlobals.Score.combo > 0 ?  MainGlobals.Balance.enemySpeed * MainGlobals.Score.combo/12 : 0)
+    };
     return functions;
 }

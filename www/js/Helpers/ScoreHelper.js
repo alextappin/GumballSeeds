@@ -34,8 +34,10 @@ function ScoreHelper() {
             MainGlobals.Score.combo++;
             MainGlobals.Score.currescore+=(MainGlobals.Balance.pickupGumballScore * MainGlobals.Score.combo);
         } else {
-            MainGlobals.PowerHelper.decrementPowerUp();
-            MainGlobals.Score.combo = 0;
+            if (!MainGlobals.PowerUp.powerUpActive) {
+                MainGlobals.PowerHelper.decrementPowerUp();
+                MainGlobals.Score.combo = 0;
+            }
         }
     };
 
