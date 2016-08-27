@@ -9,7 +9,7 @@ function BalanceGlobals() {
     constants.gumballs = 1;
     constants.createNewEnemiesCounter = 50;
     constants.loopScoreIncrementTime = 10;
-    constants.enemyPoints = 500;
+    constants.enemyPoints = 200;
     constants.runningScore = 1;
     constants.superScore = 28;
     constants.pickupGumballScore = 10;
