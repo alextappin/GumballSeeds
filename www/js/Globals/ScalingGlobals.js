@@ -33,6 +33,10 @@ function ScalingGlobals() {
     constants.scorePercent = .055;
     constants.scorePositionY = MainGlobals.ScreenHeight * .085;
 
+    constants.comboLivesScale = 0;
+    constants.comboLivesPercent = .073;
+    constants.comboLivesPositionY = MainGlobals.ScreenHeight * .07;
+
     //BREAK
 
     constants.gumballPercentageY = MainGlobals.ScreenHeight * .02;
