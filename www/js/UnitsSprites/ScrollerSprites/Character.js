@@ -72,12 +72,19 @@ Character.prototype.initiateCharacterSprites = function() {
         PIXI.Texture.fromFrame("gbs ja3"),
         PIXI.Texture.fromFrame("gbs ja4")
     );
-    this.Properties.superStartTextures.push(
-        PIXI.Texture.fromFrame("gbs ja1"),
-        PIXI.Texture.fromFrame("gbs ja1"),
+    this.Properties.attack2Textures.push(
+        PIXI.Texture.fromFrame("gbs a2a"),
+        PIXI.Texture.fromFrame("gbs a2"),
+        PIXI.Texture.fromFrame("gbs a1")
+    );
+    this.Properties.jumpAttack2Textures.push(
+        PIXI.Texture.fromFrame("gbs ja2a"),
         PIXI.Texture.fromFrame("gbs ja2"),
         PIXI.Texture.fromFrame("gbs ja3"),
         PIXI.Texture.fromFrame("gbs ja4")
+    );
+    this.Properties.superStartTextures.push(
+        PIXI.Texture.fromFrame("gbs ja1")
     );
     this.newJumpPosition = [];
     this.newJumpPosition.push(
