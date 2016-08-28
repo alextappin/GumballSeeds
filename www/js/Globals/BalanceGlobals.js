@@ -22,6 +22,7 @@ function BalanceGlobals() {
 
     //Character Specific
     constants.isAttacking = false;
+    constants.isComboAttacking = false;
     constants.attackTime = 21;
     constants.jumpAttackTime = 39;
 

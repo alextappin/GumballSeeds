@@ -41,8 +41,8 @@ TouchAttack.prototype.handleClickEvents = function(spriteToHandle, characterObj)
             if(characterObj){
                 if (MainGlobals.Balance.isAttacking == false) {
                     characterObj.startAttackAnimation();
-                } else {
-                    characterObj.startJumpAttackAnimation();
+                } else if (MainGlobals.Balance.isComboAttacking == false) {
+                    characterObj.startComboAttackAnimation();
                 }
             }
 

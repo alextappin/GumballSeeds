@@ -294,6 +294,10 @@ Character.prototype.startJumpAttackAnimation = function() {
     //}
 };
 
+Character.prototype.startComboAttackAnimation = function() {
+
+};
+
 Character.prototype.setCurrentTextures = function(speed, textures) {
     if (textures) {
         this.Properties.currentTextures = textures;
