@@ -39,10 +39,10 @@ TouchAttack.prototype.handleClickEvents = function(spriteToHandle, characterObj)
         var spriteTimeout;
         function onButtonDown() {
             if(characterObj){
-                if (MainGlobals.Balance.isAttacking == false) {
+                if (MainGlobals.Balance.isAttacking == false && MainGlobals.Balance.isComboAttacking == false) {
                     characterObj.startAttackAnimation();
-                } else {
-                    characterObj.startJumpAttackAnimation();
+                } else if (MainGlobals.Balance.isComboAttacking == false) {
+                    characterObj.startComboAttackAnimation();
                 }
             }
 

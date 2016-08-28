@@ -22,8 +22,11 @@ function BalanceGlobals() {
 
     //Character Specific
     constants.isAttacking = false;
+    constants.isComboAttacking = false;
     constants.attackTime = 21;
     constants.jumpAttackTime = 39;
+    constants.comboAttackTime = 28;
+    constants.jumpComboAttackTime = 21;
 
     //Enemy Specific
     constants.enemySpeed = MainGlobals.ScreenHeight/60;

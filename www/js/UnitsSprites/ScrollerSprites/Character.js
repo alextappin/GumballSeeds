@@ -74,14 +74,17 @@ Character.prototype.initiateCharacterSprites = function() {
     );
     this.Properties.attack2Textures.push(
         PIXI.Texture.fromFrame("gbs a2a"),
+        PIXI.Texture.fromFrame("gbs a2a"),
         PIXI.Texture.fromFrame("gbs a2"),
-        PIXI.Texture.fromFrame("gbs a1")
+        PIXI.Texture.fromFrame("gbs a1"),
+        PIXI.Texture.fromFrame("gbs run1"),
+        PIXI.Texture.fromFrame("gbs run2")
     );
     this.Properties.jumpAttack2Textures.push(
         PIXI.Texture.fromFrame("gbs ja2a"),
+        PIXI.Texture.fromFrame("gbs ja2a"),
         PIXI.Texture.fromFrame("gbs ja2"),
-        PIXI.Texture.fromFrame("gbs ja3"),
-        PIXI.Texture.fromFrame("gbs ja4")
+        PIXI.Texture.fromFrame("gbs ja3")
     );
     this.Properties.superStartTextures.push(
         PIXI.Texture.fromFrame("gbs ja1")
@@ -182,7 +185,7 @@ Character.prototype.update = function(characterObj, groundObj) {
 };
 
 Character.prototype.updateSprites = function(characterObj) {
-    if (!MainGlobals.Physics.characterAirborn || MainGlobals.Balance.isAttacking) {
+    if (!MainGlobals.Physics.characterAirborn || MainGlobals.Balance.isAttacking || MainGlobals.Balance.isComboAttacking) {
         if (this.Properties.changeSpriteCounter == this.Properties.spriteSpeed) {
             this.Properties.changeSpriteCounter = 0;
             this.nextSprite(characterObj);
@@ -239,14 +242,27 @@ Character.prototype.riseCharacter = function(characterObj) {
 };
 
 Character.prototype.attackCharacter = function() {
-    if (MainGlobals.Balance.isAttacking) {
+    if (MainGlobals.Balance.isAttacking && !MainGlobals.Balance.isComboAttacking) {
         this.Properties.attackCounter++;
         var counter = MainGlobals.Physics.characterAirborn ? MainGlobals.Balance.jumpAttackTime : MainGlobals.Balance.attackTime;
 
         if (this.Properties.attackCounter >= counter) { //attack updates over
             MainGlobals.Balance.isAttacking = false;
-            this.setCurrentTextures(); //default
+            if (!MainGlobals.Balance.isComboAttacking) {
+                this.setCurrentTextures();
+            } //default
             this.Properties.attackCounter = 0;
+        }
+    }
+
+    if (MainGlobals.Balance.isComboAttacking) {
+        this.Properties.comboAttackCounter++;
+        counter = MainGlobals.Physics.characterAirborn ? MainGlobals.Balance.jumpComboAttackTime : MainGlobals.Balance.comboAttackTime;
+
+        if (this.Properties.comboAttackCounter >= counter) { //attack updates over
+            MainGlobals.Balance.isComboAttacking = false;
+            this.setCurrentTextures(); //default
+            this.Properties.comboAttackCounter = 0;
         }
     }
 };
@@ -255,6 +271,7 @@ Character.prototype.startJumpAnimation = function() {
     if (!MainGlobals.Physics.characterAirborn && !MainGlobals.Balance.isAttacking) {
         MainGlobals.Physics.characterAirborn = true;
         MainGlobals.Balance.isAttacking = false;
+        MainGlobals.Balance.isComboAttacking = false;
         MainGlobals.Physics.characterVelocityY = MainGlobals.Physics.characterJumpVelocity;
         MainGlobals.Helpers.playSound("GumballJump",.4);
         //this.setCurrentTextures(MainGlobals.Timing.characterJumpTime, this.Properties.jumpTextures);
@@ -268,12 +285,13 @@ Character.prototype.startJumpHighAnimation = function() {
     MainGlobals.Physics.characterAirborn = true;
     MainGlobals.Physics.characterHighJumping = true;
     MainGlobals.Physics.isAttacking = false;
+    MainGlobals.Physics.isComboAttacking = false;
     MainGlobals.Physics.characterVelocityY = MainGlobals.Physics.characterJumpHighVelocity;
     //this.setCurrentTextures(MainGlobals.Timing.characterJumpTime, this.Properties.jumpHighTextures);
 };
 
 Character.prototype.startAttackAnimation = function() {
-    if (!MainGlobals.Balance.isAttacking) {
+    if (!MainGlobals.Balance.isAttacking && !MainGlobals.Balance.isComboAttacking) {
         if (MainGlobals.Physics.characterAirborn) {
             this.setCurrentTextures(MainGlobals.Timing.characterJumpAttackTime, this.Properties.jumpAttackTextures);
         } else {
@@ -286,12 +304,18 @@ Character.prototype.startAttackAnimation = function() {
     }
 };
 
-Character.prototype.startJumpAttackAnimation = function() {
-    //if (!MainGlobals.Physics.characterAirborn && this.Properties.spriteCount < 2) {
-    //    MainGlobals.Physics.characterAirborn = true;
-    //    MainGlobals.Physics.characterVelocityY = MainGlobals.Physics.characterJumpAttackVelocity;
-    //    this.setCurrentTextures(MainGlobals.Timing.characterJumpAttackTime, this.Properties.jumpAttackTextures);
-    //}
+Character.prototype.startComboAttackAnimation = function() {
+    if (!MainGlobals.Balance.isComboAttacking) {
+        if (MainGlobals.Physics.characterAirborn) {
+            this.setCurrentTextures(MainGlobals.Timing.characterJumpComboAttackTime, this.Properties.jumpAttack2Textures);
+        } else {
+            this.setCurrentTextures(MainGlobals.Timing.characterComboAttackTime, this.Properties.attack2Textures);
+        }
+        MainGlobals.Helpers.playSound("GumballAttackCombo",.7);
+        MainGlobals.Helpers.playSound("GumballAttack2",.5);
+        MainGlobals.Helpers.playSound("GumballAttack3",.3);
+        MainGlobals.Balance.isComboAttacking = true;
+    }
 };
 
 Character.prototype.setCurrentTextures = function(speed, textures) {
