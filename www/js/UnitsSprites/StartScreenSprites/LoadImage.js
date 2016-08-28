@@ -127,6 +127,7 @@ LoadImage.prototype.updateSprites = function(imageObj) {
         if (MainGlobals.Map.soundLoaded && imageObj.alpha < .1) {
             MainGlobals.Helpers.switchToTitle();
             MainGlobals.Helpers.switchScreenToggle();
+            MainGlobals.Helpers.startTitleSound();
         }
     }
 };
