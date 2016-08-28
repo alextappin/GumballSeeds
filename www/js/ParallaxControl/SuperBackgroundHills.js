@@ -28,7 +28,6 @@ SuperBg.prototype.update = function(obj) {
     obj.visible = false;
 };
 SuperBg.prototype.updatePowerUp = function(obj, newViewportX) {
-    console.log(newViewportX);
     obj.visible = true;
     this.spriteCounter++;
     if (this.spriteCounter > MainGlobals.Timing.superBgTime) {

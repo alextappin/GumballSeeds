@@ -4,8 +4,8 @@
 function LoadImageProperties() {
     var props = {
         textures : [],
-        alphaStart : 0.02,
-        alphaIncrement :.005
+        alphaStart : 0.7,
+        alphaIncrement :.01
     };
 
     return props;

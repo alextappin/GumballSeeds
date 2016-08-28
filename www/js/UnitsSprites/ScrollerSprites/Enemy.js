@@ -78,7 +78,7 @@ Enemy.prototype.updatePowerUp = function(enemyObj) {
 };
 
 Enemy.prototype.moveForward = function(enemyObj) {
-    enemyObj.position.x -= MainGlobals.Balance.enemySpeed;
+    enemyObj.position.x -= MainGlobals.Helpers.enemySpeed();
 };
 
 Enemy.prototype.fallBack = function(enemyObj) {

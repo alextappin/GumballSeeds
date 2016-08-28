@@ -11,6 +11,8 @@ function CharacterProperties() {
         jumpHighTextures : [],
         attackTextures : [],
         jumpAttackTextures : [],
+        attack2Textures : [],
+        jumpAttack2Textures : [],
         superStartTextures : [],
         endSuperTextures : [],
         superTextures : [],

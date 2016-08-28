@@ -41,13 +41,22 @@ LoadImage.prototype.initiateLoadImageSprites = function() {
         PIXI.Texture.fromFrame("startrainbowanimation2"),
         PIXI.Texture.fromFrame("gbs run1"),
         PIXI.Texture.fromFrame("gbs run2"),
-        PIXI.Texture.fromFrame("gbs run3"),
+        PIXI.Texture.fromFrame("1 BGsky"),
+        PIXI.Texture.fromFrame("6 cloud2"),
+        PIXI.Texture.fromFrame("7 cloud3"),
+        PIXI.Texture.fromFrame("8 gumballmachine"),
+        PIXI.Texture.fromFrame("4 haze1"),
+        PIXI.Texture.fromFrame("9 hill1a"),
+        PIXI.Texture.fromFrame("10 hill1b"),
+        PIXI.Texture.fromFrame("12 hill2a"),
+        PIXI.Texture.fromFrame("13 hill2b"),
+        PIXI.Texture.fromFrame("15a hill3a"),
+        PIXI.Texture.fromFrame("15b hill3a"),
+        PIXI.Texture.fromFrame("16a hill3b"),
+        PIXI.Texture.fromFrame("16b hill3b"),
         PIXI.Texture.fromFrame("gbs a1"),
         PIXI.Texture.fromFrame("gbs a2"),
         PIXI.Texture.fromFrame("gbs a1"),
-        PIXI.Texture.fromFrame("gbs run1"),
-        PIXI.Texture.fromFrame("gbs run2"),
-        PIXI.Texture.fromFrame("gbs run3"),
         PIXI.Texture.fromFrame("gbs j1"),
         PIXI.Texture.fromFrame("gbs j2"),
         PIXI.Texture.fromFrame("gbs j3"),
@@ -82,14 +91,6 @@ LoadImage.prototype.initiateLoadImageSprites = function() {
         PIXI.Texture.fromFrame("rainbowband up3b"),
         PIXI.Texture.fromFrame("superbarBG"),
         PIXI.Texture.fromFrame("superbar1"),
-        PIXI.Texture.fromFrame("superbar2"),
-        PIXI.Texture.fromFrame("superbar3"),
-        PIXI.Texture.fromFrame("superbar4"),
-        PIXI.Texture.fromFrame("superbar5"),
-        PIXI.Texture.fromFrame("superbar6"),
-        PIXI.Texture.fromFrame("superbar7"),
-        PIXI.Texture.fromFrame("superbar7"),
-        PIXI.Texture.fromFrame("superbar8"),
         PIXI.Texture.fromFrame("superbar9"),
         PIXI.Texture.fromFrame("ts death1"),
         PIXI.Texture.fromFrame("ts death2"),
@@ -123,9 +124,10 @@ LoadImage.prototype.updateSprites = function(imageObj) {
 
         imageObj.alpha += this.Properties.alphaIncrement;
 
-        if (MainGlobals.Map.soundLoaded && imageObj.alpha < this.Properties.alphaStart) {
+        if (MainGlobals.Map.soundLoaded && imageObj.alpha < .1) {
             MainGlobals.Helpers.switchToTitle();
             MainGlobals.Helpers.switchScreenToggle();
+            MainGlobals.Helpers.startTitleSound();
         }
     }
 };

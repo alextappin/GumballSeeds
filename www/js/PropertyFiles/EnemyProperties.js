@@ -9,7 +9,8 @@ function EnemyProperties() {
         deathTextures : [],
         spriteCount : 0,
         spriteSpeed : 0,
-        changeSpriteCounter : 0
+        changeSpriteCounter : 0,
+        dashConstant : 0
     };
 
     return props;
