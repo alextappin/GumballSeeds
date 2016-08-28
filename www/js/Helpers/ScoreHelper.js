@@ -8,7 +8,7 @@ function ScoreHelper() {
     };
 
     scoreHelpers.getHitByEnemy = function() {
-        //MainGlobals.Score.lives -= MainGlobals.Helpers.getRandomNumber(1,5);
+        MainGlobals.Score.lives -= MainGlobals.Helpers.getRandomNumber(1,5);
         MainGlobals.Score.combo = 0;
         MainGlobals.Helpers.playSound("CharacterHit",.4);
     };
