@@ -23,6 +23,10 @@ function GameSounds() {
             id : "GumballAttack1",
             url : "resources/GumballSounds/GBS gumball seed SWORD SWING HAH 1.m4a"
         },
+        attackCombo : {
+            id : "GumballAttackCombo",
+            url : "resources/GumballSounds/GBS gumball seed SWORD SWING HAH 2 .m4a"
+        },
         attackSound2 : {
             id : "GumballAttack2",
             url : "resources/GumballSounds/GBS SWORD SWING sfx.mp3"
@@ -64,7 +68,7 @@ function GameSounds() {
             url : "resources/GumballSounds/GumballSeeds Rainbow band Rocket.mp3"
         }
     },
-        numSoundsToLoad = 12,
+        numSoundsToLoad = 16,
         counter = 0;
     createjs.Sound.addEventListener("fileload", handleFileLoad);
 
