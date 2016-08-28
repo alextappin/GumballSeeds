@@ -81,6 +81,7 @@ StartButton.prototype.handleClickEvents = function(spriteToHandle) {
         var spriteTimeout;
         function onButtonDown() {
             MainGlobals.Timing.startButtonPressed = true;
+            MainGlobals.Helpers.playSound("GumballAttack2",.5);
             clearTimeout(spriteTimeout);
         }
         spriteToHandle.interactive = true;
