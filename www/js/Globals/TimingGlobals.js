@@ -21,7 +21,9 @@ function TimingGlobals() {
     constants.characterRunTime = 6;
     constants.characterJumpTime = 6;
     constants.characterAttackTime = 6;
+    constants.characterComboAttackTime = 6;
     constants.characterJumpAttackTime = 6;
+    constants.characterJumpComboAttackTime = 5;
     constants.characterHitTime = 10;
     constants.characterDieTime = 10;
     constants.characterSuperTime = 15;

@@ -27,6 +27,7 @@ function CharacterProperties() {
         currentTextures : [],
         currentSuperTextures : [],
         attackCounter : 0,
+        comboAttackCounter : 0,
         powerUpPositionVelocity : -1
     };
 
