@@ -259,9 +259,9 @@ Character.prototype.attackCharacter = function(characterObj, groundHeight) {
         this.Properties.comboAttackCounter++;
         counter = MainGlobals.Physics.characterAirborn ? MainGlobals.Balance.jumpComboAttackTime : MainGlobals.Balance.comboAttackTime;
         if (!MainGlobals.Physics.characterAirborn) {
-            if (this.Properties.comboAttackCounter < 17 && this.Properties.comboAttackCounter > 6) {
+            if (this.Properties.comboAttackCounter < 16 && this.Properties.comboAttackCounter > 6) {
                 console.log(groundHeight);
-                characterObj.position.y = groundHeight * .95;
+                characterObj.position.y = groundHeight * .94;
                 console.log(characterObj.position.y);
             } else {
                 console.log("no");
