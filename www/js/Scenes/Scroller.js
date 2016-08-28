@@ -8,7 +8,16 @@ function Scroller(stage) {
     this.getStage = function() {
         return stage;
     };
+    //stage.alpha = 1.5;
+    this.flashObj = {
+        done : false
+    };
 
+    this.blurFilter1 = new PIXI.filters.BlurFilter();
+    this.blurFilter2 = new PIXI.filters.BlurFilter();
+    stage.filters = [this.blurFilter1,this.blurFilter2];
+    this.blurFilter1.blur = 15;
+    this.blurFilter2.blur = 150;
     MainGlobals.Helpers.stopTitleSound();
     MainGlobals.Helpers.startGameSound();
 }
@@ -37,7 +46,6 @@ Scroller.prototype.initializePositionsAndScale = function() {
     this.Properties.super.setPositionAndScale(this.Properties.super);
 };
 Scroller.prototype.constructScroller = function(stage) {
-    stage.addChild(this.Properties.superBg);
     stage.addChild(this.Properties.bgSky1);
     stage.addChild(this.Properties.haze4);
     stage.addChild(this.Properties.cloud5);
@@ -51,6 +59,8 @@ Scroller.prototype.constructScroller = function(stage) {
     //stage.addChild(this.Properties.haze14);
     stage.addChild(this.Properties.hill3a15);
     stage.addChild(this.Properties.hill3b16);
+    stage.addChild(this.Properties.superBg);
+
 
     this.Properties.ground.addGroundToStage(this.Properties.ground, stage);
     stage.addChild(this.Properties.super);
@@ -67,6 +77,15 @@ Scroller.prototype.constructScroller = function(stage) {
     stage.addChild(this.Properties.touchAttack);
 };
 Scroller.prototype.update = function() {
+    if (!this.flashObj.done) {
+        if (this.blurFilter1.blur > 0) {
+            this.blurFilter1.blur -= 1;
+            this.blurFilter2.blur -= 10;
+        } else {
+            this.getStage().filters = [];
+            this.flashObj.done = true;
+        }
+    }
     if (MainGlobals.PowerUp.powerUpActive) {
         this.updateViewportPowerUp();
         this.updateObjectsPowerUp();
