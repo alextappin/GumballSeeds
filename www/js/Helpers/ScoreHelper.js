@@ -2,13 +2,13 @@ function ScoreHelper() {
     var scoreHelpers = {};
 
     scoreHelpers.killEnemy = function() {
-        MainGlobals.Score.currentScore += (MainGlobals.Balance.enemyPoints*MainGlobals.Score.combo+1);
+        MainGlobals.Score.currentScore += (MainGlobals.Balance.enemyPoints*(MainGlobals.Score.combo+1));
         MainGlobals.Score.combo++;
         MainGlobals.Score.kills++;
     };
 
     scoreHelpers.getHitByEnemy = function() {
-        MainGlobals.Score.lives -= MainGlobals.Helpers.getRandomNumber(1,5);
+        //MainGlobals.Score.lives -= MainGlobals.Helpers.getRandomNumber(1,5);
         MainGlobals.Score.combo = 0;
         MainGlobals.Helpers.playSound("CharacterHit",.4);
     };
@@ -19,7 +19,7 @@ function ScoreHelper() {
             MainGlobals.Balance.loopScoreIncrementTime = 3;
         } else {
             MainGlobals.Score.currentScore = MainGlobals.Score.currentScore + MainGlobals.Balance.runningScore;
-            MainGlobals.Balance.loopScoreIncrementTime = 10;
+            MainGlobals.Balance.loopScoreIncrementTime = 20;
         }
     };
 

@@ -37,6 +37,7 @@ Scroller.prototype.initializePositionsAndScale = function() {
     this.Properties.super.setPositionAndScale(this.Properties.super);
 };
 Scroller.prototype.constructScroller = function(stage) {
+    stage.addChild(this.Properties.superBg);
     stage.addChild(this.Properties.bgSky1);
     stage.addChild(this.Properties.haze4);
     stage.addChild(this.Properties.cloud5);
@@ -50,7 +51,7 @@ Scroller.prototype.constructScroller = function(stage) {
     //stage.addChild(this.Properties.haze14);
     stage.addChild(this.Properties.hill3a15);
     stage.addChild(this.Properties.hill3b16);
-    stage.addChild(this.Properties.superBg);
+
     this.Properties.ground.addGroundToStage(this.Properties.ground, stage);
     stage.addChild(this.Properties.super);
     stage.addChild(this.Properties.character);
