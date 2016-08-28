@@ -295,7 +295,6 @@ EnemiesHandler.prototype.addNewEnemy = function(enemyHandler, groundObj, stage) 
             enemyHandler,
             groundObj
         );
-        console.log(enemyHandler.enemyStructure[enemyHandler.enemyStructure.length - 1].position);
 
         stage.addChildAt(
             enemyHandler.enemyStructure[enemyHandler.enemyStructure.length - 1],
