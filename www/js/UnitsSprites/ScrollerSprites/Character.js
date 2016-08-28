@@ -180,7 +180,7 @@ Character.prototype.update = function(characterObj, groundObj) {
     this.updateSprites(characterObj);
     this.gravityCharacter(characterObj, groundObj);
     this.resetCharacter(characterObj);
-    this.attackCharacter();
+    this.attackCharacter(characterObj, groundObj.getHeightAtPositionX(0, groundObj));
     this.setCorrectTextureForPositionJumping(characterObj);
 };
 
@@ -236,12 +236,12 @@ Character.prototype.fallCharacter = function(characterObj, groundObj) {
     }
 };
 
-Character.prototype.riseCharacter = function(characterObj) {
+Character.prototype.riseCharacter = function(characterObj, groundHeight) {
     MainGlobals.Physics.characterVelocityY += MainGlobals.Physics.characterGravity;
     characterObj.position.y += MainGlobals.Physics.characterVelocityY;
 };
 
-Character.prototype.attackCharacter = function() {
+Character.prototype.attackCharacter = function(characterObj, groundHeight) {
     if (MainGlobals.Balance.isAttacking && !MainGlobals.Balance.isComboAttacking) {
         this.Properties.attackCounter++;
         var counter = MainGlobals.Physics.characterAirborn ? MainGlobals.Balance.jumpAttackTime : MainGlobals.Balance.attackTime;
@@ -258,7 +258,16 @@ Character.prototype.attackCharacter = function() {
     if (MainGlobals.Balance.isComboAttacking) {
         this.Properties.comboAttackCounter++;
         counter = MainGlobals.Physics.characterAirborn ? MainGlobals.Balance.jumpComboAttackTime : MainGlobals.Balance.comboAttackTime;
-
+        if (!MainGlobals.Physics.characterAirborn) {
+            if (this.Properties.comboAttackCounter < 17 && this.Properties.comboAttackCounter > 6) {
+                console.log(groundHeight);
+                characterObj.position.y = groundHeight * .95;
+                console.log(characterObj.position.y);
+            } else {
+                console.log("no");
+                characterObj.position.y = groundHeight;
+            }
+        }
         if (this.Properties.comboAttackCounter >= counter) { //attack updates over
             MainGlobals.Balance.isComboAttacking = false;
             this.setCurrentTextures(); //default
