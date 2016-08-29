@@ -21,6 +21,8 @@ Character.prototype.setPositionAndScale = function(obj) {
 
     obj.scale = MainGlobals.Helpers.getNewPoint(MainGlobals.Scaling.characterScale,MainGlobals.Scaling.characterScale);
     obj.position =  MainGlobals.Helpers.getNewPoint(MainGlobals.Scaling.characterPositionX, 0);
+
+    MainGlobals.Physics.characterAirborn = true;
 };
 
 Character.prototype.initiateCharacterSprites = function() {
@@ -260,11 +262,8 @@ Character.prototype.attackCharacter = function(characterObj, groundHeight) {
         counter = MainGlobals.Physics.characterAirborn ? MainGlobals.Balance.jumpComboAttackTime : MainGlobals.Balance.comboAttackTime;
         if (!MainGlobals.Physics.characterAirborn) {
             if (this.Properties.comboAttackCounter < 17 && this.Properties.comboAttackCounter > 6) {
-                console.log(groundHeight);
-                characterObj.position.y = groundHeight * .95;
-                console.log(characterObj.position.y);
+                characterObj.position.y = groundHeight * .94;
             } else {
-                console.log("no");
                 characterObj.position.y = groundHeight;
             }
         }

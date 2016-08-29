@@ -244,8 +244,8 @@ EnemiesHandler.prototype.getNewPosition = function(enemyHandler, groundObj) { //
                 enemyHandler.enemyStructure[enemyHandler.enemyStructure.length-2].position.x + MainGlobals.ScreenWidth
             ),
             MainGlobals.Helpers.getRandomNumber(
-                enemyHandler.enemyStructure[enemyHandler.enemyStructure.length-1].height,
-                groundObj.getHeightAtPositionX(50, groundObj)
+                enemyHandler.enemyStructure[0].height,
+                groundObj.getHeightAtPositionX(100, groundObj) - enemyHandler.enemyStructure[0].height
             )
         );
 

@@ -15,7 +15,7 @@ function ScalingGlobals() {
     constants.startAnimationScale = 0;
     constants.startAnimationPercent = 1;
     constants.characterScale = 0;
-    constants.characterPercent = .23;
+    constants.characterPercent = .253;
     constants.characterPositionX = MainGlobals.ScreenHeight *.25;
     constants.superbarScale = 0;
     constants.superbarPercent = .08;
@@ -27,7 +27,7 @@ function ScalingGlobals() {
     constants.lifeBarPercent = .018;
     constants.lifeBarPositionY = MainGlobals.ScreenHeight * .04;
     constants.enemyRatio = 0;
-    constants.enemyPercent = .1;
+    constants.enemyPercent = .14;
 
     constants.scoreScale = 0;
     constants.scorePercent = .06;
