@@ -194,6 +194,7 @@ function HelperFunctions() {
 
     functions.endGame = function() {
         MainGlobals.Physics.airborn = true;
+        MainGlobals.Physics.applyFallingGravity = false;
         MainGlobals.Balance.continueGame = false;
         MainGlobals.Score.lives = MainGlobals.Score.maxLives;
         MainGlobals.Balance.isAttacking = false;
