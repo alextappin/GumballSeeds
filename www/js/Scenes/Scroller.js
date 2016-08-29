@@ -20,7 +20,6 @@ function Scroller(stage) {
     this.blurFilter2.blur = 150;
     MainGlobals.Helpers.stopTitleSound();
     MainGlobals.Helpers.startGameSound();
-    console.log(MainGlobals.Physics);
 }
 Scroller.prototype.initializePositionsAndScale = function() {
     this.Properties.haze4.setPositionAndScale(this.Properties.haze4);

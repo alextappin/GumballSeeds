@@ -209,7 +209,6 @@ Character.prototype.nextSprite = function(characterObj) {
 
 Character.prototype.gravityCharacter = function(characterObj, groundObj) {
     if (MainGlobals.Physics.characterAirborn) {
-        console.log("here");
         if (MainGlobals.Physics.characterVelocityY >= 0) { //falling
             this.fallCharacter(characterObj, groundObj);
         } else {
