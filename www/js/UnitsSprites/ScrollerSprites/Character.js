@@ -21,6 +21,8 @@ Character.prototype.setPositionAndScale = function(obj) {
 
     obj.scale = MainGlobals.Helpers.getNewPoint(MainGlobals.Scaling.characterScale,MainGlobals.Scaling.characterScale);
     obj.position =  MainGlobals.Helpers.getNewPoint(MainGlobals.Scaling.characterPositionX, 0);
+
+    MainGlobals.Physics.characterAirborn = true;
 };
 
 Character.prototype.initiateCharacterSprites = function() {
@@ -207,6 +209,7 @@ Character.prototype.nextSprite = function(characterObj) {
 
 Character.prototype.gravityCharacter = function(characterObj, groundObj) {
     if (MainGlobals.Physics.characterAirborn) {
+        console.log("here");
         if (MainGlobals.Physics.characterVelocityY >= 0) { //falling
             this.fallCharacter(characterObj, groundObj);
         } else {

@@ -198,7 +198,7 @@ function HelperFunctions() {
         MainGlobals.Balance.continueGame = false;
         MainGlobals.Score.lives = MainGlobals.Score.maxLives;
         MainGlobals.Balance.isAttacking = false;
-        MainGlobals.Physics.applyFallingGravity = false;
+        MainGlobals.Physics.applyFallingGravity = true;
         MainGlobals.Physics.characterHighJumping = false;
         MainGlobals.PowerUp.powerUpActive = false;
         MainGlobals.PowerUp.characterDonePoweringUp = false;
