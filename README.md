@@ -1,9 +1,9 @@
 # Gumball Seeds (C)
 ##### A game created in HTML5 and Javascript
-# Play [Here] (http://alextappin.github.io/GumballSeeds/)
+# Play [Here](http://alextappin.github.io/GumballSeeds/)
 ### Contributors
 I am the only **developer** on this project. My uncle [Ovi Nedelcu](http://www.ovinedelcu.com/) is the **artist** and owner of the product.
-#Change Log
+# Change Log
 **x.y.z Versioning**
    * **x** : *Major Release* Includes *main* version changes
    * **y** : *Minor Release* Includes *features* with or without bug fixes
